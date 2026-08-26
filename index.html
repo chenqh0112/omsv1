@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SKU管理 — OMS 库存管理系统</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="sku">
+
+<aside class="app-nav">
+  <div class="nav-brand">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M9 22V12h6v10"></path></svg>
+    OMS 库存管理
+  </div>
+  <nav class="nav-list">
+    <a href="index.html" data-nav="sku" class="active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+      SKU管理
+    </a>
+    <a href="cargo-tray.html" data-nav="tray">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="M3.27 6.96 12 12.01l8.73-5.05"></path><path d="M12 22.08V12"></path></svg>
+      美国货盘
+    </a>
+    <a href="fees.html" data-nav="fees">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 10h18"></path><path d="M7 15h3"></path></svg>
+      费用
+    </a>
+    <a href="login.html" data-nav="login">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 17l5-5-5-5"></path><path d="M15 12H3"></path><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path></svg>
+      登录
+    </a>
+  </nav>
+  <div class="nav-footer">OMS v1.0</div>
+</aside>
+
+<div class="app-content">
+  <div class="topbar" style="background:var(--surface);border-bottom:1px solid var(--border);height:48px">
+    <div class="topbar-left" style="gap:0">
+      <span style="font-size:13px;color:var(--muted);padding:0 12px;border-right:1px solid var(--border)">首页</span>
+      <div style="padding:0 16px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px">
+        <span class="dot" style="width:8px;height:8px;border-radius:50%;background:var(--primary);display:inline-block"></span>
+        SKU管理
+      </div>
+    </div>
+    <div class="topbar-right">
+      
+      <div class="user">
+        <button class="avatar" type="button" data-role-avatar aria-haspopup="dialog" aria-label="切换身份" title="切换身份">超</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-body">
+    <div class="warehouse-banner page-section">
+      <div class="wh-info">
+        <div class="wh-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M9 22V12h6v10"></path></svg>
+        </div>
+        <div>
+          <div class="wh-name">德州1号仓库</div>
+          
+        </div>
+      </div>
+      <div class="wh-stats">
+        <div class="wh-stat">
+          <div class="wh-stat-num" id="summary-skus">6</div>
+          <div class="wh-stat-label">SKU 数</div>
+        </div>
+        <div class="wh-stat">
+          <div class="wh-stat-num" id="summary-available">94</div>
+          <div class="wh-stat-label">可用库存</div>
+        </div>
+        <div class="wh-stat">
+          <div class="wh-stat-num" id="summary-intransit">237</div>
+          <div class="wh-stat-label">在途</div>
+        </div>
+        <div class="wh-stat">
+          <div class="wh-stat-num" id="summary-lowstock" style="color:#fef08a">1</div>
+          <div class="wh-stat-label">低库存预警</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-bar page-section" style="padding:16px 18px">
+      <div class="filter-group">
+        <label>SKU条形码</label>
+        <input type="text" id="f-barcode" placeholder="" style="width:180px">
+      </div>
+      <div class="filter-group">
+        <label>SKU名称</label>
+        <input type="text" id="f-name" placeholder="" style="width:180px">
+      </div>
+      <div id="role-filter-fields" style="display:contents"></div>
+      <div class="filter-group">
+        <label>卖家分类</label>
+        <select id="f-category" style="width:160px">
+          <option value="">请选择卖家分类</option>
+          <option value="杯子">杯子</option>
+          <option value="电子">电子</option>
+          <option value="家居">家居</option>
+        </select>
+      </div>
+      <div class="spacer"></div>
+      <button class="btn btn-primary" onclick="applyFilters()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        搜索
+      </button>
+      <button class="btn btn-ghost" onclick="resetFilters()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+        重置
+      </button>
+      <button class="btn" style="background:#fef3c7;color:#92400e;font-weight:600" onclick="exportData()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        导出
+      </button>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 300px;gap:16px" class="page-section">
+      <div class="table-wrap">
+        <div class="table-head-bar" style="padding:12px 18px">
+          <div style="display:flex;align-items:center;gap:12px">
+            <h3 style="font-size:14px;font-weight:600">SKU库存列表</h3>
+            <label style="display:flex;align-items:center;gap:4px;cursor:pointer;font-size:12px;color:var(--muted)">
+              <input type="checkbox" id="f-lowstock" onchange="applyFilters()" style="width:auto">
+              仅看低库存
+            </label>
+          </div>
+          <span class="tag tag-muted" id="row-count">共 6 条</span>
+        </div>
+        <div class="table-scroll">
+        <table class="data-table" id="inv-table">
+          <thead id="inv-thead"></thead>
+          <tbody id="inv-tbody"><tr style="background: rgba(220, 38, 38, 0.04);"><td><div style="display:flex;justify-content:center"><div style="width:40px;height:40px;border-radius:6px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-size:20px">🏀</div></div></td><td style="font-family:var(--font-mono);font-size:12.5px;color:var(--muted)">0694670410</td><td style="font-weight:500">篮球6</td><td style="color:var(--muted);font-size:13px">40OZ</td><td><span class="tag tag-muted">杯子</span></td><td class="num" style="text-align:right;color:var(--danger);font-weight:600">1</td><td class="num" style="text-align:right;color:var(--warning);font-weight:500">1</td><td class="num" style="text-align:right;color:#3b82f6;font-weight:500">2</td><td class="num" style="text-align:right;color:#8b5cf6;font-weight:500">0</td><td class="num" style="text-align:right;color:var(--info);font-weight:500">0</td><td class="num" style="text-align:right;font-weight:700">2</td></tr><tr><td><div style="display:flex;justify-content:center"><div style="width:40px;height:40px;border-radius:6px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-size:20px">🧴</div></div></td><td style="font-family:var(--font-mono);font-size:12.5px;color:var(--muted)">1497997262</td><td style="font-weight:500">老虎4</td><td style="color:var(--muted);font-size:13px">手提杯</td><td><span class="tag tag-muted">杯子</span></td><td class="num" style="text-align:right;color:var(--success);font-weight:600">34</td><td class="num" style="text-align:right;color:var(--warning);font-weight:500">0</td><td class="num" style="text-align:right;color:#3b82f6;font-weight:500">34</td><td class="num" style="text-align:right;color:#8b5cf6;font-weight:500">130</td><td class="num" style="text-align:right;color:var(--info);font-weight:500">114</td><td class="num" style="text-align:right;font-weight:700">278</td></tr><tr><td><div style="display:flex;justify-content:center"><div style="width:40px;height:40px;border-radius:6px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-size:20px">🥤</div></div></td><td style="font-family:var(--font-mono);font-size:12.5px;color:var(--muted)">1964196450</td><td style="font-weight:500">羽毛5</td><td style="color:var(--muted);font-size:13px">手柄30OZ</td><td><span class="tag tag-muted">杯子</span></td><td class="num" style="text-align:right;color:var(--success);font-weight:600">30</td><td class="num" style="text-align:right;color:var(--warning);font-weight:500">0</td><td class="num" style="text-align:right;color:#3b82f6;font-weight:500">30</td><td class="num" style="text-align:right;color:#8b5cf6;font-weight:500">100</td><td class="num" style="text-align:right;color:var(--info);font-weight:500">148</td><td class="num" style="text-align:right;font-weight:700">278</td></tr><tr><td><div style="display:flex;justify-content:center"><div style="width:40px;height:40px;border-radius:6px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-size:20px">🍓</div></div></td><td style="font-family:var(--font-mono);font-size:12.5px;color:var(--muted)">2917043563</td><td style="font-weight:500">草莓3</td><td style="color:var(--muted);font-size:13px">手提杯</td><td><span class="tag tag-muted">杯子</span></td><td class="num" style="text-align:right;color:var(--success);font-weight:600">6</td><td class="num" style="text-align:right;color:var(--warning);font-weight:500">0</td><td class="num" style="text-align:right;color:#3b82f6;font-weight:500">6</td><td class="num" style="text-align:right;color:#8b5cf6;font-weight:500">70</td><td class="num" style="text-align:right;color:var(--info);font-weight:500">76</td><td class="num" style="text-align:right;font-weight:700">152</td></tr><tr><td><div style="display:flex;justify-content:center"><div style="width:40px;height:40px;border-radius:6px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-size:20px">🐼</div></div></td><td style="font-family:var(--font-mono);font-size:12.5px;color:var(--muted)">CM74834623</td><td style="font-weight:500">熊猫1</td><td style="color:var(--muted);font-size:13px">40OZ</td><td><span class="tag tag-muted">杯子</span></td><td class="num" style="text-align:right;color:var(--success);font-weight:600">23</td><td class="num" style="text-align:right;color:var(--warning);font-weight:500">0</td><td class="num" style="text-align:right;color:#3b82f6;font-weight:500">23</td><td class="num" style="text-align:right;color:#8b5cf6;font-weight:500">37</td><td class="num" style="text-align:right;color:var(--info);font-weight:500">12</td><td class="num" style="text-align:right;font-weight:700">72</td></tr><tr style="background: rgba(220, 38, 38, 0.04);"><td><div style="display:flex;justify-content:center"><div style="width:40px;height:40px;border-radius:6px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-size:20px">🌸</div></div></td><td style="font-family:var(--font-mono);font-size:12.5px;color:var(--muted)">FL89234102</td><td style="font-weight:500">花朵2</td><td style="color:var(--muted);font-size:13px">手柄20OZ</td><td><span class="tag tag-muted">杯子</span></td><td class="num" style="text-align:right;color:var(--success);font-weight:600">0</td><td class="num" style="text-align:right;color:var(--warning);font-weight:500">2</td><td class="num" style="text-align:right;color:#3b82f6;font-weight:500">77</td><td class="num" style="text-align:right;color:#8b5cf6;font-weight:500">0</td><td class="num" style="text-align:right;color:var(--info);font-weight:500">0</td><td class="num" style="text-align:right;font-weight:700">79</td></tr></tbody>
+        </table>
+        </div>
+        <div class="pagination">
+          <span class="pagination-info">共 <strong id="total-count">6</strong> 条</span>
+          <div style="display:flex;align-items:center;gap:8px">
+            <select style="padding:4px 8px;border:1px solid var(--border);border-radius:6px;font-size:12.5px">
+              <option>10条/每页</option>
+              <option>20条/每页</option>
+              <option>50条/每页</option>
+            </select>
+            <div class="pagination-btns">
+              <button class="page-btn" disabled="">‹</button>
+              <button class="page-btn active">1</button>
+              <button class="page-btn">›</button>
+            </div>
+            <span style="font-size:12.5px;color:var(--muted)">跳至</span>
+            <input type="number" value="1" style="width:40px;padding:4px 6px;border:1px solid var(--border);border-radius:6px;font-size:12.5px;text-align:center">
+            <span style="font-size:12.5px;color:var(--muted)">页</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="table-wrap" style="margin-bottom:16px">
+          <div class="table-head-bar">
+            <h3 style="font-size:14px">库存结构分布</h3>
+          </div>
+          <div style="padding:16px 18px">
+            <div style="margin-bottom:12px">
+              <div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:6px">
+                <span style="color:var(--muted)">总数量</span>
+                <span style="font-weight:700;font-size:15px" id="stock-total">0</span>
+              </div>
+              <div id="stock-bar" style="height:28px;background:var(--surface-2);border-radius:6px;overflow:hidden;display:flex"></div>
+            </div>
+            <div id="stock-legend" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px"></div>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <div class="table-head-bar">
+            <h3 style="font-size:14px">库龄分布</h3>
+            <span class="tag tag-muted" id="age-sku-count">0 SKU</span>
+          </div>
+          <div style="padding:16px 18px">
+            <div class="bar-chart" id="age-chart"></div>
+            <div id="age-summary" style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);font-size:12px;color:var(--muted)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg>
+  <span id="toast-msg">操作成功</span>
+</div>
+
+<div id="img-preview" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;cursor:pointer" onclick="closePreview()">
+  <img id="preview-img" src="" style="max-width:80%;max-height:80%;border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,0.4)">
+  <div style="position:absolute;top:20px;right:20px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px">x</div>
+</div>
+
+<script src="mock.js"></script>
+<script src="multi-select.js"></script>
+<script>
+var skuData = [
+  {img:'img4.jpg',barcode:'0694670410',name:'篮球6',spec:'40OZ',company:'公司A',businessGroup:'业务组A',salesperson:'业务员A',category:'杯子',available:1,locked:1,onShelf:2,pending:0,inTransit:0,total:2,doi:45,lowStock:true},
+  {img:'img5.jpg',barcode:'1497997262',name:'老虎4',spec:'手提杯',company:'公司A',businessGroup:'业务组A',salesperson:'业务员B',category:'杯子',available:34,locked:0,onShelf:34,pending:130,inTransit:114,total:278,doi:12,lowStock:false},
+  {img:'img1.jpg',barcode:'1964196450',name:'羽毛5',spec:'手柄30OZ',company:'公司A',businessGroup:'业务组B',salesperson:'业务员C',category:'杯子',available:30,locked:0,onShelf:30,pending:100,inTransit:148,total:278,doi:8,lowStock:false},
+  {img:'img3.jpg',barcode:'2917043563',name:'草莓3',spec:'手提杯',company:'公司B',businessGroup:'业务组C',salesperson:'业务员D',category:'杯子',available:6,locked:0,onShelf:6,pending:70,inTransit:76,total:152,doi:25,lowStock:false},
+  {img:'img2.jpg',barcode:'CM74834623',name:'熊猫1',spec:'40OZ',company:'公司B',businessGroup:'业务组D',salesperson:'业务员E',category:'杯子',available:23,locked:0,onShelf:23,pending:37,inTransit:12,total:72,doi:20,lowStock:false},
+  {img:'img3.jpg',barcode:'FL89234102',name:'花朵2',spec:'手柄20OZ',company:'公司A',businessGroup:'业务组A',salesperson:'业务员A',category:'杯子',available:0,locked:2,onShelf:77,pending:0,inTransit:0,total:79,doi:55,lowStock:true},
+];
+
+var currentRole={id:'super-admin'};
+var roleFilterControls=[];
+var currentFilteredData=[];
+
+var rolePageConfig={
+  'super-admin':{columns:['company','businessGroup'],filters:[{key:'company',label:'公司',placeholder:'请选择公司'},{key:'businessGroup',label:'业务组',placeholder:'请选择业务组'}]},
+  'company-admin':{columns:['businessGroup'],filters:[{key:'businessGroup',label:'业务组',placeholder:'请选择业务组'}]},
+  'group-admin':{columns:['salesperson'],filters:[{key:'salesperson',label:'业务员',placeholder:'请选择业务员'}]},
+  'salesperson':{columns:[],filters:[]}
+};
+
+function uniqueValues(data,key){
+  return data.map(function(item){return item[key]}).filter(function(value,index,array){return value&&array.indexOf(value)===index});
+}
+
+function getRoleScopedData(){
+  if(currentRole.id==='company-admin')return skuData.filter(function(item){return item.company==='公司A'});
+  if(currentRole.id==='group-admin')return skuData.filter(function(item){return item.company==='公司A'&&item.businessGroup==='业务组A'});
+  if(currentRole.id==='salesperson')return skuData.filter(function(item){return item.company==='公司A'&&item.businessGroup==='业务组A'&&item.salesperson==='业务员A'});
+  return skuData.slice();
+}
+
+function getPageConfig(){return rolePageConfig[currentRole.id]||rolePageConfig['super-admin']}
+
+function renderRoleFilters(){
+  var container=document.getElementById('role-filter-fields');
+  var scopedData=getRoleScopedData();
+  roleFilterControls=[];
+  container.innerHTML='';
+  getPageConfig().filters.forEach(function(filter){
+    var group=document.createElement('div');
+    group.className='filter-group dynamic-filter';
+    group.style.display='block';
+    group.innerHTML='<label>'+filter.label+'</label><div data-multi-select></div>';
+    container.appendChild(group);
+    var options=uniqueValues(scopedData,filter.key).map(function(value){return {value:value,label:value}});
+    var control=OMSMultiSelect.create(group.querySelector('[data-multi-select]'),{
+      options:options,
+      placeholder:filter.placeholder,
+      onChange:applyFilters
+    });
+    roleFilterControls.push({key:filter.key,control:control});
+  });
+}
+
+function renderTableHeader(){
+  var extraLabels={company:'公司',businessGroup:'业务组',salesperson:'业务员'};
+  var headers=['<th style="width:70px">SKU图片</th>','<th>SKU条形码</th>','<th>SKU名称</th>','<th>SKU规格</th>'];
+  getPageConfig().columns.forEach(function(key){headers.push('<th>'+extraLabels[key]+'</th>')});
+  headers=headers.concat([
+    '<th>卖家分类</th>',
+    '<th style="text-align:right">可用库存</th>',
+    '<th style="text-align:right">锁定库存</th>',
+    '<th style="text-align:right">在架库存</th>',
+    '<th style="text-align:right">已预待上架</th>',
+    '<th style="text-align:right">在途数量</th>',
+    '<th style="text-align:right">总数量</th>'
+  ]);
+  document.getElementById('inv-thead').innerHTML='<tr>'+headers.join('')+'</tr>';
+}
+
+var ageRanges = [
+  {range:'0-7天',min:0,max:7,color:'green'},
+  {range:'8-15天',min:8,max:15,color:'green'},
+  {range:'16-30天',min:16,max:30,color:'yellow'},
+  {range:'31-60天',min:31,max:60,color:'orange'},
+  {range:'61-90天',min:61,max:90,color:'red'},
+  {range:'90天+',min:91,max:Infinity,color:'red'},
+];
+
+function renderTable(data){
+  var tbody=document.getElementById('inv-tbody');
+  tbody.innerHTML='';
+  if(data.length===0){
+    tbody.innerHTML='<tr><td colspan="'+(11+getPageConfig().columns.length)+'" style="text-align:center;padding:30px;color:var(--muted)">暂无数据</td></tr>';
+    document.getElementById('total-count').textContent='0';
+    document.getElementById('row-count').textContent='共 0 条';
+    return;
+  }
+  data.forEach(function(item){
+    var tr=document.createElement('tr');
+    var isImg=item.img.indexOf('.')>-1;
+    var imgCell=isImg
+      ?'<div style="display:flex;justify-content:center"><img src="'+item.img+'" onclick="openPreview(\''+item.img+'\')" style="width:40px;height:40px;border-radius:6px;object-fit:cover;cursor:pointer;border:1px solid var(--border);transition:transform .15s" onmouseover="this.style.transform=\'scale(1.1)\'" onmouseout="this.style.transform=\'\'"></div>'
+      :'<div style="display:flex;justify-content:center"><div style="width:40px;height:40px;border-radius:6px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-size:20px">'+item.img+'</div></div>';
+    var scopeCells='';
+    getPageConfig().columns.forEach(function(key){scopeCells+='<td class="scope-cell">'+item[key]+'</td>'});
+    tr.innerHTML=
+      '<td>'+imgCell+'</td>'
+      +'<td style="font-family:var(--font-mono);font-size:12.5px;color:var(--muted)">'+item.barcode+'</td>'
+      +'<td style="font-weight:500">'+item.name+'</td>'
+      +'<td style="color:var(--muted);font-size:13px">'+item.spec+'</td>'
+      +scopeCells
+      +'<td><span class="tag tag-muted">'+item.category+'</span></td>'
+      +'<td class="num" style="text-align:right;color:'+(item.available<=5?'var(--danger)':'var(--success)')+';font-weight:600">'+item.available+'</td>'
+      +'<td class="num" style="text-align:right;color:var(--warning);font-weight:500">'+item.locked+'</td>'
+      +'<td class="num" style="text-align:right;color:#3b82f6;font-weight:500">'+item.onShelf+'</td>'
+      +'<td class="num" style="text-align:right;color:#8b5cf6;font-weight:500">'+item.pending+'</td>'
+      +'<td class="num" style="text-align:right;color:var(--info);font-weight:500">'+item.inTransit+'</td>'
+      +'<td class="num" style="text-align:right;font-weight:700">'+item.total+'</td>';
+    if(item.lowStock){tr.style.background='rgba(220,38,38,0.04)'}
+    tbody.appendChild(tr);
+  });
+  document.getElementById('total-count').textContent=data.length;
+  document.getElementById('row-count').textContent='共 '+data.length+' 条';
+}
+
+function openPreview(src){
+  var overlay=document.getElementById('img-preview');
+  document.getElementById('preview-img').src=src;
+  overlay.style.display='flex';
+}
+function closePreview(){
+  var overlay=document.getElementById('img-preview');
+  overlay.style.display='none';
+  document.getElementById('preview-img').src='';
+}
+
+function renderStockStructure(data){
+  var segments=[
+    {key:'available',label:'可用库存',shortLabel:'可用',color:'var(--success)'},
+    {key:'locked',label:'锁定库存',shortLabel:'锁定',color:'var(--warning)'},
+    {key:'onShelf',label:'在架库存',shortLabel:'在架',color:'#3b82f6'},
+    {key:'pending',label:'已预待上架',shortLabel:'待上架',color:'#8b5cf6'},
+    {key:'inTransit',label:'在途数量',shortLabel:'在途',color:'var(--info)'}
+  ];
+  segments.forEach(function(segment){
+    segment.value=data.reduce(function(sum,item){return sum+item[segment.key]},0);
+  });
+  var total=segments.reduce(function(sum,segment){return sum+segment.value},0);
+  document.getElementById('stock-total').textContent=total;
+  document.getElementById('stock-bar').innerHTML=segments.map(function(segment){
+    var pct=total?segment.value/total*100:0;
+    var label=pct>=14?segment.shortLabel+' '+segment.value:'';
+    return '<div title="'+segment.label+' '+segment.value+'" style="width:'+pct+'%;min-width:'+(segment.value?2:0)+'px;background:'+segment.color+';display:flex;align-items:center;justify-content:center;font-size:10.5px;color:#fff;font-weight:600;white-space:nowrap;overflow:hidden">'+label+'</div>';
+  }).join('');
+  document.getElementById('stock-legend').innerHTML=segments.map(function(segment,index){
+    return '<div style="display:flex;align-items:center;gap:6px;'+(index===segments.length-1?'grid-column:span 2':'')+'"><span style="width:10px;height:10px;border-radius:2px;background:'+segment.color+';display:inline-block"></span>'+segment.label+' <strong style="margin-left:auto">'+segment.value+'</strong></div>';
+  }).join('');
+}
+
+function renderAgeChart(data){
+  var container=document.getElementById('age-chart');
+  var ageData=ageRanges.map(function(range){
+    return {range:range.range,color:range.color,count:data.filter(function(item){return item.doi>=range.min&&item.doi<=range.max}).length};
+  });
+  var maxCount=Math.max.apply(null,ageData.map(function(item){return item.count}))||1;
+  container.innerHTML='';
+  ageData.forEach(function(d){
+    var pct=Math.round(d.count/maxCount*100);
+    var row=document.createElement('div');
+    row.className='bar-row';
+    row.innerHTML='<div class="bar-label">'+d.range+'</div><div class="bar-track"><div class="bar-fill '+d.color+'" style="width:'+pct+'%">'+d.count+'</div></div>';
+    container.appendChild(row);
+  });
+  var healthy=ageData[0].count+ageData[1].count;
+  var attention=ageData[2].count;
+  var warning=ageData[3].count+ageData[4].count+ageData[5].count;
+  document.getElementById('age-sku-count').textContent=data.length+' SKU';
+  document.getElementById('age-summary').innerHTML=
+    '<div style="display:flex;align-items:center;gap:6px;margin-bottom:5px"><span style="width:10px;height:10px;border-radius:2px;background:var(--success);display:inline-block"></span>健康 (0-15天): '+healthy+' 个SKU</div>'
+    +'<div style="display:flex;align-items:center;gap:6px;margin-bottom:5px"><span style="width:10px;height:10px;border-radius:2px;background:var(--warning);display:inline-block"></span>关注 (16-30天): '+attention+' 个SKU</div>'
+    +'<div style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:2px;background:var(--danger);display:inline-block"></span>预警 (31天+): '+warning+' 个SKU</div>';
+}
+
+function applyFilters(){
+  var barcode=document.getElementById('f-barcode').value.toLowerCase();
+  var name=document.getElementById('f-name').value.toLowerCase();
+  var cat=document.getElementById('f-category').value;
+  var onlyLow=document.getElementById('f-lowstock').checked;
+  var dynamicSelections={};
+  roleFilterControls.forEach(function(item){dynamicSelections[item.key]=item.control.getValues()});
+  var data=getRoleScopedData().filter(function(d){
+    if(barcode && d.barcode.toLowerCase().indexOf(barcode)<0)return false;
+    if(name && d.name.toLowerCase().indexOf(name)<0)return false;
+    if(cat && d.category!==cat)return false;
+    if(onlyLow && !d.lowStock)return false;
+    var matchesDynamic=Object.keys(dynamicSelections).every(function(key){
+      return dynamicSelections[key].length===0||dynamicSelections[key].indexOf(d[key])>-1;
+    });
+    if(!matchesDynamic)return false;
+    return true;
+  });
+  currentFilteredData=data;
+  renderTable(data);
+  renderStockStructure(data);
+  renderAgeChart(data);
+}
+
+function resetFilters(){
+  document.getElementById('f-barcode').value='';
+  document.getElementById('f-name').value='';
+  document.getElementById('f-category').value='';
+  document.getElementById('f-lowstock').checked=false;
+  roleFilterControls.forEach(function(item){item.control.clear(true)});
+  applyFilters();
+}
+
+function exportData(){
+  var t=document.getElementById('toast');
+  document.getElementById('toast-msg').textContent='已导出 '+currentFilteredData.length+' 条库存数据';
+  t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show')},2500);
+}
+
+document.getElementById('f-barcode').addEventListener('input',applyFilters);
+document.getElementById('f-name').addEventListener('input',applyFilters);
+document.getElementById('f-category').addEventListener('change',applyFilters);
+
+function updateSummary(){
+  var data=getRoleScopedData();
+  document.getElementById('summary-skus').textContent=data.length;
+  document.getElementById('summary-available').textContent=data.reduce(function(sum,item){return sum+item.available},0);
+  document.getElementById('summary-intransit').textContent=data.reduce(function(sum,item){return sum+item.inTransit},0);
+  document.getElementById('summary-lowstock').textContent=data.filter(function(item){return item.lowStock}).length;
+}
+
+window.addEventListener('oms-role-change',function(event){
+  currentRole=event.detail.role;
+  renderRoleFilters();
+  renderTableHeader();
+  updateSummary();
+  applyFilters();
+});
+
+</script>
+
+<script src="role-switch.js"></script>
+<script src="notes.js"></script>
+
+
+</body></html>

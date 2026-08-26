@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: oms-v1
+    runtime: static
+    plan: free
+    branch: main
+    autoDeploy: true
+    buildCommand: ""
+    staticPublishPath: .
+    headers:
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=3600
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff

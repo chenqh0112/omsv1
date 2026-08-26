@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>入库管理 — OMS 库存管理系统</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="inbound">
+
+<!-- ===== App Shell (frozen — identical on every page) ===== -->
+<aside class="app-nav">
+  <div class="nav-brand">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
+    OMS 库存管理
+  </div>
+  <nav class="nav-list">
+    <a href="index.html" data-nav="sku">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+      SKU管理
+    </a>
+    <a href="cargo-tray.html" data-nav="tray">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg>
+      美国货盘
+    </a>
+    <a href="fees.html" data-nav="fees">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/><path d="M7 15h3"/></svg>
+      费用
+    </a>
+    <a href="login.html" data-nav="login">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg>
+      登录
+    </a>
+  </nav>
+  <div class="nav-footer">OMS v1.0</div>
+</aside>
+
+<!-- ===== Main Content ===== -->
+<div class="app-content">
+  <div class="topbar">
+    <div class="topbar-left">
+      <h1>入库管理</h1>
+      <span class="tag tag-primary">美西仓</span>
+    </div>
+    <div class="topbar-right">
+      <button class="btn btn-primary" onclick="openCreateModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        新建入库单
+      </button>
+      <div class="user">
+        <button class="avatar" type="button" data-role-avatar aria-haspopup="dialog" aria-label="切换身份" title="切换身份">超</button>
+        <span data-role-name>超管</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-body">
+    <!-- ===== Stat Cards ===== -->
+    <div class="stat-grid page-section" style="grid-template-columns:repeat(4,1fr)">
+      <div class="stat-card">
+        <div class="stat-label">今日入库单</div>
+        <div class="stat-value">2</div>
+        <div class="stat-trend up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>较昨日 +1</div>
+        <div class="stat-icon" style="background:var(--primary-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">头程在途</div>
+        <div class="stat-value">3</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:6px">共 900 件</div>
+        <div class="stat-icon" style="background:var(--info-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--info)" stroke-width="1.8"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">待收货</div>
+        <div class="stat-value" style="color:var(--warning)">1</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:6px">120 件</div>
+        <div class="stat-icon" style="background:var(--warning-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">本月已上架</div>
+        <div class="stat-value">1,250</div>
+        <div class="stat-trend up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>+23%</div>
+        <div class="stat-icon" style="background:var(--success-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="1.8"><path d="M20 6 9 17l-5-5"/></svg></div>
+      </div>
+    </div>
+
+    <!-- ===== Type Tabs ===== -->
+    <div class="inbound-tabs page-section">
+      <div class="inbound-tab active" data-type="all" onclick="switchType('all')">全部<span class="tab-count">6</span></div>
+      <div class="inbound-tab" data-type="replenish" onclick="switchType('replenish')">补货入库<span class="tab-count">3</span></div>
+      <div class="inbound-tab" data-type="procure" onclick="switchType('procure')">外采入库<span class="tab-count">1</span></div>
+      <div class="inbound-tab" data-type="drop" onclick="switchType('drop')">一件代发<span class="tab-count">1</span></div>
+      <div class="inbound-tab" data-type="transfer" onclick="switchType('transfer')">中转入库<span class="tab-count">1</span></div>
+    </div>
+
+    <!-- ===== Inbound List ===== -->
+    <div class="page-section" id="inbound-list">
+      <!-- filled by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ===== Create Inbound Modal ===== -->
+<div class="modal-overlay" id="create-modal">
+  <div class="modal wide">
+    <div class="modal-head">
+      <h3>新建入库单</h3>
+      <button class="close" onclick="closeCreateModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <label>入库类型</label>
+        <select id="c-type" onchange="onTypeChange()">
+          <option value="replenish">补货入库（来自斑马）</option>
+          <option value="procure">外采入库（来自供应商）</option>
+          <option value="drop">一件代发入库</option>
+          <option value="transfer">中转入库</option>
+        </select>
+      </div>
+      <div class="form-row" id="row-source">
+        <label>来源单号</label>
+        <input type="text" id="c-source" placeholder="请输入斑马补货单号 / PO号">
+      </div>
+      <div class="form-row" id="row-transfer">
+        <label>转单号</label>
+        <input type="text" id="c-transfer" placeholder="如 ZW-5031255（选填，已有则填）">
+      </div>
+      <div class="form-hint">若转单号已存在，系统将自动开始头程在途跟踪；暂无则发货后补填。</div>
+      <div class="form-row">
+        <label>卖家</label>
+        <select id="c-seller">
+          <option value="s1">内部团队A</option>
+          <option value="s2">内部团队B</option>
+          <option value="s3">外部-蜂鸟</option>
+          <option value="s4">外部-跨境达人</option>
+          <option value="s5">内部团队C</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>SKU 明细</label>
+        <div style="flex:1">
+          <div style="display:flex;gap:8px;margin-bottom:8px">
+            <select id="c-sku" style="flex:1;padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:13px">
+              <option value="">选择 SKU</option>
+              <option value="BT-EP-001">蓝牙耳机 Pro (BT-EP-001)</option>
+              <option value="PH-CC-002">iPhone手机壳 (PH-CC-002)</option>
+              <option value="LD-ST-003">LED灯带 5米 (LD-ST-003)</option>
+              <option value="PB-BK-005">便携充电宝 (PB-BK-005)</option>
+              <option value="WT-BT-006">智能手表 GPS (WT-BT-006)</option>
+            </select>
+            <input type="number" id="c-qty" placeholder="数量" style="width:100px;padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:13px">
+            <button class="btn btn-ghost btn-sm" onclick="addSkuLine()" style="height:36px">添加</button>
+          </div>
+          <div id="sku-lines" style="font-size:12.5px;color:var(--muted)">暂未添加 SKU</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>预计到货</label>
+        <input type="date" id="c-eta">
+      </div>
+      <div class="form-row">
+        <label>备注</label>
+        <input type="text" id="c-remark" placeholder="选填">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeCreateModal()">取消</button>
+      <button class="btn btn-primary" onclick="submitCreate()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6 9 17l-5-5"/></svg>
+        创建入库单
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Toast ===== -->
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+  <span id="toast-msg">操作成功</span>
+</div>
+
+<script src="mock.js"></script>
+<script>
+var currentType='all';
+var skuLines=[];
+
+// ===== Render Inbound List =====
+function renderInboundList(){
+  fetchInbound({type:currentType}).then(function(res){
+    var container=document.getElementById('inbound-list');
+    container.innerHTML='';
+    if(res.data.length===0){
+      container.innerHTML='<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>暂无入库单</div>';
+      return;
+    }
+    res.data.forEach(function(order){
+      var card=document.createElement('div');
+      card.className='inbound-card';
+      var sName=DB.sellers.find(function(x){return x.id===order.seller});
+      sName=sName?sName.name:order.seller;
+      var sourceLabel=order.source==='zebra'?'斑马补货':order.source==='po'?'采购PO':order.source==='seller'?'卖家发货':'其他';
+      var sourceCls=order.source==='zebra'?'zebra':order.source==='po'?'po':'';
+
+      // steps progress
+      var stepsHtml='';
+      order.steps.forEach(function(step,idx){
+        var stepIdx=idx+1;
+        var dotClass=stepIdx<order.currentStep?'done':stepIdx===order.currentStep?'active':'pending';
+        var lineClass=stepIdx<order.currentStep?'done':'';
+        stepsHtml+='<div style="text-align:center"><div class="step-dot '+dotClass+'"></div><div class="step-label">'+step+'</div></div>';
+        if(idx<order.steps.length-1){
+          stepsHtml+='<div class="step-line '+lineClass+'"></div>';
+        }
+      });
+
+      // sku chips
+      var skuHtml=order.skus.map(function(s){
+        return '<span class="sku-chip">'+s.img+' '+s.name+' <span class="qty">×'+s.qty+'</span></span>';
+      }).join('');
+
+      // status badge
+      var statusCls='tag-info';
+      if(order.status==='shelved')statusCls='tag-success';
+      else if(order.status==='received')statusCls='tag-warning';
+      else if(order.status==='arrived')statusCls='tag-primary';
+      else if(order.status==='intransit')statusCls='tag-info';
+
+      card.innerHTML='<div class="inbound-card-head">'
+        +'<div class="inbound-card-title">'
+        +'<span class="order-no">'+order.id+'</span>'
+        +'<span class="type-badge type-'+order.type+'">'+order.typeName+'</span>'
+        +'<span class="tag '+statusCls+'">'+order.statusText+'</span>'
+        +'</div>'
+        +'<div style="font-size:12px;color:var(--muted)">'+order.createTime+'</div>'
+        +'</div>'
+        +'<div class="inbound-card-meta">'
+        +'<div class="meta-item"><div class="meta-label">来源</div><div class="meta-value"><span class="source-tag '+sourceCls+'">'+sourceLabel+'</span> '+order.sourceNo+'</div></div>'
+        +'<div class="meta-item"><div class="meta-label">转单号</div><div class="meta-value" style="font-family:var(--font-mono)">'+order.transferNo+'</div></div>'
+        +'<div class="meta-item"><div class="meta-label">卖家</div><div class="meta-value">'+sName+'</div></div>'
+        +'<div class="meta-item"><div class="meta-label">总数量</div><div class="meta-value">'+order.totalQty+' 件</div></div>'
+        +'</div>'
+        +'<div class="sku-chips">'+skuHtml+'</div>'
+        +'<div class="inbound-card-progress">'
+        +'<div class="progress-steps">'+stepsHtml+'</div>'
+        +'<div class="inbound-card-actions">'
+        +(order.status!=='shelved'?'<button class="btn btn-sm btn-ghost" onclick="toggleDetail(this)">查看轨迹</button>':'')
+        +'<button class="btn btn-sm btn-primary">详情</button>'
+        +'</div>'
+        +'</div>'
+        // expandable tracking detail
+        +'<div class="intransit-expand">'
+        +'<div class="intransit-expand-inner">'
+        +'<div><div style="font-weight:600;font-size:13px;margin-bottom:10px">物流轨迹</div><div class="timeline">'+buildTimeline(order.trackingNodes)+'</div></div>'
+        +'<div>'
+        +'<div style="font-weight:600;font-size:13px;margin-bottom:10px">物流信息</div>'
+        +'<div class="tracking-info" style="margin-bottom:10px"><div class="tracking-title">转单号</div><div class="tracking-no">'+order.transferNo+'</div><div class="tracking-carrier">承运商：'+order.carrier+'</div></div>'
+        +'<div class="tracking-info"><div class="tracking-title">预计到货</div><div class="tracking-no" style="font-size:14px">'+order.eta+'</div><div class="tracking-carrier">美西仓 · 洛杉矶</div></div>'
+        +'</div>'
+        +'</div>'
+        +'</div>';
+
+      container.appendChild(card);
+    });
+  });
+}
+
+// ===== Build Timeline =====
+function buildTimeline(nodes){
+  return nodes.map(function(n){
+    var cls='';
+    if(n.done)cls='done';
+    else if(n.active)cls='active';
+    else cls='pending';
+    return '<div class="timeline-item '+cls+'">'
+      +'<div class="timeline-dot"></div>'
+      +'<div class="timeline-content">'
+      +'<div class="timeline-title">'+n.title+'</div>'
+      +'<div class="timeline-time">'+n.time+'</div>'
+      +(n.desc?'<div class="timeline-desc">'+n.desc+'</div>':'')
+      +'</div></div>';
+  }).join('');
+}
+
+// ===== Toggle Detail =====
+function toggleDetail(btn){
+  var card=btn.closest('.inbound-card');
+  var expand=card.querySelector('.intransit-expand');
+  var isOpen=expand.classList.contains('open');
+  if(isOpen){expand.classList.remove('open');btn.textContent='查看轨迹';}
+  else{expand.classList.add('open');btn.textContent='收起轨迹';}
+}
+
+// ===== Type Switch =====
+function switchType(type){
+  currentType=type;
+  document.querySelectorAll('.inbound-tab').forEach(function(t){
+    t.classList.toggle('active',t.dataset.type===type);
+  });
+  renderInboundList();
+}
+
+// ===== Create Modal =====
+function openCreateModal(){
+  document.getElementById('create-modal').classList.add('open');
+  skuLines=[];
+  renderSkuLines();
+}
+function closeCreateModal(){
+  document.getElementById('create-modal').classList.remove('open');
+}
+function onTypeChange(){
+  var type=document.getElementById('c-type').value;
+  var label='来源单号';
+  var placeholder='请输入来源单号';
+  if(type==='replenish'){label='斑马补货单号';placeholder='如 ZEBRA-BU-20260820';}
+  else if(type==='procure'){label='采购PO号';placeholder='如 PO-2026-0801-007';}
+  else if(type==='drop'){label='卖家单号';placeholder='选填';}
+  document.querySelector('#row-source label').textContent=label;
+  document.getElementById('c-source').placeholder=placeholder;
+}
+function addSkuLine(){
+  var sku=document.getElementById('c-sku').value;
+  var qty=parseInt(document.getElementById('c-qty').value)||0;
+  if(!sku){showToast('请选择SKU');return}
+  if(qty<1){showToast('请输入有效数量');return}
+  skuLines.push({sku:sku,qty:qty});
+  document.getElementById('c-sku').value='';
+  document.getElementById('c-qty').value='';
+  renderSkuLines();
+}
+function renderSkuLines(){
+  var c=document.getElementById('sku-lines');
+  if(skuLines.length===0){c.innerHTML='暂未添加 SKU';c.style.color='var(--muted)';return}
+  c.style.color='var(--ink)';
+  c.innerHTML=skuLines.map(function(s,i){
+    return '<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 10px;background:var(--surface-2);border-radius:4px;margin-bottom:4px">'
+      +'<span>'+s.sku+' × '+s.qty+'</span>'
+      +'<button class="btn btn-sm btn-ghost" onclick="removeSku('+i+')">移除</button>'
+      +'</div>';
+  }).join('');
+}
+function removeSku(i){skuLines.splice(i,1);renderSkuLines()}
+
+function submitCreate(){
+  var type=document.getElementById('c-type').value;
+  var source=document.getElementById('c-source').value;
+  var seller=document.getElementById('c-seller').value;
+  if(!source){showToast('请输入来源单号');return}
+  if(skuLines.length===0){showToast('请至少添加一个SKU');return}
+  createInbound({type:type,source:source,seller:seller,skus:skuLines}).then(function(res){
+    closeCreateModal();
+    showToast('入库单创建成功，'+res.id);
+    renderInboundList();
+  });
+}
+
+// ===== Toast =====
+function showToast(msg){
+  var t=document.getElementById('toast');
+  document.getElementById('toast-msg').textContent=msg;
+  t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show')},2500);
+}
+
+// ===== Init =====
+renderInboundList();
+</script>
+<script src="role-switch.js"></script>
+<script src="notes.js"></script>
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>美国货盘 — OMS 库存管理系统</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="tray">
+
+<aside class="app-nav">
+  <div class="nav-brand">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M9 22V12h6v10"></path></svg>
+    OMS 库存管理
+  </div>
+  <nav class="nav-list">
+    <a href="index.html" data-nav="sku">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+      SKU管理
+    </a>
+    <a href="cargo-tray.html" data-nav="tray" class="active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="M3.27 6.96 12 12.01l8.73-5.05"></path><path d="M12 22.08V12"></path></svg>
+      美国货盘
+    </a>
+    <a href="fees.html" data-nav="fees">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 10h18"></path><path d="M7 15h3"></path></svg>
+      费用
+    </a>
+    <a href="login.html" data-nav="login">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 17l5-5-5-5"></path><path d="M15 12H3"></path><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path></svg>
+      登录
+    </a>
+  </nav>
+  <div class="nav-footer">OMS v1.0</div>
+</aside>
+
+<div class="app-content">
+  <div class="topbar" style="background:var(--surface);border-bottom:1px solid var(--border);height:48px">
+    <div class="topbar-left" style="gap:0">
+      <span style="font-size:13px;color:var(--muted);padding:0 12px;border-right:1px solid var(--border)">首页</span>
+      <div style="padding:0 16px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px">
+        <span class="dot" style="width:8px;height:8px;border-radius:50%;background:var(--primary);display:inline-block"></span>
+        美国货盘
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="user">
+        <button class="avatar" type="button" data-role-avatar aria-haspopup="dialog" aria-label="切换身份" title="切换身份">超</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-body">
+    <div class="warehouse-banner page-section">
+      <div class="wh-info">
+        <div class="wh-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="M3.27 6.96 12 12.01l8.73-5.05"></path><path d="M12 22.08V12"></path></svg>
+        </div>
+        <div>
+          <div class="wh-name">美国货盘</div>
+        </div>
+      </div>
+      <div class="wh-stats">
+        <div class="wh-stat">
+          <div class="wh-stat-num" id="tray-sku-total">5</div>
+          <div class="wh-stat-label">货盘 SKU</div>
+        </div>
+        <div class="wh-stat">
+          <div class="wh-stat-num" id="tray-qty-total">813</div>
+          <div class="wh-stat-label">货盘总量</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-wrap page-section">
+      <div class="tray-toolbar">
+        <div class="tabs">
+          <div class="tab active" data-tab="overview" onclick="switchTab('overview')">货盘总览</div>
+          <div class="tab" id="company-detail-tab" data-tab="company" onclick="switchTab('company')">公司明细</div>
+        </div>
+        <button class="btn btn-primary" id="mark-inventory-button" onclick="openMarkModal()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          标记库存到货盘
+        </button>
+      </div>
+
+      <div class="tab-panel table-scroll" id="panel-overview">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th style="width:64px">SKU图片</th>
+              <th>SKU条形码</th>
+              <th>SKU名称</th>
+              <th>公司</th>
+              <th style="text-align:right">货盘总量</th>
+              <th>货盘占比</th>
+              <th style="text-align:right">可用</th>
+              <th style="width:130px">操作</th>
+            </tr>
+          </thead>
+          <tbody id="overview-tbody"></tbody>
+        </table>
+      </div>
+
+      <div class="tab-panel table-scroll" id="panel-company" style="display:none">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>公司</th>
+              <th>SKU条形码</th>
+              <th>SKU名称</th>
+              <th style="text-align:right">标记数量</th>
+              <th>货盘占比</th>
+            </tr>
+          </thead>
+          <tbody id="company-tbody"></tbody>
+        </table>
+      </div>
+      <div class="pagination">
+        <span class="pagination-info">共 <strong id="tray-row-count">0</strong> 条</span>
+        <div class="pagination-btns"><button class="page-btn" disabled>‹</button><button class="page-btn active">1</button><button class="page-btn" disabled>›</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg>
+  <span id="toast-msg">操作成功</span>
+</div>
+
+<div class="modal-overlay" id="mark-modal" onclick="if(event.target===this)closeMarkModal()">
+  <div class="modal mark-modal">
+    <div class="modal-head">
+      <h3>标记库存到货盘</h3>
+      <button class="close" type="button" aria-label="关闭" onclick="closeMarkModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="mark-scope-filters" id="mark-scope-filters"></div>
+      <div class="mark-sku-table table-scroll">
+        <table class="data-table">
+          <thead><tr><th style="width:46px"><input type="checkbox" id="mark-select-all" aria-label="选择全部SKU"></th><th style="width:64px">SKU图片</th><th>SKU条形码</th><th>SKU名称</th><th style="text-align:right">可标记库存</th><th style="text-align:right;width:130px">标记数量</th></tr></thead>
+          <tbody id="mark-sku-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" type="button" onclick="closeMarkModal()">取消</button>
+      <button class="btn btn-primary" type="button" onclick="submitMark()">确认标记</button>
+    </div>
+  </div>
+</div>
+
+<script src="multi-select.js"></script>
+<script>
+var trayEntries = [
+  {company:'公司A',businessGroup:'业务组A',stockType:'internal',sku:'0694670410',barcode:'0694670410',skuName:'篮球6',img:'img4.jpg',qty:48,sourceAvailable:80},
+  {company:'公司A',businessGroup:'业务组A',stockType:'internal',sku:'CM74834623',barcode:'CM74834623',skuName:'熊猫1',img:'img2.jpg',qty:30,sourceAvailable:45},
+  {company:'公司A',businessGroup:'业务组B',stockType:'internal',sku:'1964196450',barcode:'1964196450',skuName:'羽毛5',img:'img1.jpg',qty:60,sourceAvailable:110},
+  {company:'公司B',businessGroup:'业务组C',stockType:'external',sku:'0694670410',barcode:'0694670410',skuName:'篮球6',img:'img4.jpg',qty:120,sourceAvailable:150},
+  {company:'公司B',businessGroup:'业务组C',stockType:'external',sku:'1497997262',barcode:'1497997262',skuName:'老虎4',img:'img5.jpg',qty:200,sourceAvailable:240},
+  {company:'公司B',businessGroup:'业务组D',stockType:'external',sku:'2917043563',barcode:'2917043563',skuName:'草莓3',img:'img3.jpg',qty:90,sourceAvailable:120},
+  {company:'公司C',businessGroup:'业务组E',stockType:'external',sku:'1964196450',barcode:'1964196450',skuName:'羽毛5',img:'img1.jpg',qty:265,sourceAvailable:300}
+];
+
+var reserved = {'0694670410':15,'CM74834623':0,'1964196450':0,'1497997262':8,'2917043563':4};
+var currentRole={id:'super-admin'};
+var currentTab='overview';
+var markCompanyControl=null;
+var markGroupControl=null;
+
+function uniqueValues(data,key){
+  return data.map(function(item){return item[key]}).filter(function(value,index,array){return value&&array.indexOf(value)===index});
+}
+
+function getVisibleEntries(){
+  if(currentRole.id==='company-admin')return trayEntries.filter(function(item){return item.company==='公司A'});
+  if(currentRole.id==='group-admin'||currentRole.id==='salesperson')return trayEntries.filter(function(item){return item.company==='公司A'&&item.businessGroup==='业务组A'});
+  return trayEntries.slice();
+}
+
+function productImage(entry){
+  return '<img class="product-thumb" src="'+entry.img+'" alt="'+(entry.skuName||entry.name)+'">';
+}
+
+function renderOverview(){
+  var groups={};
+  var entries=getVisibleEntries();
+  entries.forEach(function(entry){
+    if(!groups[entry.sku])groups[entry.sku]={barcode:entry.barcode,name:entry.skuName,img:entry.img,total:0,internal:0,external:0,participants:[]};
+    var group=groups[entry.sku];
+    group.total+=entry.qty;
+    group[entry.stockType]+=entry.qty;
+    group.participants.push({company:entry.company,businessGroup:entry.businessGroup,qty:entry.qty});
+  });
+  var tbody=document.getElementById('overview-tbody');
+  tbody.innerHTML='';
+  var trayTotal=entries.reduce(function(sum,item){return sum+item.qty},0);
+  Object.keys(groups).forEach(function(sku){
+    var group=groups[sku];
+    var allocated=reserved[sku]||0;
+    var companyHtml=group.participants.map(function(participant){
+      return '<span class="tag tag-muted" style="margin:2px 3px 2px 0">'+participant.company+' · '+participant.businessGroup+'</span>';
+    }).join('');
+    var sharePct=trayTotal?Math.round(group.total/trayTotal*100):0;
+    tbody.innerHTML+=
+      '<tr>'
+      +'<td><div style="display:flex;justify-content:center">'+productImage(group)+'</div></td>'
+      +'<td style="font-family:var(--font-mono);font-size:12.5px;color:var(--muted)">'+group.barcode+'</td>'
+      +'<td style="font-weight:500">'+group.name+'</td>'
+      +'<td style="min-width:200px">'+companyHtml+'</td>'
+      +'<td class="num" style="text-align:right;font-weight:700">'+group.total+'</td>'
+      +'<td style="min-width:140px"><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:6px;background:var(--surface-2);border-radius:4px;overflow:hidden"><div style="height:100%;width:'+sharePct+'%;background:var(--primary);border-radius:4px"></div></div><span style="font-size:11px;color:var(--muted);min-width:28px;text-align:right">'+sharePct+'%</span></div></td>'
+      +'<td class="num" style="text-align:right;color:var(--success);font-weight:600">'+Math.max(0,group.total-allocated)+'</td>'
+      +'<td><div class="table-actions"><button class="btn-link" onclick="showToast(\'查看 '+group.name+' 明细\')">详情</button><button class="btn-link" onclick="showToast(\'已发起 '+group.name+' 调货\')">调货</button></div></td>'
+      +'</tr>';
+  });
+  document.getElementById('tray-row-count').textContent=Object.keys(groups).length;
+  document.getElementById('tray-sku-total').textContent=Object.keys(groups).length;
+  document.getElementById('tray-qty-total').textContent=entries.reduce(function(sum,item){return sum+item.qty},0);
+}
+
+function renderCompanyDetail(){
+  var groups={};
+  var entries=getVisibleEntries();
+  entries.forEach(function(entry){
+    var key=entry.company+'|'+entry.sku;
+    if(!groups[key])groups[key]={company:entry.company,barcode:entry.barcode,skuName:entry.skuName,sku:entry.sku,qty:0};
+    groups[key].qty+=entry.qty;
+  });
+  var tbody=document.getElementById('company-tbody');
+  tbody.innerHTML='';
+  Object.keys(groups).forEach(function(key){
+    var item=groups[key];
+    var skuTotal=entries.filter(function(entry){return entry.sku===item.sku}).reduce(function(sum,entry){return sum+entry.qty},0);
+    var pct=Math.round(item.qty/skuTotal*100);
+    tbody.innerHTML+=
+      '<tr><td style="font-weight:600">'+item.company+'</td>'
+      +'<td style="font-family:var(--font-mono);font-size:12.5px;color:var(--muted)">'+item.barcode+'</td>'
+      +'<td>'+item.skuName+'</td>'
+      +'<td class="num" style="text-align:right;font-weight:600">'+item.qty+'</td>'
+      +'<td style="min-width:160px"><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:6px;background:var(--surface-2);border-radius:4px;overflow:hidden"><div style="height:100%;width:'+pct+'%;background:var(--primary);border-radius:4px"></div></div><span style="font-size:11px;color:var(--muted)">'+pct+'%</span></div></td></tr>';
+  });
+  if(currentTab==='company')document.getElementById('tray-row-count').textContent=Object.keys(groups).length;
+}
+
+function switchTab(tab){
+  if(tab==='company'&&currentRole.id!=='super-admin')tab='overview';
+  currentTab=tab;
+  document.querySelectorAll('.tray-toolbar .tab').forEach(function(item){item.classList.toggle('active',item.dataset.tab===tab)});
+  document.getElementById('panel-overview').style.display=tab==='overview'?'block':'none';
+  document.getElementById('panel-company').style.display=tab==='company'?'block':'none';
+  if(tab==='company')renderCompanyDetail();else renderOverview();
+}
+
+function createMarkFilter(label,placeholder,options,onChange){
+  var group=document.createElement('div');
+  group.className='filter-group';
+  group.innerHTML='<label>'+label+'</label><div data-mark-select></div>';
+  document.getElementById('mark-scope-filters').appendChild(group);
+  return OMSMultiSelect.create(group.querySelector('[data-mark-select]'),{options:options,placeholder:placeholder,onChange:onChange});
+}
+
+function optionList(values){return values.map(function(value){return {value:value,label:value}})}
+
+function configureMarkScope(){
+  var container=document.getElementById('mark-scope-filters');
+  container.innerHTML='';
+  markCompanyControl=null;
+  markGroupControl=null;
+  if(currentRole.id==='super-admin'){
+    markCompanyControl=createMarkFilter('公司','请选择公司',optionList(uniqueValues(trayEntries,'company')),function(values){
+      var groups=trayEntries.filter(function(item){return values.indexOf(item.company)>-1});
+      markGroupControl.setOptions(optionList(uniqueValues(groups,'businessGroup')));
+      renderMarkSkuRows();
+    });
+    markGroupControl=createMarkFilter('业务组','请选择业务组',[],renderMarkSkuRows);
+  }else if(currentRole.id==='company-admin'){
+    var companyEntries=trayEntries.filter(function(item){return item.company==='公司A'});
+    markGroupControl=createMarkFilter('业务组','请选择业务组',optionList(uniqueValues(companyEntries,'businessGroup')),renderMarkSkuRows);
+  }else{
+    container.innerHTML='<div class="mark-scope-note">当前范围：公司A · 业务组A</div>';
+  }
+  renderMarkSkuRows();
+}
+
+function getMarkScopeEntries(){
+  if(currentRole.id==='super-admin'){
+    var companies=markCompanyControl?markCompanyControl.getValues():[];
+    var groups=markGroupControl?markGroupControl.getValues():[];
+    if(companies.length===0||groups.length===0)return [];
+    return trayEntries.filter(function(item){return companies.indexOf(item.company)>-1&&groups.indexOf(item.businessGroup)>-1});
+  }
+  if(currentRole.id==='company-admin'){
+    var companyGroups=markGroupControl?markGroupControl.getValues():[];
+    if(companyGroups.length===0)return [];
+    return trayEntries.filter(function(item){return item.company==='公司A'&&companyGroups.indexOf(item.businessGroup)>-1});
+  }
+  return trayEntries.filter(function(item){return item.company==='公司A'&&item.businessGroup==='业务组A'});
+}
+
+function renderMarkSkuRows(){
+  var entries=getMarkScopeEntries();
+  var skuGroups={};
+  entries.forEach(function(entry){
+    if(!skuGroups[entry.sku])skuGroups[entry.sku]={sku:entry.sku,name:entry.skuName,img:entry.img,available:0};
+    skuGroups[entry.sku].available+=entry.sourceAvailable;
+  });
+  var tbody=document.getElementById('mark-sku-tbody');
+  document.getElementById('mark-select-all').checked=false;
+  if(Object.keys(skuGroups).length===0){
+    var message=currentRole.id==='super-admin'?'请先选择公司和业务组':'请先选择业务组';
+    tbody.innerHTML='<tr><td colspan="6" class="mark-table-empty">'+message+'</td></tr>';
+    return;
+  }
+  tbody.innerHTML=Object.keys(skuGroups).map(function(sku){
+    var item=skuGroups[sku];
+    return '<tr data-mark-row="'+sku+'">'
+      +'<td><input type="checkbox" class="mark-row-check" aria-label="选择 '+item.name+'"></td>'
+      +'<td>'+productImage(item)+'</td>'
+      +'<td style="font-family:var(--font-mono);font-size:12.5px;color:var(--muted)">'+item.sku+'</td>'
+      +'<td style="font-weight:500">'+item.name+'</td>'
+      +'<td class="num" style="text-align:right;color:var(--success);font-weight:600">'+item.available+'</td>'
+      +'<td style="text-align:right"><input class="mark-qty" type="number" min="0" max="'+item.available+'" value="" placeholder="0" aria-label="'+item.name+'标记数量"></td>'
+      +'</tr>';
+  }).join('');
+}
+
+function setMarkRowSelected(row,selected){
+  row.querySelector('.mark-row-check').checked=selected;
+}
+
+document.getElementById('mark-sku-tbody').addEventListener('change',function(event){
+  var row=event.target.closest('tr');
+  if(event.target.classList.contains('mark-row-check')){
+    setMarkRowSelected(row,event.target.checked);
+    return;
+  }
+  if(event.target.classList.contains('mark-qty'))row.querySelector('.mark-row-check').checked=parseInt(event.target.value,10)>0;
+});
+document.getElementById('mark-sku-tbody').addEventListener('input',function(event){
+  if(!event.target.classList.contains('mark-qty'))return;
+  event.target.closest('tr').querySelector('.mark-row-check').checked=parseInt(event.target.value,10)>0;
+});
+document.getElementById('mark-select-all').addEventListener('change',function(event){
+  document.querySelectorAll('#mark-sku-tbody [data-mark-row]').forEach(function(row){setMarkRowSelected(row,event.target.checked)});
+});
+
+function openMarkModal(){
+  if(currentRole.id==='salesperson'){showToast('当前身份无标记库存权限');return}
+  configureMarkScope();
+  document.getElementById('mark-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeMarkModal(){
+  document.getElementById('mark-modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+function submitMark(){
+  var rows=Array.prototype.slice.call(document.querySelectorAll('#mark-sku-tbody [data-mark-row]')).filter(function(row){return row.querySelector('.mark-row-check').checked});
+  if(rows.length===0){showToast('请选择至少一个 SKU 并填写标记数量');return}
+  var scopeEntries=getMarkScopeEntries();
+  var selections=rows.map(function(row){
+    var input=row.querySelector('.mark-qty');
+    return {sku:row.dataset.markRow,qty:parseInt(input.value)||0,max:parseInt(input.max)||0};
+  });
+  if(selections.some(function(item){return item.qty<1||item.qty>item.max})){
+    showToast('标记数量需大于 0 且不能超过可标记库存');
+    return;
+  }
+  selections.forEach(function(selection){
+    var remaining=selection.qty;
+    scopeEntries.filter(function(entry){return entry.sku===selection.sku}).forEach(function(entry){
+      var marked=Math.min(entry.sourceAvailable,remaining);
+      entry.qty+=marked;
+      entry.sourceAvailable-=marked;
+      remaining-=marked;
+    });
+  });
+  closeMarkModal();
+  renderOverview();
+  renderCompanyDetail();
+  showToast('已完成 '+rows.length+' 个 SKU 的库存标记');
+}
+
+function showToast(msg){
+  var t=document.getElementById('toast');
+  document.getElementById('toast-msg').textContent=msg;
+  t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show')},2500);
+}
+
+window.addEventListener('oms-role-change',function(event){
+  currentRole=event.detail.role;
+  var isSuper=currentRole.id==='super-admin';
+  document.getElementById('company-detail-tab').style.display=isSuper?'block':'none';
+  document.getElementById('mark-inventory-button').style.display=currentRole.id==='salesperson'?'none':'inline-flex';
+  if(!isSuper&&currentTab==='company')currentTab='overview';
+  switchTab(currentTab);
+  renderCompanyDetail();
+});
+</script>
+
+<script src="role-switch.js"></script>
+<script src="notes.js"></script>
+
+</body></html>
