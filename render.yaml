@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: oms-v1
+    name: independent-site
     runtime: static
     plan: free
     branch: main

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>美国货盘V2 — 独立站</title>
+<link rel="stylesheet" href="styles.css">
+<script src="navigation.js" defer></script>
+</head>
+<body data-page="tray-v2">
+<aside class="app-nav">
+  <div class="nav-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M9 22V12h6v10"></path></svg>独立站</div>
+  <nav class="nav-list"></nav>
+  <div class="nav-footer">独立站</div>
+</aside>
+
+<div class="app-content v2-app-content">
+  <main class="v2-page-body">
+    <section class="v2-market-toolbar" aria-label="美国货盘商品搜索">
+      <h1>美国货盘</h1>
+      <form class="v2-top-search" id="v2-search-form" role="search">
+        <label class="sr-only" for="v2-search-input">搜索SKU名称或编码</label>
+        <input id="v2-search-input" type="search" placeholder="搜索SKU名称或编码" autocomplete="off">
+        <button class="btn btn-primary" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>搜索</button>
+      </form>
+      <div class="v2-toolbar-actions" data-order-history-anchor data-order-user="采购用户A">
+        <button class="btn btn-primary v2-batch-add" id="v2-batch-add" type="button" disabled>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="20" r="1"></circle><circle cx="19" cy="20" r="1"></circle><path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 2-1.6L21 7H6"></path><path d="M12 8v6M9 11h6"></path></svg>
+          <span>批量添加到购物车</span><b id="v2-selected-count">0</b>
+        </button>
+        <div class="v2-user-menu">
+          <button class="v2-user-trigger" id="v2-user-trigger" type="button" aria-haspopup="menu" aria-expanded="false"><span>采</span><span class="v2-user-copy"><small>登录用户</small><strong>采购用户A</strong></span><b>⌄</b></button>
+          <div class="v2-user-dropdown" id="v2-user-dropdown" role="menu"><button type="button" id="v2-logout" role="menuitem">退出登录</button></div>
+        </div>
+      </div>
+    </section>
+    <section class="v2-product-grid" id="v2-product-grid" aria-live="polite"></section>
+    <div class="pagination v2-pagination">
+      <div class="pagination-btns"><button class="page-btn" id="v2-prev" type="button">‹</button><button class="page-btn active" id="v2-current" type="button">1</button><button class="page-btn" id="v2-next" type="button">›</button></div>
+    </div>
+  </main>
+</div>
+
+<button class="v2-order-cart-fab" id="v2-order-cart-toggle" type="button" aria-label="查看购物车"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="20" r="1"></circle><circle cx="19" cy="20" r="1"></circle><path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 2-1.6L21 7H6"></path></svg><span>购物车 <b id="v2-cart-count">(0)</b></span><strong id="v2-cart-total">$0.00</strong></button>
+
+<div class="modal-overlay" id="v2-cart-modal" role="dialog" aria-modal="true" aria-labelledby="v2-cart-title">
+  <div class="modal v2-cart-modal">
+    <div class="modal-head"><h3 id="v2-cart-title">购物车</h3><button class="close" id="v2-cart-close" type="button" aria-label="关闭购物车">&times;</button></div>
+    <div class="modal-body"><div class="v2-cart-list" id="v2-cart-list"></div></div>
+    <div class="v2-cart-total-row"><span>合计</span><strong id="v2-modal-total">$0.00</strong></div>
+    <div class="modal-footer"><button class="btn btn-ghost" id="v2-cart-clear" type="button">清空</button><button class="btn btn-primary" id="v2-checkout-open" type="button">去结算</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="v2-checkout-modal" role="dialog" aria-modal="true" aria-labelledby="v2-checkout-title">
+  <div class="modal v2-checkout-modal">
+    <div class="modal-head"><h3 id="v2-checkout-title">提交采购订单</h3><button class="close" id="v2-checkout-close" type="button" aria-label="关闭结算">&times;</button></div>
+    <form id="v2-checkout-form">
+      <div class="modal-body v2-checkout-form">
+        <div class="manage-form-field"><label for="v2-recipient">收货人</label><input id="v2-recipient" type="text" placeholder="请输入收货人" required></div>
+        <div class="manage-form-field"><label for="v2-phone">联系电话</label><input id="v2-phone" type="tel" placeholder="请输入联系电话" required></div>
+        <div class="manage-form-field"><label for="v2-address">收货地址</label><textarea id="v2-address" rows="3" placeholder="请输入详细地址" required></textarea></div>
+        <div class="manage-form-field"><label for="v2-logistics">物流方式</label><select id="v2-logistics" required><option value="">请选择物流</option><option>UPS Ground</option><option>FedEx Ground</option><option>卡车派送</option></select></div>
+        <div class="v2-checkout-summary"><span>订单商品 <strong id="v2-checkout-count">0 个SKU</strong></span><span>应付合计 <strong id="v2-checkout-total">$0.00</strong></span></div>
+      </div>
+      <div class="modal-footer"><button class="btn btn-ghost" id="v2-checkout-back" type="button">返回购物车</button><button class="btn btn-primary" type="submit">提交订单</button></div>
+    </form>
+  </div>
+</div>
+
+<div class="product-preview" id="product-preview" role="dialog" aria-modal="true" aria-label="SKU图片预览">
+  <button class="product-preview-close" type="button" aria-label="关闭图片预览" title="关闭">&times;</button><img id="product-preview-image" src="" alt=""><div class="product-preview-caption" id="product-preview-caption"></div>
+</div>
+
+<script src="sku-data.js"></script>
+<script src="order-data.js"></script>
+<script>
+var v2Data=(window.OMS_SKU_DATA||[]).slice();
+var v2Filtered=v2Data.slice();
+var v2Page=1;
+var v2PageSize=8;
+var v2Cart={};
+var v2Selected={};
+
+function v2Money(value){return '$'+Number(value||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function v2Escape(value){return String(value).replace(/[&<>"']/g,function(char){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]})}
+function v2StatusClass(status){return status==='充足'?'status-full':status==='偏少'?'status-low':'status-out'}
+function v2Card(item){
+  var disabled=item.available<=0;
+  var selected=Boolean(v2Selected[item.barcode]);
+  var quantity=selected?v2Selected[item.barcode].quantity:(disabled?0:1);
+  return '<article class="v2-product-card'+(selected?' selected':'')+'" data-v2-sku="'+item.barcode+'"><label class="v2-card-select"><input type="checkbox" data-v2-select="'+item.barcode+'" '+(selected?'checked':'')+'><span>选择</span></label><button class="v2-product-image" type="button" data-v2-preview="'+item.barcode+'" aria-label="预览 '+v2Escape(item.name)+' 图片"><img src="'+v2Escape(item.img)+'" alt="'+v2Escape(item.name)+'"></button><div class="v2-card-body"><div class="v2-card-title-row"><div><h3>'+v2Escape(item.name)+'</h3><p>'+v2Escape(item.spec)+' · '+v2Escape(item.barcode)+'</p></div><span class="status-badge '+v2StatusClass(item.sellableStatus)+'">'+item.sellableStatus+'</span></div><div class="v2-card-metrics"><div><span>批发价</span><strong>'+v2Money(item.unitPrice)+'</strong></div><div><span>可售数量</span><strong>'+item.available.toLocaleString('en-US')+'</strong></div></div><div class="v2-card-action"><label>数量<input class="v2-card-qty" type="number" min="1" max="'+item.available+'" value="'+quantity+'" '+(disabled?'disabled':'')+' aria-label="'+v2Escape(item.name+' '+item.spec)+'采购数量"></label><button class="btn btn-primary" type="button" data-v2-add="'+item.barcode+'" '+(disabled?'disabled':'')+'><span aria-hidden="true">＋</span>加入购物车</button></div></div></article>';
+}
+function renderV2Products(){
+  var totalPages=Math.max(1,Math.ceil(v2Filtered.length/v2PageSize));
+  v2Page=Math.min(v2Page,totalPages);
+  var pageData=v2Filtered.slice((v2Page-1)*v2PageSize,v2Page*v2PageSize);
+  document.getElementById('v2-product-grid').innerHTML=pageData.length?pageData.map(v2Card).join(''):'<div class="v2-empty-result">没有找到匹配的SKU</div>';
+  document.getElementById('v2-current').textContent=v2Page;
+  document.getElementById('v2-prev').disabled=v2Page<=1;
+  document.getElementById('v2-next').disabled=v2Page>=totalPages||v2Filtered.length===0;
+}
+function searchV2(){
+  var keyword=document.getElementById('v2-search-input').value.trim().toLowerCase();
+  v2Filtered=v2Data.filter(function(item){return !keyword||item.name.toLowerCase().indexOf(keyword)>-1||item.barcode.toLowerCase().indexOf(keyword)>-1});
+  v2Page=1;renderV2Products();
+}
+function v2CartTotals(){
+  return Object.keys(v2Cart).reduce(function(result,sku){var entry=v2Cart[sku];result.skus++;result.quantity+=entry.quantity;result.total+=entry.item.unitPrice*entry.quantity;return result},{skus:0,quantity:0,total:0});
+}
+function updateV2Cart(){
+  var totals=v2CartTotals();
+  document.getElementById('v2-cart-count').textContent='('+totals.skus+')';
+  document.getElementById('v2-cart-total').textContent=v2Money(totals.total);
+  document.getElementById('v2-modal-total').textContent=v2Money(totals.total);
+  document.getElementById('v2-checkout-count').textContent=totals.skus+' 个SKU / '+totals.quantity+' 件';
+  document.getElementById('v2-checkout-total').textContent=v2Money(totals.total);
+  var entries=Object.keys(v2Cart).map(function(sku){return v2Cart[sku]});
+  document.getElementById('v2-cart-list').innerHTML=entries.length?entries.map(function(entry){var item=entry.item;return '<div class="v2-cart-item" data-v2-cart-sku="'+item.barcode+'"><div class="v2-cart-product"><img src="'+v2Escape(item.img)+'" alt=""><div><strong>'+v2Escape(item.name)+'</strong><span>'+v2Escape(item.spec)+' · '+v2Escape(item.barcode)+'</span></div></div><span class="v2-cart-price">'+v2Money(item.unitPrice)+'</span><input type="number" min="1" max="'+item.available+'" value="'+entry.quantity+'" aria-label="'+v2Escape(item.name+' '+item.spec)+'购物车数量"><strong class="v2-cart-subtotal">'+v2Money(item.unitPrice*entry.quantity)+'</strong><button class="cart-remove" type="button" aria-label="删除 '+v2Escape(item.name+' '+item.spec)+'" title="删除">&times;</button></div>'}).join(''):'<div class="tray-cart-empty">购物车为空</div>';
+}
+function putV2CartItem(item,quantity){
+  if(!item||item.available<=0)return false;
+  quantity=Math.max(1,Math.min(item.available,parseInt(quantity,10)||1));
+  if(!v2Cart[item.barcode])v2Cart[item.barcode]={item:item,quantity:quantity};else v2Cart[item.barcode].quantity=Math.min(item.available,v2Cart[item.barcode].quantity+quantity);
+  return true;
+}
+function addV2Item(sku){
+  var card=document.querySelector('[data-v2-sku="'+sku+'"]');
+  var item=v2Data.find(function(entry){return entry.barcode===sku});
+  if(!item||item.available<=0)return;
+  var quantity=Math.max(1,Math.min(item.available,parseInt(card.querySelector('.v2-card-qty').value,10)||1));
+  putV2CartItem(item,quantity);
+  updateV2Cart();showToast('已加入购物车');
+}
+function updateV2Selection(){
+  var count=Object.keys(v2Selected).length;
+  document.getElementById('v2-selected-count').textContent=count;
+  document.getElementById('v2-batch-add').disabled=count===0;
+}
+function batchAddV2Items(){
+  var skus=Object.keys(v2Selected);
+  if(!skus.length)return;
+  var added=0;
+  skus.forEach(function(sku){var selected=v2Selected[sku];if(putV2CartItem(selected.item,selected.quantity))added++});
+  v2Selected={};renderV2Products();updateV2Selection();updateV2Cart();
+  if(!added){showToast('所选SKU当前均为缺货','warning');return}
+  showToast('已批量加入购物车（'+added+'个SKU）');
+}
+function syncV2PageSize(){
+  var nextSize=document.querySelector('.v2-app-content').getBoundingClientRect().width<800?4:8;
+  if(nextSize===v2PageSize)return;
+  v2PageSize=nextSize;v2Page=1;renderV2Products();
+}
+var v2PageSizeTimer;
+function scheduleV2PageSize(){clearTimeout(v2PageSizeTimer);v2PageSizeTimer=setTimeout(syncV2PageSize,260)}
+function openV2Cart(){updateV2Cart();document.getElementById('v2-cart-modal').classList.add('open');document.getElementById('v2-cart-close').focus()}
+function closeV2Cart(){document.getElementById('v2-cart-modal').classList.remove('open')}
+function openV2Checkout(){
+  if(Object.keys(v2Cart).length===0){showToast('购物车为空','warning');return}
+  closeV2Cart();updateV2Cart();document.getElementById('v2-checkout-modal').classList.add('open');document.getElementById('v2-recipient').focus();
+}
+function closeV2Checkout(){document.getElementById('v2-checkout-modal').classList.remove('open')}
+function openV2Preview(sku){var item=v2Data.find(function(entry){return entry.barcode===sku});if(!item)return;document.getElementById('product-preview-image').src=item.img;document.getElementById('product-preview-image').alt=item.name;document.getElementById('product-preview-caption').textContent=item.name+' · '+item.spec;document.getElementById('product-preview').classList.add('open')}
+function closeV2Preview(){document.getElementById('product-preview').classList.remove('open')}
+
+document.getElementById('v2-search-form').addEventListener('submit',function(event){event.preventDefault();searchV2()});
+document.getElementById('v2-product-grid').addEventListener('click',function(event){var add=event.target.closest('[data-v2-add]');if(add){addV2Item(add.dataset.v2Add);return}var preview=event.target.closest('[data-v2-preview]');if(preview)openV2Preview(preview.dataset.v2Preview)});
+document.getElementById('v2-product-grid').addEventListener('change',function(event){
+  var select=event.target.closest('[data-v2-select]');
+  if(select){var item=v2Data.find(function(entry){return entry.barcode===select.dataset.v2Select});var card=select.closest('[data-v2-sku]');if(select.checked)v2Selected[item.barcode]={item:item,quantity:Math.max(1,parseInt(card.querySelector('.v2-card-qty').value,10)||1)};else delete v2Selected[item.barcode];card.classList.toggle('selected',select.checked);updateV2Selection();return}
+  if(event.target.classList.contains('v2-card-qty')){var selectedSku=event.target.closest('[data-v2-sku]').dataset.v2Sku;if(v2Selected[selectedSku])v2Selected[selectedSku].quantity=Math.max(1,parseInt(event.target.value,10)||1)}
+});
+document.getElementById('v2-product-grid').addEventListener('input',function(event){if(!event.target.classList.contains('v2-card-qty'))return;var selectedSku=event.target.closest('[data-v2-sku]').dataset.v2Sku;if(v2Selected[selectedSku])v2Selected[selectedSku].quantity=Math.max(1,parseInt(event.target.value,10)||1)});
+document.getElementById('v2-batch-add').addEventListener('click',batchAddV2Items);
+document.getElementById('v2-prev').addEventListener('click',function(){v2Page=Math.max(1,v2Page-1);renderV2Products()});
+document.getElementById('v2-next').addEventListener('click',function(){v2Page++;renderV2Products()});
+document.getElementById('v2-order-cart-toggle').addEventListener('click',openV2Cart);
+document.getElementById('v2-cart-close').addEventListener('click',closeV2Cart);
+document.getElementById('v2-cart-clear').addEventListener('click',function(){v2Cart={};updateV2Cart();showToast('购物车已清空')});
+document.getElementById('v2-checkout-open').addEventListener('click',openV2Checkout);
+document.getElementById('v2-cart-list').addEventListener('input',function(event){var row=event.target.closest('[data-v2-cart-sku]');if(!row||event.target.type!=='number')return;var entry=v2Cart[row.dataset.v2CartSku];entry.quantity=Math.max(1,Math.min(entry.item.available,parseInt(event.target.value,10)||1));updateV2Cart()});
+document.getElementById('v2-cart-list').addEventListener('click',function(event){var remove=event.target.closest('.cart-remove');if(!remove)return;var row=remove.closest('[data-v2-cart-sku]');delete v2Cart[row.dataset.v2CartSku];updateV2Cart();showToast('已从购物车删除')});
+document.getElementById('v2-checkout-close').addEventListener('click',closeV2Checkout);
+document.getElementById('v2-checkout-back').addEventListener('click',function(){closeV2Checkout();openV2Cart()});
+document.getElementById('v2-checkout-form').addEventListener('submit',function(event){event.preventDefault();v2Cart={};updateV2Cart();closeV2Checkout();event.target.reset();showToast('订单提交成功')});
+document.getElementById('v2-cart-modal').addEventListener('click',function(event){if(event.target===this)closeV2Cart()});
+document.getElementById('v2-checkout-modal').addEventListener('click',function(event){if(event.target===this)closeV2Checkout()});
+document.getElementById('v2-user-trigger').addEventListener('click',function(){var menu=document.getElementById('v2-user-dropdown');var open=menu.classList.toggle('open');this.setAttribute('aria-expanded',open?'true':'false')});
+document.getElementById('v2-logout').addEventListener('click',function(){window.location.href='login.html'});
+document.querySelector('.product-preview-close').addEventListener('click',closeV2Preview);
+document.getElementById('product-preview').addEventListener('click',function(event){if(event.target===this)closeV2Preview()});
+document.addEventListener('click',function(event){if(!event.target.closest('.v2-user-menu')){document.getElementById('v2-user-dropdown').classList.remove('open');document.getElementById('v2-user-trigger').setAttribute('aria-expanded','false')}});
+document.addEventListener('keydown',function(event){if(event.key==='Escape'){closeV2Cart();closeV2Checkout();closeV2Preview()}});
+new MutationObserver(function(records){if(records.some(function(record){return record.attributeName==='class'}))scheduleV2PageSize()}).observe(document.body,{attributes:true,attributeFilter:['class']});
+window.addEventListener('resize',scheduleV2PageSize);
+
+renderV2Products();updateV2Cart();updateV2Selection();syncV2PageSize();scheduleV2PageSize();
+</script>
+<script src="order-history.js"></script>
+<script src="toast.js?v=20260827-global"></script>
+<script src="notes.js?v=20260827-resize"></script>
+</body></html>

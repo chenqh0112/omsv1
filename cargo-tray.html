@@ -2,405 +2,438 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>美国货盘 — OMS 库存管理系统</title>
+<title>美国货盘 — 独立站</title>
 <link rel="stylesheet" href="styles.css">
+<script src="navigation.js" defer></script>
 </head>
 <body data-page="tray">
 
 <aside class="app-nav">
-  <div class="nav-brand">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M9 22V12h6v10"></path></svg>
-    OMS 库存管理
-  </div>
-  <nav class="nav-list">
-    <a href="index.html" data-nav="sku">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-      SKU管理
-    </a>
-    <a href="cargo-tray.html" data-nav="tray" class="active">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="M3.27 6.96 12 12.01l8.73-5.05"></path><path d="M12 22.08V12"></path></svg>
-      美国货盘
-    </a>
-    <a href="fees.html" data-nav="fees">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 10h18"></path><path d="M7 15h3"></path></svg>
-      费用
-    </a>
-    <a href="login.html" data-nav="login">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 17l5-5-5-5"></path><path d="M15 12H3"></path><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path></svg>
-      登录
-    </a>
-  </nav>
-  <div class="nav-footer">OMS v1.0</div>
+  <div class="nav-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M9 22V12h6v10"></path></svg>独立站</div>
+  <nav class="nav-list"></nav>
+  <div class="nav-footer">独立站</div>
 </aside>
 
 <div class="app-content">
-  <div class="topbar" style="background:var(--surface);border-bottom:1px solid var(--border);height:48px">
-    <div class="topbar-left" style="gap:0">
-      <span style="font-size:13px;color:var(--muted);padding:0 12px;border-right:1px solid var(--border)">首页</span>
-      <div style="padding:0 16px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px">
-        <span class="dot" style="width:8px;height:8px;border-radius:50%;background:var(--primary);display:inline-block"></span>
-        美国货盘
-      </div>
-    </div>
-    <div class="topbar-right">
-      <div class="user">
-        <button class="avatar" type="button" data-role-avatar aria-haspopup="dialog" aria-label="切换身份" title="切换身份">超</button>
-      </div>
-    </div>
+  <div class="topbar" style="height:48px">
+    <div class="topbar-left"><h1>美国货盘</h1></div>
+    <div class="topbar-right" data-order-history-anchor data-order-user="采购用户A"><div class="user"><button class="avatar" type="button" data-role-avatar aria-haspopup="dialog" aria-label="切换身份" title="切换身份">超</button></div></div>
   </div>
-
-  <div class="page-body">
-    <div class="warehouse-banner page-section">
-      <div class="wh-info">
-        <div class="wh-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="M3.27 6.96 12 12.01l8.73-5.05"></path><path d="M12 22.08V12"></path></svg>
-        </div>
-        <div>
-          <div class="wh-name">美国货盘</div>
-        </div>
+  <main class="page-body">
+    <div class="sku-overview-grid cargo-overview-grid page-section">
+      <div class="stat-card sku-overview-stat cargo-stat cargo-stat-sku">
+        <div class="stat-label">货盘SKU总数</div><div class="stat-value" id="tray-sku-total">0</div>
+        <div class="stat-meta-row"><span class="stat-share" id="tray-sku-share">占比 0.0%</span><span class="table-header-help" tabindex="0" title="当前身份可见货盘 SKU 数除以全部货盘 SKU 数">?</span></div>
+        <div class="stat-trend up"><span class="trend-arrow">↑</span><strong>6%</strong><span>vs 上周</span><span class="table-header-help" tabindex="0" title="与上周同期相比的货盘 SKU 数变化">?</span></div>
       </div>
-      <div class="wh-stats">
-        <div class="wh-stat">
-          <div class="wh-stat-num" id="tray-sku-total">5</div>
-          <div class="wh-stat-label">货盘 SKU</div>
-        </div>
-        <div class="wh-stat">
-          <div class="wh-stat-num" id="tray-qty-total">813</div>
-          <div class="wh-stat-label">货盘总量</div>
-        </div>
+      <div class="stat-card sku-overview-stat cargo-stat cargo-stat-total">
+        <div class="stat-label">货盘总量</div><div class="stat-value" id="tray-qty-total">0</div>
+        <div class="stat-meta-row"><span class="stat-share" id="tray-qty-share">占比 0.0%</span><span class="table-header-help" tabindex="0" title="当前身份货盘总量除以全部货盘总量">?</span></div>
+        <div class="stat-trend up"><span class="trend-arrow">↑</span><strong>9%</strong><span>vs 上周</span><span class="table-header-help" tabindex="0" title="与上周同期相比的货盘总量变化">?</span></div>
+      </div>
+      <div class="stat-card sku-overview-stat cargo-stat cargo-stat-sellable">
+        <div class="stat-label">可售数量</div><div class="stat-value" id="tray-sellable-total">0</div>
+        <div class="stat-meta-row"><span class="stat-share" id="tray-sellable-share">占比 0.0%</span><span class="table-header-help" tabindex="0" title="可售数量除以当前身份货盘总量">?</span></div>
+        <div class="stat-trend down"><span class="trend-arrow">↓</span><strong>3%</strong><span>vs 上周</span><span class="table-header-help" tabindex="0" title="与上周同期相比的可售数量变化">?</span></div>
+      </div>
+      <div class="stat-card sku-overview-stat cargo-stat cargo-stat-revenue">
+        <div class="stat-label">今日成交额</div><div class="stat-value" id="tray-revenue-total">$0.00</div>
+        <div class="stat-meta-row"><span class="stat-share" id="tray-revenue-share">占比 0.0%</span><span class="table-header-help" tabindex="0" title="当前身份今日成交额除以全部货盘今日成交额">?</span></div>
+        <div class="stat-trend up"><span class="trend-arrow">↑</span><strong>14%</strong><span>vs 昨日</span><span class="table-header-help" tabindex="0" title="与昨日同期相比的成交额变化">?</span></div>
       </div>
     </div>
 
-    <div class="table-wrap page-section">
-      <div class="tray-toolbar">
-        <div class="tabs">
-          <div class="tab active" data-tab="overview" onclick="switchTab('overview')">货盘总览</div>
-          <div class="tab" id="company-detail-tab" data-tab="company" onclick="switchTab('company')">公司明细</div>
-        </div>
-        <button class="btn btn-primary" id="mark-inventory-button" onclick="openMarkModal()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-          标记库存到货盘
+    <div class="filter-bar tray-filter-bar page-section">
+      <div class="filter-group"><label for="tray-filter-code">SKU编码</label><input type="text" id="tray-filter-code" autocomplete="off"></div>
+      <div class="filter-group"><label for="tray-filter-name">SKU名称</label><input type="text" id="tray-filter-name" autocomplete="off"></div>
+      <div class="filter-group dynamic-filter tray-status-filter"><label>状态</label><div id="tray-filter-status"></div></div>
+      <div class="filter-actions tray-search-actions">
+        <button class="btn btn-primary" id="tray-search" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>搜索</button>
+        <button class="btn btn-ghost" id="tray-reset" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>重置</button>
+      </div>
+      <div class="spacer"></div>
+      <div class="tray-cart-summary" aria-live="polite">
+        <div><span>小计</span><strong id="tray-cart-subtotal">0 件</strong></div>
+        <div><span>合计</span><strong id="tray-cart-total">$0.00</strong></div>
+        <button class="cart-icon-button" id="tray-cart-toggle" type="button" aria-label="查看购物车" title="查看购物车">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="20" r="1"></circle><circle cx="19" cy="20" r="1"></circle><path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 2-1.6L21 7H6"></path></svg>
+          <span id="tray-cart-badge">0</span>
         </button>
       </div>
+    </div>
 
-      <div class="tab-panel table-scroll" id="panel-overview">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th style="width:64px">SKU图片</th>
-              <th>SKU条形码</th>
-              <th>SKU名称</th>
-              <th>公司</th>
-              <th style="text-align:right">货盘总量</th>
-              <th>货盘占比</th>
-              <th style="text-align:right">可用</th>
-              <th style="width:130px">操作</th>
-            </tr>
-          </thead>
+    <section class="table-wrap cargo-table-wrap page-section">
+      <div class="table-head-bar"><h3>货盘总览</h3><button class="btn btn-primary btn-sm" id="tray-add-selected" type="button" disabled>添加购物车</button></div>
+      <div class="table-scroll">
+        <table class="data-table cargo-table">
+          <thead><tr>
+            <th class="selection-column"><input type="checkbox" id="tray-select-all" aria-label="选择当前页可售SKU"></th>
+            <th class="sku-column">SKU</th>
+            <th class="num sortable-column" aria-sort="none"><button class="sort-button" type="button" data-sort-key="trayQuantity">货盘总量<span>↕</span></button></th>
+            <th class="num sortable-column" aria-sort="none"><button class="sort-button" type="button" data-sort-key="unitPrice">单价<span>↕</span></button></th>
+            <th class="num sortable-column" aria-sort="none"><button class="sort-button" type="button" data-sort-key="available">可售数量<span>↕</span></button></th>
+            <th class="sortable-column" aria-sort="none"><button class="sort-button" type="button" data-sort-key="sellableStatus">状态<span>↕</span></button></th>
+            <th>库龄</th>
+            <th class="operation-column">操作</th>
+          </tr></thead>
           <tbody id="overview-tbody"></tbody>
         </table>
       </div>
+      <div class="pagination cargo-pagination">
+        <span class="pagination-info">共 <strong id="tray-row-count">0</strong> 个SKU · <strong id="tray-group-count">0</strong> 个商品</span>
+        <div class="pagination-btns"><button class="page-btn" id="tray-page-prev" type="button">‹</button><button class="page-btn active" id="tray-page-current" type="button">1</button><button class="page-btn" id="tray-page-next" type="button">›</button></div>
+      </div>
+    </section>
+  </main>
+</div>
 
-      <div class="tab-panel table-scroll" id="panel-company" style="display:none">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>公司</th>
-              <th>SKU条形码</th>
-              <th>SKU名称</th>
-              <th style="text-align:right">标记数量</th>
-              <th>货盘占比</th>
-            </tr>
-          </thead>
-          <tbody id="company-tbody"></tbody>
-        </table>
-      </div>
-      <div class="pagination">
-        <span class="pagination-info">共 <strong id="tray-row-count">0</strong> 条</span>
-        <div class="pagination-btns"><button class="page-btn" disabled>‹</button><button class="page-btn active">1</button><button class="page-btn" disabled>›</button></div>
-      </div>
-    </div>
+<div class="product-preview" id="product-preview" role="dialog" aria-modal="true" aria-label="SKU图片预览">
+  <button class="product-preview-close" type="button" aria-label="关闭图片预览" title="关闭">&times;</button>
+  <img id="product-preview-image" src="" alt="">
+  <div class="product-preview-caption" id="product-preview-caption"></div>
+</div>
+
+<div class="modal-overlay" id="tray-cart-modal" role="dialog" aria-modal="true" aria-labelledby="tray-cart-title">
+  <div class="modal tray-cart-modal">
+    <div class="modal-head"><h3 id="tray-cart-title">购物车</h3><button class="close" type="button" id="tray-cart-close" aria-label="关闭购物车">&times;</button></div>
+    <div class="modal-body"><div class="tray-cart-list" id="tray-cart-list"></div></div>
+    <div class="tray-cart-footer-summary"><span>小计 <strong id="tray-cart-modal-count">0 件</strong></span><span>合计 <strong id="tray-cart-modal-total">$0.00</strong></span></div>
+    <div class="modal-footer"><button class="btn btn-ghost" id="tray-cart-clear" type="button">清空购物车</button><button class="btn btn-primary" id="tray-cart-order" type="button">下单</button></div>
   </div>
 </div>
 
-<div class="toast" id="toast">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg>
-  <span id="toast-msg">操作成功</span>
-</div>
-
-<div class="modal-overlay" id="mark-modal" onclick="if(event.target===this)closeMarkModal()">
-  <div class="modal mark-modal">
-    <div class="modal-head">
-      <h3>标记库存到货盘</h3>
-      <button class="close" type="button" aria-label="关闭" onclick="closeMarkModal()">&times;</button>
-    </div>
-    <div class="modal-body">
-      <div class="mark-scope-filters" id="mark-scope-filters"></div>
-      <div class="mark-sku-table table-scroll">
-        <table class="data-table">
-          <thead><tr><th style="width:46px"><input type="checkbox" id="mark-select-all" aria-label="选择全部SKU"></th><th style="width:64px">SKU图片</th><th>SKU条形码</th><th>SKU名称</th><th style="text-align:right">可标记库存</th><th style="text-align:right;width:130px">标记数量</th></tr></thead>
-          <tbody id="mark-sku-tbody"></tbody>
-        </table>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" type="button" onclick="closeMarkModal()">取消</button>
-      <button class="btn btn-primary" type="button" onclick="submitMark()">确认标记</button>
-    </div>
-  </div>
-</div>
-
+<script src="sku-data.js"></script>
+<script src="order-data.js"></script>
 <script src="multi-select.js"></script>
 <script>
-var trayEntries = [
-  {company:'公司A',businessGroup:'业务组A',stockType:'internal',sku:'0694670410',barcode:'0694670410',skuName:'篮球6',img:'img4.jpg',qty:48,sourceAvailable:80},
-  {company:'公司A',businessGroup:'业务组A',stockType:'internal',sku:'CM74834623',barcode:'CM74834623',skuName:'熊猫1',img:'img2.jpg',qty:30,sourceAvailable:45},
-  {company:'公司A',businessGroup:'业务组B',stockType:'internal',sku:'1964196450',barcode:'1964196450',skuName:'羽毛5',img:'img1.jpg',qty:60,sourceAvailable:110},
-  {company:'公司B',businessGroup:'业务组C',stockType:'external',sku:'0694670410',barcode:'0694670410',skuName:'篮球6',img:'img4.jpg',qty:120,sourceAvailable:150},
-  {company:'公司B',businessGroup:'业务组C',stockType:'external',sku:'1497997262',barcode:'1497997262',skuName:'老虎4',img:'img5.jpg',qty:200,sourceAvailable:240},
-  {company:'公司B',businessGroup:'业务组D',stockType:'external',sku:'2917043563',barcode:'2917043563',skuName:'草莓3',img:'img3.jpg',qty:90,sourceAvailable:120},
-  {company:'公司C',businessGroup:'业务组E',stockType:'external',sku:'1964196450',barcode:'1964196450',skuName:'羽毛5',img:'img1.jpg',qty:265,sourceAvailable:300}
-];
-
-var reserved = {'0694670410':15,'CM74834623':0,'1964196450':0,'1497997262':8,'2917043563':4};
+var trayData=(window.OMS_SKU_DATA||[]).slice();
 var currentRole={id:'super-admin'};
-var currentTab='overview';
-var markCompanyControl=null;
-var markGroupControl=null;
+var currentTrayVariants=[];
+var currentTrayGroups=[];
+var trayCurrentPage=1;
+var trayPageSize=5;
+var traySort={key:'',direction:'desc'};
+var selectedSkus={};
+var cartItems={};
+var statusFilter=null;
 
-function uniqueValues(data,key){
-  return data.map(function(item){return item[key]}).filter(function(value,index,array){return value&&array.indexOf(value)===index});
+function getVisibleTrayData(){
+  if(currentRole.id==='company-admin')return trayData.filter(function(item){return item.company==='公司A'});
+  if(currentRole.id==='group-admin')return trayData.filter(function(item){return item.company==='公司A'&&item.businessGroup==='业务组A'});
+  if(currentRole.id==='salesperson')return trayData.filter(function(item){return item.company==='公司A'&&item.businessGroup==='业务组A'&&item.salesperson==='业务员A'});
+  return trayData.slice();
+}
+function percent(value,base){return base?(value/base*100).toFixed(1):'0.0'}
+function sum(data,key){return data.reduce(function(total,item){return total+(Number(item[key])||0)},0)}
+function formatMoney(value){return '$'+Number(value||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function statusClass(status){return status==='充足'?'status-full':status==='偏少'?'status-low':'status-out'}
+function statusRank(status){return status==='缺货'?0:status==='偏少'?1:2}
+function maxAge(item){return Math.max.apply(null,(item.ageRecords||[{days:0}]).map(function(record){return record.days}))}
+function escapeHtml(value){return String(value).replace(/[&<>"']/g,function(char){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]})}
+function estimateArrival(item){
+  var index=trayData.indexOf(item);
+  var date=new Date(Date.UTC(2026,7,27+(index%7)+3));
+  return date.getUTCFullYear()+'-'+String(date.getUTCMonth()+1).padStart(2,'0')+'-'+String(date.getUTCDate()).padStart(2,'0');
 }
 
-function getVisibleEntries(){
-  if(currentRole.id==='company-admin')return trayEntries.filter(function(item){return item.company==='公司A'});
-  if(currentRole.id==='group-admin'||currentRole.id==='salesperson')return trayEntries.filter(function(item){return item.company==='公司A'&&item.businessGroup==='业务组A'});
-  return trayEntries.slice();
+function updateTraySummary(){
+  var visible=getVisibleTrayData();
+  var globalQty=sum(trayData,'trayQuantity');
+  var visibleQty=sum(visible,'trayQuantity');
+  var sellable=sum(visible,'available');
+  var globalRevenue=sum(trayData,'todayRevenue');
+  var revenue=sum(visible,'todayRevenue');
+  document.getElementById('tray-sku-total').textContent=visible.length;
+  document.getElementById('tray-qty-total').textContent=visibleQty.toLocaleString('en-US');
+  document.getElementById('tray-sellable-total').textContent=sellable.toLocaleString('en-US');
+  document.getElementById('tray-revenue-total').textContent=formatMoney(revenue);
+  document.getElementById('tray-sku-share').textContent='占比 '+percent(visible.length,trayData.length)+'%';
+  document.getElementById('tray-qty-share').textContent='占比 '+percent(visibleQty,globalQty)+'%';
+  document.getElementById('tray-sellable-share').textContent='占比 '+percent(sellable,visibleQty)+'%';
+  document.getElementById('tray-revenue-share').textContent='占比 '+percent(revenue,globalRevenue)+'%';
 }
 
-function productImage(entry){
-  return '<img class="product-thumb" src="'+entry.img+'" alt="'+(entry.skuName||entry.name)+'">';
-}
-
-function renderOverview(){
+function groupTrayData(data){
   var groups={};
-  var entries=getVisibleEntries();
-  entries.forEach(function(entry){
-    if(!groups[entry.sku])groups[entry.sku]={barcode:entry.barcode,name:entry.skuName,img:entry.img,total:0,internal:0,external:0,participants:[]};
-    var group=groups[entry.sku];
-    group.total+=entry.qty;
-    group[entry.stockType]+=entry.qty;
-    group.participants.push({company:entry.company,businessGroup:entry.businessGroup,qty:entry.qty});
+  data.forEach(function(item){
+    if(!groups[item.name])groups[item.name]={name:item.name,img:item.img,variants:[]};
+    groups[item.name].variants.push(item);
   });
+  return Object.keys(groups).map(function(name){return groups[name]});
+}
+function groupStatus(group){
+  if(group.variants.some(function(item){return item.sellableStatus==='缺货'}))return '缺货';
+  if(group.variants.some(function(item){return item.sellableStatus==='偏少'}))return '偏少';
+  return '充足';
+}
+function groupSortValue(group,key){
+  if(key==='trayQuantity'||key==='available')return sum(group.variants,key);
+  if(key==='unitPrice')return sum(group.variants,'unitPrice')/group.variants.length;
+  if(key==='sellableStatus')return statusRank(groupStatus(group));
+  return 0;
+}
+function sortTrayGroups(groups){
+  if(!traySort.key)return groups.slice();
+  return groups.slice().sort(function(a,b){
+    var difference=groupSortValue(a,traySort.key)-groupSortValue(b,traySort.key);
+    if(difference===0)return a.name.localeCompare(b.name,'zh-CN');
+    return traySort.direction==='asc'?difference:-difference;
+  });
+}
+function priceRange(variants){
+  var prices=variants.map(function(item){return item.unitPrice});
+  var low=Math.min.apply(null,prices);
+  var high=Math.max.apply(null,prices);
+  return low===high?formatMoney(low):formatMoney(low)+' - '+formatMoney(high);
+}
+function statusBadge(item){
+  var eta=item.sellableStatus==='缺货'?estimateArrival(item):'';
+  var tooltip=eta?' data-tooltip="预计到货：'+eta+'" tabindex="0" aria-label="缺货，预计到货 '+eta+'"':'';
+  return '<span class="status-badge '+statusClass(item.sellableStatus)+'"'+tooltip+'>'+item.sellableStatus+'</span>';
+}
+function groupStatusBadge(group){
+  var status=groupStatus(group);
+  if(status!=='缺货')return '<span class="status-badge '+statusClass(status)+'">'+status+'</span>';
+  var outItem=group.variants.find(function(item){return item.sellableStatus==='缺货'});
+  var eta=estimateArrival(outItem);
+  return '<span class="status-badge status-out" data-tooltip="预计到货：'+eta+'" tabindex="0" aria-label="缺货，预计到货 '+eta+'">缺货</span>';
+}
+function variantStack(variants,renderer,className){
+  return '<div class="tray-variant-stack '+(className||'')+'">'+variants.map(function(item){return '<div>'+renderer(item)+'</div>'}).join('')+'</div>';
+}
+function renderProductGroup(group){
+  var groupKey=encodeURIComponent(group.name);
+  var groupTotal=sum(group.variants,'trayQuantity');
+  var groupAvailable=sum(group.variants,'available');
+  var groupMaxAge=Math.max.apply(null,group.variants.map(maxAge));
+  var sellableVariants=group.variants.filter(function(item){return item.available>0});
+  var groupChecked=sellableVariants.length>0&&sellableVariants.every(function(item){return !!selectedSkus[item.barcode]});
+  return '<tr class="tray-product-row">'
+    +'<td class="selection-column"><div class="tray-group-summary tray-check-summary"><input type="checkbox" class="tray-group-check" data-group="'+groupKey+'" aria-label="选择 '+escapeHtml(group.name)+' 的可售变体" '+(groupChecked?'checked':'')+(sellableVariants.length?'':' disabled')+'></div>'
+      +variantStack(group.variants,function(item){return '<input type="checkbox" class="tray-sku-check" data-sku="'+item.barcode+'" aria-label="选择 '+escapeHtml(item.name+' '+item.spec)+'" '+(selectedSkus[item.barcode]?'checked':'')+(item.available?'':' disabled title="缺货暂不可加入购物车"')+'>'},'tray-check-stack')+'</td>'
+    +'<td class="sku-column"><div class="tray-product-summary"><button class="sku-product-image" type="button" aria-label="预览'+escapeHtml(group.name)+'图片" data-preview-src="'+escapeHtml(group.img)+'" data-preview-name="'+escapeHtml(group.name)+'"><img src="'+escapeHtml(group.img)+'" alt="'+escapeHtml(group.name)+'"></button><div><strong>'+escapeHtml(group.name)+'</strong><span>'+group.variants.length+' 个变体</span></div></div>'
+      +variantStack(group.variants,function(item){return '<span>'+escapeHtml(item.spec)+'</span><code>'+escapeHtml(item.barcode)+'</code>'},'tray-sku-variant-stack')+'</td>'
+    +'<td class="num"><div class="tray-group-summary tray-group-metric"><strong>'+groupTotal.toLocaleString('en-US')+'</strong><span>合计</span></div>'+variantStack(group.variants,function(item){return '<span class="tray-quantity">'+item.trayQuantity.toLocaleString('en-US')+'</span>'})+'</td>'
+    +'<td class="num"><div class="tray-group-summary tray-group-metric"><strong>'+priceRange(group.variants)+'</strong><span>价格区间</span></div>'+variantStack(group.variants,function(item){return '<span class="price-cell">'+formatMoney(item.unitPrice)+'</span>'})+'</td>'
+    +'<td class="num"><div class="tray-group-summary tray-group-metric"><strong>'+groupAvailable.toLocaleString('en-US')+'</strong><span>合计</span></div>'+variantStack(group.variants,function(item){return '<span class="sellable-cell">'+item.available.toLocaleString('en-US')+'</span>'})+'</td>'
+    +'<td><div class="tray-group-summary">'+groupStatusBadge(group)+'</div>'+variantStack(group.variants,statusBadge,'tray-status-stack')+'</td>'
+    +'<td><div class="tray-group-summary tray-group-metric"><strong>'+groupMaxAge+' 天</strong><span>最长库龄</span></div>'+variantStack(group.variants,function(item){return '<span>'+maxAge(item)+' 天</span>'})+'</td>'
+    +'<td class="operation-column"><div class="tray-group-summary"><span class="tray-operation-label">按SKU操作</span></div>'+variantStack(group.variants,function(item){return '<div class="tray-variant-actions"><button class="btn-link" type="button" data-cart-sku="'+item.barcode+'" '+(item.available?'':'disabled')+'>加入购物车</button><button class="btn-link" type="button" data-order-sku="'+item.barcode+'" '+(item.available?'':'disabled')+'>下单</button></div>'},'tray-operation-stack')+'</td>'
+    +'</tr>';
+}
+
+function renderTrayTable(){
+  var totalPages=Math.max(1,Math.ceil(currentTrayGroups.length/trayPageSize));
+  trayCurrentPage=Math.min(trayCurrentPage,totalPages);
+  var pageGroups=currentTrayGroups.slice((trayCurrentPage-1)*trayPageSize,trayCurrentPage*trayPageSize);
   var tbody=document.getElementById('overview-tbody');
-  tbody.innerHTML='';
-  var trayTotal=entries.reduce(function(sum,item){return sum+item.qty},0);
-  Object.keys(groups).forEach(function(sku){
-    var group=groups[sku];
-    var allocated=reserved[sku]||0;
-    var companyHtml=group.participants.map(function(participant){
-      return '<span class="tag tag-muted" style="margin:2px 3px 2px 0">'+participant.company+' · '+participant.businessGroup+'</span>';
-    }).join('');
-    var sharePct=trayTotal?Math.round(group.total/trayTotal*100):0;
-    tbody.innerHTML+=
-      '<tr>'
-      +'<td><div style="display:flex;justify-content:center">'+productImage(group)+'</div></td>'
-      +'<td style="font-family:var(--font-mono);font-size:12.5px;color:var(--muted)">'+group.barcode+'</td>'
-      +'<td style="font-weight:500">'+group.name+'</td>'
-      +'<td style="min-width:200px">'+companyHtml+'</td>'
-      +'<td class="num" style="text-align:right;font-weight:700">'+group.total+'</td>'
-      +'<td style="min-width:140px"><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:6px;background:var(--surface-2);border-radius:4px;overflow:hidden"><div style="height:100%;width:'+sharePct+'%;background:var(--primary);border-radius:4px"></div></div><span style="font-size:11px;color:var(--muted);min-width:28px;text-align:right">'+sharePct+'%</span></div></td>'
-      +'<td class="num" style="text-align:right;color:var(--success);font-weight:600">'+Math.max(0,group.total-allocated)+'</td>'
-      +'<td><div class="table-actions"><button class="btn-link" onclick="showToast(\'查看 '+group.name+' 明细\')">详情</button><button class="btn-link" onclick="showToast(\'已发起 '+group.name+' 调货\')">调货</button></div></td>'
-      +'</tr>';
+  tbody.innerHTML=pageGroups.length?pageGroups.map(renderProductGroup).join(''):'<tr><td colspan="8" class="mark-table-empty">暂无匹配的SKU</td></tr>';
+  document.getElementById('tray-row-count').textContent=currentTrayVariants.length;
+  document.getElementById('tray-group-count').textContent=currentTrayGroups.length;
+  document.getElementById('tray-page-current').textContent=trayCurrentPage;
+  document.getElementById('tray-page-prev').disabled=trayCurrentPage<=1;
+  document.getElementById('tray-page-next').disabled=trayCurrentPage>=totalPages||currentTrayGroups.length===0;
+  syncSelectionUI();
+}
+function applyTrayFilters(){
+  var code=document.getElementById('tray-filter-code').value.trim().toLowerCase();
+  var name=document.getElementById('tray-filter-name').value.trim().toLowerCase();
+  var statuses=statusFilter?statusFilter.getValues():['all'];
+  var includeAll=statuses.length===0||statuses.indexOf('all')>-1;
+  currentTrayVariants=getVisibleTrayData().filter(function(item){
+    return (!code||item.barcode.toLowerCase().indexOf(code)>-1)
+      &&(!name||item.name.toLowerCase().indexOf(name)>-1)
+      &&(includeAll||statuses.indexOf(item.sellableStatus)>-1);
   });
-  document.getElementById('tray-row-count').textContent=Object.keys(groups).length;
-  document.getElementById('tray-sku-total').textContent=Object.keys(groups).length;
-  document.getElementById('tray-qty-total').textContent=entries.reduce(function(sum,item){return sum+item.qty},0);
+  trayCurrentPage=1;
+  currentTrayGroups=sortTrayGroups(groupTrayData(currentTrayVariants));
+  renderTrayTable();
 }
-
-function renderCompanyDetail(){
-  var groups={};
-  var entries=getVisibleEntries();
-  entries.forEach(function(entry){
-    var key=entry.company+'|'+entry.sku;
-    if(!groups[key])groups[key]={company:entry.company,barcode:entry.barcode,skuName:entry.skuName,sku:entry.sku,qty:0};
-    groups[key].qty+=entry.qty;
+function resetTrayFilters(){
+  document.getElementById('tray-filter-code').value='';
+  document.getElementById('tray-filter-name').value='';
+  statusFilter.setValues(['all'],true);
+  traySort={key:'',direction:'desc'};
+  updateSortHeaders();
+  applyTrayFilters();
+}
+function changeTrayPage(offset){
+  var totalPages=Math.max(1,Math.ceil(currentTrayGroups.length/trayPageSize));
+  trayCurrentPage=Math.min(totalPages,Math.max(1,trayCurrentPage+offset));
+  renderTrayTable();
+}
+function setTraySort(key){
+  if(traySort.key===key)traySort.direction=traySort.direction==='asc'?'desc':'asc';
+  else traySort={key:key,direction:key==='sellableStatus'?'asc':'desc'};
+  currentTrayGroups=sortTrayGroups(groupTrayData(currentTrayVariants));
+  trayCurrentPage=1;
+  updateSortHeaders();
+  renderTrayTable();
+}
+function updateSortHeaders(){
+  document.querySelectorAll('.sort-button').forEach(function(button){
+    var active=button.dataset.sortKey===traySort.key;
+    button.parentElement.setAttribute('aria-sort',active?(traySort.direction==='asc'?'ascending':'descending'):'none');
+    button.classList.toggle('active',active);
+    button.querySelector('span').textContent=active?(traySort.direction==='asc'?'↑':'↓'):'↕';
   });
-  var tbody=document.getElementById('company-tbody');
-  tbody.innerHTML='';
-  Object.keys(groups).forEach(function(key){
-    var item=groups[key];
-    var skuTotal=entries.filter(function(entry){return entry.sku===item.sku}).reduce(function(sum,entry){return sum+entry.qty},0);
-    var pct=Math.round(item.qty/skuTotal*100);
-    tbody.innerHTML+=
-      '<tr><td style="font-weight:600">'+item.company+'</td>'
-      +'<td style="font-family:var(--font-mono);font-size:12.5px;color:var(--muted)">'+item.barcode+'</td>'
-      +'<td>'+item.skuName+'</td>'
-      +'<td class="num" style="text-align:right;font-weight:600">'+item.qty+'</td>'
-      +'<td style="min-width:160px"><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:6px;background:var(--surface-2);border-radius:4px;overflow:hidden"><div style="height:100%;width:'+pct+'%;background:var(--primary);border-radius:4px"></div></div><span style="font-size:11px;color:var(--muted)">'+pct+'%</span></div></td></tr>';
+}
+
+function currentPageGroups(){return currentTrayGroups.slice((trayCurrentPage-1)*trayPageSize,trayCurrentPage*trayPageSize)}
+function currentPageSellableSkus(){
+  return currentPageGroups().reduce(function(items,group){return items.concat(group.variants.filter(function(item){return item.available>0}))},[]);
+}
+function findGroup(encodedName){
+  var name=decodeURIComponent(encodedName);
+  return currentTrayGroups.find(function(group){return group.name===name});
+}
+function syncSelectionUI(){
+  document.querySelectorAll('.tray-sku-check').forEach(function(checkbox){checkbox.checked=!!selectedSkus[checkbox.dataset.sku]});
+  document.querySelectorAll('.tray-group-check').forEach(function(checkbox){
+    var group=findGroup(checkbox.dataset.group);
+    if(!group)return;
+    var sellable=group.variants.filter(function(item){return item.available>0});
+    var selectedCount=sellable.filter(function(item){return !!selectedSkus[item.barcode]}).length;
+    checkbox.checked=sellable.length>0&&selectedCount===sellable.length;
+    checkbox.indeterminate=selectedCount>0&&selectedCount<sellable.length;
   });
-  if(currentTab==='company')document.getElementById('tray-row-count').textContent=Object.keys(groups).length;
+  var pageSkus=currentPageSellableSkus();
+  var pageSelected=pageSkus.filter(function(item){return !!selectedSkus[item.barcode]}).length;
+  var selectAll=document.getElementById('tray-select-all');
+  selectAll.checked=pageSkus.length>0&&pageSelected===pageSkus.length;
+  selectAll.indeterminate=pageSelected>0&&pageSelected<pageSkus.length;
+  document.getElementById('tray-add-selected').disabled=Object.keys(selectedSkus).length===0;
+}
+function toggleSkuSelection(sku,checked){
+  if(checked)selectedSkus[sku]=true;
+  else delete selectedSkus[sku];
+  syncSelectionUI();
+}
+function toggleGroupSelection(group,checked){
+  group.variants.forEach(function(item){if(item.available){if(checked)selectedSkus[item.barcode]=true;else delete selectedSkus[item.barcode]}});
+  syncSelectionUI();
 }
 
-function switchTab(tab){
-  if(tab==='company'&&currentRole.id!=='super-admin')tab='overview';
-  currentTab=tab;
-  document.querySelectorAll('.tray-toolbar .tab').forEach(function(item){item.classList.toggle('active',item.dataset.tab===tab)});
-  document.getElementById('panel-overview').style.display=tab==='overview'?'block':'none';
-  document.getElementById('panel-company').style.display=tab==='company'?'block':'none';
-  if(tab==='company')renderCompanyDetail();else renderOverview();
-}
-
-function createMarkFilter(label,placeholder,options,onChange){
-  var group=document.createElement('div');
-  group.className='filter-group';
-  group.innerHTML='<label>'+label+'</label><div data-mark-select></div>';
-  document.getElementById('mark-scope-filters').appendChild(group);
-  return OMSMultiSelect.create(group.querySelector('[data-mark-select]'),{options:options,placeholder:placeholder,onChange:onChange});
-}
-
-function optionList(values){return values.map(function(value){return {value:value,label:value}})}
-
-function configureMarkScope(){
-  var container=document.getElementById('mark-scope-filters');
-  container.innerHTML='';
-  markCompanyControl=null;
-  markGroupControl=null;
-  if(currentRole.id==='super-admin'){
-    markCompanyControl=createMarkFilter('公司','请选择公司',optionList(uniqueValues(trayEntries,'company')),function(values){
-      var groups=trayEntries.filter(function(item){return values.indexOf(item.company)>-1});
-      markGroupControl.setOptions(optionList(uniqueValues(groups,'businessGroup')));
-      renderMarkSkuRows();
-    });
-    markGroupControl=createMarkFilter('业务组','请选择业务组',[],renderMarkSkuRows);
-  }else if(currentRole.id==='company-admin'){
-    var companyEntries=trayEntries.filter(function(item){return item.company==='公司A'});
-    markGroupControl=createMarkFilter('业务组','请选择业务组',optionList(uniqueValues(companyEntries,'businessGroup')),renderMarkSkuRows);
-  }else{
-    container.innerHTML='<div class="mark-scope-note">当前范围：公司A · 业务组A</div>';
-  }
-  renderMarkSkuRows();
-}
-
-function getMarkScopeEntries(){
-  if(currentRole.id==='super-admin'){
-    var companies=markCompanyControl?markCompanyControl.getValues():[];
-    var groups=markGroupControl?markGroupControl.getValues():[];
-    if(companies.length===0||groups.length===0)return [];
-    return trayEntries.filter(function(item){return companies.indexOf(item.company)>-1&&groups.indexOf(item.businessGroup)>-1});
-  }
-  if(currentRole.id==='company-admin'){
-    var companyGroups=markGroupControl?markGroupControl.getValues():[];
-    if(companyGroups.length===0)return [];
-    return trayEntries.filter(function(item){return item.company==='公司A'&&companyGroups.indexOf(item.businessGroup)>-1});
-  }
-  return trayEntries.filter(function(item){return item.company==='公司A'&&item.businessGroup==='业务组A'});
-}
-
-function renderMarkSkuRows(){
-  var entries=getMarkScopeEntries();
-  var skuGroups={};
-  entries.forEach(function(entry){
-    if(!skuGroups[entry.sku])skuGroups[entry.sku]={sku:entry.sku,name:entry.skuName,img:entry.img,available:0};
-    skuGroups[entry.sku].available+=entry.sourceAvailable;
+function addItemsToCart(items){
+  var added=0;
+  items.forEach(function(item){
+    if(!item||item.available<=0)return;
+    if(!cartItems[item.barcode])cartItems[item.barcode]={item:item,quantity:1};
+    else cartItems[item.barcode].quantity=Math.min(item.available,cartItems[item.barcode].quantity+1);
+    added++;
   });
-  var tbody=document.getElementById('mark-sku-tbody');
-  document.getElementById('mark-select-all').checked=false;
-  if(Object.keys(skuGroups).length===0){
-    var message=currentRole.id==='super-admin'?'请先选择公司和业务组':'请先选择业务组';
-    tbody.innerHTML='<tr><td colspan="6" class="mark-table-empty">'+message+'</td></tr>';
-    return;
-  }
-  tbody.innerHTML=Object.keys(skuGroups).map(function(sku){
-    var item=skuGroups[sku];
-    return '<tr data-mark-row="'+sku+'">'
-      +'<td><input type="checkbox" class="mark-row-check" aria-label="选择 '+item.name+'"></td>'
-      +'<td>'+productImage(item)+'</td>'
-      +'<td style="font-family:var(--font-mono);font-size:12.5px;color:var(--muted)">'+item.sku+'</td>'
-      +'<td style="font-weight:500">'+item.name+'</td>'
-      +'<td class="num" style="text-align:right;color:var(--success);font-weight:600">'+item.available+'</td>'
-      +'<td style="text-align:right"><input class="mark-qty" type="number" min="0" max="'+item.available+'" value="" placeholder="0" aria-label="'+item.name+'标记数量"></td>'
-      +'</tr>';
-  }).join('');
+  if(!added){showToast('没有可加入购物车的SKU','error');return}
+  selectedSkus={};
+  updateCart();
+  syncSelectionUI();
+  showToast('已加入购物车');
 }
-
-function setMarkRowSelected(row,selected){
-  row.querySelector('.mark-row-check').checked=selected;
+function cartTotals(){
+  return Object.keys(cartItems).reduce(function(result,sku){
+    var entry=cartItems[sku];
+    result.count+=entry.quantity;
+    result.total+=entry.item.unitPrice*entry.quantity;
+    return result;
+  },{count:0,total:0});
 }
+function updateCart(){
+  var totals=cartTotals();
+  document.getElementById('tray-cart-subtotal').textContent=totals.count+' 件';
+  document.getElementById('tray-cart-total').textContent=formatMoney(totals.total);
+  document.getElementById('tray-cart-badge').textContent=totals.count;
+  document.getElementById('tray-cart-modal-count').textContent=totals.count+' 件';
+  document.getElementById('tray-cart-modal-total').textContent=formatMoney(totals.total);
+  var entries=Object.keys(cartItems).map(function(sku){return cartItems[sku]});
+  document.getElementById('tray-cart-list').innerHTML=entries.length?entries.map(function(entry){
+    var item=entry.item;
+    return '<div class="tray-cart-item" data-cart-sku="'+item.barcode+'"><img src="'+escapeHtml(item.img)+'" alt=""><div class="tray-cart-item-copy"><strong>'+escapeHtml(item.name)+'</strong><span>'+escapeHtml(item.spec)+' · '+escapeHtml(item.barcode)+'</span><b>'+formatMoney(item.unitPrice)+'</b></div><label>数量<input type="number" min="1" max="'+item.available+'" value="'+entry.quantity+'" aria-label="'+escapeHtml(item.name+' '+item.spec)+'数量"></label><button class="cart-remove" type="button" aria-label="移除 '+escapeHtml(item.name+' '+item.spec)+'" title="移除">&times;</button></div>';
+  }).join(''):'<div class="tray-cart-empty">购物车为空</div>';
+}
+function openCart(){updateCart();document.getElementById('tray-cart-modal').classList.add('open');document.getElementById('tray-cart-close').focus()}
+function closeCart(){document.getElementById('tray-cart-modal').classList.remove('open')}
+function clearCart(){cartItems={};updateCart();showToast('购物车已清空')}
 
-document.getElementById('mark-sku-tbody').addEventListener('change',function(event){
-  var row=event.target.closest('tr');
-  if(event.target.classList.contains('mark-row-check')){
-    setMarkRowSelected(row,event.target.checked);
-    return;
-  }
-  if(event.target.classList.contains('mark-qty'))row.querySelector('.mark-row-check').checked=parseInt(event.target.value,10)>0;
+function openProductPreview(src,name){
+  var preview=document.getElementById('product-preview');
+  document.getElementById('product-preview-image').src=src;
+  document.getElementById('product-preview-image').alt=name;
+  document.getElementById('product-preview-caption').textContent=name;
+  preview.classList.add('open');
+  document.querySelector('.product-preview-close').focus();
+}
+function closeProductPreview(){document.getElementById('product-preview').classList.remove('open');document.getElementById('product-preview-image').src=''}
+
+statusFilter=OMSMultiSelect.create(document.getElementById('tray-filter-status'),{
+  placeholder:'全部',
+  allValue:'all',
+  defaultValues:['all'],
+  options:[{value:'all',label:'全部'},{value:'缺货',label:'缺货'},{value:'偏少',label:'偏少'},{value:'充足',label:'充足'}],
+  onChange:function(){applyTrayFilters()}
 });
-document.getElementById('mark-sku-tbody').addEventListener('input',function(event){
-  if(!event.target.classList.contains('mark-qty'))return;
-  event.target.closest('tr').querySelector('.mark-row-check').checked=parseInt(event.target.value,10)>0;
+document.getElementById('tray-search').addEventListener('click',applyTrayFilters);
+document.getElementById('tray-reset').addEventListener('click',resetTrayFilters);
+document.getElementById('tray-filter-code').addEventListener('keydown',function(event){if(event.key==='Enter')applyTrayFilters()});
+document.getElementById('tray-filter-name').addEventListener('keydown',function(event){if(event.key==='Enter')applyTrayFilters()});
+document.querySelectorAll('.sort-button').forEach(function(button){button.addEventListener('click',function(){setTraySort(button.dataset.sortKey)})});
+document.getElementById('tray-page-prev').addEventListener('click',function(){changeTrayPage(-1)});
+document.getElementById('tray-page-next').addEventListener('click',function(){changeTrayPage(1)});
+document.getElementById('tray-select-all').addEventListener('change',function(event){var checked=event.target.checked;currentPageSellableSkus().forEach(function(item){if(checked)selectedSkus[item.barcode]=true;else delete selectedSkus[item.barcode]});syncSelectionUI()});
+document.getElementById('tray-add-selected').addEventListener('click',function(){addItemsToCart(Object.keys(selectedSkus).map(function(sku){return trayData.find(function(item){return item.barcode===sku})}))});
+document.getElementById('overview-tbody').addEventListener('change',function(event){
+  if(event.target.classList.contains('tray-sku-check'))toggleSkuSelection(event.target.dataset.sku,event.target.checked);
+  if(event.target.classList.contains('tray-group-check')){var group=findGroup(event.target.dataset.group);if(group)toggleGroupSelection(group,event.target.checked)}
 });
-document.getElementById('mark-select-all').addEventListener('change',function(event){
-  document.querySelectorAll('#mark-sku-tbody [data-mark-row]').forEach(function(row){setMarkRowSelected(row,event.target.checked)});
+document.getElementById('overview-tbody').addEventListener('click',function(event){
+  var previewButton=event.target.closest('[data-preview-src]');
+  if(previewButton){openProductPreview(previewButton.dataset.previewSrc,previewButton.dataset.previewName);return}
+  var cartButton=event.target.closest('[data-cart-sku]');
+  if(cartButton){var cartItem=trayData.find(function(item){return item.barcode===cartButton.dataset.cartSku});if(cartItem)addItemsToCart([cartItem]);return}
+  if(event.target.closest('[data-order-sku]'))showToast('下单功能暂未开放');
 });
-
-function openMarkModal(){
-  if(currentRole.id==='salesperson'){showToast('当前身份无标记库存权限');return}
-  configureMarkScope();
-  document.getElementById('mark-modal').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeMarkModal(){
-  document.getElementById('mark-modal').classList.remove('open');
-  document.body.style.overflow='';
-}
-function submitMark(){
-  var rows=Array.prototype.slice.call(document.querySelectorAll('#mark-sku-tbody [data-mark-row]')).filter(function(row){return row.querySelector('.mark-row-check').checked});
-  if(rows.length===0){showToast('请选择至少一个 SKU 并填写标记数量');return}
-  var scopeEntries=getMarkScopeEntries();
-  var selections=rows.map(function(row){
-    var input=row.querySelector('.mark-qty');
-    return {sku:row.dataset.markRow,qty:parseInt(input.value)||0,max:parseInt(input.max)||0};
-  });
-  if(selections.some(function(item){return item.qty<1||item.qty>item.max})){
-    showToast('标记数量需大于 0 且不能超过可标记库存');
-    return;
-  }
-  selections.forEach(function(selection){
-    var remaining=selection.qty;
-    scopeEntries.filter(function(entry){return entry.sku===selection.sku}).forEach(function(entry){
-      var marked=Math.min(entry.sourceAvailable,remaining);
-      entry.qty+=marked;
-      entry.sourceAvailable-=marked;
-      remaining-=marked;
-    });
-  });
-  closeMarkModal();
-  renderOverview();
-  renderCompanyDetail();
-  showToast('已完成 '+rows.length+' 个 SKU 的库存标记');
-}
-
-function showToast(msg){
-  var t=document.getElementById('toast');
-  document.getElementById('toast-msg').textContent=msg;
-  t.classList.add('show');
-  setTimeout(function(){t.classList.remove('show')},2500);
-}
-
+document.querySelector('.product-preview-close').addEventListener('click',closeProductPreview);
+document.getElementById('product-preview').addEventListener('click',function(event){if(event.target===this)closeProductPreview()});
+document.getElementById('tray-cart-toggle').addEventListener('click',openCart);
+document.getElementById('tray-cart-close').addEventListener('click',closeCart);
+document.getElementById('tray-cart-modal').addEventListener('click',function(event){if(event.target===this)closeCart()});
+document.getElementById('tray-cart-clear').addEventListener('click',clearCart);
+document.getElementById('tray-cart-order').addEventListener('click',function(){showToast('下单功能暂未开放')});
+document.getElementById('tray-cart-list').addEventListener('input',function(event){
+  var itemRow=event.target.closest('[data-cart-sku]');
+  if(!itemRow||event.target.type!=='number')return;
+  var entry=cartItems[itemRow.dataset.cartSku];
+  if(!entry)return;
+  entry.quantity=Math.max(1,Math.min(entry.item.available,Number(event.target.value)||1));
+  event.target.value=entry.quantity;
+  updateCart();
+});
+document.getElementById('tray-cart-list').addEventListener('click',function(event){
+  var removeButton=event.target.closest('.cart-remove');
+  if(!removeButton)return;
+  var itemRow=removeButton.closest('[data-cart-sku]');
+  delete cartItems[itemRow.dataset.cartSku];
+  updateCart();
+  showToast('已移出购物车');
+});
+document.addEventListener('keydown',function(event){
+  if(event.key!=='Escape')return;
+  if(document.getElementById('product-preview').classList.contains('open'))closeProductPreview();
+  if(document.getElementById('tray-cart-modal').classList.contains('open'))closeCart();
+});
 window.addEventListener('oms-role-change',function(event){
   currentRole=event.detail.role;
-  var isSuper=currentRole.id==='super-admin';
-  document.getElementById('company-detail-tab').style.display=isSuper?'block':'none';
-  document.getElementById('mark-inventory-button').style.display=currentRole.id==='salesperson'?'none':'inline-flex';
-  if(!isSuper&&currentTab==='company')currentTab='overview';
-  switchTab(currentTab);
-  renderCompanyDetail();
+  selectedSkus={};
+  cartItems={};
+  updateTraySummary();
+  updateCart();
+  applyTrayFilters();
 });
+
+updateTraySummary();
+updateCart();
+applyTrayFilters();
 </script>
-
+<script src="order-history.js"></script>
+<script src="toast.js?v=20260827-global"></script>
 <script src="role-switch.js"></script>
-<script src="notes.js"></script>
-
+<script src="notes.js?v=20260827-resize"></script>
 </body></html>

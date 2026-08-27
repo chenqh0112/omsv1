@@ -3,7 +3,9 @@
 
   function create(container,config){
     var options=(config.options||[]).slice();
-    var selected=[];
+    var selected=(config.defaultValues||[]).filter(function(value){
+      return options.some(function(option){return option.value===value});
+    });
     container.classList.add('multi-select');
     container.innerHTML=
       '<button class="multi-select-trigger" type="button" aria-haspopup="listbox" aria-expanded="false">'
@@ -68,11 +70,17 @@
     optionsBox.addEventListener('change',function(event){
       if(event.target.type!=='checkbox')return;
       if(event.target.checked){
-        if(selected.indexOf(event.target.value)<0)selected.push(event.target.value);
+        if(config.allValue&&event.target.value===config.allValue){
+          selected=[config.allValue];
+        }else{
+          if(config.allValue)selected=selected.filter(function(value){return value!==config.allValue});
+          if(selected.indexOf(event.target.value)<0)selected.push(event.target.value);
+        }
       }else{
         selected=selected.filter(function(value){return value!==event.target.value});
       }
       updateLabel();
+      renderOptions(search.value);
       if(typeof config.onChange==='function')config.onChange(selected.slice());
     });
 
@@ -81,6 +89,13 @@
       close:close,
       getValues:function(){return selected.slice()},
       clear:function(silent){selected=[];updateLabel();renderOptions(search.value);if(!silent&&config.onChange)config.onChange([])},
+      setValues:function(values,silent){
+        selected=(values||[]).filter(function(value){return options.some(function(option){return option.value===value})});
+        if(config.allValue&&selected.indexOf(config.allValue)>-1)selected=[config.allValue];
+        updateLabel();
+        renderOptions(search.value);
+        if(!silent&&config.onChange)config.onChange(selected.slice());
+      },
       setOptions:function(nextOptions,keepSelection){
         options=(nextOptions||[]).slice();
         if(!keepSelection)selected=[];

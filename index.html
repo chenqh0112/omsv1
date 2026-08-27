@@ -2,17 +2,22 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>SKU管理 — OMS 库存管理系统</title>
+<title>库存管理 — 独立站</title>
 <link rel="stylesheet" href="styles.css">
+<script src="navigation.js" defer></script>
 </head>
 <body data-page="sku">
 
 <aside class="app-nav">
   <div class="nav-brand">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M9 22V12h6v10"></path></svg>
-    OMS 库存管理
+    独立站
   </div>
   <nav class="nav-list">
+    <a href="login.html" data-nav="login">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 17l5-5-5-5"></path><path d="M15 12H3"></path><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path></svg>
+      登录
+    </a>
     <a href="index.html" data-nav="sku" class="active">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
       SKU管理
@@ -21,16 +26,21 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="M3.27 6.96 12 12.01l8.73-5.05"></path><path d="M12 22.08V12"></path></svg>
       美国货盘
     </a>
+    <a href="order-management.html" data-nav="orders"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 8h8M8 12h8M8 16h5"></path></svg>订单管理</a>
+    <a href="cargo-tray-management.html" data-nav="tray-management">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M8 9h8M8 13h8M8 17h5"></path></svg>
+      美国货盘管理
+    </a>
     <a href="fees.html" data-nav="fees">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 10h18"></path><path d="M7 15h3"></path></svg>
       费用
     </a>
-    <a href="login.html" data-nav="login">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 17l5-5-5-5"></path><path d="M15 12H3"></path><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path></svg>
-      登录
+    <a href="user-management.html" data-nav="users">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+      用户管理
     </a>
   </nav>
-  <div class="nav-footer">OMS v1.0</div>
+  <div class="nav-footer">独立站</div>
 </aside>
 
 <div class="app-content">
@@ -39,7 +49,7 @@
       <span style="font-size:13px;color:var(--muted);padding:0 12px;border-right:1px solid var(--border)">首页</span>
       <div style="padding:0 16px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px">
         <span class="dot" style="width:8px;height:8px;border-radius:50%;background:var(--primary);display:inline-block"></span>
-        SKU管理
+        库存管理
       </div>
     </div>
     <div class="topbar-right">
@@ -51,80 +61,76 @@
   </div>
 
   <div class="page-body">
-    <div class="warehouse-banner page-section">
-      <div class="wh-info">
-        <div class="wh-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M9 22V12h6v10"></path></svg>
+    <div class="sku-overview-grid page-section">
+      <div class="stat-card sku-overview-stat sku-stat-total">
+        <div class="stat-label">SKU总数</div>
+        <div class="stat-value" id="summary-skus">6</div>
+        <div class="stat-meta-row">
+          <span class="stat-share" id="summary-skus-share">占比 100%</span>
+          <span class="table-header-help" tabindex="0" role="img" aria-label="SKU总数占比说明" data-tooltip="当前身份可见 SKU 数除以全部 SKU 数" title="当前身份可见 SKU 数除以全部 SKU 数">?</span>
         </div>
-        <div>
-          <div class="wh-name">德州1号仓库</div>
-          
-        </div>
+        <div class="stat-trend up"><span class="trend-arrow" aria-hidden="true">↑</span><strong>12%</strong><span>vs 上周</span><span class="table-header-help" tabindex="0" role="img" aria-label="SKU总数趋势说明" data-tooltip="与上周同期相比，计算公式为（本周值 - 上周值）除以上周值" title="与上周同期相比，计算公式为（本周值 - 上周值）除以上周值">?</span></div>
       </div>
-      <div class="wh-stats">
-        <div class="wh-stat">
-          <div class="wh-stat-num" id="summary-skus">6</div>
-          <div class="wh-stat-label">SKU 数</div>
+      <div class="stat-card sku-overview-stat sku-stat-shelved">
+        <div class="stat-label">已上架总数</div>
+        <div class="stat-value" id="summary-shelved">172</div>
+        <div class="stat-meta-row">
+          <span class="stat-share" id="summary-shelved-share">占比 20.0%</span>
+          <span class="table-header-help" tabindex="0" role="img" aria-label="已上架占比说明" data-tooltip="已上架数量除以当前身份可见的库存总数量" title="已上架数量除以当前身份可见的库存总数量">?</span>
         </div>
-        <div class="wh-stat">
-          <div class="wh-stat-num" id="summary-available">94</div>
-          <div class="wh-stat-label">可用库存</div>
+        <div class="stat-trend up"><span class="trend-arrow" aria-hidden="true">↑</span><strong>8%</strong><span>vs 上周</span><span class="table-header-help" tabindex="0" role="img" aria-label="已上架趋势说明" data-tooltip="与上周同期相比，计算公式为（本周值 - 上周值）除以上周值" title="与上周同期相比，计算公式为（本周值 - 上周值）除以上周值">?</span></div>
+      </div>
+      <div class="stat-card sku-overview-stat sku-stat-transit">
+        <div class="stat-label">运输中总数</div>
+        <div class="stat-value" id="summary-transit">350</div>
+        <div class="stat-meta-row">
+          <span class="stat-share" id="summary-transit-share">占比 40.7%</span>
+          <span class="table-header-help" tabindex="0" role="img" aria-label="运输中占比说明" data-tooltip="运输中数量除以当前身份可见的库存总数量" title="运输中数量除以当前身份可见的库存总数量">?</span>
         </div>
-        <div class="wh-stat">
-          <div class="wh-stat-num" id="summary-intransit">237</div>
-          <div class="wh-stat-label">在途</div>
+        <div class="stat-trend down"><span class="trend-arrow" aria-hidden="true">↓</span><strong>5%</strong><span>vs 上周</span><span class="table-header-help" tabindex="0" role="img" aria-label="运输中趋势说明" data-tooltip="与上周同期相比，计算公式为（本周值 - 上周值）除以上周值" title="与上周同期相比，计算公式为（本周值 - 上周值）除以上周值">?</span></div>
+      </div>
+      <div class="stat-card sku-overview-stat sku-stat-available">
+        <div class="stat-label">可用总数</div>
+        <div class="stat-value" id="summary-available">94</div>
+        <div class="stat-meta-row">
+          <span class="stat-share" id="summary-available-share">占比 54.7%</span>
+          <span class="table-header-help" tabindex="0" role="img" aria-label="可用占比说明" data-tooltip="可用数量除以已上架数量" title="可用数量除以已上架数量">?</span>
         </div>
-        <div class="wh-stat">
-          <div class="wh-stat-num" id="summary-lowstock" style="color:#fef08a">1</div>
-          <div class="wh-stat-label">低库存预警</div>
-        </div>
+        <div class="stat-trend up"><span class="trend-arrow" aria-hidden="true">↑</span><strong>6%</strong><span>vs 上周</span><span class="table-header-help" tabindex="0" role="img" aria-label="可用库存趋势说明" data-tooltip="与上周同期相比，计算公式为（本周值 - 上周值）除以上周值" title="与上周同期相比，计算公式为（本周值 - 上周值）除以上周值">?</span></div>
       </div>
     </div>
 
     <div class="filter-bar page-section" style="padding:16px 18px">
+      <div id="role-filter-fields" style="display:contents"></div>
       <div class="filter-group">
-        <label>SKU条形码</label>
+        <label>SKU编码</label>
         <input type="text" id="f-barcode" placeholder="" style="width:180px">
       </div>
       <div class="filter-group">
         <label>SKU名称</label>
         <input type="text" id="f-name" placeholder="" style="width:180px">
       </div>
-      <div id="role-filter-fields" style="display:contents"></div>
-      <div class="filter-group">
-        <label>卖家分类</label>
-        <select id="f-category" style="width:160px">
-          <option value="">请选择卖家分类</option>
-          <option value="杯子">杯子</option>
-          <option value="电子">电子</option>
-          <option value="家居">家居</option>
-        </select>
-      </div>
       <div class="spacer"></div>
-      <button class="btn btn-primary" onclick="applyFilters()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        搜索
-      </button>
-      <button class="btn btn-ghost" onclick="resetFilters()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
-        重置
-      </button>
-      <button class="btn" style="background:#fef3c7;color:#92400e;font-weight:600" onclick="exportData()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-        导出
-      </button>
+      <div class="filter-actions">
+        <button class="btn btn-primary" onclick="applyFilters()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          搜索
+        </button>
+        <button class="btn btn-ghost" onclick="resetFilters()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+          重置
+        </button>
+        <button class="btn" style="background:#fef3c7;color:#92400e;font-weight:600" onclick="exportData()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          导出
+        </button>
+      </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:1fr 300px;gap:16px" class="page-section">
+    <div class="sku-content-grid page-section">
       <div class="table-wrap">
         <div class="table-head-bar" style="padding:12px 18px">
-          <div style="display:flex;align-items:center;gap:12px">
-            <h3 style="font-size:14px;font-weight:600">SKU库存列表</h3>
-            <label style="display:flex;align-items:center;gap:4px;cursor:pointer;font-size:12px;color:var(--muted)">
-              <input type="checkbox" id="f-lowstock" onchange="applyFilters()" style="width:auto">
-              仅看低库存
-            </label>
-          </div>
+          <h3 style="font-size:14px;font-weight:600">SKU库存列表</h3>
           <span class="tag tag-muted" id="row-count">共 6 条</span>
         </div>
         <div class="table-scroll">
@@ -136,59 +142,47 @@
         <div class="pagination">
           <span class="pagination-info">共 <strong id="total-count">6</strong> 条</span>
           <div style="display:flex;align-items:center;gap:8px">
-            <select style="padding:4px 8px;border:1px solid var(--border);border-radius:6px;font-size:12.5px">
+            <select class="page-size-select" id="sku-page-size" onchange="changePageSize(this.value)" style="padding:4px 8px;border:1px solid var(--border);border-radius:6px;font-size:12.5px">
               <option>10条/每页</option>
               <option>20条/每页</option>
               <option>50条/每页</option>
             </select>
             <div class="pagination-btns">
-              <button class="page-btn" disabled="">‹</button>
-              <button class="page-btn active">1</button>
-              <button class="page-btn">›</button>
+              <button class="page-btn" id="sku-page-prev" type="button" onclick="changePage(-1)">‹</button>
+              <button class="page-btn active" id="sku-page-current" type="button">1</button>
+              <button class="page-btn" id="sku-page-next" type="button" onclick="changePage(1)">›</button>
             </div>
-            <span style="font-size:12.5px;color:var(--muted)">跳至</span>
-            <input type="number" value="1" style="width:40px;padding:4px 6px;border:1px solid var(--border);border-radius:6px;font-size:12.5px;text-align:center">
-            <span style="font-size:12.5px;color:var(--muted)">页</span>
+            <span class="page-jump-label" style="font-size:12.5px;color:var(--muted)">跳至</span>
+            <input class="page-jump-input" id="sku-page-jump" type="number" value="1" min="1" onchange="jumpToPage(this.value)" style="width:40px;padding:4px 6px;border:1px solid var(--border);border-radius:6px;font-size:12.5px;text-align:center">
+            <span class="page-jump-label" style="font-size:12.5px;color:var(--muted)">页</span>
           </div>
         </div>
       </div>
-
-      <div>
-        <div class="table-wrap" style="margin-bottom:16px">
-          <div class="table-head-bar">
-            <h3 style="font-size:14px">库存结构分布</h3>
-          </div>
-          <div style="padding:16px 18px">
-            <div style="margin-bottom:12px">
-              <div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:6px">
-                <span style="color:var(--muted)">总数量</span>
-                <span style="font-weight:700;font-size:15px" id="stock-total">0</span>
-              </div>
-              <div id="stock-bar" style="height:28px;background:var(--surface-2);border-radius:6px;overflow:hidden;display:flex"></div>
-            </div>
-            <div id="stock-legend" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px"></div>
-          </div>
+      <aside class="age-health-panel" aria-labelledby="age-health-title">
+        <div class="age-health-head">
+          <div><h3 id="age-health-title">库龄分布</h3><p>按 SKU 最大库龄统计</p></div>
+          <span class="table-header-help" tabindex="0" role="img" aria-label="库龄分布说明" data-tooltip="每个 SKU 取全部入库记录中的最大库龄，并计入对应区间" title="每个 SKU 取全部入库记录中的最大库龄，并计入对应区间">?</span>
         </div>
-
-        <div class="table-wrap">
-          <div class="table-head-bar">
-            <h3 style="font-size:14px">库龄分布</h3>
-            <span class="tag tag-muted" id="age-sku-count">0 SKU</span>
-          </div>
-          <div style="padding:16px 18px">
-            <div class="bar-chart" id="age-chart"></div>
-            <div id="age-summary" style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);font-size:12px;color:var(--muted)"></div>
-          </div>
+        <div class="age-health-score"><strong id="age-healthy-rate">33%</strong><span>健康 SKU 占比</span></div>
+        <div class="age-distribution-bar" aria-hidden="true">
+          <span class="age-segment age-segment-fresh" id="age-bar-fresh" style="width:0%"></span>
+          <span class="age-segment age-segment-stable" id="age-bar-stable" style="width:33.3%"></span>
+          <span class="age-segment age-segment-watch" id="age-bar-watch" style="width:33.3%"></span>
+          <span class="age-segment age-segment-risk" id="age-bar-risk" style="width:33.4%"></span>
         </div>
-      </div>
+        <div class="age-distribution-list">
+          <div><span><i class="age-dot fresh"></i>0-7天</span><strong id="age-count-fresh">0个</strong></div>
+          <div><span><i class="age-dot stable"></i>8-15天</span><strong id="age-count-stable">2个</strong></div>
+          <div><span><i class="age-dot watch"></i>16-30天</span><strong id="age-count-watch">2个</strong></div>
+          <div><span><i class="age-dot risk"></i>30天+</span><strong id="age-count-risk">2个</strong></div>
+        </div>
+      </aside>
     </div>
   </div>
 </div>
 
-<div class="toast" id="toast">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg>
-  <span id="toast-msg">操作成功</span>
-</div>
+<div class="table-help-tooltip" id="table-help-tooltip" role="tooltip"></div>
+<div class="age-detail-tooltip" id="age-detail-tooltip" role="tooltip"></div>
 
 <div id="img-preview" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;cursor:pointer" onclick="closePreview()">
   <img id="preview-img" src="" style="max-width:80%;max-height:80%;border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,0.4)">
@@ -197,23 +191,19 @@
 
 <script src="mock.js"></script>
 <script src="multi-select.js"></script>
+<script src="sku-data.js"></script>
 <script>
-var skuData = [
-  {img:'img4.jpg',barcode:'0694670410',name:'篮球6',spec:'40OZ',company:'公司A',businessGroup:'业务组A',salesperson:'业务员A',category:'杯子',available:1,locked:1,onShelf:2,pending:0,inTransit:0,total:2,doi:45,lowStock:true},
-  {img:'img5.jpg',barcode:'1497997262',name:'老虎4',spec:'手提杯',company:'公司A',businessGroup:'业务组A',salesperson:'业务员B',category:'杯子',available:34,locked:0,onShelf:34,pending:130,inTransit:114,total:278,doi:12,lowStock:false},
-  {img:'img1.jpg',barcode:'1964196450',name:'羽毛5',spec:'手柄30OZ',company:'公司A',businessGroup:'业务组B',salesperson:'业务员C',category:'杯子',available:30,locked:0,onShelf:30,pending:100,inTransit:148,total:278,doi:8,lowStock:false},
-  {img:'img3.jpg',barcode:'2917043563',name:'草莓3',spec:'手提杯',company:'公司B',businessGroup:'业务组C',salesperson:'业务员D',category:'杯子',available:6,locked:0,onShelf:6,pending:70,inTransit:76,total:152,doi:25,lowStock:false},
-  {img:'img2.jpg',barcode:'CM74834623',name:'熊猫1',spec:'40OZ',company:'公司B',businessGroup:'业务组D',salesperson:'业务员E',category:'杯子',available:23,locked:0,onShelf:23,pending:37,inTransit:12,total:72,doi:20,lowStock:false},
-  {img:'img3.jpg',barcode:'FL89234102',name:'花朵2',spec:'手柄20OZ',company:'公司A',businessGroup:'业务组A',salesperson:'业务员A',category:'杯子',available:0,locked:2,onShelf:77,pending:0,inTransit:0,total:79,doi:55,lowStock:true},
-];
+var skuData=(window.OMS_SKU_DATA||[]).slice();
 
 var currentRole={id:'super-admin'};
 var roleFilterControls=[];
 var currentFilteredData=[];
+var currentPage=1;
+var pageSize=10;
 
 var rolePageConfig={
-  'super-admin':{columns:['company','businessGroup'],filters:[{key:'company',label:'公司',placeholder:'请选择公司'},{key:'businessGroup',label:'业务组',placeholder:'请选择业务组'}]},
-  'company-admin':{columns:['businessGroup'],filters:[{key:'businessGroup',label:'业务组',placeholder:'请选择业务组'}]},
+  'super-admin':{columns:['company','businessGroup','salesperson'],filters:[{key:'company',label:'公司',placeholder:'请选择公司'},{key:'businessGroup',label:'业务组',placeholder:'请选择业务组'}]},
+  'company-admin':{columns:['businessGroup','salesperson'],filters:[{key:'businessGroup',label:'业务组',placeholder:'请选择业务组'}]},
   'group-admin':{columns:['salesperson'],filters:[{key:'salesperson',label:'业务员',placeholder:'请选择业务员'}]},
   'salesperson':{columns:[],filters:[]}
 };
@@ -253,65 +243,167 @@ function renderRoleFilters(){
 }
 
 function renderTableHeader(){
-  var extraLabels={company:'公司',businessGroup:'业务组',salesperson:'业务员'};
-  var headers=['<th style="width:70px">SKU图片</th>','<th>SKU条形码</th>','<th>SKU名称</th>','<th>SKU规格</th>'];
-  getPageConfig().columns.forEach(function(key){headers.push('<th>'+extraLabels[key]+'</th>')});
+  var helpTexts={
+    shelved:'已完成入库并放置到货架的库存数量',
+    transit:'已发出但尚未到达仓库的库存数量',
+    receivedNotShelved:'已到达仓库并完成入库，但尚未上架的库存数量',
+    available:'当前可用于销售或分配的库存数量',
+    locked:'已被订单或业务占用，暂不可分配的库存数量',
+    total:'该 SKU 在全部库存状态下的数量合计'
+  };
+  function helpHeader(label,key){
+    return '<span class="table-header-label">'+label+'<span class="table-header-help" tabindex="0" role="img" aria-label="'+label+'说明：'+helpTexts[key]+'" data-tooltip="'+helpTexts[key]+'" title="'+helpTexts[key]+'">?</span></span>';
+  }
+  var headers=['<th class="sku-column">SKU</th>'];
+  if(getPageConfig().columns.length)headers.push('<th class="ownership-column">所属</th>');
   headers=headers.concat([
-    '<th>卖家分类</th>',
-    '<th style="text-align:right">可用库存</th>',
-    '<th style="text-align:right">锁定库存</th>',
-    '<th style="text-align:right">在架库存</th>',
-    '<th style="text-align:right">已预待上架</th>',
-    '<th style="text-align:right">在途数量</th>',
-    '<th style="text-align:right">总数量</th>'
+    '<th>库龄</th>',
+    '<th>'+helpHeader('已上架','shelved')+'</th>',
+    '<th>'+helpHeader('运输中','transit')+'</th>',
+    '<th>'+helpHeader('已入库未上架','receivedNotShelved')+'</th>',
+    '<th>'+helpHeader('可用','available')+'</th>',
+    '<th>'+helpHeader('锁定','locked')+'</th>',
+    '<th>'+helpHeader('总数量','total')+'</th>'
   ]);
   document.getElementById('inv-thead').innerHTML='<tr>'+headers.join('')+'</tr>';
 }
 
-var ageRanges = [
-  {range:'0-7天',min:0,max:7,color:'green'},
-  {range:'8-15天',min:8,max:15,color:'green'},
-  {range:'16-30天',min:16,max:30,color:'yellow'},
-  {range:'31-60天',min:31,max:60,color:'orange'},
-  {range:'61-90天',min:61,max:90,color:'red'},
-  {range:'90天+',min:91,max:Infinity,color:'red'},
-];
+function showTableHelp(target){
+  var tooltip=document.getElementById('table-help-tooltip');
+  var rect=target.getBoundingClientRect();
+  tooltip.textContent=target.dataset.tooltip;
+  tooltip.classList.add('show');
+  var left=Math.min(window.innerWidth-tooltip.offsetWidth-12,Math.max(12,rect.right-tooltip.offsetWidth));
+  var top=rect.bottom+8;
+  if(top+tooltip.offsetHeight>window.innerHeight-12)top=rect.top-tooltip.offsetHeight-8;
+  tooltip.style.left=left+'px';
+  tooltip.style.top=top+'px';
+}
+
+function hideTableHelp(){document.getElementById('table-help-tooltip').classList.remove('show')}
+
+function getMaxAge(item){
+  if(!item.ageRecords||!item.ageRecords.length)return 0;
+  return Math.max.apply(null,item.ageRecords.map(function(record){return record.days}));
+}
+
+function showAgeDetail(target){
+  var item=skuData.find(function(sku){return sku.barcode===target.dataset.ageSku});
+  if(!item)return;
+  var records=item.ageRecords.slice().sort(function(a,b){return b.days-a.days});
+  var tooltip=document.getElementById('age-detail-tooltip');
+  tooltip.innerHTML=
+    '<div class="age-detail-title">库龄记录 <span>'+item.barcode+'</span></div>'
+    +'<table><thead><tr><th>库龄</th><th>上架日期</th><th>统计日期</th></tr></thead><tbody>'
+    +records.map(function(record){
+      return '<tr><td>'+record.days+'天</td><td>'+record.shelvedDate+'</td><td>'+record.statisticsDate+'</td></tr>';
+    }).join('')
+    +'</tbody></table>';
+  tooltip.classList.add('show');
+  var rect=target.getBoundingClientRect();
+  var left=Math.min(window.innerWidth-tooltip.offsetWidth-12,Math.max(12,rect.left));
+  var top=rect.bottom+8;
+  if(top+tooltip.offsetHeight>window.innerHeight-12)top=rect.top-tooltip.offsetHeight-8;
+  tooltip.style.left=left+'px';
+  tooltip.style.top=top+'px';
+}
+
+function hideAgeDetail(){document.getElementById('age-detail-tooltip').classList.remove('show')}
+
+document.addEventListener('mouseover',function(event){
+  var headerTarget=event.target.closest('.table-header-help');
+  var ageTarget=event.target.closest('.age-value');
+  if(headerTarget)showTableHelp(headerTarget);
+  if(ageTarget)showAgeDetail(ageTarget);
+});
+document.addEventListener('mouseout',function(event){
+  if(event.target.closest('.table-header-help'))hideTableHelp();
+  if(event.target.closest('.age-value'))hideAgeDetail();
+});
+document.addEventListener('focusin',function(event){
+  if(event.target.classList.contains('table-header-help'))showTableHelp(event.target);
+  if(event.target.classList.contains('age-value'))showAgeDetail(event.target);
+});
+document.addEventListener('focusout',function(event){
+  if(event.target.classList.contains('table-header-help'))hideTableHelp();
+  if(event.target.classList.contains('age-value'))hideAgeDetail();
+});
+document.querySelector('.table-scroll').addEventListener('scroll',function(){hideTableHelp();hideAgeDetail()});
+window.addEventListener('resize',function(){hideTableHelp();hideAgeDetail()});
 
 function renderTable(data){
   var tbody=document.getElementById('inv-tbody');
   tbody.innerHTML='';
   if(data.length===0){
-    tbody.innerHTML='<tr><td colspan="'+(11+getPageConfig().columns.length)+'" style="text-align:center;padding:30px;color:var(--muted)">暂无数据</td></tr>';
+    tbody.innerHTML='<tr><td colspan="'+(8+(getPageConfig().columns.length?1:0))+'" style="text-align:center;padding:30px;color:var(--muted)">暂无数据</td></tr>';
     document.getElementById('total-count').textContent='0';
     document.getElementById('row-count').textContent='共 0 条';
+    updatePagination(0);
     return;
   }
-  data.forEach(function(item){
+  var totalPages=Math.max(1,Math.ceil(data.length/pageSize));
+  currentPage=Math.min(currentPage,totalPages);
+  var pageData=data.slice((currentPage-1)*pageSize,currentPage*pageSize);
+  pageData.forEach(function(item){
     var tr=document.createElement('tr');
+    var hasAgeRecords=item.ageRecords&&item.ageRecords.length;
+    var maxAge=getMaxAge(item);
     var isImg=item.img.indexOf('.')>-1;
     var imgCell=isImg
-      ?'<div style="display:flex;justify-content:center"><img src="'+item.img+'" onclick="openPreview(\''+item.img+'\')" style="width:40px;height:40px;border-radius:6px;object-fit:cover;cursor:pointer;border:1px solid var(--border);transition:transform .15s" onmouseover="this.style.transform=\'scale(1.1)\'" onmouseout="this.style.transform=\'\'"></div>'
-      :'<div style="display:flex;justify-content:center"><div style="width:40px;height:40px;border-radius:6px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-size:20px">'+item.img+'</div></div>';
-    var scopeCells='';
-    getPageConfig().columns.forEach(function(key){scopeCells+='<td class="scope-cell">'+item[key]+'</td>'});
+      ?'<button class="sku-product-image" type="button" aria-label="预览'+item.name+'图片" onclick="openPreview(\''+item.img+'\')"><img src="'+item.img+'" alt="'+item.name+'"></button>'
+      :'<div class="sku-product-image sku-product-placeholder">'+item.img+'</div>';
+    var scopeLabels={company:'公司',businessGroup:'业务组',salesperson:'业务员'};
+    var scopeCell='';
+    if(getPageConfig().columns.length){
+      scopeCell='<td class="ownership-column"><div class="ownership-stack">'+getPageConfig().columns.map(function(key){return '<div class="ownership-line"><span>'+scopeLabels[key]+'</span><strong>'+item[key]+'</strong></div>'}).join('')+'</div></td>';
+    }
+    var ageCell=hasAgeRecords
+      ?'<td><span class="tag age-value '+(maxAge>30?'tag-danger':maxAge>15?'tag-warning':'tag-success')+'" tabindex="0" data-age-sku="'+item.barcode+'" aria-describedby="age-detail-tooltip" aria-label="最大库龄'+maxAge+'天，共'+item.ageRecords.length+'条库龄记录">'+maxAge+'天</span></td>'
+      :'<td><span class="tag tag-muted">-</span></td>';
     tr.innerHTML=
-      '<td>'+imgCell+'</td>'
-      +'<td style="font-family:var(--font-mono);font-size:12.5px;color:var(--muted)">'+item.barcode+'</td>'
-      +'<td style="font-weight:500">'+item.name+'</td>'
-      +'<td style="color:var(--muted);font-size:13px">'+item.spec+'</td>'
-      +scopeCells
-      +'<td><span class="tag tag-muted">'+item.category+'</span></td>'
-      +'<td class="num" style="text-align:right;color:'+(item.available<=5?'var(--danger)':'var(--success)')+';font-weight:600">'+item.available+'</td>'
+      '<td class="sku-column"><div class="sku-profile">'+imgCell+'<div class="sku-profile-copy"><strong>'+item.name+'</strong><span>'+item.spec+'</span><code>'+item.barcode+'</code></div></div></td>'
+      +scopeCell
+      +ageCell
+      +'<td class="num" style="text-align:right;color:var(--success);font-weight:600">'+item.shelved+'</td>'
+      +'<td class="num" style="text-align:right;color:var(--info);font-weight:500">'+item.transit+'</td>'
+      +'<td class="num" style="text-align:right;color:#8b5cf6;font-weight:500">'+item.receivedNotShelved+'</td>'
+      +'<td class="num" style="text-align:right;color:var(--success);font-weight:500">'+item.available+'</td>'
       +'<td class="num" style="text-align:right;color:var(--warning);font-weight:500">'+item.locked+'</td>'
-      +'<td class="num" style="text-align:right;color:#3b82f6;font-weight:500">'+item.onShelf+'</td>'
-      +'<td class="num" style="text-align:right;color:#8b5cf6;font-weight:500">'+item.pending+'</td>'
-      +'<td class="num" style="text-align:right;color:var(--info);font-weight:500">'+item.inTransit+'</td>'
       +'<td class="num" style="text-align:right;font-weight:700">'+item.total+'</td>';
     if(item.lowStock){tr.style.background='rgba(220,38,38,0.04)'}
     tbody.appendChild(tr);
   });
   document.getElementById('total-count').textContent=data.length;
   document.getElementById('row-count').textContent='共 '+data.length+' 条';
+  updatePagination(data.length);
+}
+
+function updatePagination(total){
+  var totalPages=Math.max(1,Math.ceil(total/pageSize));
+  currentPage=Math.min(currentPage,totalPages);
+  document.getElementById('sku-page-current').textContent=currentPage;
+  document.getElementById('sku-page-prev').disabled=currentPage<=1;
+  document.getElementById('sku-page-next').disabled=currentPage>=totalPages||total===0;
+  document.getElementById('sku-page-jump').value=currentPage;
+  document.getElementById('sku-page-jump').max=totalPages;
+}
+
+function changePage(offset){
+  var totalPages=Math.max(1,Math.ceil(currentFilteredData.length/pageSize));
+  currentPage=Math.min(totalPages,Math.max(1,currentPage+offset));
+  renderTable(currentFilteredData);
+}
+
+function changePageSize(value){
+  pageSize=parseInt(value,10)||10;
+  currentPage=1;
+  renderTable(currentFilteredData);
+}
+
+function jumpToPage(value){
+  var totalPages=Math.max(1,Math.ceil(currentFilteredData.length/pageSize));
+  currentPage=Math.min(totalPages,Math.max(1,parseInt(value,10)||1));
+  renderTable(currentFilteredData);
 }
 
 function openPreview(src){
@@ -325,65 +417,14 @@ function closePreview(){
   document.getElementById('preview-img').src='';
 }
 
-function renderStockStructure(data){
-  var segments=[
-    {key:'available',label:'可用库存',shortLabel:'可用',color:'var(--success)'},
-    {key:'locked',label:'锁定库存',shortLabel:'锁定',color:'var(--warning)'},
-    {key:'onShelf',label:'在架库存',shortLabel:'在架',color:'#3b82f6'},
-    {key:'pending',label:'已预待上架',shortLabel:'待上架',color:'#8b5cf6'},
-    {key:'inTransit',label:'在途数量',shortLabel:'在途',color:'var(--info)'}
-  ];
-  segments.forEach(function(segment){
-    segment.value=data.reduce(function(sum,item){return sum+item[segment.key]},0);
-  });
-  var total=segments.reduce(function(sum,segment){return sum+segment.value},0);
-  document.getElementById('stock-total').textContent=total;
-  document.getElementById('stock-bar').innerHTML=segments.map(function(segment){
-    var pct=total?segment.value/total*100:0;
-    var label=pct>=14?segment.shortLabel+' '+segment.value:'';
-    return '<div title="'+segment.label+' '+segment.value+'" style="width:'+pct+'%;min-width:'+(segment.value?2:0)+'px;background:'+segment.color+';display:flex;align-items:center;justify-content:center;font-size:10.5px;color:#fff;font-weight:600;white-space:nowrap;overflow:hidden">'+label+'</div>';
-  }).join('');
-  document.getElementById('stock-legend').innerHTML=segments.map(function(segment,index){
-    return '<div style="display:flex;align-items:center;gap:6px;'+(index===segments.length-1?'grid-column:span 2':'')+'"><span style="width:10px;height:10px;border-radius:2px;background:'+segment.color+';display:inline-block"></span>'+segment.label+' <strong style="margin-left:auto">'+segment.value+'</strong></div>';
-  }).join('');
-}
-
-function renderAgeChart(data){
-  var container=document.getElementById('age-chart');
-  var ageData=ageRanges.map(function(range){
-    return {range:range.range,color:range.color,count:data.filter(function(item){return item.doi>=range.min&&item.doi<=range.max}).length};
-  });
-  var maxCount=Math.max.apply(null,ageData.map(function(item){return item.count}))||1;
-  container.innerHTML='';
-  ageData.forEach(function(d){
-    var pct=Math.round(d.count/maxCount*100);
-    var row=document.createElement('div');
-    row.className='bar-row';
-    row.innerHTML='<div class="bar-label">'+d.range+'</div><div class="bar-track"><div class="bar-fill '+d.color+'" style="width:'+pct+'%">'+d.count+'</div></div>';
-    container.appendChild(row);
-  });
-  var healthy=ageData[0].count+ageData[1].count;
-  var attention=ageData[2].count;
-  var warning=ageData[3].count+ageData[4].count+ageData[5].count;
-  document.getElementById('age-sku-count').textContent=data.length+' SKU';
-  document.getElementById('age-summary').innerHTML=
-    '<div style="display:flex;align-items:center;gap:6px;margin-bottom:5px"><span style="width:10px;height:10px;border-radius:2px;background:var(--success);display:inline-block"></span>健康 (0-15天): '+healthy+' 个SKU</div>'
-    +'<div style="display:flex;align-items:center;gap:6px;margin-bottom:5px"><span style="width:10px;height:10px;border-radius:2px;background:var(--warning);display:inline-block"></span>关注 (16-30天): '+attention+' 个SKU</div>'
-    +'<div style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:2px;background:var(--danger);display:inline-block"></span>预警 (31天+): '+warning+' 个SKU</div>';
-}
-
 function applyFilters(){
   var barcode=document.getElementById('f-barcode').value.toLowerCase();
   var name=document.getElementById('f-name').value.toLowerCase();
-  var cat=document.getElementById('f-category').value;
-  var onlyLow=document.getElementById('f-lowstock').checked;
   var dynamicSelections={};
   roleFilterControls.forEach(function(item){dynamicSelections[item.key]=item.control.getValues()});
   var data=getRoleScopedData().filter(function(d){
     if(barcode && d.barcode.toLowerCase().indexOf(barcode)<0)return false;
     if(name && d.name.toLowerCase().indexOf(name)<0)return false;
-    if(cat && d.category!==cat)return false;
-    if(onlyLow && !d.lowStock)return false;
     var matchesDynamic=Object.keys(dynamicSelections).every(function(key){
       return dynamicSelections[key].length===0||dynamicSelections[key].indexOf(d[key])>-1;
     });
@@ -391,37 +432,56 @@ function applyFilters(){
     return true;
   });
   currentFilteredData=data;
+  currentPage=1;
   renderTable(data);
-  renderStockStructure(data);
-  renderAgeChart(data);
+  renderAgeDistribution(data);
 }
 
 function resetFilters(){
   document.getElementById('f-barcode').value='';
   document.getElementById('f-name').value='';
-  document.getElementById('f-category').value='';
-  document.getElementById('f-lowstock').checked=false;
   roleFilterControls.forEach(function(item){item.control.clear(true)});
   applyFilters();
 }
 
 function exportData(){
-  var t=document.getElementById('toast');
-  document.getElementById('toast-msg').textContent='已导出 '+currentFilteredData.length+' 条库存数据';
-  t.classList.add('show');
-  setTimeout(function(){t.classList.remove('show')},2500);
+  showToast('导出成功');
 }
 
 document.getElementById('f-barcode').addEventListener('input',applyFilters);
 document.getElementById('f-name').addEventListener('input',applyFilters);
-document.getElementById('f-category').addEventListener('change',applyFilters);
 
 function updateSummary(){
   var data=getRoleScopedData();
+  var shelved=data.reduce(function(sum,item){return sum+item.shelved},0);
+  var transit=data.reduce(function(sum,item){return sum+item.transit},0);
+  var available=data.reduce(function(sum,item){return sum+item.available},0);
+  var total=data.reduce(function(sum,item){return sum+item.total},0);
+  function percent(value,base){return base?(value/base*100).toFixed(1):'0.0'}
   document.getElementById('summary-skus').textContent=data.length;
-  document.getElementById('summary-available').textContent=data.reduce(function(sum,item){return sum+item.available},0);
-  document.getElementById('summary-intransit').textContent=data.reduce(function(sum,item){return sum+item.inTransit},0);
-  document.getElementById('summary-lowstock').textContent=data.filter(function(item){return item.lowStock}).length;
+  document.getElementById('summary-shelved').textContent=shelved;
+  document.getElementById('summary-transit').textContent=transit;
+  document.getElementById('summary-available').textContent=available;
+  document.getElementById('summary-skus-share').textContent='占比 '+percent(data.length,skuData.length)+'%';
+  document.getElementById('summary-shelved-share').textContent='占比 '+percent(shelved,total)+'%';
+  document.getElementById('summary-transit-share').textContent='占比 '+percent(transit,total)+'%';
+  document.getElementById('summary-available-share').textContent='占比 '+percent(available,shelved)+'%';
+}
+
+function renderAgeDistribution(data){
+  var counts=[0,0,0,0];
+  data.forEach(function(item){
+    var age=getMaxAge(item);
+    if(age<=7)counts[0]++;else if(age<=15)counts[1]++;else if(age<=30)counts[2]++;else counts[3]++;
+  });
+  var total=data.length;
+  var healthy=counts[0]+counts[1];
+  var ids=['fresh','stable','watch','risk'];
+  ids.forEach(function(id,index){
+    document.getElementById('age-count-'+id).textContent=counts[index]+'个';
+    document.getElementById('age-bar-'+id).style.width=(total?counts[index]/total*100:0)+'%';
+  });
+  document.getElementById('age-healthy-rate').textContent=(total?Math.round(healthy/total*100):0)+'%';
 }
 
 window.addEventListener('oms-role-change',function(event){
@@ -434,8 +494,9 @@ window.addEventListener('oms-role-change',function(event){
 
 </script>
 
+<script src="toast.js?v=20260827-global"></script>
 <script src="role-switch.js"></script>
-<script src="notes.js"></script>
+<script src="notes.js?v=20260827-resize"></script>
 
 
 </body></html>
