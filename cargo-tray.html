@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>美国货盘 — 独立站</title>
-<link rel="stylesheet" href="styles.css?v=20260828-returns-pagination">
+<link rel="stylesheet" href="styles.css?v=20260828-order-status">
 <script src="navigation.js?v=20260828-returns" defer></script>
 </head>
 <body data-page="tray">
@@ -103,7 +103,7 @@
 </div>
 
 <script src="sku-data.js"></script>
-<script src="order-data.js"></script>
+<script src="order-data.js?v=20260828-order-status"></script>
 <script src="multi-select.js"></script>
 <script>
 var trayData=(window.OMS_SKU_DATA||[]).slice();
@@ -433,8 +433,8 @@ updateCart();
 applyTrayFilters();
 var renderCargoBase=renderTrayTable;renderTrayTable=function(){renderCargoBase.apply(this,arguments);var totalPages=Math.max(1,Math.ceil(currentTrayGroups.length/trayPageSize));document.getElementById('tray-page-current').textContent=trayCurrentPage+' / '+totalPages};renderTrayTable();
 </script>
-<script src="order-history.js"></script>
+<script src="order-history.js?v=20260828-order-status"></script>
 <script src="toast.js?v=20260828-cart-action"></script>
 <script src="role-switch.js"></script>
-<script src="notes.js?v=20260828-all-prd"></script>
+<script src="notes.js?v=20260828-current-prd"></script>
 </body></html>

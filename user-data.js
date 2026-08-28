@@ -39,7 +39,7 @@
       registeredAt:'2026-'+String(8-(index%7)).padStart(2,'0')+'-'+String(2+(index*3)%25).padStart(2,'0'),
       lastLogin:index%7===0?'2026-06-'+String(10+index%15).padStart(2,'0')+' 09:20':'2026-08-'+String(27-index%24).padStart(2,'0')+' '+String(8+index%10).padStart(2,'0')+':'+String((index*7)%60).padStart(2,'0'),
       status:index%9===0?'冻结':'正常',orderCount:userOrders.length,
-      totalSpend:userOrders.reduce(function(sum,order){return sum+(order.status==='已取消'?0:order.amount)},0)
+      totalSpend:userOrders.reduce(function(sum,order){return sum+(order.status==='已关闭'?0:order.amount)},0)
     };
   });
 })();

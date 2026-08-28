@@ -54,5 +54,5 @@ function applyFeeFilters(){var type=document.getElementById('fee-type').value;va
 function resetFeeFilters(){document.getElementById('fee-type').value='';document.getElementById('fee-item').value='';document.getElementById('fee-status').value='';applyFeeFilters()}
 document.getElementById('fee-search').addEventListener('click',applyFeeFilters);document.getElementById('fee-reset').addEventListener('click',resetFeeFilters);document.getElementById('fee-prev').addEventListener('click',function(){feePage=Math.max(1,feePage-1);renderFees()});document.getElementById('fee-next').addEventListener('click',function(){feePage++;renderFees()});updateFeeStats();renderFees();
 </script>
-<script src="toast.js?v=20260828-cart-action"></script><script src="role-switch.js"></script><script src="notes.js?v=20260828-all-prd"></script>
+<script src="toast.js?v=20260828-cart-action"></script><script src="role-switch.js"></script><script src="notes.js?v=20260828-current-prd"></script>
 </body></html>

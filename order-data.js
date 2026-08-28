@@ -9,7 +9,8 @@
     {name:'Sophia Wang',company:'Bright Living Corp.'},
     {name:'采购用户D',company:'环球百货供应链'}
   ];
-  var statuses=['待确认','已确认','拣货中','已发货','已签收','已取消'];
+  var statuses=['待审核','待分配仓库','待仓库拣货','待物流收揽','已发货','商品缺货','已关闭','拦截发货成功'];
+  var reviewRules=['首单金额超过5000美元','新用户首次下单','数量超过历史平均数量的3倍','库存锁定失败'];
   var logistics=['UPS Ground','FedEx Ground','卡车派送'];
   var orders=[];
   for(var index=0;index<36;index++){
@@ -40,11 +41,12 @@
       amount:productAmount+operationFee+logisticsFee,
       status:status,
       logistics:logistics[index%logistics.length],
-      tracking:(status==='已发货'||status==='已签收')?'1Z'+String(908172635400+index):'',
+      tracking:(['待物流收揽','已发货','拦截发货成功'].indexOf(status)>-1)?'1Z'+String(908172635400+index):'',
       recipient:buyer.name,
       phone:'+1 512 555 '+String(1000+index),
       address:(120+index)+' Commerce Ave, Dallas, TX 75201',
-      rejectReason:status==='已取消'?'采购方取消采购计划':''
+      reviewReasons:status==='待审核'?[reviewRules[(index/8)%reviewRules.length]]:[],
+      closeReason:status==='已关闭'?'风控审核后关闭订单':''
     });
   }
   window.OMS_ORDER_DATA=orders;

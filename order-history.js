@@ -5,7 +5,7 @@
   var orders=(window.OMS_ORDER_DATA||[]).filter(function(order){return order.userName===currentUser});
   function escapeHtml(value){return String(value).replace(/[&<>"']/g,function(char){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]})}
   function money(value){return '$'+Number(value||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
-  function statusClass(status){return 'order-status-'+({待确认:'pending',已确认:'confirmed',拣货中:'picking',已发货:'shipped',已签收:'signed',已取消:'cancelled'}[status]||'pending')}
+  function statusClass(status){return 'order-status-'+({待审核:'review',待分配仓库:'allocating',待仓库拣货:'warehouse',待物流收揽:'pickup',已发货:'shipped',商品缺货:'outofstock',已关闭:'closed',拦截发货成功:'intercepted'}[status]||'review')}
   var button=document.createElement('button');
   button.className='order-history-trigger';
   button.type='button';

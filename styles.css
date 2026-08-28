@@ -883,6 +883,18 @@ body.notes-open .v2-page-body{height:100vh;min-height:0;padding:12px 14px 70px}
 .order-status-shipped{background:#ede9fe;color:#7c3aed}
 .order-status-signed{background:var(--success-soft);color:var(--success)}
 .order-status-cancelled{background:var(--surface-2);color:var(--muted)}
+.order-status-review{background:#fff7ed;color:#c2410c}
+.order-status-allocating{background:#eff6ff;color:#1d4ed8}
+.order-status-warehouse{background:#eef2ff;color:#4338ca}
+.order-status-pickup{background:#f5f3ff;color:#7c3aed}
+.order-status-outofstock{background:#fef2f2;color:#b91c1c}
+.order-status-closed{background:#f1f5f9;color:#475569}
+.order-status-intercepted{background:#ecfdf5;color:#047857}
+.order-review-rules,.order-risk-detail{margin-top:14px;padding:12px 14px;border:1px solid #fed7aa;border-radius:6px;background:#fff7ed}
+.order-review-rules strong,.order-risk-detail h4{display:block;margin:0 0 8px;color:#9a3412;font-size:13px}
+.order-review-rules div,.order-risk-detail div{display:flex;flex-wrap:wrap;gap:6px}
+.order-review-rules span,.order-risk-detail span{display:inline-flex;padding:4px 8px;border-radius:4px;background:#ffedd5;color:#9a3412;font-size:12px;font-weight:600}
+.order-timeline-exception{color:var(--danger)!important;font-weight:700}
 .v2-toolbar-actions{min-width:0;display:flex;align-items:center;justify-content:flex-end;gap:10px}
 .v2-toolbar-actions .v2-user-menu{justify-self:auto}
 .v2-batch-add{height:38px;padding:0 11px;gap:6px;white-space:nowrap}
