@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>全局说明 — 独立站</title>
+  <link rel="stylesheet" href="styles.css?v=20260828-global-flow">
+  <script src="navigation.js?v=20260828-global-flow" defer></script>
+</head>
+<body data-page="global-overview">
+<aside class="app-nav">
+  <div class="nav-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M9 22V12h6v10"></path></svg>独立站</div>
+  <nav class="nav-list"></nav>
+  <div class="nav-footer">独立站</div>
+</aside>
+
+<div class="app-content">
+  <div class="topbar">
+    <div class="topbar-left"><h1>全局说明</h1></div>
+    <div class="topbar-right"><div class="user"><button class="avatar" type="button" data-role-avatar aria-haspopup="dialog" aria-label="切换身份" title="切换身份">超</button></div></div>
+  </div>
+  <main class="page-body global-overview-body">
+    <header class="global-overview-head">
+      <div><h2>项目页面总览</h2><p>汇总管理端、对公界面与辅助业务页面，点击页面名称可直接进入。</p></div>
+      <div class="global-overview-summary" aria-label="项目范围">
+        <span><strong>10</strong>个页面</span><span><strong>4</strong>种身份</span><span><strong>2</strong>类界面</span><span><strong>100</strong>条SKU数据</span>
+      </div>
+    </header>
+
+    <section class="global-page-index page-section" aria-labelledby="global-page-index-title">
+      <div class="global-page-index-head"><div><h3 id="global-page-index-title">页面功能索引</h3><p>页面右侧“查看注释”中提供对应页面的完整 PRD。</p></div><span>当前项目</span></div>
+      <div class="table-scroll">
+        <table class="data-table global-page-table">
+          <thead><tr><th>界面分类</th><th>页面</th><th>主要使用者</th><th>核心功能</th><th>关键操作</th></tr></thead>
+          <tbody>
+            <tr><td><span class="global-scope-tag global">全局</span></td><td><a href="global-overview.html">全局说明</a></td><td>全部用户</td><td>项目页面与通用能力总览</td><td>查看页面索引、阅读全项目 PRD</td></tr>
+            <tr><td rowspan="6"><span class="global-scope-tag admin">管理端</span></td><td><a href="login.html">登录</a></td><td>全部用户</td><td>账号密码、记住密码、滑块验证</td><td>登录进入库存管理</td></tr>
+            <tr><td><a href="order-management.html">订单管理</a></td><td>内部运营</td><td>订单统计、筛选、状态与明细管理</td><td>确认、拒绝、发货、查看详情</td></tr>
+            <tr><td><a href="index.html">库存管理</a></td><td>内部管理角色</td><td>权限库存、组织筛选、库龄健康度</td><td>筛选、导出、图片与库龄预览</td></tr>
+            <tr><td><a href="cargo-tray-management.html">美国货盘管理</a></td><td>内部运营</td><td>对公数量、可见性与预占管理</td><td>单个/批量放入、调整、取消对公</td></tr>
+            <tr><td><a href="user-management.html">用户管理</a></td><td>系统管理员</td><td>用户资料、状态、订单与消费数据</td><td>创建、编辑、冻结、查看订单</td></tr>
+            <tr><td><a href="fees.html">费用明细</a></td><td>财务与运营</td><td>费用统计、类型项目筛选、计费明细</td><td>搜索、重置、查看费用参考图</td></tr>
+            <tr><td rowspan="2"><span class="global-scope-tag public">对公界面</span></td><td><a href="cargo-tray.html">美国货盘</a></td><td>对公采购用户</td><td>表格选品、聚合变体、状态与库龄</td><td>单个/批量加入购物车、查看订单</td></tr>
+            <tr><td><a href="cargo-tray-v2.html">美国货盘V2</a></td><td>对公采购用户</td><td>商城选品、收藏、地址、购物车与结算</td><td>分类搜索、批量加购、提交订单</td></tr>
+            <tr><td><span class="global-scope-tag support">辅助页面</span></td><td><a href="inbound.html">入库单</a></td><td>仓库与库存运营</td><td>多类型入库单及进度跟踪</td><td>创建入库单、添加SKU、展开详情</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="global-capability-strip" aria-label="全局通用能力">
+      <div><strong>身份权限</strong><span>超管、公司管理员、业务组管理员、业务员</span></div>
+      <div><strong>页面注释</strong><span>默认展开、宽度可调、入口可拖动</span></div>
+      <div><strong>操作反馈</strong><span>全局大尺寸 Toast，购物车成功可直达购物车</span></div>
+    </section>
+  </main>
+</div>
+
+<script src="toast.js?v=20260828-cart-action"></script>
+<script src="role-switch.js"></script>
+<script src="notes.js?v=20260828-all-prd"></script>
+</body>
+</html>

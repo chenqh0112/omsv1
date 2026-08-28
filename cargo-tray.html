@@ -3,8 +3,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>美国货盘 — 独立站</title>
-<link rel="stylesheet" href="styles.css">
-<script src="navigation.js" defer></script>
+<link rel="stylesheet" href="styles.css?v=20260828-overview-cart">
+<script src="navigation.js?v=20260828-fees" defer></script>
 </head>
 <body data-page="tray">
 
@@ -326,7 +326,7 @@ function addItemsToCart(items){
   selectedSkus={};
   updateCart();
   syncSelectionUI();
-  showToast('已加入购物车');
+  showToast('已加入购物车','success',{label:'查看购物车',onClick:openCart});
 }
 function cartTotals(){
   return Object.keys(cartItems).reduce(function(result,sku){
@@ -433,7 +433,7 @@ updateCart();
 applyTrayFilters();
 </script>
 <script src="order-history.js"></script>
-<script src="toast.js?v=20260827-global"></script>
+<script src="toast.js?v=20260828-cart-action"></script>
 <script src="role-switch.js"></script>
-<script src="notes.js?v=20260827-resize"></script>
+<script src="notes.js?v=20260828-all-prd"></script>
 </body></html>

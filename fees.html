@@ -3,8 +3,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>费用 — 独立站</title>
-<link rel="stylesheet" href="styles.css">
-<script src="navigation.js" defer></script>
+<link rel="stylesheet" href="styles.css?v=20260828-overview-cart">
+<script src="navigation.js?v=20260828-fees" defer></script>
 </head>
 <body data-page="fees">
 <aside class="app-nav">
@@ -27,12 +27,12 @@
     <div class="topbar-right"><div class="user"><button class="avatar" type="button" data-role-avatar aria-haspopup="dialog" aria-label="切换身份" title="切换身份">超</button></div></div>
   </div>
   <main class="page-body">
-    <div class="fee-summary page-section">
-      <div class="stat-card"><div class="stat-label">本月费用</div><div class="stat-value fee-amount">$4,170</div></div>
-      <div class="stat-card"><div class="stat-label">待结算</div><div class="stat-value fee-amount" style="color:var(--warning)">$3,850</div></div>
-      <div class="stat-card"><div class="stat-label">已结算</div><div class="stat-value fee-amount" style="color:var(--success)">$320</div></div>
-      <div class="stat-card"><div class="stat-label">费用单</div><div class="stat-value">4</div></div>
-    </div>
+    <section class="fee-summary page-section" aria-label="费用统计">
+      <div class="stat-card fee-stat fee-stat-total"><div class="stat-heading"><div class="stat-label">本月费用</div><p>本月全部费用金额</p></div><div class="stat-metric-row"><div class="stat-value fee-amount">$4,170</div><div class="stat-trend trend-up"><strong>↑ 11.6%</strong><span>vs 上月同期</span></div></div></div>
+      <div class="stat-card fee-stat fee-stat-pending"><div class="stat-heading"><div class="stat-label">待结算</div><p>尚未完成结算的金额</p></div><div class="stat-metric-row"><div class="stat-value fee-amount">$3,850</div><div class="stat-trend trend-up"><strong>↑ 8.3%</strong><span>vs 上月同期</span></div></div></div>
+      <div class="stat-card fee-stat fee-stat-settled"><div class="stat-heading"><div class="stat-label">已结算</div><p>本月已完成结算金额</p></div><div class="stat-metric-row"><div class="stat-value fee-amount">$320</div><div class="stat-trend trend-up"><strong>↑ 19.2%</strong><span>vs 上月同期</span></div></div></div>
+      <div class="stat-card fee-stat fee-stat-orders"><div class="stat-heading"><div class="stat-label">费用单</div><p>本月生成费用单数量</p></div><div class="stat-metric-row"><div class="stat-value">4</div><div class="stat-trend trend-up"><strong>↑ 5.0%</strong><span>vs 上月</span></div></div></div>
+    </section>
     <div class="filter-bar page-section">
       <div class="filter-group"><label for="fee-type">费用类型</label><select id="fee-type"><option value="">全部类型</option><option>操作费</option><option>包材费</option><option>物流费</option><option>仓租费</option></select></div>
       <div class="filter-group"><label for="fee-item">费用项目</label><select id="fee-item"><option value="">全部项目</option><option>仓租费</option><option>退货销毁费</option><option>退货贴标</option><option>退货入库处理费</option></select></div>
@@ -70,7 +70,7 @@ function resetFeeFilters(){
   applyFeeFilters();
 }
 </script>
-<script src="toast.js?v=20260827-global"></script>
+<script src="toast.js?v=20260828-cart-action"></script>
 <script src="role-switch.js"></script>
-<script src="notes.js?v=20260827-resize"></script>
+<script src="notes.js?v=20260828-all-prd"></script>
 </body></html>

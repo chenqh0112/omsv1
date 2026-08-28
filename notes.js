@@ -79,7 +79,7 @@
   var pageKey=document.body.dataset.page||'default';
   var pageNotes={
     sku:{title:'库存管理注释',markdown:'SKU管理页PRD.md'},
-    inbound:{title:'入库单注释'},
+    inbound:{title:'入库单注释',markdown:'入库单页PRD.md'},
     tray:{title:'美国货盘注释',markdown:'美国货盘页PRD.md'},
     'tray-v2':{title:'美国货盘V2注释',markdown:'美国货盘V2页PRD.md'},
     orders:{title:'订单管理注释',markdown:'订单管理页PRD.md'},
@@ -87,6 +87,7 @@
     users:{title:'用户管理注释',markdown:'用户管理页PRD.md'},
     fees:{
       title:'费用注释',
+      markdown:'费用明细页PRD.md',
       images:[
         {src:'assets/fee-note-container.png',alt:'集装箱入库费用参考',caption:'集装箱入库费用参考'},
         {src:'assets/fee-note-pallet.png',alt:'托盘入库费用参考',caption:'托盘入库费用参考'},
@@ -96,7 +97,8 @@
         {src:'assets/fee-note-packaging.png',alt:'包材费参考',caption:'包材费参考'}
       ]
     },
-    login:{title:'登录注释'}
+    'global-overview':{title:'全局说明注释',markdown:'全项目页面PRD.md'},
+    login:{title:'登录注释',markdown:'登录页PRD.md'}
   };
   var note=pageNotes[pageKey]||{title:'当前菜单注释'};
 
@@ -140,12 +142,13 @@
   panel.id='notes-panel';
   panel.setAttribute('aria-label',note.title);
   var content='<div class="notes-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h6"/></svg><p>当前菜单暂无注释</p></div>';
-  if(note.markdown)content='<div class="notes-loading">正在加载 PRD...</div>';
-  if(note.images){
-    content='<div class="notes-gallery">'+note.images.map(function(item,index){
+  function renderGallery(){
+    return '<div class="notes-gallery">'+note.images.map(function(item,index){
       return '<button class="notes-image-card" type="button" data-note-image="'+index+'" aria-label="预览'+item.caption+'"><img src="'+item.src+'" alt="'+item.alt+'"><span>'+item.caption+'</span></button>';
     }).join('')+'</div>';
   }
+  if(note.markdown)content='<div class="notes-loading">正在加载 PRD...</div>';
+  else if(note.images)content=renderGallery();
   panel.innerHTML='<div class="notes-resizer" role="separator" tabindex="0" aria-label="调整注释区域宽度" aria-orientation="vertical" aria-valuemin="'+NOTES_MIN_WIDTH+'" aria-valuemax="'+getMaxNotesWidth()+'"></div><div class="notes-panel-head"><h2>'+note.title+'</h2><button class="notes-close" type="button" aria-label="收起注释" title="收起注释">&times;</button></div><div class="notes-content">'+content+'</div>';
   document.body.appendChild(panel);
   applyNotesWidth(readNotesWidth(),false);
@@ -185,7 +188,7 @@
       if(!response.ok)throw new Error('PRD request failed');
       return response.text();
     }).then(function(markdown){
-      panel.querySelector('.notes-content').innerHTML=renderNoteMarkdown(markdown);
+      panel.querySelector('.notes-content').innerHTML=renderNoteMarkdown(markdown)+(note.images?'<section class="notes-reference-section"><h2>费用参考图</h2>'+renderGallery()+'</section>':'');
     }).catch(function(){
       panel.querySelector('.notes-content').innerHTML='<div class="notes-empty"><p>PRD 加载失败</p></div>';
     });
