@@ -3,8 +3,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>库存管理 — 独立站</title>
-<link rel="stylesheet" href="styles.css?v=20260828-overview-cart">
-<script src="navigation.js?v=20260828-fees" defer></script>
+<link rel="stylesheet" href="styles.css?v=20260828-returns-pagination">
+<script src="navigation.js?v=20260828-returns" defer></script>
 </head>
 <body data-page="sku">
 
@@ -149,7 +149,7 @@
             </select>
             <div class="pagination-btns">
               <button class="page-btn" id="sku-page-prev" type="button" onclick="changePage(-1)">‹</button>
-              <button class="page-btn active" id="sku-page-current" type="button">1</button>
+              <button class="page-btn active" id="sku-page-current" type="button">1 / 1</button>
               <button class="page-btn" id="sku-page-next" type="button" onclick="changePage(1)">›</button>
             </div>
             <span class="page-jump-label" style="font-size:12.5px;color:var(--muted)">跳至</span>
@@ -352,10 +352,9 @@ function renderTable(data){
     var imgCell=isImg
       ?'<button class="sku-product-image" type="button" aria-label="预览'+item.name+'图片" onclick="openPreview(\''+item.img+'\')"><img src="'+item.img+'" alt="'+item.name+'"></button>'
       :'<div class="sku-product-image sku-product-placeholder">'+item.img+'</div>';
-    var scopeLabels={company:'公司',businessGroup:'业务组',salesperson:'业务员'};
     var scopeCell='';
     if(getPageConfig().columns.length){
-      scopeCell='<td class="ownership-column"><div class="ownership-stack">'+getPageConfig().columns.map(function(key){return '<div class="ownership-line"><span>'+scopeLabels[key]+'</span><strong>'+item[key]+'</strong></div>'}).join('')+'</div></td>';
+      scopeCell='<td class="ownership-column"><div class="ownership-stack ownership-values-only">'+getPageConfig().columns.map(function(key){return '<div class="ownership-line"><strong>'+item[key]+'</strong></div>'}).join('')+'</div></td>';
     }
     var ageCell=hasAgeRecords
       ?'<td><span class="tag age-value '+(maxAge>30?'tag-danger':maxAge>15?'tag-warning':'tag-success')+'" tabindex="0" data-age-sku="'+item.barcode+'" aria-describedby="age-detail-tooltip" aria-label="最大库龄'+maxAge+'天，共'+item.ageRecords.length+'条库龄记录">'+maxAge+'天</span></td>'
@@ -381,7 +380,7 @@ function renderTable(data){
 function updatePagination(total){
   var totalPages=Math.max(1,Math.ceil(total/pageSize));
   currentPage=Math.min(currentPage,totalPages);
-  document.getElementById('sku-page-current').textContent=currentPage;
+  document.getElementById('sku-page-current').textContent=currentPage+' / '+totalPages;
   document.getElementById('sku-page-prev').disabled=currentPage<=1;
   document.getElementById('sku-page-next').disabled=currentPage>=totalPages||total===0;
   document.getElementById('sku-page-jump').value=currentPage;
