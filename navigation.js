@@ -46,4 +46,6 @@
     +'<div class="nav-section-label nav-section-public">对公界面</div>'
     +'<a class="nav-primary'+active('tray')+'" href="cargo-tray.html" data-nav="tray">'+trayIcon+'<span>美国货盘</span></a>'
     +'<a class="nav-primary'+active('tray-v2')+'" href="cargo-tray-v2.html" data-nav="tray-v2">'+gridIcon+'<span>美国货盘V2</span></a>';
+  var activeItem=nav.querySelector('.active');
+  if(activeItem)requestAnimationFrame(function(){activeItem.scrollIntoView({block:'nearest'})});
 })();
