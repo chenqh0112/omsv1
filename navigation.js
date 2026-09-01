@@ -3,6 +3,14 @@
   if(!nav)return;
 
   var currentPage=document.body.dataset.page||'';
+  var ADMIN_SESSION_KEY='oms-admin-session';
+  var publicPages=['login','tray','tray-v2'];
+  function readAdminSession(){try{return JSON.parse(sessionStorage.getItem(ADMIN_SESSION_KEY)||'null')}catch(error){return null}}
+  function clearAdminSession(){sessionStorage.removeItem(ADMIN_SESSION_KEY)}
+  var adminSession=readAdminSession();
+  if(adminSession&&(!adminSession.expiresAt||adminSession.expiresAt<=Date.now())){
+    clearAdminSession();adminSession=null;
+  }
   function active(page){return currentPage===page?' active':''}
   function current(pages){return pages.indexOf(currentPage)!==-1?' nav-group-current':''}
 
@@ -48,4 +56,10 @@
     +'<a class="nav-primary'+active('tray-v2')+'" href="cargo-tray-v2.html" data-nav="tray-v2">'+gridIcon+'<span>美国货盘V2</span></a>';
   var activeItem=nav.querySelector('.active');
   if(activeItem)requestAnimationFrame(function(){activeItem.scrollIntoView({block:'nearest'})});
+  if(publicPages.indexOf(currentPage)===-1){
+    var footer=document.querySelector('.nav-footer');
+    var session=adminSession||{userName:'管理员'};
+    footer.innerHTML='<span class="nav-session-user">'+String(session.userName||'管理员').replace(/[&<>"]/g,function(char){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[char]})+'</span><button class="nav-logout" type="button">退出登录</button>';
+    footer.querySelector('.nav-logout').addEventListener('click',function(){clearAdminSession();location.replace('login.html?reason=logout')});
+  }
 })();

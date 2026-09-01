@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>美国货盘管理 — 独立站</title>
 <link rel="stylesheet" href="styles.css?v=20260828-returns-pagination">
-<script src="navigation.js?v=20260901-public-ui-label" defer></script>
+<script src="navigation.js?v=20260901-auth-state" defer></script>
 </head>
 <body data-page="tray-management">
 <aside class="app-nav">
@@ -37,6 +37,8 @@
         </div>
         <div class="tray-management-actions">
           <button class="btn btn-primary btn-sm" id="manage-batch-mark" type="button" hidden disabled>批量放入美国货盘</button>
+          <button class="btn btn-primary btn-sm" id="manage-batch-edit" type="button" disabled>批量修改</button>
+          <button class="btn btn-ghost btn-sm danger" id="manage-batch-unmark" type="button" disabled>批量移出美国货盘</button>
           <button class="btn btn-ghost btn-sm" id="manage-export" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg>导出</button>
         </div>
       </div>
@@ -45,8 +47,11 @@
         <div class="table-scroll">
           <table class="data-table manage-inventory-table">
             <thead><tr>
+              <th class="selection-column"><input id="manage-marked-select-all" type="checkbox" aria-label="选择当前页中的全部美国货盘SKU"></th>
               <th class="sku-column">SKU</th>
               <th class="sortable-column"><button class="sort-button" type="button" data-manage-sort="age">库龄<span aria-hidden="true">↕</span></button></th>
+              <th>单价</th>
+              <th>最小起订量</th>
               <th><span class="table-header-label">对公展示数量<span class="table-header-help" tabindex="0" role="img" aria-label="对公展示数量说明" data-tooltip="当前设置在对公美国货盘中展示的商品件数">?</span></span></th>
               <th class="sortable-column"><div class="manage-sort-header"><button class="sort-button" type="button" data-manage-sort="sellable">可售数量<span aria-hidden="true">↕</span></button><span class="table-header-help" tabindex="0" role="img" aria-label="可售数量说明" data-tooltip="对公展示数量减去已预占数量后，可继续销售的件数">?</span></div></th>
               <th><span class="table-header-label">已预占<span class="table-header-help" tabindex="0" role="img" aria-label="已预占说明" data-tooltip="外部用户已下单但尚未发货，占用的件数">?</span></span></th>
@@ -61,7 +66,7 @@
       <div class="tray-management-panel" id="unmarked-panel" role="tabpanel" aria-labelledby="unmarked-tab" hidden>
         <div class="table-scroll">
           <table class="data-table manage-inventory-table">
-            <thead><tr><th class="selection-column"><input id="manage-select-all" type="checkbox" aria-label="选择当前页中的全部可用SKU"></th><th class="sku-column">SKU</th><th>库龄</th><th>OMS可用库存</th><th>辅助决策建议</th><th class="operation-column">操作</th></tr></thead>
+            <thead><tr><th class="selection-column"><input id="manage-select-all" type="checkbox" aria-label="选择当前页中的全部可用SKU"></th><th class="sku-column">SKU</th><th>库龄</th><th>单价</th><th>最小起订量</th><th>OMS可用库存</th><th>辅助决策建议</th><th class="operation-column">操作</th></tr></thead>
             <tbody id="unmarked-tbody"></tbody>
           </table>
         </div>
@@ -79,9 +84,11 @@
     <div class="modal-head"><h3 id="manage-mark-title">放到美国货盘</h3><button class="close" type="button" id="manage-mark-close" aria-label="关闭">&times;</button></div>
     <div class="modal-body">
       <div class="manage-form-field"><label for="manage-sku-select">选择SKU</label><select id="manage-sku-select"></select></div>
-      <div class="manage-available-hint"><span>可用库存</span><strong id="manage-available-value">0 件</strong><small>对公展示数量不能超过 OMS 可用库存</small></div>
-      <div class="manage-form-field"><label for="manage-mark-qty">对公展示数量</label><input id="manage-mark-qty" type="number" min="1" value="1"></div>
-      <div class="manage-form-field manage-visible-field"><span>对外可见</span><label class="visibility-switch"><input id="manage-visible-input" type="checkbox" checked><span aria-hidden="true"></span><b>默认开启</b></label></div>
+      <div class="manage-available-hint" data-manage-config-field="inventory"><span>可用库存</span><strong id="manage-available-value">0 件</strong><small>放入美国货盘数量不能超过 OMS 可用库存</small></div>
+      <div class="manage-form-field" data-manage-config-field="quantity"><label for="manage-mark-qty">放入美国货盘数量</label><input id="manage-mark-qty" type="number" min="1" value="1"></div>
+      <div class="manage-form-field" data-manage-config-field="price"><label for="manage-selling-price">售卖价格（美元）</label><input id="manage-selling-price" type="number" min="0.01" step="0.01" inputmode="decimal" value="1.00"></div>
+      <div class="manage-form-field" data-manage-config-field="moq"><label for="manage-min-order">最小起订量</label><input id="manage-min-order" type="number" min="1" step="1" value="1"></div>
+      <div class="manage-form-field manage-visible-field" data-manage-config-field="visible"><span>对外可见</span><label class="visibility-switch"><input id="manage-visible-input" type="checkbox" checked><span aria-hidden="true"></span><b>默认开启</b></label></div>
     </div>
     <div class="modal-footer"><button class="btn btn-ghost" type="button" id="manage-mark-cancel">取消</button><button class="btn btn-primary" type="button" id="manage-mark-confirm">确认</button></div>
   </div>
@@ -91,10 +98,32 @@
   <div class="modal manage-batch-modal">
     <div class="modal-head"><h3 id="manage-batch-title">确认批量放入美国货盘</h3><button class="close" type="button" id="manage-batch-close" aria-label="关闭">&times;</button></div>
     <div class="modal-body">
-      <p class="manage-batch-tip">请确认所选SKU及对公展示数量，确认后这些SKU将进入美国货盘。</p>
-      <div class="table-scroll"><table class="data-table manage-batch-table"><thead><tr><th>SKU</th><th>OMS可用库存</th><th>对公展示数量</th></tr></thead><tbody id="manage-batch-tbody"></tbody></table></div>
+      <p class="manage-batch-tip">请确认所选SKU的数量、售卖价格和最小起订量，确认后这些SKU将进入美国货盘。</p>
+      <div class="table-scroll"><table class="data-table manage-batch-table"><thead><tr><th>SKU</th><th>OMS可用库存</th><th>放入美国货盘数量</th><th>售卖价格</th><th>最小起订量</th></tr></thead><tbody id="manage-batch-tbody"></tbody></table></div>
     </div>
     <div class="modal-footer"><button class="btn btn-ghost" type="button" id="manage-batch-cancel">取消</button><button class="btn btn-primary" type="button" id="manage-batch-confirm">确认放入</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="manage-batch-edit-modal" role="dialog" aria-modal="true" aria-labelledby="manage-batch-edit-title">
+  <div class="modal manage-batch-modal manage-batch-edit-modal">
+    <div class="modal-head"><h3 id="manage-batch-edit-title">批量修改美国货盘配置</h3><button class="close" type="button" id="manage-batch-edit-close" aria-label="关闭">&times;</button></div>
+    <div class="modal-body">
+      <p class="manage-batch-tip">可分别调整所选 SKU 的对外可见状态、展示数量、最小起订量和售卖价格。</p>
+      <div class="table-scroll"><table class="data-table manage-batch-table manage-batch-edit-table"><thead><tr><th>SKU</th><th>对外可见</th><th>数量调整</th><th>最小起订量</th><th>售卖价格</th></tr></thead><tbody id="manage-batch-edit-tbody"></tbody></table></div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" id="manage-batch-edit-cancel">取消</button><button class="btn btn-primary" type="button" id="manage-batch-edit-confirm">保存修改</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="manage-batch-unmark-modal" role="dialog" aria-modal="true" aria-labelledby="manage-batch-unmark-title">
+  <div class="modal manage-batch-unmark-modal">
+    <div class="modal-head"><h3 id="manage-batch-unmark-title">确认批量移出美国货盘</h3><button class="close" type="button" id="manage-batch-unmark-close" aria-label="关闭">&times;</button></div>
+    <div class="modal-body">
+      <p class="manage-batch-tip">确认后，以下 SKU 将移回“未放到美国货盘”列表。</p>
+      <div class="manage-batch-unmark-list" id="manage-batch-unmark-list"></div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" id="manage-batch-unmark-cancel">取消</button><button class="btn btn-danger" type="button" id="manage-batch-unmark-confirm">确认移出</button></div>
   </div>
 </div>
 
@@ -110,21 +139,25 @@ var manageTab='marked';
 var manageModalMode='mark';
 var manageEditingSku='';
 var manageSelectedSkus={};
+var manageMarkedSelectedSkus={};
 var manageSort={key:'',direction:'desc'};
 var managePages={marked:1,unmarked:1};
 var managePageSize=8;
+var manageMoqOptions=[12,24,36,48,60];
 var manageInventory=(window.OMS_SKU_DATA||[]).map(function(item,index){
   var marked=item.available>0&&index%2===0;
   var markedQty=marked?Math.min(item.available,18+(index*13%86)):0;
   var reserved=marked?Math.min(Math.max(0,markedQty-1),index*5%24):0;
   return {
     sku:item.barcode,name:item.name,spec:item.spec,img:item.img,omsAvailable:item.available,ageRecords:item.ageRecords||[],
-    marked:marked,markedQty:markedQty,reserved:reserved,visible:index%7!==0,
+    marked:marked,markedQty:markedQty,reserved:reserved,visible:index%7!==0,unitPrice:Number(item.unitPrice||0),sellingPrice:Number(item.unitPrice||0),moq:Math.min(manageMoqOptions[index%manageMoqOptions.length],Math.max(1,item.available-1)),
     seller:index%4===0?'外部卖家B':'内部团队A'
   };
 });
 
 function manageNumber(value){return Number(value||0).toLocaleString('en-US')}
+function manageMoney(value){return Number(value||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+'$'}
+function manageValidPrice(value){return Number(value)>0&&/^\d+(\.\d{1,2})?$/.test(String(value).trim())}
 function manageEscape(value){return String(value).replace(/[&<>"']/g,function(char){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]})}
 function manageSkuCell(item){
   return '<div class="sku-profile manage-sku-profile"><button class="sku-product-image" type="button" data-manage-preview="'+manageEscape(item.sku)+'" aria-label="预览 '+manageEscape(item.name)+' 图片"><img src="'+manageEscape(item.img)+'" alt="'+manageEscape(item.name)+'"></button><div class="sku-profile-copy"><strong>'+manageEscape(item.name)+'</strong><span>'+manageEscape(item.spec)+'</span><code>'+manageEscape(item.sku)+'</code></div></div>';
@@ -218,30 +251,43 @@ function updateManageStats(){
 function renderMarkedInventory(){
   var allData=getSortedMarkedInventory();
   var data=getManagePageData(allData,'marked');
+  getUnmarkedInventory().forEach(function(item){delete manageMarkedSelectedSkus[item.sku]});
   document.getElementById('marked-tbody').innerHTML=data.length?data.map(function(item){
     var sellable=Math.max(0,item.markedQty-item.reserved);
     var reservedRate=(getManageReservedRate(item)*100).toFixed(1)+'%';
-    return '<tr data-manage-sku="'+item.sku+'"><td class="sku-column">'+manageSkuCell(item)+'</td>'+manageAgeCell(item)+'<td class="num manage-marked-qty">'+manageNumber(item.markedQty)+'</td><td class="num manage-sellable-qty">'+manageNumber(sellable)+'</td><td class="num manage-reserved-qty">'+manageNumber(item.reserved)+'</td><td class="num manage-reserved-rate">'+reservedRate+'</td><td><label class="visibility-switch"><input type="checkbox" data-manage-visible="'+item.sku+'" '+(item.visible?'checked':'')+' aria-label="'+manageEscape(item.name)+' 对外可见"><span aria-hidden="true"></span><b>'+(item.visible?'可见':'隐藏')+'</b></label></td><td><span class="seller-tag '+(item.seller.indexOf('外部')===0?'external':'internal')+'">'+item.seller+'</span></td><td>'+manageDecisionCell(item,true)+'</td><td class="operation-column"><div class="table-actions"><button class="btn-link" type="button" data-manage-adjust="'+item.sku+'">调整数量</button><button class="btn-link danger" type="button" data-manage-unmark="'+item.sku+'">取消对公</button></div></td></tr>';
-  }).join(''):'<tr><td colspan="10" class="mark-table-empty">暂无美国货盘SKU</td></tr>';
+    return '<tr data-manage-sku="'+item.sku+'"><td class="selection-column"><input class="manage-marked-row-select" type="checkbox" data-manage-marked-select="'+item.sku+'" '+(manageMarkedSelectedSkus[item.sku]?'checked':'')+' aria-label="选择 '+manageEscape(item.name)+'"></td><td class="sku-column">'+manageSkuCell(item)+'</td>'+manageAgeCell(item)+'<td class="num">'+manageMoney(item.sellingPrice)+'</td><td class="num">'+manageNumber(item.moq)+'</td><td class="num manage-marked-qty">'+manageNumber(item.markedQty)+'</td><td class="num manage-sellable-qty">'+manageNumber(sellable)+'</td><td class="num manage-reserved-qty">'+manageNumber(item.reserved)+'</td><td class="num manage-reserved-rate">'+reservedRate+'</td><td><label class="visibility-switch"><input type="checkbox" data-manage-visible="'+item.sku+'" '+(item.visible?'checked':'')+' aria-label="'+manageEscape(item.name)+' 对外可见"><span aria-hidden="true"></span><b>'+(item.visible?'可见':'隐藏')+'</b></label></td><td><span class="seller-tag '+(item.seller.indexOf('外部')===0?'external':'internal')+'">'+item.seller+'</span></td><td>'+manageDecisionCell(item,true)+'</td><td class="operation-column"><div class="table-actions"><button class="btn-link" type="button" data-manage-adjust="'+item.sku+'">调整数量</button><button class="btn-link" type="button" data-manage-price="'+item.sku+'">修改售价</button><button class="btn-link danger" type="button" data-manage-unmark="'+item.sku+'">移出美国货盘</button></div></td></tr>';
+  }).join(''):'<tr><td colspan="13" class="mark-table-empty">暂无美国货盘SKU</td></tr>';
   updateManageSortHeaders();
+  updateManageMarkedSelection();
 }
 function renderUnmarkedInventory(){
   var allData=getFilteredUnmarkedInventory();
   var data=getManagePageData(allData,'unmarked');
   getMarkedInventory().forEach(function(item){delete manageSelectedSkus[item.sku]});
   document.getElementById('unmarked-tbody').innerHTML=data.length?data.map(function(item){
-    var disabled=item.omsAvailable<=0;
-    return '<tr data-manage-sku="'+item.sku+'"><td class="selection-column"><input class="manage-row-select" type="checkbox" data-manage-select="'+item.sku+'" '+(manageSelectedSkus[item.sku]?'checked':'')+' '+(disabled?'disabled':'')+' aria-label="选择 '+manageEscape(item.name)+'"></td><td class="sku-column">'+manageSkuCell(item)+'</td>'+manageAgeCell(item)+'<td class="num">'+manageNumber(item.omsAvailable)+'</td><td>'+manageDecisionCell(item,false)+'</td><td class="operation-column"><button class="btn btn-primary btn-sm" type="button" data-manage-mark="'+item.sku+'" '+(disabled?'disabled':'')+'>放到美国货盘</button></td></tr>';
-  }).join(''):'<tr><td colspan="6" class="mark-table-empty">暂无符合条件的未放入SKU</td></tr>';
+    var disabled=item.omsAvailable<=1;
+    return '<tr data-manage-sku="'+item.sku+'"><td class="selection-column"><input class="manage-row-select" type="checkbox" data-manage-select="'+item.sku+'" '+(manageSelectedSkus[item.sku]?'checked':'')+' '+(disabled?'disabled':'')+' aria-label="选择 '+manageEscape(item.name)+'"></td><td class="sku-column">'+manageSkuCell(item)+'</td>'+manageAgeCell(item)+'<td class="num">'+manageMoney(item.unitPrice)+'</td><td class="num">'+manageNumber(item.moq)+'</td><td class="num">'+manageNumber(item.omsAvailable)+'</td><td>'+manageDecisionCell(item,false)+'</td><td class="operation-column"><button class="btn btn-primary btn-sm" type="button" data-manage-mark="'+item.sku+'" '+(disabled?'disabled':'')+'>放到美国货盘</button></td></tr>';
+  }).join(''):'<tr><td colspan="8" class="mark-table-empty">暂无符合条件的未放入SKU</td></tr>';
   updateManageBatchSelection();
 }
 function updateManageBatchSelection(){
-  var selected=getUnmarkedInventory().filter(function(item){return manageSelectedSkus[item.sku]&&item.omsAvailable>0});
+  var selected=getUnmarkedInventory().filter(function(item){return manageSelectedSkus[item.sku]&&item.omsAvailable>1});
   var batchButton=document.getElementById('manage-batch-mark');
   batchButton.disabled=selected.length===0;
-  var available=getManagePageData(getFilteredUnmarkedInventory(),'unmarked').filter(function(item){return item.omsAvailable>0});
+  var available=getManagePageData(getFilteredUnmarkedInventory(),'unmarked').filter(function(item){return item.omsAvailable>1});
   var selectedVisible=available.filter(function(item){return manageSelectedSkus[item.sku]});
   var selectAll=document.getElementById('manage-select-all');
+  selectAll.checked=available.length>0&&selectedVisible.length===available.length;
+  selectAll.indeterminate=selectedVisible.length>0&&selectedVisible.length<available.length;
+}
+function getSelectedMarkedItems(){return getMarkedInventory().filter(function(item){return manageMarkedSelectedSkus[item.sku]})}
+function updateManageMarkedSelection(){
+  var selected=getSelectedMarkedItems();
+  document.getElementById('manage-batch-edit').disabled=selected.length===0;
+  document.getElementById('manage-batch-unmark').disabled=selected.length===0;
+  var available=getManagePageData(getSortedMarkedInventory(),'marked');
+  var selectedVisible=available.filter(function(item){return manageMarkedSelectedSkus[item.sku]});
+  var selectAll=document.getElementById('manage-marked-select-all');
   selectAll.checked=available.length>0&&selectedVisible.length===available.length;
   selectAll.indeterminate=selectedVisible.length>0&&selectedVisible.length<available.length;
 }
@@ -274,6 +320,8 @@ function switchManageTab(tabName){
   document.getElementById('marked-panel').hidden=tabName!=='marked';
   document.getElementById('unmarked-panel').hidden=tabName!=='unmarked';
   document.getElementById('manage-batch-mark').hidden=tabName!=='unmarked';
+  document.getElementById('manage-batch-edit').hidden=tabName!=='marked';
+  document.getElementById('manage-batch-unmark').hidden=tabName!=='marked';
   renderManageWorkspace();
 }
 function showManageTableHelp(target){
@@ -292,8 +340,8 @@ function exportManageInventory(){
   var marked=manageTab==='marked';
   var data=marked?getSortedMarkedInventory():getFilteredUnmarkedInventory();
   var rows=marked
-    ?[['SKU编码','SKU名称','SKU规格','库龄','对公展示数量','可售数量','已预占','预占率','对外可见','所属卖家']].concat(data.map(function(item){return [item.sku,item.name,item.spec,getManageMaxAge(item)+'天',item.markedQty,Math.max(0,item.markedQty-item.reserved),item.reserved,(getManageReservedRate(item)*100).toFixed(1)+'%',item.visible?'可见':'隐藏',item.seller]}))
-    :[['SKU编码','SKU名称','SKU规格','库龄','OMS可用库存']].concat(data.map(function(item){return [item.sku,item.name,item.spec,getManageMaxAge(item)+'天',item.omsAvailable]}));
+    ?[['SKU编码','SKU名称','SKU规格','库龄','单价','最小起订量','对公展示数量','可售数量','已预占','预占率','对外可见','所属卖家']].concat(data.map(function(item){return [item.sku,item.name,item.spec,getManageMaxAge(item)+'天',manageMoney(item.sellingPrice),item.moq,item.markedQty,Math.max(0,item.markedQty-item.reserved),item.reserved,(getManageReservedRate(item)*100).toFixed(1)+'%',item.visible?'可见':'隐藏',item.seller]}))
+    :[['SKU编码','SKU名称','SKU规格','库龄','单价','最小起订量','OMS可用库存']].concat(data.map(function(item){return [item.sku,item.name,item.spec,getManageMaxAge(item)+'天',manageMoney(item.unitPrice),item.moq,item.omsAvailable]}));
   var csv='\uFEFF'+rows.map(function(row){return row.map(manageCsvCell).join(',')}).join('\r\n');
   var url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
   var link=document.createElement('a');link.href=url;link.download=(marked?'美国货盘':'未放到美国货盘')+'-'+new Date().toISOString().slice(0,10)+'.csv';document.body.appendChild(link);link.click();link.remove();URL.revokeObjectURL(url);
@@ -302,9 +350,9 @@ function exportManageInventory(){
 function findManageItem(sku){return manageInventory.find(function(item){return item.sku===sku})}
 function populateManageSkuSelect(selectedSku){
   var select=document.getElementById('manage-sku-select');
-  var options=manageModalMode==='adjust'?manageInventory.filter(function(item){return item.sku===selectedSku}):getUnmarkedInventory();
+  var options=manageModalMode==='adjust'||manageModalMode==='price'?manageInventory.filter(function(item){return item.sku===selectedSku}):getUnmarkedInventory();
   select.innerHTML=options.map(function(item){return '<option value="'+item.sku+'" '+(item.sku===selectedSku?'selected':'')+'>'+manageEscape(item.name)+' · '+manageEscape(item.spec)+' · '+manageEscape(item.sku)+'</option>'}).join('');
-  select.disabled=manageModalMode==='adjust';
+  select.disabled=manageModalMode==='adjust'||manageModalMode==='price';
 }
 function refreshManageModalValues(){
   var item=findManageItem(document.getElementById('manage-sku-select').value);
@@ -313,51 +361,65 @@ function refreshManageModalValues(){
   var input=document.getElementById('manage-mark-qty');
   input.max=item.omsAvailable;
   if(manageModalMode==='mark')input.value=Math.min(Math.max(1,Math.round(item.omsAvailable*.25)),item.omsAvailable||1);
+  document.getElementById('manage-selling-price').value=Number(item.sellingPrice||item.unitPrice||0).toFixed(2);
+  document.getElementById('manage-min-order').value=Math.min(Math.max(1,item.moq||1),Math.max(1,item.omsAvailable-1));
+  document.getElementById('manage-min-order').max=Math.max(1,item.omsAvailable-1);
 }
 function openManageModal(mode,sku){
   manageModalMode=mode;
   manageEditingSku=sku||'';
   var item=findManageItem(sku);
-  document.getElementById('manage-mark-title').textContent=mode==='adjust'?'调整对公展示数量':'放到美国货盘';
-  document.getElementById('manage-mark-confirm').textContent=mode==='adjust'?'保存调整':'确认放入';
+  document.getElementById('manage-mark-title').textContent=mode==='adjust'?'调整美国货盘配置':mode==='price'?'修改售价':'放到美国货盘';
+  document.getElementById('manage-mark-confirm').textContent=mode==='price'?'保存售价':mode==='adjust'?'保存调整':'确认放入';
+  document.querySelectorAll('[data-manage-config-field]').forEach(function(field){field.hidden=mode==='price'&&field.dataset.manageConfigField!=='price'});
   populateManageSkuSelect(sku);
   refreshManageModalValues();
-  if(mode==='adjust'&&item){document.getElementById('manage-mark-qty').value=item.markedQty;document.getElementById('manage-visible-input').checked=item.visible}
+  if((mode==='adjust'||mode==='price')&&item){document.getElementById('manage-mark-qty').value=item.markedQty;document.getElementById('manage-selling-price').value=Number(item.sellingPrice).toFixed(2);document.getElementById('manage-min-order').value=item.moq;document.getElementById('manage-visible-input').checked=item.visible}
   else document.getElementById('manage-visible-input').checked=true;
   document.getElementById('manage-mark-modal').classList.add('open');
-  document.getElementById('manage-mark-qty').focus();
+  document.getElementById(mode==='price'?'manage-selling-price':'manage-mark-qty').focus();
 }
 function closeManageModal(){document.getElementById('manage-mark-modal').classList.remove('open')}
 function submitManageModal(){
   var sku=document.getElementById('manage-sku-select').value;
   var item=findManageItem(sku);
   var quantity=parseInt(document.getElementById('manage-mark-qty').value,10)||0;
-  if(!item||quantity<1||quantity>item.omsAvailable){showToast('对公展示数量需大于 0 且不能超过 OMS 可用库存','warning');return}
+  var priceValue=document.getElementById('manage-selling-price').value;
+  var minOrder=parseInt(document.getElementById('manage-min-order').value,10)||0;
+  if(manageModalMode==='price'){
+    if(!item||!manageValidPrice(priceValue)){showToast('售卖价格需大于 0，且最多保留 2 位小数','warning');return}
+    item.sellingPrice=Number(Number(priceValue).toFixed(2));closeManageModal();renderManageWorkspace();showToast('售价修改成功');return;
+  }
+  if(!item||quantity<1||quantity>item.omsAvailable){showToast('放入美国货盘数量需大于 0 且不能超过 OMS 可用库存','warning');return}
   if(manageModalMode==='adjust'&&quantity<item.reserved){showToast('对公展示数量不能小于已预占数量','warning');return}
+  if(!manageValidPrice(priceValue)){showToast('售卖价格需大于 0，且最多保留 2 位小数','warning');return}
+  if(minOrder<=0||minOrder>=item.omsAvailable){showToast('最小起订量必须大于 0 且小于 OMS 可用库存','warning');return}
   item.marked=true;
   item.markedQty=quantity;
+  item.sellingPrice=Number(Number(priceValue).toFixed(2));item.moq=minOrder;
   item.visible=document.getElementById('manage-visible-input').checked;
   if(manageModalMode==='mark')item.reserved=0;
   closeManageModal();
   switchManageTab('marked');
-  showToast(manageModalMode==='adjust'?'数量调整成功':'已放入美国货盘');
+  showToast(manageModalMode==='adjust'?'配置修改成功':'已放入美国货盘');
 }
 function unmarkManageItem(sku){
   var item=findManageItem(sku);
   if(!item)return;
-  if(item.reserved>0){showToast('该SKU存在已预占数量，暂不能取消对公','warning');return}
+  if(item.reserved>0){showToast('该 SKU 存在已预占数量，暂不能移出美国货盘','warning');return}
   item.marked=false;item.markedQty=0;item.visible=false;
+  delete manageMarkedSelectedSkus[item.sku];
   renderManageWorkspace();
-  showToast('已取消对公');
+  showToast('已移出美国货盘');
 }
 function getSelectedManageItems(){
-  return getUnmarkedInventory().filter(function(item){return manageSelectedSkus[item.sku]&&item.omsAvailable>0});
+  return getUnmarkedInventory().filter(function(item){return manageSelectedSkus[item.sku]&&item.omsAvailable>1});
 }
 function openManageBatchModal(){
   var items=getSelectedManageItems();
   if(!items.length){showToast('请先选择SKU','warning');return}
   document.getElementById('manage-batch-tbody').innerHTML=items.map(function(item){
-    return '<tr data-manage-batch-sku="'+item.sku+'"><td class="sku-column">'+manageSkuCell(item)+'</td><td class="num">'+manageNumber(item.omsAvailable)+'</td><td><input class="manage-batch-qty" type="number" min="1" max="'+item.omsAvailable+'" value="'+item.omsAvailable+'" aria-label="'+manageEscape(item.name)+' 对公展示数量"></td></tr>';
+    return '<tr data-manage-batch-sku="'+item.sku+'"><td class="sku-column">'+manageSkuCell(item)+'</td><td class="num">'+manageNumber(item.omsAvailable)+'</td><td><input class="manage-batch-qty" type="number" min="1" max="'+item.omsAvailable+'" value="'+item.omsAvailable+'" aria-label="'+manageEscape(item.name)+' 放入美国货盘数量"></td><td><input class="manage-batch-price" type="number" min="0.01" step="0.01" value="'+Number(item.sellingPrice||item.unitPrice).toFixed(2)+'" aria-label="'+manageEscape(item.name)+' 售卖价格"></td><td><input class="manage-batch-moq" type="number" min="1" max="'+Math.max(1,item.omsAvailable-1)+'" value="'+Math.min(item.moq,Math.max(1,item.omsAvailable-1))+'" aria-label="'+manageEscape(item.name)+' 最小起订量"></td></tr>';
   }).join('');
   document.getElementById('manage-batch-modal').classList.add('open');
   document.querySelector('#manage-batch-tbody .manage-batch-qty').focus();
@@ -368,18 +430,61 @@ function confirmManageBatch(){
   var values=rows.map(function(row){
     var item=findManageItem(row.dataset.manageBatchSku);
     var quantity=parseInt(row.querySelector('.manage-batch-qty').value,10)||0;
-    return {item:item,quantity:quantity};
+    var priceValue=row.querySelector('.manage-batch-price').value;
+    var minOrder=parseInt(row.querySelector('.manage-batch-moq').value,10)||0;
+    return {item:item,quantity:quantity,priceValue:priceValue,minOrder:minOrder};
   });
   if(!values.length||values.some(function(entry){return !entry.item||entry.quantity<1||entry.quantity>entry.item.omsAvailable})){
-    showToast('对公展示数量需大于 0 且不能超过 OMS 可用库存','warning');return;
+    showToast('放入美国货盘数量需大于 0 且不能超过 OMS 可用库存','warning');return;
   }
+  if(values.some(function(entry){return !manageValidPrice(entry.priceValue)})){showToast('售卖价格需大于 0，且最多保留 2 位小数','warning');return}
+  if(values.some(function(entry){return entry.minOrder<=0||entry.minOrder>=entry.item.omsAvailable})){showToast('最小起订量必须大于 0 且小于 OMS 可用库存','warning');return}
   values.forEach(function(entry){
-    entry.item.marked=true;entry.item.markedQty=entry.quantity;entry.item.reserved=0;entry.item.visible=true;
+    entry.item.marked=true;entry.item.markedQty=entry.quantity;entry.item.sellingPrice=Number(Number(entry.priceValue).toFixed(2));entry.item.moq=entry.minOrder;entry.item.reserved=0;entry.item.visible=true;
     delete manageSelectedSkus[entry.item.sku];
   });
   closeManageBatchModal();
   switchManageTab('marked');
   showToast('已批量放入美国货盘');
+}
+function openManageBatchEdit(){
+  var items=getSelectedMarkedItems();
+  if(!items.length){showToast('请先选择美国货盘中的 SKU','warning');return}
+  document.getElementById('manage-batch-edit-tbody').innerHTML=items.map(function(item){
+    return '<tr data-manage-batch-edit-sku="'+item.sku+'"><td class="sku-column">'+manageSkuCell(item)+'</td><td><label class="visibility-switch"><input class="manage-batch-edit-visible" type="checkbox" '+(item.visible?'checked':'')+' aria-label="'+manageEscape(item.name)+' 对外可见"><span aria-hidden="true"></span><b>'+(item.visible?'可见':'隐藏')+'</b></label></td><td><input class="manage-batch-qty" type="number" min="'+Math.max(1,item.reserved)+'" max="'+item.omsAvailable+'" value="'+item.markedQty+'" aria-label="'+manageEscape(item.name)+' 数量调整"></td><td><input class="manage-batch-moq" type="number" min="1" max="'+Math.max(1,item.omsAvailable-1)+'" value="'+item.moq+'" aria-label="'+manageEscape(item.name)+' 最小起订量"></td><td><input class="manage-batch-price" type="number" min="0.01" step="0.01" value="'+Number(item.sellingPrice).toFixed(2)+'" aria-label="'+manageEscape(item.name)+' 售卖价格"></td></tr>';
+  }).join('');
+  document.getElementById('manage-batch-edit-modal').classList.add('open');
+  document.querySelector('#manage-batch-edit-tbody .manage-batch-qty').focus();
+}
+function closeManageBatchEdit(){document.getElementById('manage-batch-edit-modal').classList.remove('open')}
+function confirmManageBatchEdit(){
+  var rows=[].slice.call(document.querySelectorAll('#manage-batch-edit-tbody [data-manage-batch-edit-sku]'));
+  var values=rows.map(function(row){
+    var item=findManageItem(row.dataset.manageBatchEditSku);
+    return {item:item,visible:row.querySelector('.manage-batch-edit-visible').checked,quantity:parseInt(row.querySelector('.manage-batch-qty').value,10)||0,minOrder:parseInt(row.querySelector('.manage-batch-moq').value,10)||0,priceValue:row.querySelector('.manage-batch-price').value};
+  });
+  if(!values.length||values.some(function(entry){return !entry.item||entry.quantity<1||entry.quantity>entry.item.omsAvailable})){showToast('数量需大于 0 且不能超过 OMS 可用库存','warning');return}
+  if(values.some(function(entry){return entry.quantity<entry.item.reserved})){showToast('数量不能小于该 SKU 的已预占数量','warning');return}
+  if(values.some(function(entry){return entry.minOrder<=0||entry.minOrder>=entry.item.omsAvailable})){showToast('最小起订量必须大于 0 且小于 OMS 可用库存','warning');return}
+  if(values.some(function(entry){return !manageValidPrice(entry.priceValue)})){showToast('售卖价格需大于 0，且最多保留 2 位小数','warning');return}
+  values.forEach(function(entry){entry.item.visible=entry.visible;entry.item.markedQty=entry.quantity;entry.item.moq=entry.minOrder;entry.item.sellingPrice=Number(Number(entry.priceValue).toFixed(2));delete manageMarkedSelectedSkus[entry.item.sku]});
+  closeManageBatchEdit();renderManageWorkspace();showToast('批量修改成功');
+}
+function openManageBatchUnmark(){
+  var items=getSelectedMarkedItems();
+  if(!items.length){showToast('请先选择美国货盘中的 SKU','warning');return}
+  var blocked=items.filter(function(item){return item.reserved>0});
+  if(blocked.length){showToast('所选商品中有 '+blocked.length+' 个 SKU 存在已预占数量，暂不能移出','warning');return}
+  document.getElementById('manage-batch-unmark-list').innerHTML=items.map(function(item){return '<div>'+manageSkuCell(item)+'<span>展示数量 <strong>'+manageNumber(item.markedQty)+'</strong></span></div>'}).join('');
+  document.getElementById('manage-batch-unmark-modal').classList.add('open');
+}
+function closeManageBatchUnmark(){document.getElementById('manage-batch-unmark-modal').classList.remove('open')}
+function confirmManageBatchUnmark(){
+  var items=getSelectedMarkedItems();
+  if(!items.length){closeManageBatchUnmark();return}
+  if(items.some(function(item){return item.reserved>0})){closeManageBatchUnmark();showToast('所选 SKU 的预占状态已变化，请重新选择','warning');renderManageWorkspace();return}
+  items.forEach(function(item){item.marked=false;item.markedQty=0;item.visible=false;delete manageMarkedSelectedSkus[item.sku]});
+  closeManageBatchUnmark();renderManageWorkspace();showToast('已批量移出美国货盘');
 }
 function openManagePreview(sku){
   var item=findManageItem(sku);if(!item)return;
@@ -394,6 +499,7 @@ document.querySelectorAll('[data-manage-tab]').forEach(function(button){button.a
 document.querySelector('.tray-management-workspace').addEventListener('click',function(event){
   var sort=event.target.closest('[data-manage-sort]');if(sort){changeManageSort(sort.dataset.manageSort);return}
   var adjust=event.target.closest('[data-manage-adjust]');if(adjust){openManageModal('adjust',adjust.dataset.manageAdjust);return}
+  var price=event.target.closest('[data-manage-price]');if(price){openManageModal('price',price.dataset.managePrice);return}
   var unmark=event.target.closest('[data-manage-unmark]');if(unmark){unmarkManageItem(unmark.dataset.manageUnmark);return}
   var mark=event.target.closest('[data-manage-mark]');if(mark){openManageModal('mark',mark.dataset.manageMark);return}
   var preview=event.target.closest('[data-manage-preview]');if(preview)openManagePreview(preview.dataset.managePreview);
@@ -410,17 +516,30 @@ document.querySelector('.tray-management-workspace').addEventListener('change',f
     if(event.target.checked)manageSelectedSkus[event.target.dataset.manageSelect]=true;
     else delete manageSelectedSkus[event.target.dataset.manageSelect];
     updateManageBatchSelection();
+    return;
   }
+  if(event.target.matches('[data-manage-marked-select]')){
+    if(event.target.checked)manageMarkedSelectedSkus[event.target.dataset.manageMarkedSelect]=true;
+    else delete manageMarkedSelectedSkus[event.target.dataset.manageMarkedSelect];
+    updateManageMarkedSelection();
+  }
+});
+document.getElementById('manage-marked-select-all').addEventListener('change',function(){
+  var checked=this.checked;
+  getManagePageData(getSortedMarkedInventory(),'marked').forEach(function(item){if(checked)manageMarkedSelectedSkus[item.sku]=true;else delete manageMarkedSelectedSkus[item.sku]});
+  renderMarkedInventory();
 });
 document.getElementById('manage-select-all').addEventListener('change',function(){
   var checked=this.checked;
-  getManagePageData(getFilteredUnmarkedInventory(),'unmarked').forEach(function(item){if(item.omsAvailable>0){if(checked)manageSelectedSkus[item.sku]=true;else delete manageSelectedSkus[item.sku]}});
+  getManagePageData(getFilteredUnmarkedInventory(),'unmarked').forEach(function(item){if(item.omsAvailable>1){if(checked)manageSelectedSkus[item.sku]=true;else delete manageSelectedSkus[item.sku]}});
   renderUnmarkedInventory();
 });
 document.getElementById('manage-search').addEventListener('click',function(){managePages.marked=1;managePages.unmarked=1;renderManageWorkspace()});
 document.getElementById('manage-reset').addEventListener('click',function(){document.getElementById('manage-filter-code').value='';document.getElementById('manage-filter-name').value='';managePages.marked=1;managePages.unmarked=1;renderManageWorkspace()});
 document.querySelector('.manage-filter-bar').addEventListener('keydown',function(event){if(event.key==='Enter'){event.preventDefault();managePages.marked=1;managePages.unmarked=1;renderManageWorkspace()}});
 document.getElementById('manage-batch-mark').addEventListener('click',openManageBatchModal);
+document.getElementById('manage-batch-edit').addEventListener('click',openManageBatchEdit);
+document.getElementById('manage-batch-unmark').addEventListener('click',openManageBatchUnmark);
 document.getElementById('manage-export').addEventListener('click',exportManageInventory);
 document.getElementById('manage-page-prev').addEventListener('click',function(){changeManagePage(-1)});
 document.getElementById('manage-page-next').addEventListener('click',function(){changeManagePage(1)});
@@ -428,6 +547,15 @@ document.getElementById('manage-batch-close').addEventListener('click',closeMana
 document.getElementById('manage-batch-cancel').addEventListener('click',closeManageBatchModal);
 document.getElementById('manage-batch-confirm').addEventListener('click',confirmManageBatch);
 document.getElementById('manage-batch-modal').addEventListener('click',function(event){if(event.target===this)closeManageBatchModal()});
+document.getElementById('manage-batch-edit-close').addEventListener('click',closeManageBatchEdit);
+document.getElementById('manage-batch-edit-cancel').addEventListener('click',closeManageBatchEdit);
+document.getElementById('manage-batch-edit-confirm').addEventListener('click',confirmManageBatchEdit);
+document.getElementById('manage-batch-edit-modal').addEventListener('click',function(event){if(event.target===this)closeManageBatchEdit()});
+document.getElementById('manage-batch-edit-modal').addEventListener('change',function(event){if(event.target.matches('.manage-batch-edit-visible'))event.target.closest('.visibility-switch').querySelector('b').textContent=event.target.checked?'可见':'隐藏'});
+document.getElementById('manage-batch-unmark-close').addEventListener('click',closeManageBatchUnmark);
+document.getElementById('manage-batch-unmark-cancel').addEventListener('click',closeManageBatchUnmark);
+document.getElementById('manage-batch-unmark-confirm').addEventListener('click',confirmManageBatchUnmark);
+document.getElementById('manage-batch-unmark-modal').addEventListener('click',function(event){if(event.target===this)closeManageBatchUnmark()});
 document.getElementById('manage-sku-select').addEventListener('change',refreshManageModalValues);
 document.getElementById('manage-mark-close').addEventListener('click',closeManageModal);
 document.getElementById('manage-mark-cancel').addEventListener('click',closeManageModal);
@@ -445,7 +573,7 @@ document.addEventListener('focusin',function(event){if(event.target.matches('.ta
 document.addEventListener('focusout',function(event){if(event.target.matches('.table-header-help[data-tooltip]'))hideManageTableHelp()});
 document.querySelectorAll('.tray-management-workspace .table-scroll').forEach(function(scroller){scroller.addEventListener('scroll',function(){hideManageAgeDetail();hideManageTableHelp()})});
 window.addEventListener('resize',function(){hideManageAgeDetail();hideManageTableHelp()});
-document.addEventListener('keydown',function(event){if(event.key==='Escape'){closeManageModal();closeManageBatchModal();closeManagePreview()}});
+document.addEventListener('keydown',function(event){if(event.key==='Escape'){closeManageModal();closeManageBatchModal();closeManageBatchEdit();closeManageBatchUnmark();closeManagePreview()}});
 window.addEventListener('oms-role-change',function(event){currentRole=event.detail.role});
 
 renderManageWorkspace();

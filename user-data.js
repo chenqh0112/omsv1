@@ -33,12 +33,13 @@
   ];
   var orders=window.OMS_ORDER_DATA||[];
   window.OMS_USER_DATA=baseUsers.map(function(item,index){
-    var userOrders=orders.filter(function(order){return order.userName===item[0]});
+    var userId='USR-'+String(1001+index);
+    var userOrders=orders.filter(function(order){return order.userId===userId});
     return {
-      id:'USR-'+String(1001+index),userName:item[0],company:item[1],type:item[2],email:item[3],phone:item[4],
+      id:userId,userName:item[0],company:item[1],type:item[2],email:item[3],phone:item[4],
       registeredAt:'2026-'+String(8-(index%7)).padStart(2,'0')+'-'+String(2+(index*3)%25).padStart(2,'0'),
       lastLogin:index%7===0?'2026-06-'+String(10+index%15).padStart(2,'0')+' 09:20':'2026-08-'+String(27-index%24).padStart(2,'0')+' '+String(8+index%10).padStart(2,'0')+':'+String((index*7)%60).padStart(2,'0'),
-      status:index%9===0?'冻结':'正常',orderCount:userOrders.length,
+      status:index%9===8?'冻结':'正常',orderCount:userOrders.length,
       totalSpend:userOrders.reduce(function(sum,order){return sum+(order.status==='已关闭'?0:order.amount)},0)
     };
   });

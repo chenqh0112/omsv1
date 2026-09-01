@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>全局说明 — 独立站</title>
   <link rel="stylesheet" href="styles.css?v=20260831-order-flow">
-  <script src="navigation.js?v=20260901-public-ui-label" defer></script>
+  <script src="navigation.js?v=20260901-auth-state" defer></script>
 </head>
 <body data-page="global-overview">
 <aside class="app-nav">
@@ -34,6 +34,19 @@
       </ol>
     </section>
 
+    <section class="global-oms-confirmation page-section" aria-labelledby="global-idempotency-title">
+      <header>
+        <h2 id="global-idempotency-title">接口失败和重复提交</h2>
+      </header>
+      <ul>
+        <li>所有创建和提交操作必须携带本站业务单号，包括订单创建、退货申请、退货处理指令和费用生成。</li>
+        <li>本站业务单号同时作为幂等依据；同一业务单号的重复点击、网络重试和人工重试只能成功一次。</li>
+        <li>订单重复提交或重复审核时，只允许 OMS 生成一笔订单，并保存本站订单号、OMS订单号和包裹号的对应关系。</li>
+        <li>接口失败必须保留失败原因、请求时间、重试时间、重试次数和最终结果，不得用后一次结果覆盖历史记录。</li>
+        <li>退货指令和费用冲销同样执行上述规则，避免仓库收到重复作业指令或账单产生重复费用。</li>
+      </ul>
+    </section>
+
     <section class="order-diagram-section" aria-labelledby="order-flow-title">
       <header class="order-diagram-head">
         <div><h2 id="order-flow-title">订单流程图</h2><p>从对公选品下单到 OMS 履约、异常审核和售后退货</p></div>
@@ -46,14 +59,14 @@
           <span class="flow-arrow" aria-hidden="true">→</span>
           <div class="flow-node site"><strong>独立站创建本地订单</strong><span>保存用户、SKU、金额与收货信息</span></div>
           <span class="flow-arrow" aria-hidden="true">→</span>
-          <div class="flow-node decision"><strong>订单规则校验</strong><span>金额 / 首单 / 数量 / OMS库存锁定</span></div>
+          <div class="flow-node decision"><strong>本站规则校验</strong><span>金额 / 首单 / 历史购买数量</span></div>
         </div>
 
         <div class="order-flow-branches">
           <article class="flow-branch normal">
             <div class="flow-branch-label"><span>未命中规则</span><strong>自动进入正常履约</strong></div>
             <div class="flow-vertical-list">
-              <div class="flow-node oms"><strong>创建 OMS 订单</strong><span>保存本地订单、OMS订单与包裹编号关系</span></div>
+              <div class="flow-node oms"><strong>创建 OMS 订单并锁库存</strong><span>以本站业务单号幂等提交，保存OMS订单与包裹关系</span></div>
               <span class="flow-down" aria-hidden="true">↓</span>
               <div class="flow-status-track">
                 <span>待分配仓库</span><b aria-hidden="true">→</b><span>待仓库拣货</span><b aria-hidden="true">→</b><span>待物流收揽</span><b aria-hidden="true">→</b><span class="done">已发货</span>
@@ -65,10 +78,10 @@
           <article class="flow-branch review">
             <div class="flow-branch-label"><span>命中任一规则</span><strong>进入待审核</strong></div>
             <div class="flow-review-rules">
-              <span>金额 &gt; $5,000</span><span>新用户首单</span><span>数量 &gt; 历史均值 3 倍</span><span>OMS 库存锁定失败</span>
+              <span>金额 &gt; $5,000</span><span>新用户首单</span><span>数量 &gt; 历史均值 3 倍</span><span>或 OMS 库存锁定失败后转入</span>
             </div>
             <div class="flow-review-actions">
-              <div><strong>审核通过</strong><span>重新发起库存锁定</span><em>成功 → 待分配仓库</em><em>失败 → 商品缺货</em></div>
+              <div><strong>审核通过</strong><span>再次以同一业务单号创建 OMS 订单并锁库存</span><em>成功 → 待分配仓库</em><em>失败 → 保留失败原因并继续待审核</em></div>
               <div><strong>关闭订单</strong><span>填写关闭原因</span><em>订单状态 → 已关闭</em></div>
             </div>
           </article>
