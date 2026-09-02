@@ -2,48 +2,28 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>美国货盘V2 — 独立站</title>
+<title>蜂鸟美国货盘页面 — 美国货盘PRD</title>
 <link rel="stylesheet" href="styles.css?v=20260901-auth-state">
 <script src="navigation.js?v=20260901-auth-state" defer></script>
 </head>
 <body data-page="tray-v2">
 <aside class="app-nav">
-  <div class="nav-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M9 22V12h6v10"></path></svg>独立站</div>
+  <div class="nav-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M9 22V12h6v10"></path></svg>美国货盘PRD</div>
   <nav class="nav-list"></nav>
-  <div class="nav-footer">独立站</div>
+  <div class="nav-footer">美国货盘PRD</div>
 </aside>
 
 <div class="app-content v2-app-content">
-  <section class="v2-buyer-login" id="v2-buyer-login" aria-labelledby="v2-buyer-login-title">
-    <div class="v2-buyer-login-shell">
-      <div class="v2-buyer-login-content">
-        <a class="v2-buyer-login-brand" href="cargo-tray-v2.html" aria-label="美国货盘首页"><span class="v2-brand-mark">US</span><span><strong>美国货盘</strong><small>WHOLESALE MARKET</small></span></a>
-        <div class="v2-buyer-login-heading"><h1 id="v2-buyer-login-title">美国货盘登录</h1><p>使用对公采购账号登录</p></div>
-        <form class="v2-buyer-login-form" id="v2-buyer-login-form" novalidate>
-          <div class="login-field"><label for="v2-buyer-account">账号</label><input id="v2-buyer-account" type="text" autocomplete="username" placeholder="请输入对公采购账号" required></div>
-          <div class="login-field"><label for="v2-buyer-password">密码</label><input id="v2-buyer-password" type="password" autocomplete="current-password" placeholder="请输入密码" required></div>
-          <label class="remember-row"><input type="checkbox" id="v2-buyer-remember">记住账号</label>
-          <p class="login-feedback" id="v2-buyer-login-feedback" role="alert" hidden></p>
-          <button class="btn v2-buyer-login-submit" type="submit">登录美国货盘</button>
-        </form>
-        <div class="v2-buyer-admin-entry"><span>管理端用户</span><a href="login.html">前往管理端登录</a></div>
-      </div>
-    </div>
-  </section>
-  <main class="v2-page-body" id="v2-storefront" hidden>
+  <main class="v2-page-body" id="v2-storefront">
     <header class="v2-storefront-header" aria-label="美国货盘商城导航">
     <section class="v2-market-toolbar" aria-label="美国货盘商品搜索">
-      <a class="v2-store-brand" href="cargo-tray-v2.html" aria-label="美国货盘首页"><span class="v2-brand-mark">US</span><span><strong>美国货盘</strong><small>WHOLESALE MARKET</small></span></a>
-      <form class="v2-top-search" id="v2-search-form" role="search">
-        <label class="sr-only" for="v2-search-input">搜索商品名称</label>
-        <span class="v2-search-field"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg><input id="v2-search-input" type="search" placeholder="搜索商品名称" autocomplete="off"></span>
-        <button class="v2-search-submit" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg><span>搜索</span></button>
-      </form>
+      <a class="v2-store-brand hummingbird-logo" href="cargo-tray-v2.html" aria-label="蜂鸟定制首页"><img class="hummingbird-logo-image" src="assets/hummingbird-logo.png" alt="蜂鸟定制"></a>
       <div class="v2-toolbar-actions">
+        <button class="v2-notification-trigger" id="v2-notifications" type="button" aria-label="通知" title="通知"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"></path></svg><span class="v2-notification-badge">1</span></button>
         <button class="order-history-trigger v2-header-cart" id="v2-header-cart" type="button" aria-label="查看购物车" title="查看购物车"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="20" r="1"></circle><circle cx="19" cy="20" r="1"></circle><path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 2-1.6L21 7H6"></path></svg><span id="v2-header-cart-count">0</span></button>
         <button class="order-history-trigger" id="v2-orders-open" type="button" aria-label="我的订单" title="我的订单"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 2h9l4 4v16H6z"></path><path d="M14 2v5h5M9 12h7M9 16h7"></path></svg><span id="v2-order-count">0</span></button>
         <div class="v2-user-menu">
-          <button class="v2-user-trigger" id="v2-user-trigger" type="button" aria-haspopup="menu" aria-expanded="false"><span id="v2-user-avatar">采</span><span class="v2-user-copy"><small>对公用户</small><strong id="v2-user-name">采购用户A</strong></span><b>⌄</b></button>
+          <button class="v2-user-trigger" id="v2-user-trigger" type="button" aria-haspopup="menu" aria-expanded="false"><span id="v2-user-avatar" class="v2-user-bird" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 16c3-1 4-4 4-8 3 1 6 3 7 6 1 3-1 5-4 5-3 0-5-1-7-3Z"></path><path d="m15 8 4-2-1 4"></path></svg></span><span class="v2-user-copy"><strong id="v2-user-name">CC测试</strong><em>企业版</em></span><b>⌄</b></button>
           <div class="v2-user-dropdown" id="v2-user-dropdown" role="menu"><button type="button" data-v2-account-view="favorites" role="menuitem"><span>♡</span>我的收藏</button><button type="button" data-v2-account-view="addresses" role="menuitem"><span>⌖</span>地址管理</button><button type="button" id="v2-logout" class="danger" role="menuitem"><span>↗</span>退出登录</button></div>
         </div>
       </div>
@@ -58,14 +38,13 @@
     <section class="v2-account-page" id="v2-account-page" hidden><div class="v2-account-page-head"><button type="button" id="v2-account-back"><span>‹</span>返回商品列表</button><div><h2 id="v2-account-title">我的订单</h2><p id="v2-account-subtitle"></p></div></div><div class="v2-account-page-body" id="v2-account-page-body"></div></section>
     <section class="v2-product-detail" id="v2-product-detail" hidden aria-live="polite"></section>
     <div class="v2-catalog-view" id="v2-catalog-view">
-    <section class="v2-catalog-controls" aria-label="商品列表筛选与排序">
-      <div class="v2-filter-cluster"><strong>美国现货</strong><div class="v2-status-segments" role="group" aria-label="库存状态">
-        <button class="active" type="button" data-v2-status="全部">全部</button>
-        <button type="button" data-v2-status="充足"><span class="v2-status-dot full"></span>充足</button>
-        <button type="button" data-v2-status="偏少"><span class="v2-status-dot low"></span>偏少</button>
-        <button type="button" data-v2-status="缺货"><span class="v2-status-dot out"></span>缺货</button>
-      </div>
-      </div><div class="v2-result-tools"><label class="v2-sort-control"><span>排序</span><select id="v2-sort"><option value="recommended">综合排序</option><option value="price-asc">价格从低到高</option><option value="price-desc">价格从高到低</option><option value="stock-desc">库存从高到低</option></select></label><button class="btn btn-primary v2-batch-add" id="v2-batch-add" type="button" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="20" r="1"></circle><circle cx="19" cy="20" r="1"></circle><path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 2-1.6L21 7H6"></path><path d="M12 8v6M9 11h6"></path></svg><span>批量添加到购物车</span><b id="v2-selected-count">0</b></button></div>
+    <section class="v2-catalog-controls" aria-label="商品列表搜索与排序">
+      <form class="v2-top-search v2-catalog-search" id="v2-search-form" role="search">
+        <label class="sr-only" for="v2-search-input">搜索商品名称</label>
+        <span class="v2-search-field"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg><input id="v2-search-input" type="search" placeholder="搜索商品名称" autocomplete="off"></span>
+        <button class="v2-search-submit" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg><span>搜索</span></button>
+      </form>
+      <div class="v2-result-tools"><label class="v2-sort-control"><span>排序</span><select id="v2-sort"><option value="recommended">综合排序</option><option value="price-asc">价格从低到高</option><option value="price-desc">价格从高到低</option><option value="stock-desc">库存从高到低</option></select></label><button class="btn btn-ghost v2-order-import-open" id="v2-order-import-open" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"></path><path d="M5 20h14"></path></svg><span>订单导入</span></button><button class="btn btn-primary v2-batch-add" id="v2-batch-add" type="button" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="20" r="1"></circle><circle cx="19" cy="20" r="1"></circle><path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 2-1.6L21 7H6"></path><path d="M12 8v6M9 11h6"></path></svg><span>批量添加到购物车</span><b id="v2-selected-count">0</b></button></div>
     </section>
     <section class="v2-product-grid" id="v2-product-grid" aria-live="polite"></section>
     <div class="pagination v2-pagination">
@@ -132,6 +111,22 @@
 <div class="modal-overlay" id="v2-order-detail-modal" role="dialog" aria-modal="true" aria-labelledby="v2-order-detail-title"><div class="modal v2-order-detail-modal"><div class="modal-head"><h3 id="v2-order-detail-title">订单详情</h3><button class="close" type="button" id="v2-order-detail-close" aria-label="关闭订单详情">&times;</button></div><div class="modal-body" id="v2-order-detail-content"></div><div class="modal-footer"><button class="btn btn-primary" type="button" id="v2-order-detail-confirm">关闭</button></div></div></div>
 <div class="modal-overlay" id="v2-return-modal" role="dialog" aria-modal="true" aria-labelledby="v2-return-title"><div class="modal v2-return-modal"><div class="modal-head"><h3 id="v2-return-title">申请退货</h3><button class="close" type="button" id="v2-return-close" aria-label="关闭申请退货">&times;</button></div><div class="modal-body"><p class="v2-return-order" id="v2-return-order"></p><div class="v2-return-items" id="v2-return-items"></div><div class="manage-form-field"><label for="v2-return-reason">退货原因</label><select id="v2-return-reason"><option>质量问题</option><option>错发</option><option>买家拒收</option><option>多退</option></select></div><div class="manage-form-field"><label for="v2-return-note">退货说明</label><textarea id="v2-return-note" rows="3" placeholder="请补充退货情况"></textarea></div></div><div class="modal-footer"><button class="btn btn-ghost" type="button" id="v2-return-cancel">取消</button><button class="btn btn-primary" type="button" id="v2-return-submit">提交退货申请</button></div></div></div>
 
+<div class="modal-overlay" id="v2-order-import-modal" role="dialog" aria-modal="true" aria-labelledby="v2-order-import-title">
+  <div class="modal v2-order-import-modal">
+    <div class="modal-head"><div><h3 id="v2-order-import-title">订单导入</h3><p class="v2-order-import-subtitle">导入平台订单或模板订单，确认物流后创建订单</p></div><button class="close" type="button" id="v2-order-import-close" aria-label="关闭订单导入">&times;</button></div>
+    <div class="v2-order-import-steps" role="list" aria-label="订单导入进度"><div class="v2-order-import-step active" data-import-step-indicator="1"><b>1</b><span>文件导入</span></div><i></i><div class="v2-order-import-step" data-import-step-indicator="2"><b>2</b><span>订单预览</span></div><i></i><div class="v2-order-import-step" data-import-step-indicator="3"><b>3</b><span>物流信息</span></div></div>
+    <div class="modal-body v2-order-import-body">
+      <section class="v2-import-step-panel" data-import-panel="1">
+        <div class="v2-import-mode" role="radiogroup" aria-label="订单导入方式"><label class="v2-import-mode-option active"><input type="radio" name="v2-import-mode" value="platform" checked><span><strong>平台订单导入</strong><small>导入亚马逊、沃尔玛等平台订单</small></span></label><label class="v2-import-mode-option"><input type="radio" name="v2-import-mode" value="template"><span><strong>模板导入</strong><small>按模板整理后批量导入订单</small></span></label></div>
+        <div class="v2-import-upload-card"><div class="v2-import-upload-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"></path><path d="M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"></path></svg></div><strong id="v2-import-upload-title">上传平台订单文件</strong><p id="v2-import-upload-copy">支持 TXT、XLS、XLSX 格式，当前仅展示匹配成功的订单预览</p><label class="btn btn-ghost v2-import-file-label" for="v2-import-file">选择文件<input id="v2-import-file" type="file" accept=".txt,.xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/plain"></label><span id="v2-import-file-name" class="v2-import-file-name">尚未选择文件</span><a id="v2-import-template-link" class="v2-import-template-link" href="#" download="蜂鸟订单导入模板.txt" hidden>下载订单导入模板</a></div>
+      </section>
+      <section class="v2-import-step-panel" data-import-panel="2" hidden><div class="v2-import-preview-head"><div><h4>订单预览</h4><p>仅展示 SKU 匹配成功的订单数据，平台订单金额可为空</p></div><span class="v2-import-preview-count" id="v2-import-preview-count">0 笔订单</span></div><div class="v2-import-preview-wrap"><table class="data-table v2-import-preview-table"><thead><tr><th>订单编号</th><th>SKU</th><th>产品数量</th><th>平台</th><th>订单金额</th><th>收件人</th><th>收货信息</th></tr></thead><tbody id="v2-import-preview-body"></tbody></table></div></section>
+      <section class="v2-import-step-panel" data-import-panel="3" hidden><div class="v2-logistics-choice"><div><h4>物流信息</h4><p>请选择订单创建后使用的物流方式，面单暂不需要上传</p></div><div class="manage-form-field"><label for="v2-import-logistics">系统快递</label><select id="v2-import-logistics"><option value="">请选择快递公司</option><option>USPS</option><option>FenEx</option><option>UPS</option><option>燕文物流</option><option>亚马逊物流</option><option>顺丰速运</option><option>圆通速递</option><option>GoFor</option><option>UniUni</option></select></div><label class="v2-own-carrier-option"><input type="checkbox" id="v2-import-own-carrier"><span><strong>使用自己的快递账号</strong><small>订单会记录为自有账号配送</small></span></label><div class="manage-form-field v2-own-carrier-field" id="v2-own-carrier-field" hidden><label for="v2-import-own-carrier-name">快递账号</label><input id="v2-import-own-carrier-name" type="text" placeholder="请输入快递公司或账号名称"></div><div class="v2-import-no-label"><span>面单上传</span><strong>暂不需要上传，订单创建后由物流流程处理</strong></div></div></section>
+    </div>
+    <div class="modal-footer v2-order-import-footer"><button class="btn btn-ghost" type="button" id="v2-order-import-back" hidden>上一步</button><span class="v2-import-footer-spacer"></span><button class="btn btn-ghost" type="button" id="v2-order-import-cancel">取消</button><button class="btn btn-primary" type="button" id="v2-order-import-next">下一步</button><button class="btn btn-primary" type="button" id="v2-order-import-submit" hidden>创建订单</button></div>
+  </div>
+</div>
+
 <div class="product-preview" id="product-preview" role="dialog" aria-modal="true" aria-label="SKU图片预览">
   <button class="product-preview-close" type="button" aria-label="关闭图片预览" title="关闭">&times;</button><img id="product-preview-image" src="" alt=""><div class="product-preview-caption" id="product-preview-caption"></div>
 </div>
@@ -163,13 +158,13 @@ var v2Addresses=[];var v2PendingDeleteAddressId='';
 function v2UserStorageId(){return v2BuyerSession&&v2BuyerSession.userId?v2BuyerSession.userId:'guest'}
 function v2AddressStorageKey(){return 'oms-v2-addresses-'+encodeURIComponent(v2UserStorageId())}
 function v2FavoriteStorageKey(){return 'oms-v2-favorites-'+encodeURIComponent(v2UserStorageId())}
-function loadV2Addresses(){var accountName=v2BuyerSession&&v2BuyerSession.userName?v2BuyerSession.userName:'采购用户A';var seed=v2AddressSeed.map(function(item){return Object.assign({},item,{recipient:accountName})});var saved=null;try{saved=JSON.parse(localStorage.getItem(v2AddressStorageKey())||'null')}catch(error){}v2Addresses=Array.isArray(saved)?saved:seed}
+function loadV2Addresses(){var accountName=v2BuyerSession&&v2BuyerSession.userName?v2BuyerSession.userName:'CC测试';var seed=v2AddressSeed.map(function(item){return Object.assign({},item,{recipient:accountName})});var saved=null;try{saved=JSON.parse(localStorage.getItem(v2AddressStorageKey())||'null')}catch(error){}v2Addresses=Array.isArray(saved)?saved:seed}
 function loadV2Favorites(){v2Favorites={};try{JSON.parse(localStorage.getItem(v2FavoriteStorageKey())||'[]').forEach(function(sku){v2Favorites[sku]=true})}catch(error){}}
 function findV2Buyer(account){var key=String(account||'').trim().toLowerCase();return (window.OMS_USER_DATA||[]).find(function(user){return user.userName.toLowerCase()===key||user.email.toLowerCase()===key})}
 function isV2BuyerSessionValid(){return Boolean(v2BuyerSession&&v2BuyerSession.userId&&Number(v2BuyerSession.expiresAt)>Date.now())}
 function refreshV2BuyerData(){if(!v2BuyerSession)return;var allOrders=(window.OMS_ORDER_DATA||[]).slice();try{JSON.parse(localStorage.getItem('oms-v2-created-orders')||'[]').forEach(function(order){if(!allOrders.some(function(item){return item.idempotencyKey===order.idempotencyKey}))allOrders.unshift(order)})}catch(error){}v2Orders=allOrders.filter(function(order){return order.userId===v2BuyerSession.userId});loadV2Favorites();loadV2Addresses();document.getElementById('v2-order-count').textContent=v2Orders.length}
-function setV2LoginFeedback(message){var feedback=document.getElementById('v2-buyer-login-feedback');feedback.textContent=message||'';feedback.hidden=!message}
-function invalidateV2BuyerSession(){sessionStorage.removeItem('oms-v2-buyer-session');v2BuyerSession=null;v2Cart={};v2Selected={};setV2BuyerLoginState(false);setV2LoginFeedback('登录状态已失效，请重新登录');if(window.showToast)showToast('登录状态已失效，请重新登录','warning')}
+function ensureV2BuyerSession(){if(!v2BuyerSession||!v2BuyerSession.userId||!isV2BuyerSessionValid()){v2BuyerSession={userId:'USR-1001',userName:'CC测试',createdAt:Date.now(),expiresAt:Date.now()+8*60*60*1000};try{sessionStorage.setItem('oms-v2-buyer-session',JSON.stringify(v2BuyerSession))}catch(error){}}return v2BuyerSession}
+function invalidateV2BuyerSession(){sessionStorage.removeItem('oms-v2-buyer-session');v2BuyerSession=null;v2Cart={};v2Selected={};closeV2Cart();closeV2Checkout();closeV2AddressModal();closeV2AddressDelete();closeV2Category();setV2BuyerLoginState(false);if(window.showToast)showToast('已退出美国货盘，登录状态已清除')}
 var v2Categories=[
   {id:'recommended',name:'推荐分类',subtitle:'常用采购商品与热门规格',match:function(){return true}},
   {id:'thermal',name:'保温杯',subtitle:'通勤、商务与礼赠保温杯',match:function(item){return item.name.indexOf('保温')>-1||item.name.indexOf('真空')>-1}},
@@ -188,7 +183,7 @@ function v2NormalizeQuantity(item,value){if(!v2CanBuy(item))return 0;var quantit
 function v2PurchaseMessage(item){return item.available<item.moq?'库存不足最小起订量':item.sellableStatus}
 function validateV2Purchase(item,quantity){if(!item)return {ok:false,message:'商品不存在或已下架'};if(item.available<item.moq)return {ok:false,message:'库存不足最小起订量'};if(quantity<item.moq)return {ok:false,message:'购买数量不能低于最小起订量 '+item.moq+' 件'};if(quantity>item.available)return {ok:false,message:'购买数量超过当前可售数量'};if(item.mustBuyMultiple&&quantity%item.moq!==0)return {ok:false,message:'购买数量不符合最小起订量规则'};return {ok:true}}
 function validateV2Cart(){var skus=Object.keys(v2Cart);for(var index=0;index<skus.length;index++){var entry=v2Cart[skus[index]];var current=v2Data.find(function(item){return item.barcode===entry.item.barcode});if(!current)return {ok:false,message:'购物车中有商品已下架'};if(Number(entry.unitPriceSnapshot)!==Number(current.unitPrice)){entry.item=current;entry.unitPriceSnapshot=current.unitPrice;updateV2Cart();return {ok:false,message:'商品价格已变化，购物车已更新，请重新确认'}}var result=validateV2Purchase(current,entry.quantity);if(!result.ok)return result}return {ok:true}}
-function setV2BuyerLoginState(loggedIn){var storefront=document.getElementById('v2-storefront');document.body.classList.toggle('v2-buyer-login-active',!loggedIn);document.getElementById('v2-buyer-login').hidden=loggedIn;storefront.hidden=false;storefront.inert=!loggedIn;storefront.setAttribute('aria-hidden',loggedIn?'false':'true');document.getElementById('v2-order-cart-toggle').hidden=!loggedIn;if(loggedIn){var name=v2BuyerSession&&v2BuyerSession.userName?v2BuyerSession.userName:'采购用户A';document.getElementById('v2-user-name').textContent=name;document.getElementById('v2-user-avatar').textContent=name.charAt(0)||'采';scheduleV2PageSize()}else{closeV2Cart();closeV2Checkout();closeV2AddressModal();closeV2AddressDelete();closeV2Category();setTimeout(function(){document.getElementById('v2-buyer-account').focus()},0)}}
+function setV2BuyerLoginState(){var storefront=document.getElementById('v2-storefront');if(!storefront)return;storefront.hidden=false;storefront.inert=false;storefront.setAttribute('aria-hidden','false');document.body.classList.remove('v2-buyer-login-active');var name=v2BuyerSession&&v2BuyerSession.userName?v2BuyerSession.userName:'CC测试';var userName=document.getElementById('v2-user-name');if(userName)userName.textContent=name;var avatar=document.getElementById('v2-user-avatar');if(avatar&&!avatar.querySelector('svg'))avatar.textContent=name.charAt(0)||'C';var cartToggle=document.getElementById('v2-order-cart-toggle');if(cartToggle)cartToggle.hidden=false;scheduleV2PageSize()}
 function v2Card(item){
   var disabled=!v2CanBuy(item);
   var selected=Boolean(v2Selected[item.barcode]);
@@ -373,7 +368,6 @@ document.getElementById('v2-category-trigger').addEventListener('click',function
 document.getElementById('v2-category-close').addEventListener('click',closeV2Category);
 document.getElementById('v2-category-panel').addEventListener('click',function(event){var category=event.target.closest('[data-v2-category]');if(category){renderV2Category(category.dataset.v2Category);return}var product=event.target.closest('[data-v2-category-product]');if(product){document.getElementById('v2-search-input').value=product.dataset.v2CategoryProduct;showV2Catalog();closeV2Category();applyV2Filters()}});
 document.querySelector('.v2-store-nav').addEventListener('click',function(event){var status=event.target.closest('[data-v2-quick-status]');if(status){showV2Catalog();var target=document.querySelector('[data-v2-status="'+status.dataset.v2QuickStatus+'"]');if(target)target.click();return}var sort=event.target.closest('[data-v2-quick-sort]');if(sort){showV2Catalog();document.getElementById('v2-sort').value=sort.dataset.v2QuickSort;v2Sort=sort.dataset.v2QuickSort;applyV2Filters()}});
-document.querySelector('.v2-status-segments').addEventListener('click',function(event){var button=event.target.closest('[data-v2-status]');if(!button)return;v2StatusFilter=button.dataset.v2Status;this.querySelectorAll('[data-v2-status]').forEach(function(item){item.classList.toggle('active',item===button)});applyV2Filters()});
 document.getElementById('v2-sort').addEventListener('change',function(){v2Sort=this.value;applyV2Filters()});
 document.getElementById('v2-prev').addEventListener('click',function(){v2Page=Math.max(1,v2Page-1);renderV2Products()});
 document.getElementById('v2-next').addEventListener('click',function(){v2Page++;renderV2Products()});
@@ -388,7 +382,7 @@ document.getElementById('v2-checkout-close').addEventListener('click',closeV2Che
 document.getElementById('v2-checkout-back').addEventListener('click',function(){closeV2Checkout();openV2Cart()});
 document.getElementById('v2-checkout-address-book').addEventListener('change',function(){var item=findV2Address(this.value);if(item)fillV2CheckoutAddress(item);else{document.getElementById('v2-recipient').value='';document.getElementById('v2-phone').value='';document.getElementById('v2-address').value='';document.getElementById('v2-postal-code').value='';document.getElementById('v2-recipient').focus()}requestV2FeeQuote(true)});
 ['v2-address','v2-postal-code','v2-logistics'].forEach(function(id){document.getElementById(id).addEventListener('change',function(){if(document.getElementById('v2-checkout-modal').classList.contains('open'))requestV2FeeQuote(true)})});
-document.getElementById('v2-checkout-form').addEventListener('submit',function(event){event.preventDefault();if(v2SubmittingOrder)return;if(!isV2BuyerSessionValid()){invalidateV2BuyerSession();return}var validation=validateV2Cart();if(!validation.ok){showToast(validation.message,'warning');return}var fees=requestV2FeeQuote(true);if(!fees)return;v2SubmittingOrder=true;var submitButton=event.target.querySelector('[type="submit"]');submitButton.disabled=true;var totals=v2CartTotals();var reviewReasons=v2ReviewReasons(totals,fees);var items=Object.keys(v2Cart).map(function(sku){var entry=v2Cart[sku];return {sku:sku,name:entry.item.name,spec:entry.item.spec,img:entry.item.img,quantity:entry.quantity,unitPrice:entry.item.unitPrice,subtotal:entry.item.unitPrice*entry.quantity}});var timestamp=Date.now();var localOrderNo='US-'+new Date().toISOString().slice(0,10).replace(/-/g,'')+'-'+String(timestamp).slice(-6);var omsLockFailed=reviewReasons.length===0&&localStorage.getItem('oms-demo-lock-fail')==='1';if(omsLockFailed)reviewReasons.push('OMS 库存锁定失败');var omsCreated=reviewReasons.length===0;var order={id:localOrderNo,localOrderNo:localOrderNo,omsOrderNo:omsCreated?'OMS-'+String(timestamp).slice(-10):'',idempotencyKey:'ORDER-'+localOrderNo,userId:v2BuyerSession.userId,userName:v2BuyerSession.userName,createdAt:new Date().toLocaleString('zh-CN',{hour12:false}).replace(/\//g,'-'),items:items,productAmount:totals.total,operationFee:fees.oms,logisticsFee:fees.shipping,amount:fees.total,feeSnapshot:Object.assign({},fees,{address:document.getElementById('v2-address').value,postalCode:document.getElementById('v2-postal-code').value,logistics:document.getElementById('v2-logistics').value}),status:reviewReasons.length?'待审核':'待分配仓库',reviewReasons:reviewReasons,logistics:document.getElementById('v2-logistics').value,tracking:'',packages:omsCreated?[{packageNo:'PKG-'+String(timestamp).slice(-10),logistics:document.getElementById('v2-logistics').value,tracking:'',status:'待分配仓库'}]:[],retryRecords:omsLockFailed?[{at:new Date().toISOString(),reason:'OMS 库存锁定失败',result:'待人工重试'}]:[],recipient:document.getElementById('v2-recipient').value,phone:document.getElementById('v2-phone').value,address:document.getElementById('v2-address').value+' '+document.getElementById('v2-postal-code').value};try{var savedOrders=JSON.parse(localStorage.getItem('oms-v2-created-orders')||'[]');if(!savedOrders.some(function(saved){return saved.idempotencyKey===order.idempotencyKey}))savedOrders.unshift(order);localStorage.setItem('oms-v2-created-orders',JSON.stringify(savedOrders));v2Orders.unshift(order);v2Cart={};updateV2Cart();document.getElementById('v2-order-count').textContent=v2Orders.length;closeV2Checkout();event.target.reset();showToast(reviewReasons.length?'本站订单已创建，当前进入待审核':'订单提交成功，OMS 已锁定库存');openV2AccountPage('orders')}catch(error){showToast('订单创建失败，购物车已保留，请稍后重试','warning')}finally{v2SubmittingOrder=false;submitButton.disabled=false}});
+document.getElementById('v2-checkout-form').addEventListener('submit',function(event){event.preventDefault();if(v2SubmittingOrder)return;ensureV2BuyerSession();var validation=validateV2Cart();if(!validation.ok){showToast(validation.message,'warning');return}var fees=requestV2FeeQuote(true);if(!fees)return;v2SubmittingOrder=true;var submitButton=event.target.querySelector('[type="submit"]');submitButton.disabled=true;var totals=v2CartTotals();var reviewReasons=v2ReviewReasons(totals,fees);var items=Object.keys(v2Cart).map(function(sku){var entry=v2Cart[sku];return {sku:sku,name:entry.item.name,spec:entry.item.spec,img:entry.item.img,quantity:entry.quantity,unitPrice:entry.item.unitPrice,subtotal:entry.item.unitPrice*entry.quantity}});var timestamp=Date.now();var localOrderNo='US-'+new Date().toISOString().slice(0,10).replace(/-/g,'')+'-'+String(timestamp).slice(-6);var omsLockFailed=reviewReasons.length===0&&localStorage.getItem('oms-demo-lock-fail')==='1';if(omsLockFailed)reviewReasons.push('OMS 库存锁定失败');var omsCreated=reviewReasons.length===0;var order={id:localOrderNo,localOrderNo:localOrderNo,omsOrderNo:omsCreated?'OMS-'+String(timestamp).slice(-10):'',idempotencyKey:'ORDER-'+localOrderNo,userId:v2BuyerSession.userId,userName:v2BuyerSession.userName,createdAt:new Date().toLocaleString('zh-CN',{hour12:false}).replace(/\//g,'-'),items:items,productAmount:totals.total,operationFee:fees.oms,logisticsFee:fees.shipping,amount:fees.total,feeSnapshot:Object.assign({},fees,{address:document.getElementById('v2-address').value,postalCode:document.getElementById('v2-postal-code').value,logistics:document.getElementById('v2-logistics').value}),status:reviewReasons.length?'待审核':'待分配仓库',reviewReasons:reviewReasons,logistics:document.getElementById('v2-logistics').value,tracking:'',packages:omsCreated?[{packageNo:'PKG-'+String(timestamp).slice(-10),logistics:document.getElementById('v2-logistics').value,tracking:'',status:'待分配仓库'}]:[],retryRecords:omsLockFailed?[{at:new Date().toISOString(),reason:'OMS 库存锁定失败',result:'待人工重试'}]:[],recipient:document.getElementById('v2-recipient').value,phone:document.getElementById('v2-phone').value,address:document.getElementById('v2-address').value+' '+document.getElementById('v2-postal-code').value};try{var savedOrders=JSON.parse(localStorage.getItem('oms-v2-created-orders')||'[]');if(!savedOrders.some(function(saved){return saved.idempotencyKey===order.idempotencyKey}))savedOrders.unshift(order);localStorage.setItem('oms-v2-created-orders',JSON.stringify(savedOrders));v2Orders.unshift(order);v2Cart={};updateV2Cart();document.getElementById('v2-order-count').textContent=v2Orders.length;closeV2Checkout();event.target.reset();showToast(reviewReasons.length?'本站订单已创建，当前进入待审核':'订单提交成功，OMS 已锁定库存');openV2AccountPage('orders')}catch(error){showToast('订单创建失败，购物车已保留，请稍后重试','warning')}finally{v2SubmittingOrder=false;submitButton.disabled=false}});
 document.getElementById('v2-cart-modal').addEventListener('click',function(event){if(event.target===this)closeV2Cart()});
 document.getElementById('v2-checkout-modal').addEventListener('click',function(event){if(event.target===this)closeV2Checkout()});
 document.getElementById('v2-address-form').addEventListener('submit',submitV2Address);document.getElementById('v2-address-close').addEventListener('click',closeV2AddressModal);document.getElementById('v2-address-cancel').addEventListener('click',closeV2AddressModal);document.getElementById('v2-address-modal').addEventListener('click',function(event){if(event.target===this)closeV2AddressModal()});
@@ -399,8 +393,7 @@ document.getElementById('v2-user-dropdown').addEventListener('click',function(ev
 document.getElementById('v2-account-back').addEventListener('click',showV2Catalog);
 document.getElementById('v2-order-detail-close').addEventListener('click',closeV2OrderDetail);document.getElementById('v2-order-detail-confirm').addEventListener('click',closeV2OrderDetail);document.getElementById('v2-order-detail-modal').addEventListener('click',function(event){if(event.target===this)closeV2OrderDetail()});
 document.getElementById('v2-order-detail-modal').addEventListener('click',function(event){var button=event.target.closest('[data-v2-return]');if(button)openV2Return(button.dataset.v2Return)});document.getElementById('v2-return-close').addEventListener('click',closeV2Return);document.getElementById('v2-return-cancel').addEventListener('click',closeV2Return);document.getElementById('v2-return-submit').addEventListener('click',submitV2Return);document.getElementById('v2-return-modal').addEventListener('click',function(event){if(event.target===this)closeV2Return()});
-document.getElementById('v2-buyer-login-form').addEventListener('submit',function(event){event.preventDefault();var account=document.getElementById('v2-buyer-account').value.trim();var buyer=findV2Buyer(account)||(window.OMS_USER_DATA||[]).find(function(user){return user.id==='USR-1001'})||{id:'USR-1001',userName:'采购用户A'};setV2LoginFeedback('');v2BuyerSession={userId:buyer.id,userName:buyer.userName,createdAt:Date.now(),expiresAt:Date.now()+8*60*60*1000};sessionStorage.setItem('oms-v2-buyer-session',JSON.stringify(v2BuyerSession));if(document.getElementById('v2-buyer-remember').checked&&account)localStorage.setItem('oms-v2-buyer-account',account);else localStorage.removeItem('oms-v2-buyer-account');refreshV2BuyerData();setV2BuyerLoginState(true);showToast('登录成功')});
-document.getElementById('v2-logout').addEventListener('click',function(){sessionStorage.removeItem('oms-v2-buyer-session');v2BuyerSession=null;v2Cart={};v2Selected={};document.getElementById('v2-buyer-password').value='';document.getElementById('v2-user-dropdown').classList.remove('open');document.getElementById('v2-user-trigger').setAttribute('aria-expanded','false');showV2Catalog();setV2LoginFeedback('已退出登录，请重新登录');setV2BuyerLoginState(false);showToast('已退出美国货盘，登录状态已清除')});
+document.getElementById('v2-logout').addEventListener('click',function(){invalidateV2BuyerSession();document.getElementById('v2-user-dropdown').classList.remove('open');document.getElementById('v2-user-trigger').setAttribute('aria-expanded','false');showV2Catalog()});
 document.querySelector('.product-preview-close').addEventListener('click',closeV2Preview);
 document.getElementById('product-preview').addEventListener('click',function(event){if(event.target===this)closeV2Preview()});
 document.addEventListener('click',function(event){if(!event.target.closest('.v2-user-menu')){document.getElementById('v2-user-dropdown').classList.remove('open');document.getElementById('v2-user-trigger').setAttribute('aria-expanded','false')}});
@@ -409,11 +402,68 @@ new MutationObserver(function(records){if(records.some(function(record){return r
 window.addEventListener('resize',scheduleV2PageSize);
 setInterval(function(){if(v2BuyerSession&&!isV2BuyerSessionValid())invalidateV2BuyerSession()},30000);
 
-try{document.getElementById('v2-buyer-account').value=localStorage.getItem('oms-v2-buyer-account')||'';document.getElementById('v2-buyer-remember').checked=Boolean(document.getElementById('v2-buyer-account').value)}catch(error){}
-if(v2BuyerSession&&isV2BuyerSessionValid())refreshV2BuyerData();else if(v2BuyerSession){sessionStorage.removeItem('oms-v2-buyer-session');v2BuyerSession=null;setV2LoginFeedback('登录状态已失效，请重新登录')}
+ensureV2BuyerSession();refreshV2BuyerData();
 document.getElementById('v2-order-count').textContent=v2Orders.length;
 var renderV2ProductsBase=renderV2Products;renderV2Products=function(){renderV2ProductsBase();var pages=Math.max(1,Math.ceil(v2Filtered.length/v2PageSize));document.getElementById('v2-current').textContent=v2Page+' / '+pages};renderV2Products();updateV2Cart();updateV2Selection();syncV2PageSize();scheduleV2PageSize();
-setV2BuyerLoginState(isV2BuyerSessionValid());
+setV2BuyerLoginState(true);
+
+/* Order import is intentionally front-end only for now: the flow demonstrates
+   file type selection, matched-order preview and carrier selection without
+   attempting to parse an uploaded file. */
+var v2ImportStep=1;
+var v2ImportOrders=[];
+var v2ImportOrderSeed=0;
+function v2ImportSampleOrders(){
+  var first=v2Data[0],second=v2Data[1],third=v2Data[2];
+  if(!first)return [];
+  function item(source,quantity){return {sku:source.barcode,name:source.name,spec:source.spec,img:source.img,quantity:quantity,unitPrice:source.unitPrice,subtotal:Number((source.unitPrice*quantity).toFixed(2))}}
+  return [
+    {orderNo:'AMZ-20260902-001',platform:'亚马逊',amount:'',recipient:'Olivia Chen',address:'Austin, TX 78701',items:[item(first,8)]},
+    {orderNo:'WM-20260902-018',platform:'沃尔玛',amount:Number(((second?second.unitPrice:0)*4+(third?third.unitPrice:0)*3).toFixed(2)),recipient:'Daniel Lee',address:'Irvine, CA 92612',items:second&&third?[item(second,4),item(third,3)]:[item(first,6)]}
+  ];
+}
+function setV2ImportStep(step){
+  v2ImportStep=Math.max(1,Math.min(3,step));
+  document.querySelectorAll('[data-import-panel]').forEach(function(panel){panel.hidden=Number(panel.dataset.importPanel)!==v2ImportStep});
+  document.querySelectorAll('[data-import-step-indicator]').forEach(function(indicator){var value=Number(indicator.dataset.importStepIndicator);indicator.classList.toggle('active',value===v2ImportStep);indicator.classList.toggle('done',value<v2ImportStep)});
+  document.getElementById('v2-order-import-back').hidden=v2ImportStep===1;
+  document.getElementById('v2-order-import-next').hidden=v2ImportStep===3;
+  document.getElementById('v2-order-import-submit').hidden=v2ImportStep!==3;
+  document.getElementById('v2-order-import-title').textContent=v2ImportStep===1?'订单导入':v2ImportStep===2?'订单预览':'物流信息';
+}
+function renderV2ImportPreview(){
+  v2ImportOrders=v2ImportSampleOrders();
+  document.getElementById('v2-import-preview-count').textContent=v2ImportOrders.length+' 笔订单';
+  document.getElementById('v2-import-preview-body').innerHTML=v2ImportOrders.map(function(order){return '<tr><td><code class="v2-import-order-id">'+v2Escape(order.orderNo)+'</code></td><td><div class="v2-import-sku-list">'+order.items.map(function(item){return '<div class="v2-import-sku-item"><img src="'+v2Escape(item.img)+'" alt=""><span><strong>'+v2Escape(item.name)+'</strong><small>'+v2Escape(item.spec)+' · '+v2Escape(item.sku)+'</small></span></div>'}).join('')+'</div></td><td>'+order.items.reduce(function(sum,item){return sum+item.quantity},0)+' 件</td><td>'+v2Escape(order.platform)+'</td><td>'+(order.amount===''?'<span class="muted">—</span>':v2Money(order.amount))+'</td><td>'+v2Escape(order.recipient)+'</td><td><div class="v2-import-address">'+v2Escape(order.address)+'</div></td></tr>'}).join('');
+}
+function openV2OrderImport(){
+  v2ImportStep=1;v2ImportOrders=[];document.getElementById('v2-import-file').value='';document.getElementById('v2-import-file-name').textContent='尚未选择文件';document.getElementById('v2-import-template-link').hidden=true;setV2ImportStep(1);document.getElementById('v2-order-import-modal').classList.add('open');
+}
+function closeV2OrderImport(){document.getElementById('v2-order-import-modal').classList.remove('open')}
+function createV2ImportedOrders(){
+  if(!v2ImportOrders.length){showToast('没有可创建的订单','warning');return}
+  var logistics=document.getElementById('v2-import-logistics').value;
+  var ownCarrier=document.getElementById('v2-import-own-carrier').checked;
+  var ownName=document.getElementById('v2-import-own-carrier-name').value.trim();
+  if(!logistics&&!ownCarrier){showToast('请选择系统快递或使用自己的快递账号','warning');return}
+  if(ownCarrier&&!ownName){showToast('请输入自己的快递账号','warning');return}
+  ensureV2BuyerSession();var now=Date.now();var saved=[];try{saved=JSON.parse(localStorage.getItem('oms-v2-created-orders')||'[]')}catch(error){}
+  v2ImportOrders.forEach(function(source,index){var orderNo='IMP-'+new Date().toISOString().slice(0,10).replace(/-/g,'')+'-'+String(now+index).slice(-6);var amount=source.amount===''?0:Number(source.amount);var order={id:orderNo,localOrderNo:orderNo,omsOrderNo:'',idempotencyKey:'ORDER-'+orderNo,userId:v2BuyerSession.userId,userName:v2BuyerSession.userName,createdAt:new Date().toLocaleString('zh-CN',{hour12:false}).replace(/\//g,'-'),items:source.items,productAmount:amount,operationFee:0,logisticsFee:0,amount:amount,feeSnapshot:{shipping:0,oms:0,total:amount,logistics:logistics||ownName},status:'待分配仓库',reviewReasons:[],logistics:logistics||'自有快递账号',tracking:'',packages:[{packageNo:'PKG-'+String(now+index).slice(-10),logistics:logistics||'自有快递账号',tracking:'',status:'待分配仓库'}],recipient:source.recipient,phone:'',address:source.address};if(!saved.some(function(item){return item.idempotencyKey===order.idempotencyKey}))saved.unshift(order)});
+  try{localStorage.setItem('oms-v2-created-orders',JSON.stringify(saved))}catch(error){showToast('订单创建失败，请稍后重试','warning');return}
+  refreshV2BuyerData();closeV2OrderImport();showToast('订单创建成功');openV2AccountPage('orders');
+}
+document.getElementById('v2-order-import-open').addEventListener('click',openV2OrderImport);
+document.getElementById('v2-order-import-close').addEventListener('click',closeV2OrderImport);
+document.getElementById('v2-order-import-cancel').addEventListener('click',closeV2OrderImport);
+document.getElementById('v2-order-import-modal').addEventListener('click',function(event){if(event.target===this)closeV2OrderImport()});
+document.getElementById('v2-order-import-next').addEventListener('click',function(){if(v2ImportStep===1){renderV2ImportPreview();setV2ImportStep(2)}else if(v2ImportStep===2){setV2ImportStep(3)}});
+document.getElementById('v2-order-import-back').addEventListener('click',function(){setV2ImportStep(v2ImportStep-1)});
+document.getElementById('v2-order-import-submit').addEventListener('click',createV2ImportedOrders);
+document.getElementById('v2-import-file').addEventListener('change',function(){var file=this.files&&this.files[0];if(!file)return;document.getElementById('v2-import-file-name').textContent=file.name;showToast('文件已选择，可继续下一步')});
+document.querySelectorAll('input[name="v2-import-mode"]').forEach(function(input){input.addEventListener('change',function(){document.querySelectorAll('.v2-import-mode-option').forEach(function(option){option.classList.toggle('active',option.querySelector('input').checked)});var isTemplate=this.value==='template';document.getElementById('v2-import-upload-title').textContent=isTemplate?'上传订单模板文件':'上传平台订单文件';document.getElementById('v2-import-upload-copy').textContent=isTemplate?'支持 TXT、XLS、XLSX 格式，请先下载模板填写':'支持 TXT、XLS、XLSX 格式，当前仅展示匹配成功的订单预览';document.getElementById('v2-import-template-link').hidden=!isTemplate})});
+document.getElementById('v2-import-template-link').addEventListener('click',function(event){event.preventDefault();var content='订单编号\tSKU编码\t产品数量\t平台\t订单金额\t收件人\t收货信息\n示例订单\tSKU-001\t1\t亚马逊\t\t张三\tAustin, TX';var download=document.createElement('a');download.href='data:text/plain;charset=utf-8,'+encodeURIComponent(content);download.download='蜂鸟订单导入模板.txt';document.body.appendChild(download);download.click();download.remove()});
+document.getElementById('v2-import-own-carrier').addEventListener('change',function(){document.getElementById('v2-own-carrier-field').hidden=!this.checked;if(this.checked)document.getElementById('v2-import-logistics').value=''});
+document.addEventListener('keydown',function(event){if(event.key==='Escape')closeV2OrderImport()});
 </script>
 <script src="toast.js?v=20260828-cart-action"></script>
 <script src="notes.js?v=20260831-v2-login-return-user-prd"></script>

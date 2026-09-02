@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>库存管理 — 独立站</title>
+<title>库存管理 — 美国货盘PRD</title>
 <link rel="stylesheet" href="styles.css?v=20260828-returns-pagination">
 <script src="navigation.js?v=20260901-auth-state" defer></script>
 </head>
@@ -11,7 +11,7 @@
 <aside class="app-nav">
   <div class="nav-brand">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M9 22V12h6v10"></path></svg>
-    独立站
+    美国货盘PRD
   </div>
   <nav class="nav-list">
     <a href="login.html" data-nav="login">
@@ -22,7 +22,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
       SKU管理
     </a>
-    <a href="cargo-tray.html" data-nav="tray">
+    <a href="cargo-tray-v2.html" data-nav="legacy-tray">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="M3.27 6.96 12 12.01l8.73-5.05"></path><path d="M12 22.08V12"></path></svg>
       美国货盘
     </a>
@@ -40,7 +40,7 @@
       用户管理
     </a>
   </nav>
-  <div class="nav-footer">独立站</div>
+  <div class="nav-footer">美国货盘PRD</div>
 </aside>
 
 <div class="app-content">
@@ -110,6 +110,12 @@
         <label>SKU名称</label>
         <input type="text" id="f-name" placeholder="" style="width:180px">
       </div>
+      <div class="filter-group">
+        <label for="f-cargo-tray">是否美国货盘</label>
+        <select id="f-cargo-tray" style="width:140px">
+          <option value="all">全部</option><option value="yes">是</option><option value="no">否</option>
+        </select>
+      </div>
       <div class="spacer"></div>
       <div class="filter-actions">
         <button class="btn btn-primary" onclick="applyFilters()">
@@ -130,8 +136,10 @@
     <div class="sku-content-grid page-section">
       <div class="table-wrap">
         <div class="table-head-bar" style="padding:12px 18px">
-          <h3 style="font-size:14px;font-weight:600">SKU库存列表</h3>
-          <span class="tag tag-muted" id="row-count">共 6 条</span>
+          <div class="inventory-table-tabs" role="tablist" aria-label="库存数据视图">
+            <button class="inventory-table-tab active" type="button" role="tab" aria-selected="true" data-inventory-view="all">全部库存 <span id="inventory-all-count">0</span></button>
+          </div>
+          <button class="btn btn-primary btn-sm" type="button" id="batch-cargo-btn" disabled onclick="batchMarkCargo()">批量上架美国货盘</button>
         </div>
         <div class="table-scroll">
         <table class="data-table" id="inv-table">
@@ -158,31 +166,23 @@
           </div>
         </div>
       </div>
-      <aside class="age-health-panel" aria-labelledby="age-health-title">
-        <div class="age-health-head">
-          <div><h3 id="age-health-title">库龄分布</h3><p>按 SKU 最大库龄统计</p></div>
-          <span class="table-header-help" tabindex="0" role="img" aria-label="库龄分布说明" data-tooltip="每个 SKU 取全部入库记录中的最大库龄，并计入对应区间" title="每个 SKU 取全部入库记录中的最大库龄，并计入对应区间">?</span>
-        </div>
-        <div class="age-health-score"><strong id="age-healthy-rate">33%</strong><span>健康 SKU 占比</span></div>
-        <div class="age-distribution-bar" aria-hidden="true">
-          <span class="age-segment age-segment-fresh" id="age-bar-fresh" style="width:0%"></span>
-          <span class="age-segment age-segment-stable" id="age-bar-stable" style="width:33.3%"></span>
-          <span class="age-segment age-segment-watch" id="age-bar-watch" style="width:33.3%"></span>
-          <span class="age-segment age-segment-risk" id="age-bar-risk" style="width:33.4%"></span>
-        </div>
-        <div class="age-distribution-list">
-          <div><span><i class="age-dot fresh"></i>0-7天</span><strong id="age-count-fresh">0个</strong></div>
-          <div><span><i class="age-dot stable"></i>8-15天</span><strong id="age-count-stable">2个</strong></div>
-          <div><span><i class="age-dot watch"></i>16-30天</span><strong id="age-count-watch">2个</strong></div>
-          <div><span><i class="age-dot risk"></i>30天+</span><strong id="age-count-risk">2个</strong></div>
-        </div>
-      </aside>
     </div>
   </div>
 </div>
 
 <div class="table-help-tooltip" id="table-help-tooltip" role="tooltip"></div>
 <div class="age-detail-tooltip" id="age-detail-tooltip" role="tooltip"></div>
+
+<div class="modal-overlay" id="inventory-cargo-modal" role="dialog" aria-modal="true" aria-labelledby="inventory-cargo-title">
+  <div class="modal inventory-cargo-modal" id="inventory-cargo-dialog">
+    <div class="modal-head"><div class="inventory-cargo-heading"><h3 id="inventory-cargo-title">上架美国货盘</h3><span id="inventory-cargo-count">1 个 SKU</span></div><button class="close" type="button" id="inventory-cargo-close" aria-label="关闭">&times;</button></div>
+    <div class="modal-body">
+      <p class="inventory-cargo-tip">请填写每个 SKU 的上架数量和售卖价格。</p>
+      <div class="inventory-cargo-table-wrap"><table class="data-table inventory-cargo-table"><thead><tr><th>SKU</th><th>可用库存</th><th>上架数量</th><th>售卖价格（$）</th><th>授权</th></tr></thead><tbody id="inventory-cargo-tbody"></tbody></table></div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" id="inventory-cargo-cancel">取消</button><button class="btn btn-primary" type="button" id="inventory-cargo-confirm">确认上架</button></div>
+  </div>
+</div>
 
 <div id="img-preview" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;cursor:pointer" onclick="closePreview()">
   <img id="preview-img" src="" style="max-width:80%;max-height:80%;border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,0.4)">
@@ -194,12 +194,24 @@
 <script src="sku-data.js"></script>
 <script>
 var skuData=(window.OMS_SKU_DATA||[]).slice();
+skuData.forEach(function(item,index){item.isCargoTray=item.isCargoTray===true||(item.available>0&&index%2===0)});
 
 var currentRole={id:'super-admin'};
 var roleFilterControls=[];
 var currentFilteredData=[];
 var currentPage=1;
 var pageSize=10;
+var inventorySelected={};
+var inventoryAuthSelections={};
+var inventoryAuthActivePaths={};
+var inventoryAuthTree=[
+  {id:'zebra',label:'斑马',children:[
+    {id:'zebra-admin',label:'管理员'},
+    {id:'zebra-group-a',label:'业务组A',children:[{id:'zebra-sales-a',label:'业务员A'},{id:'zebra-sales-b',label:'业务员B'}]}
+  ]},
+  {id:'hummingbird',label:'蜂鸟',children:[{id:'hummingbird-1680001',label:'用户168******0001'},{id:'hummingbird-1680002',label:'用户168******0002'},{id:'hummingbird-aaa',label:'用户AAA'}]},
+  {id:'other',label:'其他'}
+];
 
 var rolePageConfig={
   'super-admin':{columns:['company','businessGroup','salesperson'],filters:[{key:'company',label:'公司',placeholder:'请选择公司'},{key:'businessGroup',label:'业务组',placeholder:'请选择业务组'}]},
@@ -254,7 +266,7 @@ function renderTableHeader(){
   function helpHeader(label,key){
     return '<span class="table-header-label">'+label+'<span class="table-header-help" tabindex="0" role="img" aria-label="'+label+'说明：'+helpTexts[key]+'" data-tooltip="'+helpTexts[key]+'" title="'+helpTexts[key]+'">?</span></span>';
   }
-  var headers=['<th class="sku-column">SKU</th>'];
+  var headers=['<th class="selection-column"><input type="checkbox" id="inventory-select-all" aria-label="全选当前页"></th>','<th class="sku-column">SKU</th>'];
   if(getPageConfig().columns.length)headers.push('<th class="ownership-column">所属</th>');
   headers=headers.concat([
     '<th>库龄</th>',
@@ -264,6 +276,7 @@ function renderTableHeader(){
     '<th>'+helpHeader('可用','available')+'</th>',
     '<th>'+helpHeader('锁定','locked')+'</th>',
     '<th>'+helpHeader('总数量','total')+'</th>'
+    ,'<th class="operation-column">操作</th>'
   ]);
   document.getElementById('inv-thead').innerHTML='<tr>'+headers.join('')+'</tr>';
 }
@@ -335,9 +348,8 @@ function renderTable(data){
   var tbody=document.getElementById('inv-tbody');
   tbody.innerHTML='';
   if(data.length===0){
-    tbody.innerHTML='<tr><td colspan="'+(8+(getPageConfig().columns.length?1:0))+'" style="text-align:center;padding:30px;color:var(--muted)">暂无数据</td></tr>';
+    tbody.innerHTML='<tr><td colspan="'+(10+(getPageConfig().columns.length?1:0))+'" style="text-align:center;padding:30px;color:var(--muted)">暂无数据</td></tr>';
     document.getElementById('total-count').textContent='0';
-    document.getElementById('row-count').textContent='共 0 条';
     updatePagination(0);
     return;
   }
@@ -360,7 +372,7 @@ function renderTable(data){
       ?'<td><span class="tag age-value '+(maxAge>30?'tag-danger':maxAge>15?'tag-warning':'tag-success')+'" tabindex="0" data-age-sku="'+item.barcode+'" aria-describedby="age-detail-tooltip" aria-label="最大库龄'+maxAge+'天，共'+item.ageRecords.length+'条库龄记录">'+maxAge+'天</span></td>'
       :'<td><span class="tag tag-muted">-</span></td>';
     tr.innerHTML=
-      '<td class="sku-column"><div class="sku-profile">'+imgCell+'<div class="sku-profile-copy"><strong>'+item.name+'</strong><span>'+item.spec+'</span><code>'+item.barcode+'</code></div></div></td>'
+      '<td class="selection-column"><input type="checkbox" class="inventory-row-select" data-inventory-select="'+item.barcode+'" '+(inventorySelected[item.barcode]?'checked':'')+' aria-label="选择 '+item.name+'"></td><td class="sku-column"><div class="sku-profile">'+imgCell+'<div class="sku-profile-copy"><div class="sku-name-row"><strong>'+item.name+'</strong>'+(item.isCargoTray?'<span class="tag tag-primary sku-cargo-tag">美国货盘</span>':'')+'</div><span>'+item.spec+'</span><code>'+item.barcode+'</code></div></div></td>'
       +scopeCell
       +ageCell
       +'<td class="num" style="text-align:right;color:var(--success);font-weight:600">'+item.shelved+'</td>'
@@ -368,13 +380,15 @@ function renderTable(data){
       +'<td class="num" style="text-align:right;color:#8b5cf6;font-weight:500">'+item.receivedNotShelved+'</td>'
       +'<td class="num" style="text-align:right;color:var(--success);font-weight:500">'+item.available+'</td>'
       +'<td class="num" style="text-align:right;color:var(--warning);font-weight:500">'+item.locked+'</td>'
-      +'<td class="num" style="text-align:right;font-weight:700">'+item.total+'</td>';
+      +'<td class="num" style="text-align:right;font-weight:700">'+item.total+'</td>'
+      +'<td class="operation-column"><button class="btn-link" type="button" data-cargo-mark="'+item.barcode+'">上架美国货盘</button></td>';
     if(item.lowStock){tr.style.background='rgba(220,38,38,0.04)'}
     tbody.appendChild(tr);
   });
   document.getElementById('total-count').textContent=data.length;
-  document.getElementById('row-count').textContent='共 '+data.length+' 条';
   updatePagination(data.length);
+  var selectAll=document.getElementById('inventory-select-all');
+  if(selectAll){var visibleSelected=pageData.filter(function(item){return inventorySelected[item.barcode]}).length;selectAll.checked=pageData.length>0&&visibleSelected===pageData.length;selectAll.indeterminate=visibleSelected>0&&visibleSelected<pageData.length;}
 }
 
 function updatePagination(total){
@@ -419,11 +433,14 @@ function closePreview(){
 function applyFilters(){
   var barcode=document.getElementById('f-barcode').value.toLowerCase();
   var name=document.getElementById('f-name').value.toLowerCase();
+  var cargoTray=document.getElementById('f-cargo-tray').value;
   var dynamicSelections={};
   roleFilterControls.forEach(function(item){dynamicSelections[item.key]=item.control.getValues()});
   var data=getRoleScopedData().filter(function(d){
     if(barcode && d.barcode.toLowerCase().indexOf(barcode)<0)return false;
     if(name && d.name.toLowerCase().indexOf(name)<0)return false;
+    if(cargoTray==='yes'&&!d.isCargoTray)return false;
+    if(cargoTray==='no'&&d.isCargoTray)return false;
     var matchesDynamic=Object.keys(dynamicSelections).every(function(key){
       return dynamicSelections[key].length===0||dynamicSelections[key].indexOf(d[key])>-1;
     });
@@ -432,13 +449,24 @@ function applyFilters(){
   });
   currentFilteredData=data;
   currentPage=1;
+  updateInventoryTabs();
   renderTable(data);
-  renderAgeDistribution(data);
+}
+
+function updateInventoryTabs(){
+  var scoped=getRoleScopedData();
+  var current=document.getElementById('f-cargo-tray').value;
+  document.getElementById('inventory-all-count').textContent=scoped.length;
+  document.querySelectorAll('[data-inventory-view]').forEach(function(button){
+    var active=button.dataset.inventoryView===current;
+    button.classList.toggle('active',active);button.setAttribute('aria-selected',active?'true':'false');
+  });
 }
 
 function resetFilters(){
   document.getElementById('f-barcode').value='';
   document.getElementById('f-name').value='';
+  document.getElementById('f-cargo-tray').value='all';
   roleFilterControls.forEach(function(item){item.control.clear(true)});
   applyFilters();
 }
@@ -449,6 +477,163 @@ function exportData(){
 
 document.getElementById('f-barcode').addEventListener('input',applyFilters);
 document.getElementById('f-name').addEventListener('input',applyFilters);
+document.getElementById('f-cargo-tray').addEventListener('change',applyFilters);
+document.querySelectorAll('[data-inventory-view]').forEach(function(button){button.addEventListener('click',function(){document.getElementById('f-cargo-tray').value=button.dataset.inventoryView;applyFilters()})});
+document.addEventListener('change',function(event){
+  if(!event.target.matches('.inventory-row-select'))return;
+  if(event.target.checked)inventorySelected[event.target.dataset.inventorySelect]=true;else delete inventorySelected[event.target.dataset.inventorySelect];
+  var button=document.getElementById('batch-cargo-btn');if(button)button.disabled=Object.keys(inventorySelected).length===0;
+});
+document.addEventListener('click',function(event){
+  var mark=event.target.closest('[data-cargo-mark]');
+  if(mark){openInventoryCargoModal([mark.dataset.cargoMark]);}
+  if(event.target.id==='inventory-select-all'){
+    var checked=event.target.checked;
+    currentFilteredData.slice((currentPage-1)*pageSize,currentPage*pageSize).forEach(function(item){if(checked)inventorySelected[item.barcode]=true;else delete inventorySelected[item.barcode]});
+    renderTable(currentFilteredData);
+    var button=document.getElementById('batch-cargo-btn');if(button)button.disabled=Object.keys(inventorySelected).length===0;
+  }
+});
+function batchMarkCargo(){
+  var selected=Object.keys(inventorySelected);if(!selected.length)return;
+  openInventoryCargoModal(selected);
+}
+
+function inventoryAuthDescendants(node){
+  var ids=[node.id];
+  (node.children||[]).forEach(function(child){ids=ids.concat(inventoryAuthDescendants(child))});
+  return ids;
+}
+function inventoryAuthFind(id,nodes){
+  nodes=nodes||inventoryAuthTree;
+  for(var i=0;i<nodes.length;i++){
+    if(nodes[i].id===id)return nodes[i];
+    var found=inventoryAuthFind(id,nodes[i].children||[]);if(found)return found;
+  }
+  return null;
+}
+function inventoryAuthNormalize(selected){
+  var next=selected.filter(function(id,index,array){return array.indexOf(id)===index});
+  function normalize(node){
+    var children=node.children||[];
+    if(!children.length)return;
+    children.forEach(normalize);
+    var childIds=children.map(function(child){return child.id});
+    var selectedChildren=childIds.filter(function(id){return next.indexOf(id)>-1});
+    if(selectedChildren.length===childIds.length&&childIds.length) {if(next.indexOf(node.id)<0)next.push(node.id)}
+    else next=next.filter(function(id){return id!==node.id});
+  }
+  inventoryAuthTree.forEach(normalize);
+  return next;
+}
+function inventoryAuthPathIds(id,nodes,path){
+  path=path||[];nodes=nodes||inventoryAuthTree;
+  for(var i=0;i<nodes.length;i++){
+    var next=path.concat(nodes[i].id);if(nodes[i].id===id)return next;
+    var found=inventoryAuthPathIds(id,nodes[i].children||[],next);if(found)return found;
+  }
+  return null;
+}
+function inventoryAuthFlatten(nodes,path,result){
+  result=result||[];path=path||[];
+  nodes.forEach(function(node){var next=path.concat(node.label);result.push({node:node,path:next});inventoryAuthFlatten(node.children||[],next,result)});
+  return result;
+}
+function inventoryAuthLabel(barcode){
+  var selected=inventoryAuthSelections[barcode]||[];
+  if(!selected.length)return '请选择授权';
+  var leafCount=selected.filter(function(id){var node=inventoryAuthFind(id,inventoryAuthTree);return node&&!node.children}).length;
+  return leafCount?'已授权 '+leafCount+' 项':'已授权';
+}
+function syncInventoryAuthMenu(menu,barcode){
+  var selected=inventoryAuthSelections[barcode]||[];
+  menu.querySelectorAll('[data-auth-node]').forEach(function(input){
+    var node=inventoryAuthFind(input.dataset.authNode,inventoryAuthTree);
+    var ids=inventoryAuthDescendants(node);
+    var count=ids.filter(function(id){return selected.indexOf(id)>-1}).length;
+    input.checked=count===ids.length;
+    input.indeterminate=count>0&&count<ids.length;
+  });
+  var trigger=menu.parentElement.querySelector('.inventory-auth-trigger span');
+  if(trigger)trigger.textContent=inventoryAuthLabel(barcode);
+}
+function inventoryAuthOptionMarkup(node,level){
+  return '<label class="inventory-auth-cascader-option" data-auth-focus="'+node.id+'"><input type="checkbox" data-auth-node="'+node.id+'"><span>'+node.label+'</span>'+(node.children&&node.children.length?'<b aria-hidden="true">›</b>':'')+'</label>';
+}
+function renderInventoryAuthCascader(select){
+  var barcode=select.dataset.authSelect;var menu=select.querySelector('.inventory-auth-menu');var columns=menu.querySelectorAll('.inventory-auth-column');var active=inventoryAuthActivePaths[barcode]||[];
+  var selected=inventoryAuthSelections[barcode]||[];
+  if(!active.length&&selected.length){active=inventoryAuthPathIds(selected[0]);inventoryAuthActivePaths[barcode]=active||[]}
+  var root=inventoryAuthTree;var levelOne=[];var levelTwo=[];
+  if(active[0]){var rootNode=inventoryAuthFind(active[0]);levelOne=rootNode?rootNode.children||[]:[]}
+  if(active[1]){var groupNode=inventoryAuthFind(active[1]);levelTwo=groupNode?groupNode.children||[]:[]}
+  columns[0].innerHTML=root.map(function(node){return inventoryAuthOptionMarkup(node,0)}).join('');
+  columns[1].innerHTML=levelOne.length?levelOne.map(function(node){return inventoryAuthOptionMarkup(node,1)}).join(''):'<div class="inventory-auth-empty">请选择左侧平台</div>';
+  columns[2].innerHTML=levelTwo.length?levelTwo.map(function(node){return inventoryAuthOptionMarkup(node,2)}).join(''):'<div class="inventory-auth-empty">请选择中间层级</div>';
+  syncInventoryAuthMenu(menu,barcode);
+  renderInventoryAuthSearch(menu,barcode);
+}
+function renderInventoryAuthSearch(menu,barcode){
+  var input=menu.querySelector('.inventory-auth-search-input');var results=menu.querySelector('.inventory-auth-search-results');var keyword=(input.value||'').trim().toLowerCase();
+  if(!keyword){results.hidden=true;menu.querySelector('.inventory-auth-columns').hidden=false;return}
+  var matches=inventoryAuthFlatten(inventoryAuthTree).filter(function(entry){return entry.path.join(' / ').toLowerCase().indexOf(keyword)>-1});
+  results.hidden=false;menu.querySelector('.inventory-auth-columns').hidden=true;
+  results.innerHTML=matches.length?matches.map(function(entry){return '<label class="inventory-auth-search-option"><input type="checkbox" data-auth-node="'+entry.node.id+'"><span><strong>'+entry.node.label+'</strong><small>'+entry.path.join(' / ')+'</small></span></label>'}).join(''):'<div class="inventory-auth-empty">暂无匹配授权对象</div>';
+  syncInventoryAuthMenu(menu,barcode);
+}
+function inventoryAuthMarkup(item){
+  if(!inventoryAuthSelections[item.barcode])inventoryAuthSelections[item.barcode]=(item.cargoAuthorization||[]).slice();
+  return '<div class="inventory-auth-select" data-auth-select="'+item.barcode+'"><button type="button" class="inventory-auth-trigger" aria-haspopup="true" aria-expanded="false"><span>'+inventoryAuthLabel(item.barcode)+'</span><b>⌄</b></button><div class="inventory-auth-menu" hidden><div class="inventory-auth-search"><input class="inventory-auth-search-input" type="search" placeholder="搜索平台、角色或用户" aria-label="搜索授权对象"></div><div class="inventory-auth-columns"><div class="inventory-auth-column" data-auth-column="0"></div><div class="inventory-auth-column" data-auth-column="1"></div><div class="inventory-auth-column" data-auth-column="2"></div></div><div class="inventory-auth-search-results" hidden></div><div class="inventory-auth-hint">支持多选，可按平台、角色或用户搜索</div></div></div>';
+}
+
+function openInventoryCargoModal(barcodes){
+  var items=barcodes.map(function(barcode){return skuData.find(function(item){return item.barcode===barcode})}).filter(Boolean);
+  if(!items.length){showToast('请先选择 SKU','warning');return}
+  var dialog=document.getElementById('inventory-cargo-dialog');
+  dialog.classList.toggle('is-batch',items.length>1);
+  document.getElementById('inventory-cargo-title').textContent=items.length>1?'批量上架美国货盘':'上架美国货盘';
+  document.getElementById('inventory-cargo-count').textContent=items.length+' 个 SKU';
+  document.getElementById('inventory-cargo-tbody').innerHTML=items.map(function(item){
+    var price=Number(item.cargoPrice||item.unitPrice||0);
+    var image=item.img&&item.img.indexOf('.')>-1?'<img src="'+item.img+'" alt="'+item.name+'">':'<span class="inventory-cargo-placeholder">'+(item.img||'SKU')+'</span>';
+    return '<tr data-cargo-row="'+item.barcode+'"><td class="sku-column"><div class="inventory-cargo-sku"><div class="inventory-cargo-image">'+image+'</div><div><strong>'+item.name+'</strong><span>'+item.spec+'</span><code>'+item.barcode+'</code></div></div></td><td class="num"><strong class="inventory-cargo-stock">'+item.available+'</strong><small>件</small></td><td><input class="cargo-qty-input" type="number" min="1" max="'+item.available+'" value="'+Math.max(1,Math.min(item.available,10))+'" aria-label="'+item.name+' 上架数量"></td><td><div class="inventory-price-control"><span>$</span><input class="cargo-price-input" type="number" min="0.01" step="0.01" value="'+(price>0?price.toFixed(2):'')+'" placeholder="0.00" aria-label="'+item.name+' 售卖价格"></div></td><td>'+inventoryAuthMarkup(item)+'</td></tr>';
+  }).join('');
+  document.getElementById('inventory-cargo-modal').classList.add('open');
+  document.querySelector('#inventory-cargo-tbody .cargo-qty-input').focus();
+}
+function closeInventoryCargoModal(){document.getElementById('inventory-cargo-modal').classList.remove('open')}
+function confirmInventoryCargo(){
+  var rows=[].slice.call(document.querySelectorAll('#inventory-cargo-tbody [data-cargo-row]'));
+  var values=rows.map(function(row){return {item:skuData.find(function(item){return item.barcode===row.dataset.cargoRow}),quantity:parseInt(row.querySelector('.cargo-qty-input').value,10)||0,price:row.querySelector('.cargo-price-input').value,authorization:(inventoryAuthSelections[row.dataset.cargoRow]||[]).slice()}});
+  if(values.some(function(entry){return !entry.item||entry.quantity<1||entry.quantity>entry.item.available})){showToast('上架数量需大于 0 且不能超过可用库存','warning');return}
+  if(values.some(function(entry){return !/^\d+(\.\d{1,2})?$/.test(entry.price)||Number(entry.price)<=0})){showToast('请输入有效价格，最多保留 2 位小数','warning');return}
+  if(values.some(function(entry){return !entry.authorization.length})){showToast('请为每个 SKU 选择授权对象','warning');return}
+  values.forEach(function(entry){entry.item.isCargoTray=true;entry.item.cargoQuantity=entry.quantity;entry.item.cargoPrice=Number(Number(entry.price).toFixed(2));entry.item.cargoAuthorization=entry.authorization;delete inventorySelected[entry.item.barcode]});
+  closeInventoryCargoModal();
+  applyFilters();
+  var button=document.getElementById('batch-cargo-btn');if(button)button.disabled=true;
+  showToast(values.length>1?'批量上架成功':'上架成功');
+}
+document.getElementById('inventory-cargo-close').addEventListener('click',closeInventoryCargoModal);
+document.getElementById('inventory-cargo-cancel').addEventListener('click',closeInventoryCargoModal);
+document.getElementById('inventory-cargo-confirm').addEventListener('click',confirmInventoryCargo);
+document.getElementById('inventory-cargo-modal').addEventListener('click',function(event){
+  if(event.target===this){closeInventoryCargoModal();return}
+  var trigger=event.target.closest('.inventory-auth-trigger');
+  if(trigger){var select=trigger.closest('.inventory-auth-select');var menu=select.querySelector('.inventory-auth-menu');document.querySelectorAll('.inventory-auth-menu').forEach(function(other){if(other!==menu){other.hidden=true;var otherTrigger=other.parentElement.querySelector('.inventory-auth-trigger');if(otherTrigger)otherTrigger.setAttribute('aria-expanded','false')}});menu.hidden=!menu.hidden;trigger.setAttribute('aria-expanded',menu.hidden?'false':'true');if(!menu.hidden){renderInventoryAuthCascader(select);var rect=select.getBoundingClientRect();var openUp=(window.innerHeight-rect.bottom)<menu.offsetHeight+12;menu.style.top=openUp?'auto':'calc(100% + 5px)';menu.style.bottom=openUp?'calc(100% + 5px)':'auto'}return}
+  var focusItem=event.target.closest('.inventory-auth-cascader-option');
+  if(focusItem&&!event.target.matches('input')){var focusSelect=focusItem.closest('.inventory-auth-select');inventoryAuthActivePaths[focusSelect.dataset.authSelect]=inventoryAuthPathIds(focusItem.dataset.authFocus)||[];renderInventoryAuthCascader(focusSelect);return}
+});
+document.getElementById('inventory-cargo-modal').addEventListener('change',function(event){
+  if(!event.target.matches('[data-auth-node]'))return;
+  var menu=event.target.closest('.inventory-auth-menu');var select=event.target.closest('.inventory-auth-select');var node=inventoryAuthFind(event.target.dataset.authNode,inventoryAuthTree);var ids=inventoryAuthDescendants(node);var selected=inventoryAuthSelections[select.dataset.authSelect]||[];
+  if(event.target.checked)ids.forEach(function(id){if(selected.indexOf(id)<0)selected.push(id)});else selected=selected.filter(function(id){return ids.indexOf(id)<0});
+  inventoryAuthSelections[select.dataset.authSelect]=inventoryAuthNormalize(selected);renderInventoryAuthCascader(select);
+});
+document.getElementById('inventory-cargo-modal').addEventListener('input',function(event){
+  if(!event.target.matches('.inventory-auth-search-input'))return;
+  var select=event.target.closest('.inventory-auth-select');renderInventoryAuthSearch(select.querySelector('.inventory-auth-menu'),select.dataset.authSelect);
+});
 
 function updateSummary(){
   var data=getRoleScopedData();
@@ -492,6 +677,89 @@ window.addEventListener('oms-role-change',function(event){
 });
 
 </script>
+
+<style>
+  .sku-content-grid{grid-template-columns:1fr!important}
+  .sku-name-row{display:flex;align-items:center;gap:6px;min-width:0;width:100%;white-space:nowrap}
+  .sku-name-row strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .sku-cargo-tag{flex:0 0 auto;font-size:11px;padding:3px 8px;white-space:nowrap;background:#fff3a3;color:#111827!important;border:1px solid #facc15;border-radius:4px;font-weight:750;box-shadow:0 1px 3px rgba(161,98,7,.22)}
+  .inventory-table-tabs{align-self:stretch;display:flex;align-items:flex-end;gap:22px;margin:-12px 0}
+  .inventory-table-tab{position:relative;height:48px;padding:0 2px;border:0;background:transparent;color:var(--muted);font-size:13px;font-weight:600;cursor:pointer}
+  .inventory-table-tab span{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:18px;margin-left:4px;padding:0 6px;border-radius:9px;background:var(--surface-2);color:var(--muted);font-size:10px;font-weight:600}
+  .inventory-table-tab::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px 2px 0 0;background:transparent}
+  .inventory-table-tab.active{color:var(--primary)}
+  .inventory-table-tab.active span{background:var(--primary-soft);color:var(--primary)}
+  .inventory-table-tab.active::after{background:var(--primary)}
+  .inventory-cargo-modal{width:min(1120px,calc(100vw - 32px));max-width:none;max-height:calc(100vh - 24px);overflow:visible;transition:width .18s ease}
+  .inventory-cargo-modal .modal-head{padding:17px 20px;border-bottom:1px solid var(--border)}
+  .inventory-cargo-heading{display:flex;align-items:center;gap:10px}
+  .inventory-cargo-heading h3{font-size:16px}
+  .inventory-cargo-heading span{padding:3px 8px;border-radius:10px;background:var(--primary-soft);color:var(--primary);font-size:11px;font-weight:600}
+  .inventory-cargo-modal .modal-body{display:grid;gap:10px;padding:14px 20px;overflow:visible}
+  .inventory-cargo-tip{font-size:12px;color:var(--muted)}
+  .inventory-cargo-table-wrap{overflow:visible;border:1px solid var(--border);border-radius:6px;background:var(--surface)}
+  .inventory-cargo-table{width:100%;min-width:0!important;table-layout:fixed}
+  .inventory-cargo-table th{padding:9px 12px;background:var(--surface-2);font-size:11.5px}
+  .inventory-cargo-table th:first-child{width:31%;text-align:left}
+  .inventory-cargo-table th:nth-child(2){width:12%}
+  .inventory-cargo-table th:nth-child(3),.inventory-cargo-table th:nth-child(4){width:16%}
+  .inventory-cargo-table th:nth-child(5){width:25%}
+  .inventory-cargo-table td{height:56px;padding:6px 12px;text-align:center;vertical-align:middle}
+  .inventory-cargo-table td:first-child{text-align:left}
+  .inventory-cargo-table input{width:100%;height:32px;min-width:0;padding:5px 9px;border:1px solid var(--border);border-radius:5px;text-align:center;outline:none}
+  .inventory-cargo-table input:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft)}
+  .inventory-cargo-sku{display:grid;grid-template-columns:42px minmax(0,1fr);align-items:center;gap:10px;min-width:0}
+  .inventory-cargo-image{width:42px;height:42px;border:1px solid var(--border);border-radius:5px;background:var(--surface-2);overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .inventory-cargo-image img{width:100%;height:100%;object-fit:cover}
+  .inventory-cargo-placeholder{font-size:18px}
+  .inventory-cargo-sku>div:last-child{display:grid;gap:1px;min-width:0}
+  .inventory-cargo-sku strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12.5px;line-height:1.2}
+  .inventory-cargo-sku span,.inventory-cargo-sku code{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10.5px;line-height:1.15;color:var(--muted)}
+  .inventory-cargo-stock{font-family:var(--font-mono);font-size:13px;color:var(--success)}
+  .inventory-cargo-table td.num small{margin-left:3px;color:var(--muted);font-size:10px}
+  .inventory-price-control{display:grid;grid-template-columns:26px minmax(0,1fr);align-items:center;border:1px solid var(--border);border-radius:5px;overflow:hidden;background:var(--surface)}
+  .inventory-price-control>span{height:30px;display:flex;align-items:center;justify-content:center;background:var(--surface-2);color:var(--muted);font-size:12px}
+  .inventory-price-control input{border:0;border-radius:0;box-shadow:none!important}
+  .inventory-price-control:focus-within{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft)}
+  .inventory-cargo-modal .modal-footer{padding:13px 20px;border-top:1px solid var(--border);background:var(--surface-2)}
+  .inventory-cargo-modal.is-batch .inventory-cargo-table td{height:44px;padding-top:4px;padding-bottom:4px}
+  .inventory-cargo-modal.is-batch .inventory-cargo-image{width:34px;height:34px}
+  .inventory-cargo-modal.is-batch .inventory-cargo-sku{grid-template-columns:34px minmax(0,1fr);gap:8px}
+  .inventory-cargo-modal.is-batch .inventory-cargo-sku strong{font-size:11.5px}
+  .inventory-cargo-modal.is-batch .inventory-cargo-sku span,.inventory-cargo-modal.is-batch .inventory-cargo-sku code{font-size:9.5px}
+  .inventory-auth-select{position:relative;width:100%;min-width:0}
+  .inventory-auth-trigger{width:100%;height:32px;display:flex;align-items:center;justify-content:space-between;gap:5px;padding:0 8px;border:1px solid var(--border);border-radius:5px;background:var(--surface);color:var(--muted);font-size:11.5px;text-align:left;cursor:pointer}
+  .inventory-auth-trigger:hover,.inventory-auth-select:focus-within .inventory-auth-trigger{border-color:var(--primary)}
+  .inventory-auth-trigger span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .inventory-auth-trigger b{flex:0 0 auto;color:var(--muted);font-size:13px;font-weight:500}
+  .inventory-auth-menu{position:absolute;z-index:220;top:calc(100% + 5px);right:0;width:280px;padding:6px;background:var(--surface);border:1px solid var(--border);border-radius:7px;box-shadow:var(--shadow-lg);max-height:300px;overflow:auto;text-align:left}
+  .inventory-auth-option{display:flex;align-items:center;gap:7px;padding:6px 7px;border-radius:4px;color:var(--ink);font-size:11.5px;cursor:pointer}
+  .inventory-auth-option:hover{background:var(--surface-2)}
+  .inventory-auth-option input{width:14px!important;height:14px!important;min-width:14px!important;padding:0!important;border:0!important;accent-color:var(--primary)}
+  .inventory-auth-level-1{padding-left:23px}.inventory-auth-level-2{padding-left:39px}
+  .inventory-auth-children{border-left:1px solid var(--border);margin-left:13px}
+  .inventory-auth-hint{padding:7px;border-top:1px solid var(--border);margin-top:4px;color:var(--muted);font-size:10px;line-height:1.4}
+  .inventory-cargo-modal.is-batch .inventory-auth-menu{width:280px}
+  .inventory-auth-menu{width:min(520px,calc(100vw - 40px));padding:0;overflow:hidden;max-height:none}
+  .inventory-auth-search{padding:9px;border-bottom:1px solid var(--border);background:var(--surface-2)}
+  .inventory-auth-search-input{width:100%!important;height:30px!important;min-width:0!important;padding:0 9px!important;border:1px solid var(--border)!important;border-radius:5px!important;background:var(--surface)!important;text-align:left!important;font-size:12px!important}
+  .inventory-auth-search-input:focus{border-color:var(--primary)!important;box-shadow:0 0 0 3px var(--primary-soft)!important}
+  .inventory-auth-columns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));max-height:232px;overflow:auto}
+  .inventory-auth-columns[hidden],.inventory-auth-search-results[hidden]{display:none!important}
+  .inventory-auth-column{min-width:0;padding:6px;border-right:1px solid var(--border)}
+  .inventory-auth-column:last-child{border-right:0}
+  .inventory-auth-cascader-option,.inventory-auth-search-option{display:flex;align-items:center;gap:6px;width:100%;min-height:31px;padding:5px 6px;border-radius:4px;color:var(--ink);font-size:11.5px;cursor:pointer;text-align:left}
+  .inventory-auth-cascader-option:hover,.inventory-auth-search-option:hover{background:var(--surface-2)}
+  .inventory-auth-cascader-option input,.inventory-auth-search-option input{width:14px!important;height:14px!important;min-width:14px!important;margin:0;padding:0!important;border:0!important;accent-color:var(--primary)}
+  .inventory-auth-cascader-option span,.inventory-auth-search-option span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;flex:1}
+  .inventory-auth-cascader-option b{margin-left:auto;color:var(--muted);font-size:15px;font-weight:400}
+  .inventory-auth-empty{padding:18px 8px;color:var(--muted);font-size:11px;text-align:center;line-height:1.4}
+  .inventory-auth-search-results{max-height:232px;overflow:auto;padding:6px}
+  .inventory-auth-search-option span{display:grid;gap:2px}
+  .inventory-auth-search-option strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11.5px;font-weight:600}
+  .inventory-auth-search-option small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted);font-size:10px}
+  .inventory-auth-hint{padding:7px 9px;border-top:1px solid var(--border);margin:0;color:var(--muted);font-size:10px;line-height:1.4}
+</style>
 
 <script src="toast.js?v=20260828-cart-action"></script>
 <script src="role-switch.js"></script>

@@ -80,8 +80,7 @@
   var pageNotes={
     sku:{title:'库存管理注释',markdown:'SKU管理页PRD.md'},
     inbound:{title:'入库单注释',markdown:'入库单页PRD.md'},
-    tray:{title:'美国货盘注释',markdown:'美国货盘页PRD.md'},
-    'tray-v2':{title:'美国货盘V2注释',markdown:'美国货盘V2页PRD.md'},
+    'tray-v2':{title:'蜂鸟美国货盘页面注释',markdown:'美国货盘V2页PRD.md'},
     orders:{title:'订单管理注释',markdown:'订单管理页PRD.md'},
     returns:{title:'退货管理注释',markdown:'退货管理页PRD.md'},
     'tray-management':{title:'美国货盘管理注释',markdown:'美国货盘管理页PRD.md'},
@@ -303,5 +302,5 @@
     applyNotesWidth(parseInt(getComputedStyle(document.documentElement).getPropertyValue('--notes-panel-w'),10)||420,false);
     applyNotesButtonPosition(savedButtonPosition,false);
   });
-  openNotes();
+  closeNotes();
 })();
