@@ -1122,6 +1122,15 @@ body[data-page="global-overview"] .app-content{height:100vh;min-height:0;overflo
 .global-oms-confirmation li{counter-increment:oms-confirmation;position:relative;min-height:70px;padding:22px 16px 22px 52px;border-bottom:1px solid var(--border);font-size:14px;line-height:1.75;color:var(--ink)}
 .global-oms-confirmation li:last-child{border-bottom:0}
 .global-oms-confirmation li::before{content:counter(oms-confirmation);position:absolute;left:8px;top:20px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--primary-soft);color:var(--primary);font-family:var(--font-mono);font-size:12px;font-weight:750}
+.global-overview-image{flex:1;min-height:0;margin:0!important;padding:16px;display:flex;align-items:flex-start;justify-content:center;overflow:auto;background:var(--surface);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow-sm)}
+.global-overview-image-trigger{display:block;width:100%;height:auto;cursor:zoom-in;background:transparent}
+.global-overview-image-trigger:focus-visible{outline:none;box-shadow:0 0 0 3px var(--primary-soft)}
+.global-overview-image-trigger img{display:block;width:100%;height:auto;max-width:none;object-fit:contain}
+.global-image-preview{position:fixed;inset:0;z-index:520;display:flex;align-items:center;justify-content:center;padding:54px 28px 24px;background:rgba(15,23,42,.84)}
+.global-image-preview[hidden]{display:none}
+.global-image-preview img{display:block;max-width:96vw;max-height:calc(100vh - 110px);width:auto;height:auto;object-fit:contain;background:#fff;box-shadow:var(--shadow-lg)}
+.global-image-preview-close{position:absolute;top:14px;right:18px;width:36px;height:36px;border-radius:6px;background:rgba(255,255,255,.14);color:#fff;font-size:26px;display:flex;align-items:center;justify-content:center}
+.global-image-preview-close:hover{background:rgba(255,255,255,.24)}
 .order-diagram-section{flex:0 0 auto;padding:20px 0 6px;border-top:1px solid var(--border)}
 .order-diagram-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:16px;padding:0 4px}
 .order-diagram-head h2{font-size:20px;line-height:1.35;font-weight:750;color:var(--ink)}

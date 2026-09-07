@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>全局说明 — 美国货盘PRD</title>
-  <link rel="stylesheet" href="styles.css?v=20260831-order-flow">
+  <link rel="stylesheet" href="styles.css?v=20260907-global-overview-image">
   <script src="navigation.js?v=20260901-auth-state" defer></script>
 </head>
 <body data-page="global-overview">
@@ -20,26 +20,34 @@
     <div class="topbar-right"><div class="user"><button class="avatar" type="button" data-role-avatar aria-haspopup="dialog" aria-label="切换身份" title="切换身份">超</button></div></div>
   </div>
   <main class="page-body global-overview-body">
-    <section class="global-oms-confirmation page-section" aria-labelledby="global-oms-confirmation-title">
-      <header>
-        <h2 id="global-oms-confirmation-title">需要和OMS确认的（缺少内容）</h2>
-      </header>
-      <ol>
-        <li>SKU商品图片规格没有（入库单可查，但是目前斑马没有和oms互通），能否在SKU库存查询里返回？</li>
-        <li>SKU商品单价没有，能否在SKU库存查询里返回？</li>
-        <li>入库单入库类型，固定DROPSHIPPING_INBOUND，这个接口能支持退货吗？还是有额外的退货接口。美国货盘退货上架后，要将数量加回 OMS 可用库存</li>
-        <li>库龄查询：需要每次入库的库龄天数、上架日期、统计日期</li>
-        <li>费用试算接口：下单前返回运费（？）、操作费、包材费及应付合计</li>
-        <li>费用明细接口：费用单号、费用类型、费用项目、SKU、计费说明、单价、数量、倍率、金额、币种、日期、状态、备注</li>
-      </ol>
+    <section class="global-overview-image page-section" aria-label="平台订单导入流程图">
+      <button class="global-overview-image-trigger" id="global-overview-image-trigger" type="button" aria-label="放大查看平台订单导入流程图">
+        <img src="assets/订单导入.png" alt="平台订单导入流程图">
+      </button>
     </section>
-
   </main>
+</div>
+
+<div class="global-image-preview" id="global-image-preview" role="dialog" aria-modal="true" aria-label="平台订单导入流程图原图" hidden>
+  <button class="global-image-preview-close" id="global-image-preview-close" type="button" aria-label="关闭原图预览" title="关闭">&times;</button>
+  <img src="assets/订单导入.png" alt="平台订单导入流程图原图">
 </div>
 
 <script src="toast.js?v=20260828-cart-action"></script>
 <script src="role-switch.js"></script>
 <script src="notes.js?v=20260828-local-prd-v2"></script>
+<script>
+(function(){
+  var trigger=document.getElementById('global-overview-image-trigger');
+  var preview=document.getElementById('global-image-preview');
+  var closeButton=document.getElementById('global-image-preview-close');
+  function closePreview(){preview.hidden=true}
+  trigger.addEventListener('click',function(){preview.hidden=false;closeButton.focus()});
+  closeButton.addEventListener('click',closePreview);
+  preview.addEventListener('click',function(event){if(event.target===preview)closePreview()});
+  document.addEventListener('keydown',function(event){if(event.key==='Escape'&&!preview.hidden)closePreview()});
+})();
+</script>
 </body>
 </html>
 
