@@ -34,7 +34,7 @@
       +'<div class="nav-children"><a class="nav-child'+active('sku')+'" href="index.html" data-nav="sku">库存管理</a><a class="nav-child'+active('tray-management')+'" href="cargo-tray-management.html" data-nav="tray-management">美国货盘管理</a></div>'
     +'</details>'
     +'<div class="nav-section-label nav-section-public">前端界面</div>'
-    +'<a class="nav-primary'+active('tray-v2')+'" href="cargo-tray-v2.html" data-nav="tray-v2">'+gridIcon+'<span>蜂鸟美国货盘页面</span></a>';
+    +'<a class="nav-primary'+active('tray-v2')+'" href="cargo-tray-v2.html" data-nav="tray-v2">'+gridIcon+'<span>美国货盘</span></a>';
   var activeItem=nav.querySelector('.active');
   if(activeItem)requestAnimationFrame(function(){activeItem.scrollIntoView({block:'nearest'})});
   var footer=document.querySelector('.nav-footer');

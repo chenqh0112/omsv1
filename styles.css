@@ -947,23 +947,49 @@ body[data-page="orders"] .app-content,body[data-page="users"] .app-content{heigh
 .ops-filter-bar .filter-group>label{margin-bottom:3px}
 .ops-filter-bar .filter-group input{width:220px}
 .ops-filter-bar .filter-group select{min-width:150px}
-.ops-filter-bar .filter-actions{align-self:flex-end}
+.ops-filter-bar .filter-actions{align-self:flex-end;margin-left:auto}
 .ops-table-wrap{flex:1;min-height:0;display:flex;flex-direction:column}
 .ops-table-wrap .table-head-bar{flex:0 0 auto;padding:9px 14px}
 .ops-table-wrap .table-scroll{flex:1;min-height:0;overflow:auto}
 .ops-table-wrap .pagination{flex:0 0 auto;padding:8px 14px}
-.order-admin-table{min-width:1160px!important}
+.order-admin-table{min-width:1540px!important}
 .order-admin-table th{position:sticky;top:0;z-index:4}
 .order-admin-table td{padding-top:8px;padding-bottom:8px}
+.order-admin-table .selection-column{width:42px;min-width:42px;padding-left:10px;padding-right:10px;text-align:center!important}
+.order-admin-table .selection-column input{width:15px;height:15px;margin:0;accent-color:var(--primary)}
 .order-admin-table .operation-column{width:218px;min-width:218px}
 .order-id{font-family:var(--font-mono);font-size:11.5px;color:var(--primary)}
 .order-user-cell{display:grid;gap:2px}
 .order-user-cell strong{font-size:12.5px}
 .order-user-cell span{font-size:10.5px;color:var(--muted)}
-.order-sku-summary{display:inline-grid;gap:2px;max-width:190px;text-align:center;color:var(--ink)}
+.order-sku-summary{display:grid;gap:5px;min-width:280px;max-width:320px;padding:0;text-align:left;color:var(--ink)}
 .order-sku-summary:hover strong{color:var(--primary)}
-.order-sku-summary strong{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.order-sku-summary span{font-size:10.5px;color:var(--primary)}
+.order-sku-preview{display:grid;gap:4px}
+.order-sku-item{display:flex;align-items:center;gap:7px;min-width:0}
+.order-sku-item img{width:30px;height:30px;flex:0 0 auto;border:1px solid var(--border);border-radius:4px;object-fit:cover;background:var(--surface-2)}
+.order-sku-item>span{min-width:0;display:grid;gap:2px}
+.order-sku-item strong{font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.order-sku-item code{font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.order-sku-summary em{font-size:10.5px;font-style:normal;color:var(--primary)}
+.order-user-phone{white-space:nowrap;font-size:11.5px}
+.order-address{display:block;max-width:220px;white-space:normal;line-height:1.45;text-align:left}
+.order-logistics-cell{display:grid;justify-items:start;gap:3px;min-width:106px}
+.order-logistics-cell .btn-link{padding:1px 0;font-size:11px}
+.order-label-file-name{max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted);font-size:10px}
+.order-admin-table th:nth-child(3),.order-admin-table td:nth-child(3),.order-admin-table th:nth-child(9),.order-admin-table td:nth-child(9){text-align:left!important}
+.order-label-batch-modal{width:min(920px,calc(100vw - 32px));max-width:none;overflow:hidden}
+.order-label-batch-subtitle{margin-top:4px;color:var(--muted);font-size:11px}
+.order-label-batch-body{display:grid;gap:12px;padding:14px 20px}
+.order-label-batch-toolbar{display:flex;align-items:center;gap:10px}
+.order-label-batch-toolbar .btn{height:34px}
+.order-label-batch-toolbar .btn svg{width:16px;height:16px}
+.order-label-batch-file-count{color:var(--muted);font-size:11px}
+.order-label-batch-table-wrap{max-height:52vh;border:1px solid var(--border);border-radius:6px;overflow:auto}
+.order-label-batch-table{min-width:680px!important;table-layout:fixed}
+.order-label-batch-table th,.order-label-batch-table td{padding:10px 12px}
+.order-label-batch-table th:first-child{width:180px}
+.order-label-batch-table th:nth-child(2){width:120px}
+.order-label-batch-table th:nth-child(3){width:180px}
 .order-detail-modal{width:900px;overflow:hidden}
 .order-detail-modal .modal-body{max-height:66vh;overflow:auto}
 .order-detail-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:18px}
@@ -1179,7 +1205,7 @@ body[data-page="global-overview"] .app-content{height:100vh;min-height:0;overflo
   .fee-stat .stat-heading p{font-size:9.5px}
   .ops-filter-bar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:end}
   .ops-filter-bar .filter-group,.ops-filter-bar .filter-group input,.ops-filter-bar .filter-group select{width:100%;min-width:0}
-  .ops-filter-bar .filter-actions{grid-column:1/-1}
+  .ops-filter-bar .filter-actions{grid-column:1/-1;margin-left:0}
 }
 
 @container (max-width:800px){
