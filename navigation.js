@@ -86,7 +86,7 @@
     '<a class="nav-primary'+active('global-overview')+'" href="global-overview.html" data-nav="global-overview" title="全局说明">'+globalIcon+'<span>全局说明</span></a>'
     +'<details class="nav-group nav-hover-group'+current(['orders','sku','tray-management','inbound'])+'">'
       +'<summary class="nav-group-toggle" title="海外仓">'+inventoryIcon+'<span>海外仓</span>'+chevron+'</summary>'
-      +'<div class="nav-children"><a class="nav-child'+active('orders')+'" href="order-management.html" data-nav="orders">订单管理</a><a class="nav-child'+active('sku')+'" href="index.html" data-nav="sku">库存管理</a><a class="nav-child'+active('tray-management')+'" href="cargo-tray-management.html" data-nav="tray-management">美国货盘管理</a><a class="nav-child'+active('inbound')+'" href="inbound.html" data-nav="inbound">入库单管理</a></div>'
+      +'<div class="nav-children"><a class="nav-child'+active('inbound')+'" href="inbound.html" data-nav="inbound">入库单管理</a><a class="nav-child'+active('orders')+'" href="order-management.html" data-nav="orders">订单管理</a><a class="nav-child'+active('sku')+'" href="index.html" data-nav="sku">库存管理</a><a class="nav-child'+active('tray-management')+'" href="cargo-tray-management.html" data-nav="tray-management">美国货盘管理</a></div>'
     +'</details>'
     +'<details class="nav-group nav-hover-group'+current(['packaging-shipping'])+'">'
       +'<summary class="nav-group-toggle" title="物流中心">'+logisticsIcon+'<span>物流中心</span>'+chevron+'</summary>'

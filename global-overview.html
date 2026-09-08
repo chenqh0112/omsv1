@@ -20,9 +20,12 @@
     <div class="topbar-right"><div class="user"><button class="avatar" type="button" data-role-avatar aria-haspopup="dialog" aria-label="切换身份" title="切换身份">超</button></div></div>
   </div>
   <main class="page-body global-overview-body">
-    <section class="global-overview-image page-section" aria-label="平台订单导入流程图">
-      <button class="global-overview-image-trigger" id="global-overview-image-trigger" type="button" aria-label="放大查看平台订单导入流程图">
-        <img src="assets/订单导入.png" alt="平台订单导入流程图">
+    <section class="global-overview-image page-section" aria-label="项目流程图">
+      <button class="global-overview-image-trigger" id="global-overview-image-trigger" type="button" data-preview-src="assets/海外仓入库.png" aria-label="放大查看海外仓入库流程图">
+        <img src="assets/海外仓入库.png" alt="海外仓入库流程图">
+      </button>
+      <button class="global-overview-image-trigger" type="button" data-preview-src="assets/平台订单导入.png" aria-label="放大查看平台订单导入流程图">
+        <img src="assets/平台订单导入.png" alt="平台订单导入流程图">
       </button>
     </section>
   </main>
@@ -30,7 +33,7 @@
 
 <div class="global-image-preview" id="global-image-preview" role="dialog" aria-modal="true" aria-label="平台订单导入流程图原图" hidden>
   <button class="global-image-preview-close" id="global-image-preview-close" type="button" aria-label="关闭原图预览" title="关闭">&times;</button>
-  <img src="assets/订单导入.png" alt="平台订单导入流程图原图">
+  <img src="assets/平台订单导入.png" alt="平台订单导入流程图原图">
 </div>
 
 <script src="toast.js?v=20260828-cart-action"></script>
@@ -39,10 +42,11 @@
 <script>
 (function(){
   var trigger=document.getElementById('global-overview-image-trigger');
+  var triggers=document.querySelectorAll('.global-overview-image-trigger');
   var preview=document.getElementById('global-image-preview');
   var closeButton=document.getElementById('global-image-preview-close');
   function closePreview(){preview.hidden=true}
-  trigger.addEventListener('click',function(){preview.hidden=false;closeButton.focus()});
+  triggers.forEach(function(item){item.addEventListener('click',function(){var source=item.getAttribute('data-preview-src'),image=item.querySelector('img'),previewImage=preview.querySelector('img');if(source)previewImage.src=source;if(image)previewImage.alt=image.alt+'原图';preview.hidden=false;closeButton.focus()})});
   closeButton.addEventListener('click',closePreview);
   preview.addEventListener('click',function(event){if(event.target===preview)closePreview()});
   document.addEventListener('keydown',function(event){if(event.key==='Escape'&&!preview.hidden)closePreview()});
