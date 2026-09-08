@@ -381,7 +381,7 @@ function renderTable(data){
       +'<td class="num" style="text-align:right;color:var(--success);font-weight:500">'+item.available+'</td>'
       +'<td class="num" style="text-align:right;color:var(--warning);font-weight:500">'+item.locked+'</td>'
       +'<td class="num" style="text-align:right;font-weight:700">'+item.total+'</td>'
-      +'<td class="operation-column"><button class="btn-link" type="button" data-cargo-mark="'+item.barcode+'">上架美国货盘</button></td>';
+      +'<td class="operation-column"><button class="btn-link" type="button" data-cargo-mark="'+item.barcode+'">上架</button></td>';
     if(item.lowStock){tr.style.background='rgba(220,38,38,0.04)'}
     tbody.appendChild(tr);
   });

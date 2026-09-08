@@ -9,7 +9,7 @@
     {id:'USR-1006',name:'Sophia Wang',company:'Bright Living Corp.'},
     {id:'USR-1007',name:'采购用户D',company:'环球百货供应链'}
   ];
-  var statuses=['待审核','待分配仓库','待仓库拣货','待物流收揽','已发货','部分发货','商品缺货','已关闭','拦截发货成功'];
+  var statuses=['待关联','待支付','待分配仓库','待仓库拣货','待物流收揽','已发货','部分发货','商品缺货','已关闭','拦截发货成功'];
   var reviewRules=['首单金额超过5000美元','新用户首次下单','数量超过历史平均数量的3倍','OMS 库存锁定失败'];
   var logistics=['UPS Ground','FedEx Ground','卡车派送'];
   var orders=[];
@@ -21,15 +21,16 @@
       var sku=skuData[(index*7+itemIndex*11)%Math.max(1,skuData.length)]||{};
       var quantity=2+((index+itemIndex*3)%12);
       var unitPrice=Number(sku.unitPrice||24.9);
-      items.push({sku:sku.barcode||('SKU-'+index+'-'+itemIndex),name:sku.name||'示例商品',spec:sku.spec||'标准规格',img:sku.img||'',quantity:quantity,unitPrice:unitPrice,subtotal:unitPrice*quantity});
+      items.push({platformSku:sku.barcode||('SKU-'+index+'-'+itemIndex),sku:sku.barcode||('SKU-'+index+'-'+itemIndex),matchedSku:sku.barcode||'',productId:sku.id||'',name:sku.name||'示例商品',spec:sku.spec||'标准规格',img:sku.img||'',quantity:quantity,unitPrice:unitPrice,subtotal:unitPrice*quantity});
     }
     var productAmount=items.reduce(function(sum,item){return sum+item.subtotal},0);
     var operationFee=8+(index%5)*2;
     var logisticsFee=18+(index%4)*6;
     var status=statuses[index%statuses.length];
+    if(status==='待关联'&&items[0]){items[0].matchedSku='';items[0].sku='PLATFORM-UNMATCHED-'+index;items[0].platformSku=items[0].sku;items[0].productId='';}
     var day=27-(index%27);
     var hour=9+(index%9);
-    var hasOmsOrder=status!=='待审核';
+    var hasOmsOrder=['待关联','待支付'].indexOf(status)<0;
     var packageCount=status==='部分发货'||(status==='已发货'&&index%3===0)?2:1;
     var packages=hasOmsOrder?Array.from({length:packageCount},function(_,packageIndex){
       var shipped=status==='已发货'||status==='部分发货'&&packageIndex===0;
@@ -48,6 +49,12 @@
       productAmount:productAmount,
       operationFee:operationFee,
       logisticsFee:logisticsFee,
+      salesPrice:productAmount+operationFee,
+      salesShipping:logisticsFee,
+      salesTotal:productAmount+operationFee+logisticsFee,
+      cargoPrice:productAmount,
+      cargoShipping:logisticsFee,
+      cargoTotal:productAmount+logisticsFee,
       amount:productAmount+operationFee+logisticsFee,
       status:status,
       logistics:logistics[index%logistics.length],
@@ -56,8 +63,8 @@
       recipient:buyer.name,
       phone:'+1 512 555 '+String(1000+index),
       address:(120+index)+' Commerce Ave, Dallas, TX 75201',
-      reviewReasons:status==='待审核'?[reviewRules[Math.floor(index/8)%reviewRules.length]]:[],
-      retryRecords:status==='待审核'&&index%4===0?[{at:'2026-08-'+String(day).padStart(2,'0')+' 10:00',reason:'OMS 库存锁定失败',result:'待人工重试'}]:[],
+      reviewReasons:[],
+      retryRecords:[],
       closeReason:status==='已关闭'?'风控审核后关闭订单':''
     });
   }

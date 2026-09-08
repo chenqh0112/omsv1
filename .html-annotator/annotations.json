@@ -1,0 +1,81 @@
+{
+  "version": "1.0.0",
+  "files": {
+    "index.html": {
+      "fileHash": "",
+      "annotations": [
+        {
+          "id": "ann-1788859594652",
+          "elementId": {
+            "selector": "div#head-upload-modal > div.head-upload-modal > div.head-upload-footer:nth-of-type(3) > button.btn.btn-primary:nth-of-type(2)",
+            "fingerprint": {
+              "tag": "BUTTON",
+              "classList": [
+                "btn",
+                "btn-primary"
+              ],
+              "textPreview": "上传箱标文件",
+              "childCount": 0,
+              "depth": 5
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>需要判断当前货仓类型是不是海外仓并且是不是美国货盘仓库，是的话就调用海外仓接口/oms/api/warehouse/inbound_form创建入库单并获取到箱标信息</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-08T09:26:34.652Z",
+          "updatedAt": "2026-09-08T09:27:23.775Z"
+        }
+      ]
+    },
+    "packaging-shipping.html": {
+      "fileHash": "",
+      "annotations": [
+        {
+          "id": "ann-1788859783066",
+          "elementId": {
+            "selector": "div#head-upload-modal > div.head-upload-modal > div.head-upload-footer:nth-of-type(3) > button.btn.btn-primary:nth-of-type(2)",
+            "fingerprint": {
+              "tag": "BUTTON",
+              "classList": [
+                "btn",
+                "btn-primary"
+              ],
+              "textPreview": "上传箱标文件",
+              "childCount": 0,
+              "depth": 5
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>需要判断当前货仓类型是不是海外仓并且是不是美国货盘仓库，是的话就调用海外仓接口/oms/api/warehouse/inbound_form创建入库单并获取到箱标信息</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-08T09:29:43.066Z",
+          "updatedAt": "2026-09-08T09:29:46.738Z"
+        },
+        {
+          "id": "ann-1788859852164",
+          "elementId": {
+            "selector": "main.app-content > section.packaging-page > div.packaging-panel:nth-of-type(2) > div.packaging-actions:nth-of-type(2) > button.btn.btn-primary:nth-of-type(1)",
+            "fingerprint": {
+              "tag": "BUTTON",
+              "classList": [
+                "btn",
+                "btn-primary"
+              ],
+              "textPreview": "填写运单",
+              "childCount": 0,
+              "depth": 6
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>需要判断当前货仓类型是不是海外仓并且是不是美国货盘仓库，是的话就调用海外仓接口/oms/api/warehouse/inbound_form创建入库</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-08T09:30:52.164Z",
+          "updatedAt": "2026-09-08T09:30:54.281Z"
+        }
+      ]
+    }
+  }
+}
