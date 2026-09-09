@@ -3,6 +3,11 @@
   if(!nav)return;
 
   var currentPage=document.body.dataset.page||'';
+  var markerStyle=document.createElement('link');markerStyle.rel='stylesheet';markerStyle.href='marker-toggle.css';document.head.appendChild(markerStyle);
+  var markerScript=document.createElement('script');markerScript.src='marker-toggle.js';document.body.appendChild(markerScript);
+  if(currentPage==='inbound'||currentPage==='packaging-shipping'){
+    var notesScript=document.createElement('script');notesScript.src='notes.js';document.body.appendChild(notesScript);
+  }
   if(currentPage==='packaging-shipping'){var bmStyle=document.createElement('link');bmStyle.rel='stylesheet';bmStyle.href='packaging-bm.css';document.head.appendChild(bmStyle)}
   if(currentPage==='packaging-shipping'){
     var headModal=document.getElementById('head-modal');
@@ -84,15 +89,24 @@
   nav.setAttribute('aria-label','主导航');
   nav.innerHTML=
     '<a class="nav-primary'+active('global-overview')+'" href="global-overview.html" data-nav="global-overview" title="全局说明">'+globalIcon+'<span>全局说明</span></a>'
-    +'<details class="nav-group nav-hover-group'+current(['orders','sku','tray-management','inbound'])+'">'
-      +'<summary class="nav-group-toggle" title="海外仓">'+inventoryIcon+'<span>海外仓</span>'+chevron+'</summary>'
+    +'<div class="nav-group nav-hover-group'+current(['orders','sku','tray-management','inbound'])+'">'
+      +'<div class="nav-group-toggle" tabindex="0" title="海外仓">'+inventoryIcon+'<span>海外仓</span>'+chevron+'</div>'
       +'<div class="nav-children"><a class="nav-child'+active('inbound')+'" href="inbound.html" data-nav="inbound">入库单管理</a><a class="nav-child'+active('orders')+'" href="order-management.html" data-nav="orders">订单管理</a><a class="nav-child'+active('sku')+'" href="index.html" data-nav="sku">库存管理</a><a class="nav-child'+active('tray-management')+'" href="cargo-tray-management.html" data-nav="tray-management">美国货盘管理</a></div>'
-    +'</details>'
-    +'<details class="nav-group nav-hover-group'+current(['packaging-shipping'])+'">'
-      +'<summary class="nav-group-toggle" title="物流中心">'+logisticsIcon+'<span>物流中心</span>'+chevron+'</summary>'
+    +'</div>'
+    +'<div class="nav-group nav-hover-group'+current(['packaging-shipping'])+'">'
+      +'<div class="nav-group-toggle" tabindex="0" title="物流中心">'+logisticsIcon+'<span>物流中心</span>'+chevron+'</div>'
       +'<div class="nav-children"><a class="nav-child'+active('packaging-shipping')+'" href="packaging-shipping.html" data-nav="packaging-shipping">包装发货</a></div>'
-    +'</details>'
+    +'</div>'
     +'<a class="nav-primary'+active('tray-v2')+'" href="cargo-tray-v2.html" data-nav="tray-v2" title="美国货盘">'+gridIcon+'<span>美国货盘</span></a>';
+  nav.querySelectorAll('.nav-hover-group .nav-group-toggle').forEach(function(toggle){
+    toggle.addEventListener('click',function(event){
+      event.stopPropagation();
+      var group=toggle.parentElement;
+      nav.querySelectorAll('.nav-hover-group.open').forEach(function(item){if(item!==group)item.classList.remove('open')});
+      group.classList.toggle('open');
+    });
+  });
+  document.addEventListener('click',function(event){if(!event.target.closest('.nav-hover-group'))nav.querySelectorAll('.nav-hover-group.open').forEach(function(item){item.classList.remove('open')})});
   var activeItem=nav.querySelector('.active');
   if(activeItem)requestAnimationFrame(function(){activeItem.scrollIntoView({block:'nearest'})});
   var topbarLeft=document.querySelector('.topbar-left');
@@ -101,6 +115,15 @@
     search.className='bm-search';
     search.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><input type="search" placeholder="请输入菜单" aria-label="搜索菜单">';
     topbarLeft.insertBefore(search,topbarLeft.firstChild);
+  }
+  var pageTabNames={inbound:'入库单管理',orders:'订单管理',sku:'库存管理','tray-management':'美国货盘管理'};
+  if(pageTabNames[currentPage]){
+    var topbar=document.querySelector('.topbar');
+    if(topbar&&!document.querySelector('.bm-page-tabs')){
+      var pageTabs=document.createElement('div');pageTabs.className='bm-page-tabs';
+      pageTabs.innerHTML='<div class="bm-page-tab active">'+pageTabNames[currentPage]+'<button type="button" aria-label="关闭页面标签">×</button></div>';
+      topbar.insertAdjacentElement('afterend',pageTabs);
+    }
   }
   var footer=document.querySelector('.nav-footer');
   if(footer)footer.innerHTML='';

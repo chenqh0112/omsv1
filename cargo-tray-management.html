@@ -1,26 +1,59 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head>
+<html lang="zh-CN" style="--notes-panel-w: 545px;"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>美国货盘管理 — 美国货盘PRD</title>
 <link rel="stylesheet" href="styles.css?v=20260828-returns-pagination">
-<script src="navigation.js?v=20260901-auth-state" defer></script>
-</head>
-<body data-page="tray-management">
+<script src="navigation.js?v=20260901-auth-state" defer=""></script>
+<link rel="stylesheet" href="marker-toggle.css"><link rel="stylesheet" href="marker-toggle.css"><link rel="stylesheet" href="marker-toggle.css"><link rel="stylesheet" href="marker-toggle.css"><link rel="stylesheet" href="marker-toggle.css"><link rel="stylesheet" href="marker-toggle.css"><link rel="stylesheet" href="marker-toggle.css"><style data-html-annotator-inline-style="">
+[data-html-annotator-inline-root] { position: fixed; inset: 0; z-index: 2147483000; pointer-events: none; }
+[data-html-annotator-inline-marker] { position: fixed; width: 22px; height: 22px; margin: -5px 0 0 -5px; border: 2px solid #fff; border-radius: 50%; box-shadow: 0 2px 7px rgba(0,0,0,.35); color: #fff; font: 700 11px/18px Arial,sans-serif; text-align: center; cursor: pointer; pointer-events: auto; }
+[data-html-annotator-inline-marker][data-severity="info"] { background: #3b82f6; }
+[data-html-annotator-inline-marker][data-severity="warning"] { background: #d97706; }
+[data-html-annotator-inline-marker][data-severity="error"] { background: #dc2626; }
+[data-html-annotator-inline-panel] { position: fixed; display: none; max-width: 360px; max-height: 260px; overflow: auto; padding: 12px 14px; border: 1px solid #334155; border-left: 3px solid #3b82f6; border-radius: 6px; background: #111827; color: #e5e7eb; box-shadow: 0 8px 28px rgba(0,0,0,.35); font: 13px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; pointer-events: auto; }
+[data-html-annotator-inline-panel][data-severity="warning"] { border-left-color: #d97706; }
+[data-html-annotator-inline-panel][data-severity="error"] { border-left-color: #dc2626; }
+[data-html-annotator-inline-panel] .html-annotator-inline-head { margin-bottom: 6px; color: #94a3b8; font-size: 11px; }
+[data-html-annotator-inline-panel] p { margin: 0 0 8px; }
+[data-html-annotator-inline-panel] p:last-child { margin-bottom: 0; }
+[data-html-annotator-inline-panel] .html-annotator-inline-tags { margin-top: 8px; color: #94a3b8; font-size: 11px; }
+</style><link rel="stylesheet" href="marker-toggle.css"><style data-html-annotator-document-rich-style="">
+.notes-content .notes-document { color:#334155; font-size:13px; line-height:1.7; overflow-wrap:anywhere; }
+.notes-content .notes-document h1,.notes-content .notes-document h2,.notes-content .notes-document h3 { color:#0f172a; font-weight:700; }
+.notes-content .notes-document h1 { margin:0 0 16px; font-size:22px; }
+.notes-content .notes-document h2 { margin:20px 0 10px; font-size:17px; }
+.notes-content .notes-document h3 { margin:16px 0 8px; font-size:15px; }
+.notes-content .notes-document p { margin:0 0 10px; }
+.notes-content .notes-document ul,.notes-content .notes-document ol { margin:0 0 12px; padding-left:22px; }
+.notes-content .notes-document blockquote { margin:12px 0; padding:8px 12px; border-left:3px solid #3b82f6; background:#f8fafc; color:#475569; }
+.notes-content .notes-document pre { margin:12px 0; overflow:auto; padding:12px; border-radius:6px; background:#0f172a; color:#e2e8f0; }
+.notes-content .notes-document code { font-family:ui-monospace,SFMono-Regular,Consolas,monospace; }
+.notes-content .notes-document :not(pre)>code { padding:1px 4px; border-radius:4px; background:#f1f5f9; color:#0369a1; }
+.notes-content .notes-document a { color:#2563eb; text-decoration:underline; }
+.notes-content .notes-document img { display:block; max-width:100%; height:auto; margin:12px 0; }
+.notes-content .notes-document table { width:100%; margin:12px 0; border-collapse:collapse; }
+.notes-content .notes-document th,.notes-content .notes-document td { padding:7px 9px; border:1px solid #e2e8f0; text-align:left; vertical-align:top; }
+.notes-content .notes-document th { background:#f8fafc; color:#0f172a; font-weight:600; }
+.notes-content .notes-document del { color:#64748b; }
+.notes-content .notes-document input[type="checkbox"] { margin-right:6px; }
+.notes-content .notes-document hr { margin:18px 0; border:0; border-top:1px solid #e2e8f0; }
+</style></head>
+<body data-page="tray-management" class="page-markers-hidden">
 <aside class="app-nav">
-  <div class="nav-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M9 22V12h6v10"></path></svg>美国货盘PRD</div>
-  <nav class="nav-list"></nav>
-  <div class="nav-footer">美国货盘PRD</div>
+  <div class="nav-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M9 22V12h6v10"></path></svg><span>工作管理平台</span></div>
+  <nav class="nav-list" aria-label="主导航"><a class="nav-primary" href="global-overview.html" data-nav="global-overview" title="全局说明"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path></svg><span>全局说明</span></a><div class="nav-group nav-hover-group nav-group-current"><div class="nav-group-toggle" tabindex="0" title="海外仓"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7.5 12 3l8 4.5v9L12 21l-8-4.5z"></path><path d="m4 7.5 8 4.5 8-4.5M12 12v9"></path></svg><span>海外仓</span><svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m7 10 5 5 5-5"></path></svg></div><div class="nav-children"><a class="nav-child" href="inbound.html" data-nav="inbound">入库单管理</a><a class="nav-child" href="order-management.html" data-nav="orders">订单管理</a><a class="nav-child" href="index.html" data-nav="sku">库存管理</a><a class="nav-child active" href="cargo-tray-management.html" data-nav="tray-management">美国货盘管理</a></div></div><div class="nav-group nav-hover-group"><div class="nav-group-toggle" tabindex="0" title="物流中心"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h11v11H3zM14 10h4l3 3v4h-7z"></path><circle cx="7" cy="19" r="2"></circle><circle cx="18" cy="19" r="2"></circle></svg><span>物流中心</span><svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m7 10 5 5 5-5"></path></svg></div><div class="nav-children"><a class="nav-child" href="packaging-shipping.html" data-nav="packaging-shipping">包装发货</a></div></div><a class="nav-primary" href="cargo-tray-v2.html" data-nav="tray-v2" title="美国货盘"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg><span>美国货盘</span></a></nav>
+  <div class="nav-footer"></div>
 </aside>
 
 <div class="app-content">
-  <div class="topbar"><div class="topbar-left"><h1>美国货盘管理</h1></div><div class="topbar-right"><div class="user"><button class="avatar" type="button" data-role-avatar aria-haspopup="dialog" aria-label="切换身份" title="切换身份">超</button></div></div></div>
+  <div class="topbar"><div class="topbar-left"><label class="bm-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><input type="search" placeholder="请输入菜单" aria-label="搜索菜单"></label><h1>美国货盘管理</h1></div><div class="topbar-right"><div class="user"><button class="avatar avatar--super" type="button" data-role-avatar="" aria-haspopup="dialog" aria-label="当前身份：超管，切换身份" title="当前身份：超管，点击切换">超</button></div></div></div><div class="bm-page-tabs"><div class="bm-page-tab active">美国货盘管理<button type="button" aria-label="关闭页面标签">×</button></div></div>
   <main class="page-body tray-management-body">
     <section class="tray-management-stats page-section" aria-label="货盘统计">
-      <div class="stat-card manage-stat manage-stat-sku"><div class="stat-heading"><div class="stat-label">货盘SKU数</div><p>当前在货盘上的SKU数量</p></div><div class="stat-metric-row"><div class="stat-value" id="manage-stat-skus">0</div><div class="stat-trend trend-up"><strong>↑ 6.5%</strong><span>vs 上周</span></div></div></div>
-      <div class="stat-card manage-stat manage-stat-total"><div class="stat-heading"><div class="stat-label">货盘总量</div><p>放入美国货盘的总件数</p></div><div class="stat-metric-row"><div class="stat-value" id="manage-stat-total">0</div><div class="stat-trend trend-up"><strong>↑ 9.8%</strong><span>vs 上周</span></div></div></div>
-      <div class="stat-card manage-stat manage-stat-sellable"><div class="stat-heading"><div class="stat-label">可售数量</div><p>货盘上还没被预占的件数</p></div><div class="stat-metric-row"><div class="stat-value" id="manage-stat-sellable">0</div><div class="stat-trend trend-up"><strong>↑ 7.2%</strong><span>vs 上周</span></div></div></div>
-      <div class="stat-card manage-stat manage-stat-reserved"><div class="stat-heading"><div class="stat-label">已预占</div><p>外部用户已下单但还没发货</p></div><div class="stat-metric-row"><div class="stat-value" id="manage-stat-reserved">0</div><div class="stat-trend trend-up"><strong>↑ 12.4%</strong><span>vs 上周</span></div></div></div>
+      <div class="stat-card manage-stat manage-stat-sku"><div class="stat-heading"><div class="stat-label">货盘SKU数</div><p>当前在货盘上的SKU数量</p></div><div class="stat-metric-row"><div class="stat-value" id="manage-stat-skus">47</div><div class="stat-trend trend-up"><strong>↑ 6.5%</strong><span>vs 上周</span></div></div></div>
+      <div class="stat-card manage-stat manage-stat-total"><div class="stat-heading"><div class="stat-label">货盘总量</div><p>放入美国货盘的总件数</p></div><div class="stat-metric-row"><div class="stat-value" id="manage-stat-total">2,495</div><div class="stat-trend trend-up"><strong>↑ 9.8%</strong><span>vs 上周</span></div></div></div>
+      <div class="stat-card manage-stat manage-stat-sellable"><div class="stat-heading"><div class="stat-label">在售数量</div><p>货盘上还没被预占的件数</p></div><div class="stat-metric-row"><div class="stat-value" id="manage-stat-sellable">1,987</div><div class="stat-trend trend-up"><strong>↑ 7.2%</strong><span>vs 上周</span></div></div></div>
+      <div class="stat-card manage-stat manage-stat-reserved"><div class="stat-heading"><div class="stat-label">已预占</div><p>外部用户已下单但还没发货</p></div><div class="stat-metric-row"><div class="stat-value" id="manage-stat-reserved">508</div><div class="stat-trend trend-up"><strong>↑ 12.4%</strong><span>vs 上周</span></div></div></div>
     </section>
 
     <section class="filter-bar manage-filter-bar page-section" aria-label="美国货盘库存筛选">
@@ -30,14 +63,14 @@
     </section>
 
     <section class="table-wrap tray-management-workspace page-section">
-      <div class="tray-management-tabs">
+      <div class="tray-management-tabs" data-annotation-id="ann-1788949998910">
         <div class="tray-management-tab-list" role="tablist" aria-label="美国货盘库存状态">
-          <button class="tray-management-tab active" id="marked-tab" type="button" role="tab" aria-selected="true" data-manage-tab="marked">美国货盘 <span id="marked-tab-count">0</span></button>
+          <button class="tray-management-tab active" id="marked-tab" type="button" role="tab" aria-selected="true" data-manage-tab="marked">美国货盘 <span id="marked-tab-count">47</span></button>
         </div>
         <div class="tray-management-actions">
-          <button class="btn btn-primary btn-sm" id="manage-batch-edit" type="button" disabled>批量修改</button>
-          <button class="btn btn-ghost btn-sm danger" id="manage-batch-unmark" type="button" disabled>批量下架</button>
-          <button class="btn btn-ghost btn-sm" id="manage-export" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg>导出</button>
+          <button class="btn btn-primary btn-sm" id="manage-batch-edit" type="button" disabled="">批量修改</button>
+          <button class="btn btn-ghost btn-sm danger" id="manage-batch-unmark" type="button" disabled="">批量下架</button>
+          
         </div>
       </div>
 
@@ -45,47 +78,52 @@
         <div class="table-scroll">
           <table class="data-table manage-inventory-table">
             <thead><tr>
-              <th class="selection-column"><input id="manage-marked-select-all" type="checkbox" aria-label="选择当前页中的全部美国货盘SKU"></th>
-              <th class="sku-column">SKU</th>
-              <th class="sortable-column"><button class="sort-button" type="button" data-manage-sort="age">库龄<span aria-hidden="true">↕</span></button></th>
-              <th>单价</th>
-              <th><span class="table-header-label">对公展示数量<span class="table-header-help" tabindex="0" role="img" aria-label="对公展示数量说明" data-tooltip="当前设置在对公美国货盘中展示的商品件数">?</span></span></th>
-              <th class="sortable-column"><div class="manage-sort-header"><button class="sort-button" type="button" data-manage-sort="sellable">可售数量<span aria-hidden="true">↕</span></button><span class="table-header-help" tabindex="0" role="img" aria-label="可售数量说明" data-tooltip="对公展示数量减去已预占数量后，可继续销售的件数">?</span></div></th>
+              <th class="sku-column"><span class="manage-sku-header"><input id="manage-marked-select-all" type="checkbox" aria-label="选择当前页中的全部美国货盘SKU"><span>SKU</span></span></th>
+              <th class="sortable-column" aria-sort="none"><button class="sort-button" type="button" data-manage-sort="age">库龄<span aria-hidden="true">↕</span></button></th>
+              <th data-annotation-id="ann-1788950476361">单价</th>
+              <th>库存</th>
+              <th class="sortable-column" aria-sort="none"><button class="sort-button" type="button" data-manage-sort="markedQty">在售数量<span aria-hidden="true">↕</span></button></th>
               <th><span class="table-header-label">已预占<span class="table-header-help" tabindex="0" role="img" aria-label="已预占说明" data-tooltip="外部用户已下单但尚未发货，占用的件数">?</span></span></th>
-              <th class="sortable-column"><div class="manage-sort-header"><button class="sort-button" type="button" data-manage-sort="reservedRate">预占率<span aria-hidden="true">↕</span></button><span class="table-header-help" tabindex="0" role="img" aria-label="预占率说明" data-tooltip="已预占数量除以对公展示数量，用于判断当前货盘库存的订单占用程度">?</span></div></th>
-              <th>对外可见</th><th class="operation-column">操作</th>
+              <th class="sortable-column" aria-sort="none"><div class="manage-sort-header"><button class="sort-button" type="button" data-manage-sort="reservedRate">预占率<span aria-hidden="true">↕</span></button><span class="table-header-help" tabindex="0" role="img" aria-label="预占率说明" data-tooltip="已预占数量除以在售数量，用于判断当前货盘库存的订单占用程度">?</span></div></th>
+              <th class="operation-column">操作</th>
             </tr></thead>
-            <tbody id="marked-tbody"></tbody>
+            <tbody id="marked-tbody"><tr data-manage-sku="DS-AUR-01-C"><td class="sku-column"><div class="manage-sku-cell"><input class="manage-marked-row-select" type="checkbox" data-manage-marked-select="DS-AUR-01-C" aria-label="选择 极光随行保温杯"><div class="sku-profile manage-sku-profile"><button class="sku-product-image" type="button" data-manage-preview="DS-AUR-01-C" aria-label="预览 极光随行保温杯 图片"><img src="img1.jpg" alt="极光随行保温杯"></button><div class="sku-profile-copy"><strong>极光随行保温杯</strong><span>40OZ · 樱粉</span><code>DS-AUR-01-C</code></div></div></div></td><td><span class="tag age-value tag-warning" tabindex="0" data-manage-age-sku="DS-AUR-01-C" aria-describedby="age-detail-tooltip" aria-label="最大库龄28天，共3条库龄记录" data-annotation-id="ann-1788950242484">28天</span></td><td class="num">31.90$</td><td class="num">203</td><td class="num manage-marked-qty">44</td><td class="num manage-reserved-qty">10</td><td class="num manage-reserved-rate">22.7%</td><td class="operation-column"><div class="table-actions"><button class="btn-link" type="button" data-manage-adjust="DS-AUR-01-C" data-annotation-id="ann-1788950277811">编辑</button><button class="btn-link danger" type="button" data-manage-unmark="DS-AUR-01-C" data-annotation-id="ann-1788950296211">下架</button></div></td></tr><tr data-manage-sku="DS-MNT-02-A"><td class="sku-column"><div class="manage-sku-cell"><input class="manage-marked-row-select" type="checkbox" data-manage-marked-select="DS-MNT-02-A" aria-label="选择 山野运动水壶"><div class="sku-profile manage-sku-profile"><button class="sku-product-image" type="button" data-manage-preview="DS-MNT-02-A" aria-label="预览 山野运动水壶 图片"><img src="img2.jpg" alt="山野运动水壶"></button><div class="sku-profile-copy"><strong>山野运动水壶</strong><span>20OZ · 雾灰</span><code>DS-MNT-02-A</code></div></div></div></td><td><span class="tag age-value tag-danger" tabindex="0" data-manage-age-sku="DS-MNT-02-A" aria-describedby="age-detail-tooltip" aria-label="最大库龄54天，共2条库龄记录">54天</span></td><td class="num">31.90$</td><td class="num">381</td><td class="num manage-marked-qty">70</td><td class="num manage-reserved-qty">20</td><td class="num manage-reserved-rate">28.6%</td><td class="operation-column"><div class="table-actions"><button class="btn-link" type="button" data-manage-adjust="DS-MNT-02-A">编辑</button><button class="btn-link danger" type="button" data-manage-unmark="DS-MNT-02-A">下架</button></div></td></tr><tr data-manage-sku="DS-MNT-02-C"><td class="sku-column"><div class="manage-sku-cell"><input class="manage-marked-row-select" type="checkbox" data-manage-marked-select="DS-MNT-02-C" aria-label="选择 山野运动水壶"><div class="sku-profile manage-sku-profile"><button class="sku-product-image" type="button" data-manage-preview="DS-MNT-02-C" aria-label="预览 山野运动水壶 图片"><img src="img2.jpg" alt="山野运动水壶"></button><div class="sku-profile-copy"><strong>山野运动水壶</strong><span>40OZ · 樱粉</span><code>DS-MNT-02-C</code></div></div></div></td><td><span class="tag age-value tag-success" tabindex="0" data-manage-age-sku="DS-MNT-02-C" aria-describedby="age-detail-tooltip" aria-label="最大库龄8天，共1条库龄记录">8天</span></td><td class="num">36.40$</td><td class="num">253</td><td class="num manage-marked-qty">59</td><td class="num manage-reserved-qty">6</td><td class="num manage-reserved-rate">10.2%</td><td class="operation-column"><div class="table-actions"><button class="btn-link" type="button" data-manage-adjust="DS-MNT-02-C">编辑</button><button class="btn-link danger" type="button" data-manage-unmark="DS-MNT-02-C">下架</button></div></td></tr><tr data-manage-sku="DS-BIZ-03-A"><td class="sku-column"><div class="manage-sku-cell"><input class="manage-marked-row-select" type="checkbox" data-manage-marked-select="DS-BIZ-03-A" aria-label="选择 商务直饮保温杯"><div class="sku-profile manage-sku-profile"><button class="sku-product-image" type="button" data-manage-preview="DS-BIZ-03-A" aria-label="预览 商务直饮保温杯 图片"><img src="img3.jpg" alt="商务直饮保温杯"></button><div class="sku-profile-copy"><strong>商务直饮保温杯</strong><span>20OZ · 雾灰</span><code>DS-BIZ-03-A</code></div></div></div></td><td><span class="tag age-value tag-danger" tabindex="0" data-manage-age-sku="DS-BIZ-03-A" aria-describedby="age-detail-tooltip" aria-label="最大库龄34天，共3条库龄记录">34天</span></td><td class="num">34.40$</td><td class="num">247</td><td class="num manage-marked-qty">36</td><td class="num manage-reserved-qty">16</td><td class="num manage-reserved-rate">44.4%</td><td class="operation-column"><div class="table-actions"><button class="btn-link" type="button" data-manage-adjust="DS-BIZ-03-A">编辑</button><button class="btn-link danger" type="button" data-manage-unmark="DS-BIZ-03-A">下架</button></div></td></tr><tr data-manage-sku="DS-BIZ-03-C"><td class="sku-column"><div class="manage-sku-cell"><input class="manage-marked-row-select" type="checkbox" data-manage-marked-select="DS-BIZ-03-C" aria-label="选择 商务直饮保温杯"><div class="sku-profile manage-sku-profile"><button class="sku-product-image" type="button" data-manage-preview="DS-BIZ-03-C" aria-label="预览 商务直饮保温杯 图片"><img src="img3.jpg" alt="商务直饮保温杯"></button><div class="sku-profile-copy"><strong>商务直饮保温杯</strong><span>40OZ · 樱粉</span><code>DS-BIZ-03-C</code></div></div></div></td><td><span class="tag age-value tag-danger" tabindex="0" data-manage-age-sku="DS-BIZ-03-C" aria-describedby="age-detail-tooltip" aria-label="最大库龄60天，共2条库龄记录">60天</span></td><td class="num">38.90$</td><td class="num">158</td><td class="num manage-marked-qty">46</td><td class="num manage-reserved-qty">2</td><td class="num manage-reserved-rate">4.3%</td><td class="operation-column"><div class="table-actions"><button class="btn-link" type="button" data-manage-adjust="DS-BIZ-03-C">编辑</button><button class="btn-link danger" type="button" data-manage-unmark="DS-BIZ-03-C">下架</button></div></td></tr><tr data-manage-sku="DS-KID-04-A"><td class="sku-column"><div class="manage-sku-cell"><input class="manage-marked-row-select" type="checkbox" data-manage-marked-select="DS-KID-04-A" aria-label="选择 儿童防漏吸管杯"><div class="sku-profile manage-sku-profile"><button class="sku-product-image" type="button" data-manage-preview="DS-KID-04-A" aria-label="预览 儿童防漏吸管杯 图片"><img src="img4.jpg" alt="儿童防漏吸管杯"></button><div class="sku-profile-copy"><strong>儿童防漏吸管杯</strong><span>20OZ · 雾灰</span><code>DS-KID-04-A</code></div></div></div></td><td><span class="tag age-value tag-success" tabindex="0" data-manage-age-sku="DS-KID-04-A" aria-describedby="age-detail-tooltip" aria-label="最大库龄14天，共1条库龄记录">14天</span></td><td class="num">19.90$</td><td class="num">336</td><td class="num manage-marked-qty">88</td><td class="num manage-reserved-qty">12</td><td class="num manage-reserved-rate">13.6%</td><td class="operation-column"><div class="table-actions"><button class="btn-link" type="button" data-manage-adjust="DS-KID-04-A">编辑</button><button class="btn-link danger" type="button" data-manage-unmark="DS-KID-04-A">下架</button></div></td></tr><tr data-manage-sku="DS-KID-04-C"><td class="sku-column"><div class="manage-sku-cell"><input class="manage-marked-row-select" type="checkbox" data-manage-marked-select="DS-KID-04-C" aria-label="选择 儿童防漏吸管杯"><div class="sku-profile manage-sku-profile"><button class="sku-product-image" type="button" data-manage-preview="DS-KID-04-C" aria-label="预览 儿童防漏吸管杯 图片"><img src="img4.jpg" alt="儿童防漏吸管杯"></button><div class="sku-profile-copy"><strong>儿童防漏吸管杯</strong><span>40OZ · 樱粉</span><code>DS-KID-04-C</code></div></div></div></td><td><span class="tag age-value tag-danger" tabindex="0" data-manage-age-sku="DS-KID-04-C" aria-describedby="age-detail-tooltip" aria-label="最大库龄40天，共3条库龄记录">40天</span></td><td class="num">26.90$</td><td class="num">283</td><td class="num manage-marked-qty">28</td><td class="num manage-reserved-qty">22</td><td class="num manage-reserved-rate">78.6%</td><td class="operation-column"><div class="table-actions"><button class="btn-link" type="button" data-manage-adjust="DS-KID-04-C">编辑</button><button class="btn-link danger" type="button" data-manage-unmark="DS-KID-04-C">下架</button></div></td></tr><tr data-manage-sku="DS-TRV-05-A"><td class="sku-column"><div class="manage-sku-cell"><input class="manage-marked-row-select" type="checkbox" data-manage-marked-select="DS-TRV-05-A" aria-label="选择 旅行大容量水杯"><div class="sku-profile manage-sku-profile"><button class="sku-product-image" type="button" data-manage-preview="DS-TRV-05-A" aria-label="预览 旅行大容量水杯 图片"><img src="img5.jpg" alt="旅行大容量水杯"></button><div class="sku-profile-copy"><strong>旅行大容量水杯</strong><span>20OZ · 雾灰</span><code>DS-TRV-05-A</code></div></div></div></td><td><span class="tag age-value tag-danger" tabindex="0" data-manage-age-sku="DS-TRV-05-A" aria-describedby="age-detail-tooltip" aria-label="最大库龄66天，共2条库龄记录">66天</span></td><td class="num">35.40$</td><td class="num">163</td><td class="num manage-marked-qty">54</td><td class="num manage-reserved-qty">8</td><td class="num manage-reserved-rate">14.8%</td><td class="operation-column"><div class="table-actions"><button class="btn-link" type="button" data-manage-adjust="DS-TRV-05-A">编辑</button><button class="btn-link danger" type="button" data-manage-unmark="DS-TRV-05-A">下架</button></div></td></tr></tbody>
           </table>
         </div>
       </div>
 
-      <div class="pagination manage-pagination"><span class="pagination-info" id="manage-table-summary">共 0 条</span><div class="pagination-btns"><button class="page-btn" id="manage-page-prev" type="button" aria-label="上一页">‹</button><button class="page-btn active" id="manage-page-current" type="button">1 / 1</button><button class="page-btn" id="manage-page-next" type="button" aria-label="下一页">›</button></div></div>
+      <div class="pagination manage-pagination"><span class="pagination-info" id="manage-table-summary">共 47 条</span><div class="pagination-btns"><button class="page-btn" id="manage-page-prev" type="button" aria-label="上一页" disabled="">‹</button><button class="page-btn active" id="manage-page-current" type="button">1 / 6</button><button class="page-btn" id="manage-page-next" type="button" aria-label="下一页">›</button></div></div>
     </section>
   </main>
 </div>
 
-<div class="age-detail-tooltip" id="age-detail-tooltip" role="tooltip"></div>
-<div class="table-help-tooltip" id="manage-table-help-tooltip" role="tooltip"></div>
+<div class="age-detail-tooltip" id="age-detail-tooltip" role="tooltip" style="left: 402.625px; top: 478.75px;"><div class="age-detail-title">库龄记录 <span>DS-AUR-01-C</span></div><table><thead><tr><th>库龄</th><th>上架日期</th><th>统计日期</th></tr></thead><tbody><tr><td>28天</td><td>2026-07-30</td><td>2026-08-27</td></tr><tr><td>20天</td><td>2026-08-07</td><td>2026-08-27</td></tr><tr><td>12天</td><td>2026-08-15</td><td>2026-08-27</td></tr></tbody></table></div>
+<div class="table-help-tooltip" id="manage-table-help-tooltip" role="tooltip" style="left: 669.344px; top: 415.562px;">外部用户已下单但尚未发货，占用的件数</div>
 
 <div class="modal-overlay" id="manage-mark-modal" role="dialog" aria-modal="true" aria-labelledby="manage-mark-title">
   <div class="modal manage-mark-modal">
-    <div class="modal-head"><h3 id="manage-mark-title">放到美国货盘</h3><button class="close" type="button" id="manage-mark-close" aria-label="关闭">&times;</button></div>
+    <div class="modal-head"><h3 id="manage-mark-title">编辑</h3><button class="close" type="button" id="manage-mark-close" aria-label="关闭">×</button></div>
     <div class="modal-body">
-      <div class="manage-form-field"><label for="manage-sku-select">选择SKU</label><select id="manage-sku-select"></select></div>
-      <div class="manage-available-hint" data-manage-config-field="inventory"><span>可用库存</span><strong id="manage-available-value">0 件</strong><small>放入美国货盘数量不能超过 OMS 可用库存</small></div>
-      <div class="manage-form-field" data-manage-config-field="quantity"><label for="manage-mark-qty">放入美国货盘数量</label><input id="manage-mark-qty" type="number" min="1" value="1"></div>
-      <div class="manage-form-field" data-manage-config-field="price"><label for="manage-selling-price">售卖价格（美元）</label><input id="manage-selling-price" type="number" min="0.01" step="0.01" inputmode="decimal" value="1.00"></div>
-    <div class="manage-form-field" data-manage-config-field="moq"><label for="manage-min-order">最小起订量</label><input id="manage-min-order" type="number" min="1" step="1" value="1"></div>
-      <div class="manage-form-field manage-visible-field" data-manage-config-field="visible"><span>对外可见</span><label class="visibility-switch"><input id="manage-visible-input" type="checkbox" checked><span aria-hidden="true"></span><b>默认开启</b></label></div>
+      <div class="manage-form-field"><select id="manage-sku-select" disabled=""><option value="DS-AUR-01-C" selected="">极光随行保温杯 · 40OZ · 樱粉 · DS-AUR-01-C</option></select></div>
+      <div class="manage-available-hint" data-manage-config-field="inventory" data-annotation-id="ann-1788950707662"><span>可用库存</span><strong id="manage-available-value">99 件</strong></div>
+      <div class="manage-form-field" data-manage-config-field="quantity"><label for="manage-mark-qty">放入美国货盘数量(该数量为在售数量，填多少就是展示多少)</label><input id="manage-mark-qty" type="number" min="1" value="1" max="99" data-annotation-id="ann-1788950875092"></div>
+      <div class="manage-form-field" data-manage-config-field="price"><label for="manage-selling-price">售卖价格（美元）</label><input id="manage-selling-price" type="number" min="0.01" step="0.01" inputmode="decimal" value="1.00" data-annotation-id="ann-1788950933204"></div>
+    <div class="manage-form-field" data-manage-config-field="moq" hidden=""><label for="manage-min-order">最小起订量</label><input id="manage-min-order" type="number" min="1" step="1" value="1" max="98"></div>
+      <div class="manage-form-field manage-visible-field" data-manage-config-field="visible">
+        <span>对外可见</span>
+        <label class="visibility-switch">
+          <input id="manage-visible-input" type="checkbox" checked="" aria-label="是否对外可见">
+          <span aria-hidden="true"></span><b>可见</b>
+        </label>
+      </div>
     </div>
-    <div class="modal-footer"><button class="btn btn-ghost" type="button" id="manage-mark-cancel">取消</button><button class="btn btn-primary" type="button" id="manage-mark-confirm">确认</button></div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" id="manage-mark-cancel">取消</button><button class="btn btn-primary" type="button" id="manage-mark-confirm">保存调整</button></div>
   </div>
 </div>
 
 <div class="modal-overlay" id="manage-batch-modal" role="dialog" aria-modal="true" aria-labelledby="manage-batch-title">
   <div class="modal manage-batch-modal">
-    <div class="modal-head"><h3 id="manage-batch-title">确认批量放入美国货盘</h3><button class="close" type="button" id="manage-batch-close" aria-label="关闭">&times;</button></div>
+    <div class="modal-head"><h3 id="manage-batch-title">确认批量放入美国货盘</h3><button class="close" type="button" id="manage-batch-close" aria-label="关闭">×</button></div>
     <div class="modal-body">
       <p class="manage-batch-tip">请确认所选SKU的数量、售卖价格和最小起订量，确认后这些SKU将进入美国货盘。</p>
       <div class="table-scroll"><table class="data-table manage-batch-table"><thead><tr><th>SKU</th><th>OMS可用库存</th><th>放入美国货盘数量</th><th>售卖价格</th><th>最小起订量</th></tr></thead><tbody id="manage-batch-tbody"></tbody></table></div>
@@ -96,7 +134,7 @@
 
 <div class="modal-overlay" id="manage-batch-edit-modal" role="dialog" aria-modal="true" aria-labelledby="manage-batch-edit-title">
   <div class="modal manage-batch-modal manage-batch-edit-modal">
-    <div class="modal-head"><h3 id="manage-batch-edit-title">批量修改美国货盘配置</h3><button class="close" type="button" id="manage-batch-edit-close" aria-label="关闭">&times;</button></div>
+    <div class="modal-head"><h3 id="manage-batch-edit-title">批量修改美国货盘配置</h3><button class="close" type="button" id="manage-batch-edit-close" aria-label="关闭">×</button></div>
     <div class="modal-body">
       <p class="manage-batch-tip">可分别调整所选 SKU 的对外可见状态、展示数量和售卖价格。</p>
       <div class="table-scroll"><table class="data-table manage-batch-table manage-batch-edit-table"><thead><tr><th>SKU</th><th>对外可见</th><th>数量调整</th><th>售卖价格</th></tr></thead><tbody id="manage-batch-edit-tbody"></tbody></table></div>
@@ -107,7 +145,7 @@
 
 <div class="modal-overlay" id="manage-batch-unmark-modal" role="dialog" aria-modal="true" aria-labelledby="manage-batch-unmark-title">
   <div class="modal manage-batch-unmark-modal">
-    <div class="modal-head"><h3 id="manage-batch-unmark-title">确认批量移出美国货盘</h3><button class="close" type="button" id="manage-batch-unmark-close" aria-label="关闭">&times;</button></div>
+    <div class="modal-head"><h3 id="manage-batch-unmark-title">确认批量移出美国货盘</h3><button class="close" type="button" id="manage-batch-unmark-close" aria-label="关闭">×</button></div>
     <div class="modal-body">
       <p class="manage-batch-tip">确认后，以下 SKU 将移回“未放到美国货盘”列表。</p>
       <div class="manage-batch-unmark-list" id="manage-batch-unmark-list"></div>
@@ -117,7 +155,7 @@
 </div>
 
 <div class="product-preview" id="product-preview" role="dialog" aria-modal="true" aria-label="SKU图片预览">
-  <button class="product-preview-close" type="button" aria-label="关闭图片预览" title="关闭">&times;</button>
+  <button class="product-preview-close" type="button" aria-label="关闭图片预览" title="关闭">×</button>
   <img id="product-preview-image" src="" alt=""><div class="product-preview-caption" id="product-preview-caption"></div>
 </div>
 
@@ -138,7 +176,7 @@ var manageInventory=(window.OMS_SKU_DATA||[]).map(function(item,index){
   var markedQty=marked?Math.min(item.available,18+(index*13%86)):0;
   var reserved=marked?Math.min(Math.max(0,markedQty-1),index*5%24):0;
   return {
-    sku:item.barcode,name:item.name,spec:item.spec,img:item.img,omsAvailable:item.available,ageRecords:item.ageRecords||[],
+    sku:item.barcode,name:item.name,spec:item.spec,img:item.img,omsAvailable:item.available,totalInventory:item.total||item.available,ageRecords:item.ageRecords||[],
     marked:marked,markedQty:markedQty,reserved:reserved,visible:index%7!==0,unitPrice:Number(item.unitPrice||0),sellingPrice:Number(item.unitPrice||0),moq:Math.min(manageMoqOptions[index%manageMoqOptions.length],Math.max(1,item.available-1)),
     seller:index%4===0?'外部卖家B':'内部团队A'
   };
@@ -206,8 +244,8 @@ function getSortedMarkedInventory(){
   if(!manageSort.key)return data;
   var direction=manageSort.direction==='asc'?1:-1;
   return data.sort(function(a,b){
-    var left=manageSort.key==='age'?getManageMaxAge(a):manageSort.key==='sellable'?Math.max(0,a.markedQty-a.reserved):getManageReservedRate(a);
-    var right=manageSort.key==='age'?getManageMaxAge(b):manageSort.key==='sellable'?Math.max(0,b.markedQty-b.reserved):getManageReservedRate(b);
+    var left=manageSort.key==='age'?getManageMaxAge(a):manageSort.key==='markedQty'?a.markedQty:getManageReservedRate(a);
+    var right=manageSort.key==='age'?getManageMaxAge(b):manageSort.key==='markedQty'?b.markedQty:getManageReservedRate(b);
     return (left-right)*direction||a.sku.localeCompare(b.sku);
   });
 }
@@ -242,10 +280,9 @@ function renderMarkedInventory(){
   var data=getManagePageData(allData,'marked');
   getUnmarkedInventory().forEach(function(item){delete manageMarkedSelectedSkus[item.sku]});
   document.getElementById('marked-tbody').innerHTML=data.length?data.map(function(item){
-    var sellable=Math.max(0,item.markedQty-item.reserved);
     var reservedRate=(getManageReservedRate(item)*100).toFixed(1)+'%';
-    return '<tr data-manage-sku="'+item.sku+'"><td class="selection-column"><input class="manage-marked-row-select" type="checkbox" data-manage-marked-select="'+item.sku+'" '+(manageMarkedSelectedSkus[item.sku]?'checked':'')+' aria-label="选择 '+manageEscape(item.name)+'"></td><td class="sku-column">'+manageSkuCell(item)+'</td>'+manageAgeCell(item)+'<td class="num">'+manageMoney(item.sellingPrice)+'</td><td class="num">'+manageNumber(item.moq)+'</td><td class="num manage-marked-qty">'+manageNumber(item.markedQty)+'</td><td class="num manage-sellable-qty">'+manageNumber(sellable)+'</td><td class="num manage-reserved-qty">'+manageNumber(item.reserved)+'</td><td class="num manage-reserved-rate">'+reservedRate+'</td><td><label class="visibility-switch"><input type="checkbox" data-manage-visible="'+item.sku+'" '+(item.visible?'checked':'')+' aria-label="'+manageEscape(item.name)+' 对外可见"><span aria-hidden="true"></span><b>'+(item.visible?'可见':'隐藏')+'</b></label></td><td class="operation-column"><div class="table-actions"><button class="btn-link" type="button" data-manage-adjust="'+item.sku+'">编辑</button><button class="btn-link danger" type="button" data-manage-unmark="'+item.sku+'">下架</button></div></td></tr>';
-  }).join(''):'<tr><td colspan="13" class="mark-table-empty">暂无美国货盘SKU</td></tr>';
+    return '<tr data-manage-sku="'+item.sku+'"><td class="sku-column"><div class="manage-sku-cell"><input class="manage-marked-row-select" type="checkbox" data-manage-marked-select="'+item.sku+'" '+(manageMarkedSelectedSkus[item.sku]?'checked':'')+' aria-label="选择 '+manageEscape(item.name)+'">'+manageSkuCell(item)+'</div></td>'+manageAgeCell(item)+'<td class="num">'+manageMoney(item.sellingPrice)+'</td><td class="num">'+manageNumber(item.totalInventory)+'</td><td class="num manage-marked-qty">'+manageNumber(item.markedQty)+'</td><td class="num manage-reserved-qty">'+manageNumber(item.reserved)+'</td><td class="num manage-reserved-rate">'+reservedRate+'</td><td class="operation-column"><div class="table-actions"><button class="btn-link" type="button" data-manage-adjust="'+item.sku+'">编辑</button><button class="btn-link danger" type="button" data-manage-unmark="'+item.sku+'">下架</button></div></td></tr>';
+  }).join(''):'<tr><td colspan="8" class="mark-table-empty">暂无美国货盘SKU</td></tr>';
   updateManageSortHeaders();
   updateManageMarkedSelection();
 }
@@ -323,18 +360,6 @@ function showManageTableHelp(target){
   tooltip.style.left=left+'px';tooltip.style.top=top+'px';
 }
 function hideManageTableHelp(){document.getElementById('manage-table-help-tooltip').classList.remove('show')}
-function manageCsvCell(value){return '"'+String(value==null?'':value).replace(/"/g,'""')+'"'}
-function exportManageInventory(){
-  var marked=manageTab==='marked';
-  var data=marked?getSortedMarkedInventory():getFilteredUnmarkedInventory();
-  var rows=marked
-    ?[['SKU编码','SKU名称','SKU规格','库龄','单价','对公展示数量','可售数量','已预占','预占率','对外可见']].concat(data.map(function(item){return [item.sku,item.name,item.spec,getManageMaxAge(item)+'天',manageMoney(item.sellingPrice),item.markedQty,Math.max(0,item.markedQty-item.reserved),item.reserved,(getManageReservedRate(item)*100).toFixed(1)+'%',item.visible?'可见':'隐藏']}))
-    :[['SKU编码','SKU名称','SKU规格','库龄','单价','最小起订量','OMS可用库存']].concat(data.map(function(item){return [item.sku,item.name,item.spec,getManageMaxAge(item)+'天',manageMoney(item.unitPrice),item.moq,item.omsAvailable]}));
-  var csv='\uFEFF'+rows.map(function(row){return row.map(manageCsvCell).join(',')}).join('\r\n');
-  var url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
-  var link=document.createElement('a');link.href=url;link.download=(marked?'美国货盘':'未放到美国货盘')+'-'+new Date().toISOString().slice(0,10)+'.csv';document.body.appendChild(link);link.click();link.remove();URL.revokeObjectURL(url);
-  showToast('导出成功');
-}
 function findManageItem(sku){return manageInventory.find(function(item){return item.sku===sku})}
 function populateManageSkuSelect(selectedSku){
   var select=document.getElementById('manage-sku-select');
@@ -394,7 +419,6 @@ function submitManageModal(){
 function unmarkManageItem(sku){
   var item=findManageItem(sku);
   if(!item)return;
-  if(item.reserved>0){showToast('该 SKU 存在已预占数量，暂不能移出美国货盘','warning');return}
   item.marked=false;item.markedQty=0;item.visible=false;
   delete manageMarkedSelectedSkus[item.sku];
   renderManageWorkspace();
@@ -460,8 +484,6 @@ function confirmManageBatchEdit(){
 function openManageBatchUnmark(){
   var items=getSelectedMarkedItems();
   if(!items.length){showToast('请先选择美国货盘中的 SKU','warning');return}
-  var blocked=items.filter(function(item){return item.reserved>0});
-  if(blocked.length){showToast('所选商品中有 '+blocked.length+' 个 SKU 存在已预占数量，暂不能移出','warning');return}
   document.getElementById('manage-batch-unmark-list').innerHTML=items.map(function(item){return '<div>'+manageSkuCell(item)+'<span>展示数量 <strong>'+manageNumber(item.markedQty)+'</strong></span></div>'}).join('');
   document.getElementById('manage-batch-unmark-modal').classList.add('open');
 }
@@ -469,7 +491,6 @@ function closeManageBatchUnmark(){document.getElementById('manage-batch-unmark-m
 function confirmManageBatchUnmark(){
   var items=getSelectedMarkedItems();
   if(!items.length){closeManageBatchUnmark();return}
-  if(items.some(function(item){return item.reserved>0})){closeManageBatchUnmark();showToast('所选 SKU 的预占状态已变化，请重新选择','warning');renderManageWorkspace();return}
   items.forEach(function(item){item.marked=false;item.markedQty=0;item.visible=false;delete manageMarkedSelectedSkus[item.sku]});
   closeManageBatchUnmark();renderManageWorkspace();showToast('已批量下架');
 }
@@ -528,7 +549,6 @@ document.querySelector('.manage-filter-bar').addEventListener('keydown',function
 var manageBatchMark=document.getElementById('manage-batch-mark');if(manageBatchMark)manageBatchMark.addEventListener('click',openManageBatchModal);
 document.getElementById('manage-batch-edit').addEventListener('click',openManageBatchEdit);
 document.getElementById('manage-batch-unmark').addEventListener('click',openManageBatchUnmark);
-document.getElementById('manage-export').addEventListener('click',exportManageInventory);
 document.getElementById('manage-page-prev').addEventListener('click',function(){changeManagePage(-1)});
 document.getElementById('manage-page-next').addEventListener('click',function(){changeManagePage(1)});
 document.getElementById('manage-batch-close').addEventListener('click',closeManageBatchModal);
@@ -569,11 +589,601 @@ var markFromInventory=new URLSearchParams(window.location.search).get('mark');
 if(markFromInventory){var markItem=manageInventory.find(function(item){return item.sku===markFromInventory});if(markItem&&!markItem.marked)openManageModal('mark',markFromInventory);}
 </script>
 <style>
-  .manage-inventory-table th:nth-child(5),.manage-inventory-table td:nth-child(5){display:none}
   .manage-batch-edit-table th:nth-child(4),.manage-batch-edit-table td:nth-child(4){display:none}
 </style>
-<script src="toast.js?v=20260828-cart-action"></script>
-<script src="role-switch.js"></script>
-<script src="notes.js?v=20260828-local-prd-v2"></script>
-</body></html>
+<script src="toast.js?v=20260828-cart-action"></script><div class="toast" id="global-toast" role="status" aria-live="polite" aria-atomic="true"><span class="toast-icon" aria-hidden="true">✓</span><span class="toast-message"></span><a class="toast-action" href="#购物车" hidden="">查看购物车</a></div><div class="toast" id="global-toast" role="status" aria-live="polite" aria-atomic="true"><span class="toast-icon" aria-hidden="true">✓</span><span class="toast-message"></span><a class="toast-action" href="#购物车" hidden="">查看购物车</a></div><div class="toast" id="global-toast" role="status" aria-live="polite" aria-atomic="true"><span class="toast-icon" aria-hidden="true">✓</span><span class="toast-message"></span><a class="toast-action" href="#购物车" hidden="">查看购物车</a></div><div class="toast" id="global-toast" role="status" aria-live="polite" aria-atomic="true"><span class="toast-icon" aria-hidden="true">✓</span><span class="toast-message"></span><a class="toast-action" href="#购物车" hidden="">查看购物车</a></div><div class="toast" id="global-toast" role="status" aria-live="polite" aria-atomic="true"><span class="toast-icon" aria-hidden="true">✓</span><span class="toast-message"></span><a class="toast-action" href="#购物车" hidden="">查看购物车</a></div><div class="toast" id="global-toast" role="status" aria-live="polite" aria-atomic="true"><span class="toast-icon" aria-hidden="true">✓</span><span class="toast-message"></span><a class="toast-action" href="#购物车" hidden="">查看购物车</a></div><div class="toast" id="global-toast" role="status" aria-live="polite" aria-atomic="true"><span class="toast-icon" aria-hidden="true">✓</span><span class="toast-message"></span><a class="toast-action" href="#购物车" hidden="">查看购物车</a></div><div class="toast" id="global-toast" role="status" aria-live="polite" aria-atomic="true"><span class="toast-icon" aria-hidden="true">✓</span><span class="toast-message"></span><a class="toast-action" href="#购物车" hidden="">查看购物车</a></div>
+<script src="role-switch.js"></script><div class="modal-overlay" id="role-switch-modal" role="dialog" aria-modal="true" aria-labelledby="role-switch-title"><div class="modal role-modal"><div class="modal-head"><h3 id="role-switch-title">切换身份</h3><button class="close" type="button" data-role-close="" aria-label="关闭">×</button></div><div class="modal-body"><div class="role-current" id="role-current-text"></div><div class="role-list" role="radiogroup" aria-label="可切换身份"><button class="role-option" type="button" role="radio" data-role-id="super-admin" aria-checked="false"><span class="role-option-avatar super">超</span><span class="role-option-copy"><span class="role-option-name">超管</span><span class="role-option-desc">查看全部公司与业务组数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="company-admin" aria-checked="false"><span class="role-option-avatar company">公</span><span class="role-option-copy"><span class="role-option-name">公司A管理员</span><span class="role-option-desc">管理公司A的全部业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="group-admin" aria-checked="false"><span class="role-option-avatar group">组</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A管理员</span><span class="role-option-desc">管理公司A业务组A的数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="salesperson" aria-checked="false"><span class="role-option-avatar sales">员</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A业务员</span><span class="role-option-desc">查看本人负责的业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button></div></div><div class="modal-footer"><button class="btn btn-ghost" type="button" data-role-close="">取消</button><button class="btn btn-primary" type="button" id="role-switch-confirm">确认切换</button></div></div></div><div class="modal-overlay" id="role-switch-modal" role="dialog" aria-modal="true" aria-labelledby="role-switch-title"><div class="modal role-modal"><div class="modal-head"><h3 id="role-switch-title">切换身份</h3><button class="close" type="button" data-role-close="" aria-label="关闭">×</button></div><div class="modal-body"><div class="role-current" id="role-current-text"></div><div class="role-list" role="radiogroup" aria-label="可切换身份"><button class="role-option" type="button" role="radio" data-role-id="super-admin" aria-checked="false"><span class="role-option-avatar super">超</span><span class="role-option-copy"><span class="role-option-name">超管</span><span class="role-option-desc">查看全部公司与业务组数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="company-admin" aria-checked="false"><span class="role-option-avatar company">公</span><span class="role-option-copy"><span class="role-option-name">公司A管理员</span><span class="role-option-desc">管理公司A的全部业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="group-admin" aria-checked="false"><span class="role-option-avatar group">组</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A管理员</span><span class="role-option-desc">管理公司A业务组A的数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="salesperson" aria-checked="false"><span class="role-option-avatar sales">员</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A业务员</span><span class="role-option-desc">查看本人负责的业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button></div></div><div class="modal-footer"><button class="btn btn-ghost" type="button" data-role-close="">取消</button><button class="btn btn-primary" type="button" id="role-switch-confirm">确认切换</button></div></div></div><div class="modal-overlay" id="role-switch-modal" role="dialog" aria-modal="true" aria-labelledby="role-switch-title"><div class="modal role-modal"><div class="modal-head"><h3 id="role-switch-title">切换身份</h3><button class="close" type="button" data-role-close="" aria-label="关闭">×</button></div><div class="modal-body"><div class="role-current" id="role-current-text"></div><div class="role-list" role="radiogroup" aria-label="可切换身份"><button class="role-option" type="button" role="radio" data-role-id="super-admin" aria-checked="false"><span class="role-option-avatar super">超</span><span class="role-option-copy"><span class="role-option-name">超管</span><span class="role-option-desc">查看全部公司与业务组数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="company-admin" aria-checked="false"><span class="role-option-avatar company">公</span><span class="role-option-copy"><span class="role-option-name">公司A管理员</span><span class="role-option-desc">管理公司A的全部业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="group-admin" aria-checked="false"><span class="role-option-avatar group">组</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A管理员</span><span class="role-option-desc">管理公司A业务组A的数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="salesperson" aria-checked="false"><span class="role-option-avatar sales">员</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A业务员</span><span class="role-option-desc">查看本人负责的业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button></div></div><div class="modal-footer"><button class="btn btn-ghost" type="button" data-role-close="">取消</button><button class="btn btn-primary" type="button" id="role-switch-confirm">确认切换</button></div></div></div><div class="modal-overlay" id="role-switch-modal" role="dialog" aria-modal="true" aria-labelledby="role-switch-title"><div class="modal role-modal"><div class="modal-head"><h3 id="role-switch-title">切换身份</h3><button class="close" type="button" data-role-close="" aria-label="关闭">×</button></div><div class="modal-body"><div class="role-current" id="role-current-text"></div><div class="role-list" role="radiogroup" aria-label="可切换身份"><button class="role-option" type="button" role="radio" data-role-id="super-admin" aria-checked="false"><span class="role-option-avatar super">超</span><span class="role-option-copy"><span class="role-option-name">超管</span><span class="role-option-desc">查看全部公司与业务组数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="company-admin" aria-checked="false"><span class="role-option-avatar company">公</span><span class="role-option-copy"><span class="role-option-name">公司A管理员</span><span class="role-option-desc">管理公司A的全部业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="group-admin" aria-checked="false"><span class="role-option-avatar group">组</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A管理员</span><span class="role-option-desc">管理公司A业务组A的数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="salesperson" aria-checked="false"><span class="role-option-avatar sales">员</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A业务员</span><span class="role-option-desc">查看本人负责的业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button></div></div><div class="modal-footer"><button class="btn btn-ghost" type="button" data-role-close="">取消</button><button class="btn btn-primary" type="button" id="role-switch-confirm">确认切换</button></div></div></div><div class="modal-overlay" id="role-switch-modal" role="dialog" aria-modal="true" aria-labelledby="role-switch-title"><div class="modal role-modal"><div class="modal-head"><h3 id="role-switch-title">切换身份</h3><button class="close" type="button" data-role-close="" aria-label="关闭">×</button></div><div class="modal-body"><div class="role-current" id="role-current-text"></div><div class="role-list" role="radiogroup" aria-label="可切换身份"><button class="role-option" type="button" role="radio" data-role-id="super-admin" aria-checked="false"><span class="role-option-avatar super">超</span><span class="role-option-copy"><span class="role-option-name">超管</span><span class="role-option-desc">查看全部公司与业务组数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="company-admin" aria-checked="false"><span class="role-option-avatar company">公</span><span class="role-option-copy"><span class="role-option-name">公司A管理员</span><span class="role-option-desc">管理公司A的全部业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="group-admin" aria-checked="false"><span class="role-option-avatar group">组</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A管理员</span><span class="role-option-desc">管理公司A业务组A的数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="salesperson" aria-checked="false"><span class="role-option-avatar sales">员</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A业务员</span><span class="role-option-desc">查看本人负责的业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button></div></div><div class="modal-footer"><button class="btn btn-ghost" type="button" data-role-close="">取消</button><button class="btn btn-primary" type="button" id="role-switch-confirm">确认切换</button></div></div></div><div class="modal-overlay" id="role-switch-modal" role="dialog" aria-modal="true" aria-labelledby="role-switch-title"><div class="modal role-modal"><div class="modal-head"><h3 id="role-switch-title">切换身份</h3><button class="close" type="button" data-role-close="" aria-label="关闭">×</button></div><div class="modal-body"><div class="role-current" id="role-current-text"></div><div class="role-list" role="radiogroup" aria-label="可切换身份"><button class="role-option" type="button" role="radio" data-role-id="super-admin" aria-checked="false"><span class="role-option-avatar super">超</span><span class="role-option-copy"><span class="role-option-name">超管</span><span class="role-option-desc">查看全部公司与业务组数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="company-admin" aria-checked="false"><span class="role-option-avatar company">公</span><span class="role-option-copy"><span class="role-option-name">公司A管理员</span><span class="role-option-desc">管理公司A的全部业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="group-admin" aria-checked="false"><span class="role-option-avatar group">组</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A管理员</span><span class="role-option-desc">管理公司A业务组A的数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="salesperson" aria-checked="false"><span class="role-option-avatar sales">员</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A业务员</span><span class="role-option-desc">查看本人负责的业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button></div></div><div class="modal-footer"><button class="btn btn-ghost" type="button" data-role-close="">取消</button><button class="btn btn-primary" type="button" id="role-switch-confirm">确认切换</button></div></div></div><div class="modal-overlay" id="role-switch-modal" role="dialog" aria-modal="true" aria-labelledby="role-switch-title"><div class="modal role-modal"><div class="modal-head"><h3 id="role-switch-title">切换身份</h3><button class="close" type="button" data-role-close="" aria-label="关闭">×</button></div><div class="modal-body"><div class="role-current" id="role-current-text"></div><div class="role-list" role="radiogroup" aria-label="可切换身份"><button class="role-option" type="button" role="radio" data-role-id="super-admin" aria-checked="false"><span class="role-option-avatar super">超</span><span class="role-option-copy"><span class="role-option-name">超管</span><span class="role-option-desc">查看全部公司与业务组数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="company-admin" aria-checked="false"><span class="role-option-avatar company">公</span><span class="role-option-copy"><span class="role-option-name">公司A管理员</span><span class="role-option-desc">管理公司A的全部业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="group-admin" aria-checked="false"><span class="role-option-avatar group">组</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A管理员</span><span class="role-option-desc">管理公司A业务组A的数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="salesperson" aria-checked="false"><span class="role-option-avatar sales">员</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A业务员</span><span class="role-option-desc">查看本人负责的业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button></div></div><div class="modal-footer"><button class="btn btn-ghost" type="button" data-role-close="">取消</button><button class="btn btn-primary" type="button" id="role-switch-confirm">确认切换</button></div></div></div><div class="modal-overlay" id="role-switch-modal" role="dialog" aria-modal="true" aria-labelledby="role-switch-title"><div class="modal role-modal"><div class="modal-head"><h3 id="role-switch-title">切换身份</h3><button class="close" type="button" data-role-close="" aria-label="关闭">×</button></div><div class="modal-body"><div class="role-current" id="role-current-text"></div><div class="role-list" role="radiogroup" aria-label="可切换身份"><button class="role-option" type="button" role="radio" data-role-id="super-admin" aria-checked="false"><span class="role-option-avatar super">超</span><span class="role-option-copy"><span class="role-option-name">超管</span><span class="role-option-desc">查看全部公司与业务组数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="company-admin" aria-checked="false"><span class="role-option-avatar company">公</span><span class="role-option-copy"><span class="role-option-name">公司A管理员</span><span class="role-option-desc">管理公司A的全部业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="group-admin" aria-checked="false"><span class="role-option-avatar group">组</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A管理员</span><span class="role-option-desc">管理公司A业务组A的数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="salesperson" aria-checked="false"><span class="role-option-avatar sales">员</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A业务员</span><span class="role-option-desc">查看本人负责的业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button></div></div><div class="modal-footer"><button class="btn btn-ghost" type="button" data-role-close="">取消</button><button class="btn btn-primary" type="button" id="role-switch-confirm">确认切换</button></div></div></div>
+<script src="notes.js?v=20260828-local-prd-v2"></script><button class="btn btn-ghost notes-toggle notes-toggle-floating" type="button" aria-label="查看注释" title="查看注释" aria-expanded="false" aria-controls="notes-panel" style="left: 1013px; top: 8px; right: auto; transform: none;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M8 13h8"></path><path d="M8 17h6"></path></svg><span>查看注释</span></button><aside class="notes-panel" id="notes-panel" aria-label="美国货盘管理注释"><div class="notes-resizer" role="separator" tabindex="0" aria-label="调整注释区域宽度" aria-orientation="vertical" aria-valuemin="320" aria-valuemax="784" aria-valuenow="545"></div><div class="notes-panel-head"><h2>美国货盘管理注释</h2><button class="notes-close" type="button" aria-label="收起注释" title="收起注释">×</button></div><div class="notes-content"><article class="notes-document" data-html-annotator-injected-document=""><h2>页面结构</h2>
+<ol>
+<li>顶部栏：展示页面名称和页面级操作区域。</li>
+<li>统计区域：展示货盘 SKU 数、货盘总量、在售数量和已预占数量。</li>
+<li>筛选区域：按 SKU 编码和 SKU 名称查询美国货盘中的 SKU。</li>
+<li>表格：展示货盘 SKU、库存、在售数量、预占情况及行级操作。</li>
+<li>批量操作区域：提供批量修改和批量下架。</li>
+<li>分页区域：展示当前筛选结果总数、当前页和分页切换入口。</li>
+<li>弹窗区域：包含编辑美国货盘配置、批量修改和批量下架确认弹窗。</li>
+</ol>
+<h2>统计区域</h2>
+<p>统计数据基于当前美国货盘中的 SKU 计算，不随 SKU 编码或 SKU 名称筛选条件变化。</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>计算规则</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>货盘 SKU 数</td>
+<td>已放入美国货盘的 SKU 数量</td>
+</tr>
+<tr>
+<td>货盘总量</td>
+<td>所有货盘 SKU 的在售数量之和</td>
+</tr>
+<tr>
+<td>在售数量</td>
+<td>所有货盘 SKU 的在售数量减去已预占数量后的可继续销售数量之和</td>
+</tr>
+<tr>
+<td>已预占</td>
+<td>外部用户已下单但尚未完成发货的数量之和</td>
+</tr>
+</tbody></table>
+<p>统计卡片同时展示静态趋势示例，正式环境的趋势值应由库存快照或统计接口返回。</p>
+<h2>筛选功能</h2>
+<h3>SKU 编码</h3>
+<ul>
+<li>控件类型：文本输入。</li>
+<li>匹配规则：支持模糊查询，不区分大小写。</li>
+</ul>
+<h3>SKU 名称</h3>
+<ul>
+<li>控件类型：文本输入。</li>
+<li>匹配规则：支持模糊查询，不区分大小写。</li>
+</ul>
+<h3>搜索和重置</h3>
+<ul>
+<li>搜索：按 SKU 编码和 SKU 名称刷新表格、结果条数和分页。</li>
+<li>重置：清空 SKU 编码和 SKU 名称，恢复全部美国货盘 SKU，并回到第一页。</li>
+<li>两个筛选条件之间为“且”关系。</li>
+</ul>
+<h2>美国货盘表格</h2>
+<p>数据来源：从库存管理页面里进行商品上架的数据。</p>
+<p>查询无结果时展示“暂无商品”。</p>
+<p>表格从左到右只展示以下 8 列：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>展示规则</th>
+<th>以及数据来源</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SKU</td>
+<td>展示商品图片、商品名称、规格和 SKU 编码；首列同时提供当前页全选和行选择框</td>
+<td>本系统有的</td>
+</tr>
+<tr>
+<td>库龄</td>
+<td>展示该 SKU 的最大库龄，单位为天；无库龄记录展示 <code>-</code></td>
+<td>海外仓接口获取</td>
+</tr>
+<tr>
+<td>单价</td>
+<td>展示当前对外售卖价格，格式为 <code>xx.xx$</code></td>
+<td>库存管理页上架时填写的商品价格</td>
+</tr>
+<tr>
+<td>库存</td>
+<td>展示该 SKU 的总库存，来源为 OMS 库存数据中的总库存字段</td>
+<td>海外仓接口获取</td>
+</tr>
+<tr>
+<td>在售数量</td>
+<td>展示当前上架到美国货盘的数量减去已预占的数量</td>
+<td>-</td>
+</tr>
+<tr>
+<td>已预占</td>
+<td>展示外部用户已下单但尚未发货的预占数量</td>
+<td>-</td>
+</tr>
+<tr>
+<td>预占率</td>
+<td><code>已预占 ÷ 在售数量 × 100%</code>，保留一位小数；在售数量为 0 时展示 <code>0.0%</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td>操作</td>
+<td>展示“编辑”和“下架”按钮</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h3>SKU 单元格</h3>
+<ul>
+<li>商品图片可点击打开大图预览。</li>
+<li>商品名称作为主要识别信息。</li>
+<li>规格显示在名称下方。</li>
+<li>SKU 编码使用等宽字体展示。</li>
+<li>行选择框用于批量修改和批量下架。</li>
+<li>表头选择框只操作当前分页中的 SKU，并支持全选、取消全选和半选状态。</li>
+</ul>
+<h3>库龄明细</h3>
+<ul>
+<li>鼠标移动到库龄值上时，展示该 SKU 的全部库龄记录。</li>
+<li>键盘聚焦库龄值时，也展示库龄明细浮层。</li>
+<li>浮层字段为：库龄、上架日期、统计日期。</li>
+<li>多条记录按库龄从大到小排列。</li>
+<li>鼠标离开库龄值或表格区域后关闭浮层。</li>
+</ul>
+<h3>表头排序</h3>
+<p>以下字段支持排序：</p>
+<ul>
+<li>库龄</li>
+<li>单价</li>
+<li>库存</li>
+<li>在售数量</li>
+<li>已预占数量</li>
+<li>预占率</li>
+</ul>
+<p>首次点击按降序排列，再次点击切换为升序。排序只影响当前筛选结果和分页顺序。</p>
+<h2>批量操作</h2>
+<h3>批量修改</h3>
+<ul>
+<li>未选中 SKU 时，批量修改按钮不可用；直接触发时提示“请先选择商品”。</li>
+<li>选中一个或多个 SKU 后，点击批量修改打开配置弹窗。</li>
+<li>弹窗展示所选 SKU、对外可见、数量调整和售卖价格。</li>
+<li>数量必须大于 0，不能超过 OMS 可用库存，且不能小于已预占数量。</li>
+<li>售卖价格必须大于 0，最多保留两位小数。</li>
+<li>保存成功后刷新统计、列表和分页，并提示“批量修改成功”。</li>
+</ul>
+<h3>批量下架</h3>
+<ul>
+<li>未选中 SKU 时，批量下架按钮不可用；直接触发时提示“请先选择商品”。</li>
+<li>选中一个或多个 SKU 后，打开批量下架确认弹窗。</li>
+<li>确认弹窗展示所选 SKU 和当前展示数量。</li>
+<li>存在已预占数量不阻止下架。</li>
+<li>点击确认后，所有选中 SKU 执行下架处理：<ul>
+<li>移出当前美国货盘在售列表；</li>
+<li>当前在售数量置为 0，停止继续产生新订单；</li>
+<li>关闭对外展示；</li>
+<li>保留 SKU 数据和已预占数量，不清除已有订单占用记录；</li>
+<li>清除当前页面中的批量选择状态。</li>
+</ul>
+</li>
+<li>完成后刷新统计、列表和分页，并提示“已批量下架”。</li>
+</ul>
+<h2>单个操作</h2>
+<h3>编辑</h3>
+<ul>
+<li>点击行内“编辑”打开编辑美国货盘配置弹窗。</li>
+<li>选择 SKU 固定为当前行 SKU，不允许切换。</li>
+<li>弹窗展示 OMS 可用库存、当前在售数量、售卖价格、最小起订量和对外可见状态。</li>
+<li>编辑数量时，最小值为 1，最大值不能超过 OMS 可用库存，且不能小于已预占数量。</li>
+<li>编辑售价时，必须大于 0，最多保留两位小数。</li>
+<li>保存成功后刷新当前行、统计区域和分页，并提示“配置修改成功”。</li>
+</ul>
+<h3>下架</h3>
+<ul>
+<li>点击行内“下架”后直接执行，不要求先清除预占数量。</li>
+<li>下架会将当前 SKU 移出美国货盘在售列表。</li>
+<li>当前在售数量置为 0，停止继续产生新订单。</li>
+<li>对外可见状态关闭。</li>
+<li>已预占数量和 SKU 数据保留，不清除已有订单占用记录。</li>
+<li>刷新统计、列表和分页，并提示“已下架”。</li>
+</ul>
+<h2>编辑和上架弹窗</h2>
+<h3>字段</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>校验规则</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>选择 SKU</td>
+<td>上架模式可选择未放入货盘的 SKU；编辑模式固定当前行 SKU</td>
+</tr>
+<tr>
+<td>可用库存</td>
+<td>展示 OMS 可用库存，数量输入的最大值不能超过该值</td>
+</tr>
+<tr>
+<td>放入美国货盘数量</td>
+<td>必填，整数，大于 0，不能超过 OMS 可用库存</td>
+</tr>
+<tr>
+<td>售卖价格</td>
+<td>必填，大于 0，允许小数，最多两位小数</td>
+</tr>
+<tr>
+<td>最小起订量</td>
+<td>上架时必填，大于 0 且严格小于 OMS 可用库存</td>
+</tr>
+<tr>
+<td>对外可见</td>
+<td>上架默认开启，编辑时可同步修改</td>
+</tr>
+</tbody></table>
+<h3>上架确认</h3>
+<ul>
+<li>上架成功后将 SKU 标记为美国货盘 SKU。</li>
+<li>在售数量写入本次填写的数量。</li>
+<li>售卖价格写入本次填写的价格。</li>
+<li>已预占数量初始化为 0。</li>
+<li>页面自动切换或保持在美国货盘列表，并刷新统计和分页。</li>
+<li>单个上架提示“已放入美国货盘”。</li>
+</ul>
+<h2>库存和预占规则</h2>
+<ul>
+<li>库存来源于 OMS SKU 库存数据。</li>
+<li>在售数量表示当前向外部用户开放的货盘数量。</li>
+<li>已预占表示已有外部订单占用但尚未发货的数量。</li>
+<li>正常编辑时，在售数量不能小于已预占数量，防止配置数量低于已有订单占用。</li>
+<li>下架时只停止新增销售，不清除已有预占数量。</li>
+<li>预占数量的释放由订单发货、取消或库存释放流程处理，不由下架按钮处理。</li>
+</ul>
+<h2>分页</h2>
+<ul>
+<li>默认每页展示 10 条美国货盘 SKU。</li>
+<li>展示当前筛选结果总数。</li>
+<li>提供上一页、当前页/总页数和下一页控件。</li>
+<li>当前页没有上一页或下一页时，对应按钮不可用。</li>
+<li>搜索、重置、排序、单个下架和批量下架后，分页根据最新结果重新计算。</li>
+<li>跨页勾选状态保留，批量操作可作用于已选中的 SKU。</li>
+</ul>
+</article></div></aside><div class="notes-backdrop"></div><div class="notes-preview" role="dialog" aria-modal="true" aria-label="图片预览"><button class="notes-preview-close" type="button" aria-label="关闭图片预览" title="关闭">×</button><img alt=""><div class="notes-preview-caption"></div></div>
 
+
+<script src="marker-toggle.js"></script><button type="button" class="marker-toggle" aria-pressed="false" title="查看当前页面所有标记"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"></path><circle cx="12" cy="12" r="4"></circle></svg><span>查看标记</span></button><button type="button" class="marker-toggle" aria-pressed="false" title="查看当前页面所有标记"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"></path><circle cx="12" cy="12" r="4"></circle></svg><span>查看标记</span></button><button type="button" class="marker-toggle" aria-pressed="false" title="查看当前页面所有标记"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"></path><circle cx="12" cy="12" r="4"></circle></svg><span>查看标记</span></button><button type="button" class="marker-toggle" aria-pressed="false" title="查看当前页面所有标记"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"></path><circle cx="12" cy="12" r="4"></circle></svg><span>查看标记</span></button><button type="button" class="marker-toggle" aria-pressed="false" title="查看当前页面所有标记"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"></path><circle cx="12" cy="12" r="4"></circle></svg><span>查看标记</span></button><button type="button" class="marker-toggle" aria-pressed="false" title="查看当前页面所有标记"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"></path><circle cx="12" cy="12" r="4"></circle></svg><span>查看标记</span></button><button type="button" class="marker-toggle" aria-pressed="false" title="查看当前页面所有标记"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"></path><circle cx="12" cy="12" r="4"></circle></svg><span>查看标记</span></button><button type="button" class="marker-toggle" aria-pressed="false" title="查看当前页面所有标记"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"></path><circle cx="12" cy="12" r="4"></circle></svg><span>查看标记</span></button><script src="marker-toggle.js"></script><script src="marker-toggle.js"></script><script src="marker-toggle.js"></script><script src="marker-toggle.js"></script><script src="marker-toggle.js"></script><script src="marker-toggle.js"></script><div data-html-annotator-inline-root="" style="display: none;"><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1788949998910" data-severity="info" data-annotation-index="0" data-annotation-updated-at="2026-09-09T10:34:51.901Z" data-target-selector="div.app-content:nth-of-type(1) > main.page-body.tray-management-body > section.table-wrap.tray-management-workspace.page-section:nth-of-type(3) > div.tray-management-tabs:nth-of-type(1)" data-target-tag="DIV" data-target-classes="[&quot;tray-management-tabs&quot;]" data-target-text="美国货盘 47" data-target-child-count="2" data-target-depth="5" style="display: block; left: 1327px; top: 331.75px;">1</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1788949998910" data-severity="info" style="display: none;"><div class="html-annotator-inline-head">标注 · DIV</div><div><p>批量修改：</p><p>点击后弹出编辑美国货盘配置弹窗，如果没选SKU点击的话toast提示“请先选择商品”</p><p>批量下架：</p><p>如果没选SKU点击的话toast提示“请先选择商品”</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1788950242484" data-severity="info" data-annotation-index="1" data-annotation-updated-at="2026-09-09T10:37:44.403Z" data-target-selector="tbody#marked-tbody > tr:nth-of-type(1) > td:nth-of-type(2) > span.tag.age-value.tag-warning" data-target-tag="SPAN" data-target-classes="[&quot;tag&quot;,&quot;age-value&quot;,&quot;tag-warning&quot;]" data-target-text="28天" data-target-child-count="0" data-target-depth="11" style="display: block; left: 444.312px; top: 449.5px;">2</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1788950242484" data-severity="info" style="display: none;"><div class="html-annotator-inline-head">标注 · SPAN</div><div><p>移动到该区域要展示出该SKU的所有库存信息</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1788950277811" data-severity="info" data-annotation-index="2" data-annotation-updated-at="2026-09-09T10:38:15.155Z" data-target-selector="tbody#marked-tbody > tr:nth-of-type(1) > td.operation-column:nth-of-type(8) > div.table-actions > button.btn-link:nth-of-type(1)" data-target-tag="BUTTON" data-target-classes="[&quot;btn-link&quot;]" data-target-text="编辑" data-target-child-count="0" data-target-depth="12" style="display: block; left: 1180px; top: 448.125px;">3</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1788950277811" data-severity="info" style="display: none;"><div class="html-annotator-inline-head">标注 · BUTTON</div><div><p>点击后弹出<strong>编辑美国货盘配置弹窗</strong></p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1788950296211" data-severity="info" data-annotation-index="3" data-annotation-updated-at="2026-09-09T10:38:53.914Z" data-target-selector="tbody#marked-tbody > tr:nth-of-type(1) > td.operation-column:nth-of-type(8) > div.table-actions > button.btn-link.danger:nth-of-type(2)" data-target-tag="BUTTON" data-target-classes="[&quot;btn-link&quot;,&quot;danger&quot;]" data-target-text="下架" data-target-child-count="0" data-target-depth="12" style="display: block; left: 1226px; top: 448.125px;">4</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1788950296211" data-severity="info" style="display: none;"><div class="html-annotator-inline-head">标注 · BUTTON</div><div><p>点击后将该SKU商品移出美国货盘</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1788950476361" data-severity="info" data-annotation-index="4" data-annotation-updated-at="2026-09-09T10:41:25.129Z" data-target-selector="div#marked-panel > div.table-scroll > table.data-table.manage-inventory-table > thead > tr > th:nth-of-type(3)" data-target-tag="TH" data-target-classes="[]" data-target-text="单价" data-target-child-count="0" data-target-depth="10" style="display: block; left: 585.75px; top: 379.75px;">5</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1788950476361" data-severity="info" style="display: none;"><div class="html-annotator-inline-head">标注 · TH</div><div><p>上架时所填写的价格</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1788950707662" data-severity="info" data-annotation-index="5" data-annotation-updated-at="2026-09-09T10:45:44.565Z" data-target-selector="div#manage-mark-modal > div.modal.manage-mark-modal > div.modal-body:nth-of-type(2) > div.manage-available-hint:nth-of-type(2)" data-target-tag="DIV" data-target-classes="[&quot;manage-available-hint&quot;]" data-target-text="可用库存99 件" data-target-child-count="2" data-target-depth="5" style="display: none; left: 908px; top: 394.75px;">6</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1788950707662" data-severity="info" style="display: none;"><div class="html-annotator-inline-head">标注 · DIV</div><div><p>该库存计算公司=库存-已预占</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1788950875092" data-severity="info" data-annotation-index="6" data-annotation-updated-at="2026-09-09T10:48:44.476Z" data-target-selector="input#manage-mark-qty" data-target-tag="INPUT" data-target-classes="[]" data-target-text="" data-target-child-count="0" data-target-depth="6" style="display: none; left: 908px; top: 478.25px;">7</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1788950875092" data-severity="info" style="display: none;"><div class="html-annotator-inline-head">标注 · INPUT</div><div><p>最小值1，最大值不能超过库存值</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1788950933204" data-severity="info" data-annotation-index="7" data-annotation-updated-at="2026-09-09T10:49:07.924Z" data-target-selector="input#manage-selling-price" data-target-tag="INPUT" data-target-classes="[]" data-target-text="" data-target-child-count="0" data-target-depth="6" style="display: none; left: 908px; top: 555.25px;">8</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1788950933204" data-severity="info" style="display: none;"><div class="html-annotator-inline-head">标注 · INPUT</div><div><p>数值类型，可以填小数点后两位</p></div></div></div><script data-html-annotator-inline-script="">
+(function () {
+  var root = document.querySelector('[data-html-annotator-inline-root]');
+  if (!root) return;
+  function depth(element) {
+    var value = 0;
+    while (element && element.parentElement) { value++; element = element.parentElement; }
+    return value;
+  }
+  function findById(id) {
+    var all = document.querySelectorAll('[data-annotation-id]');
+    for (var i = 0; i < all.length; i++) {
+      if (!root.contains(all[i]) && all[i].getAttribute('data-annotation-id') === id) return all[i];
+    }
+    return null;
+  }
+  function findBySelector(marker) {
+    var selector = marker.getAttribute('data-target-selector');
+    if (!selector) return null;
+    try {
+      var all = document.querySelectorAll(selector);
+      for (var i = 0; i < all.length; i++) if (!root.contains(all[i])) return all[i];
+    } catch (_) {}
+    return null;
+  }
+  function findByFingerprint(marker) {
+    var tag = marker.getAttribute('data-target-tag');
+    if (!tag) return null;
+    var classes = [];
+    try { classes = JSON.parse(marker.getAttribute('data-target-classes') || '[]'); } catch (_) {}
+    var text = marker.getAttribute('data-target-text') || '';
+    var childCount = Number(marker.getAttribute('data-target-child-count'));
+    var targetDepth = Number(marker.getAttribute('data-target-depth'));
+    var all = document.querySelectorAll(tag);
+    for (var i = 0; i < all.length; i++) {
+      var element = all[i];
+      if (root.contains(element)) continue;
+      var elementText = (element.textContent || '').slice(0, 50).trim();
+      if (element.children.length === childCount && depth(element) === targetDepth && elementText === text && element.classList.length === classes.length && classes.every(function (name) { return element.classList.contains(name); })) return element;
+    }
+    return null;
+  }
+  function targetFor(marker) {
+    var id = marker.getAttribute('data-annotation-id');
+    var target = findById(id) || findBySelector(marker) || findByFingerprint(marker);
+    if (target && target.getAttribute('data-annotation-id') !== id) target.setAttribute('data-annotation-id', id);
+    return target;
+  }
+  function panelFor(id) {
+    var panels = root.querySelectorAll('[data-html-annotator-inline-panel]');
+    for (var i = 0; i < panels.length; i++) if (panels[i].getAttribute('data-annotation-id') === id) return panels[i];
+    return null;
+  }
+  function position() {
+    root.querySelectorAll('[data-html-annotator-inline-marker]').forEach(function (marker) {
+      var target = targetFor(marker);
+      var panel = panelFor(marker.getAttribute('data-annotation-id'));
+      if (!target || target.getClientRects().length === 0) {
+        marker.style.display = 'none';
+        if (panel) panel.style.display = 'none';
+        return;
+      }
+      var rect = target.getBoundingClientRect();
+      marker.style.display = 'block';
+      marker.style.left = rect.right + 'px';
+      marker.style.top = rect.top + 'px';
+    });
+  }
+  root.querySelectorAll('[data-html-annotator-inline-marker]').forEach(function (marker) {
+    marker.addEventListener('click', function (event) {
+      event.preventDefault(); event.stopPropagation();
+      var panel = panelFor(marker.getAttribute('data-annotation-id'));
+      root.querySelectorAll('[data-html-annotator-inline-panel]').forEach(function (item) { if (item !== panel) item.style.display = 'none'; });
+      if (!panel) return;
+      panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+      var rect = marker.getBoundingClientRect();
+      panel.style.left = Math.max(12, Math.min(rect.right + 8, window.innerWidth - panel.offsetWidth - 12)) + 'px';
+      panel.style.top = Math.max(12, Math.min(rect.top, window.innerHeight - panel.offsetHeight - 12)) + 'px';
+    });
+  });
+  document.addEventListener('click', function (event) { if (!root.contains(event.target)) root.querySelectorAll('[data-html-annotator-inline-panel]').forEach(function (item) { item.style.display = 'none'; }); });
+  window.addEventListener('scroll', position, true);
+  window.addEventListener('resize', position);
+  var pending = false;
+  new MutationObserver(function (records) {
+    var relevant = records.some(function (record) { return !root.contains(record.target); });
+    if (!relevant || pending) return;
+    pending = true;
+    setTimeout(function () { pending = false; position(); }, 0);
+  }).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'style', 'hidden'] });
+  position();
+})();
+</script><script src="marker-toggle.js"></script>
+<template data-html-annotator-document-template=""><article class="notes-document" data-html-annotator-injected-document=""><h2>页面结构</h2>
+<ol>
+<li>顶部栏：展示页面名称和页面级操作区域。</li>
+<li>统计区域：展示货盘 SKU 数、货盘总量、在售数量和已预占数量。</li>
+<li>筛选区域：按 SKU 编码和 SKU 名称查询美国货盘中的 SKU。</li>
+<li>表格：展示货盘 SKU、库存、在售数量、预占情况及行级操作。</li>
+<li>批量操作区域：提供批量修改和批量下架。</li>
+<li>分页区域：展示当前筛选结果总数、当前页和分页切换入口。</li>
+<li>弹窗区域：包含编辑美国货盘配置、批量修改和批量下架确认弹窗。</li>
+</ol>
+<h2>统计区域</h2>
+<p>统计数据基于当前美国货盘中的 SKU 计算，不随 SKU 编码或 SKU 名称筛选条件变化。</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>计算规则</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>货盘 SKU 数</td>
+<td>已放入美国货盘的 SKU 数量</td>
+</tr>
+<tr>
+<td>货盘总量</td>
+<td>所有货盘 SKU 的在售数量之和</td>
+</tr>
+<tr>
+<td>在售数量</td>
+<td>所有货盘 SKU 的在售数量减去已预占数量后的可继续销售数量之和</td>
+</tr>
+<tr>
+<td>已预占</td>
+<td>外部用户已下单但尚未完成发货的数量之和</td>
+</tr>
+</tbody></table>
+<p>统计卡片同时展示静态趋势示例，正式环境的趋势值应由库存快照或统计接口返回。</p>
+<h2>筛选功能</h2>
+<h3>SKU 编码</h3>
+<ul>
+<li>控件类型：文本输入。</li>
+<li>匹配规则：支持模糊查询，不区分大小写。</li>
+</ul>
+<h3>SKU 名称</h3>
+<ul>
+<li>控件类型：文本输入。</li>
+<li>匹配规则：支持模糊查询，不区分大小写。</li>
+</ul>
+<h3>搜索和重置</h3>
+<ul>
+<li>搜索：按 SKU 编码和 SKU 名称刷新表格、结果条数和分页。</li>
+<li>重置：清空 SKU 编码和 SKU 名称，恢复全部美国货盘 SKU，并回到第一页。</li>
+<li>两个筛选条件之间为“且”关系。</li>
+</ul>
+<h2>美国货盘表格</h2>
+<p>数据来源：从库存管理页面里进行商品上架的数据。</p>
+<p>查询无结果时展示“暂无商品”。</p>
+<p>表格从左到右只展示以下 8 列：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>展示规则</th>
+<th>以及数据来源</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SKU</td>
+<td>展示商品图片、商品名称、规格和 SKU 编码；首列同时提供当前页全选和行选择框</td>
+<td>本系统有的</td>
+</tr>
+<tr>
+<td>库龄</td>
+<td>展示该 SKU 的最大库龄，单位为天；无库龄记录展示 <code>-</code></td>
+<td>海外仓接口获取</td>
+</tr>
+<tr>
+<td>单价</td>
+<td>展示当前对外售卖价格，格式为 <code>xx.xx$</code></td>
+<td>库存管理页上架时填写的商品价格</td>
+</tr>
+<tr>
+<td>库存</td>
+<td>展示该 SKU 的总库存，来源为 OMS 库存数据中的总库存字段</td>
+<td>海外仓接口获取</td>
+</tr>
+<tr>
+<td>在售数量</td>
+<td>展示当前上架到美国货盘的数量减去已预占的数量</td>
+<td>-</td>
+</tr>
+<tr>
+<td>已预占</td>
+<td>展示外部用户已下单但尚未发货的预占数量</td>
+<td>-</td>
+</tr>
+<tr>
+<td>预占率</td>
+<td><code>已预占 ÷ 在售数量 × 100%</code>，保留一位小数；在售数量为 0 时展示 <code>0.0%</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td>操作</td>
+<td>展示“编辑”和“下架”按钮</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h3>SKU 单元格</h3>
+<ul>
+<li>商品图片可点击打开大图预览。</li>
+<li>商品名称作为主要识别信息。</li>
+<li>规格显示在名称下方。</li>
+<li>SKU 编码使用等宽字体展示。</li>
+<li>行选择框用于批量修改和批量下架。</li>
+<li>表头选择框只操作当前分页中的 SKU，并支持全选、取消全选和半选状态。</li>
+</ul>
+<h3>库龄明细</h3>
+<ul>
+<li>鼠标移动到库龄值上时，展示该 SKU 的全部库龄记录。</li>
+<li>键盘聚焦库龄值时，也展示库龄明细浮层。</li>
+<li>浮层字段为：库龄、上架日期、统计日期。</li>
+<li>多条记录按库龄从大到小排列。</li>
+<li>鼠标离开库龄值或表格区域后关闭浮层。</li>
+</ul>
+<h3>表头排序</h3>
+<p>以下字段支持排序：</p>
+<ul>
+<li>库龄</li>
+<li>单价</li>
+<li>库存</li>
+<li>在售数量</li>
+<li>已预占数量</li>
+<li>预占率</li>
+</ul>
+<p>首次点击按降序排列，再次点击切换为升序。排序只影响当前筛选结果和分页顺序。</p>
+<h2>批量操作</h2>
+<h3>批量修改</h3>
+<ul>
+<li>未选中 SKU 时，批量修改按钮不可用；直接触发时提示“请先选择商品”。</li>
+<li>选中一个或多个 SKU 后，点击批量修改打开配置弹窗。</li>
+<li>弹窗展示所选 SKU、对外可见、数量调整和售卖价格。</li>
+<li>数量必须大于 0，不能超过 OMS 可用库存，且不能小于已预占数量。</li>
+<li>售卖价格必须大于 0，最多保留两位小数。</li>
+<li>保存成功后刷新统计、列表和分页，并提示“批量修改成功”。</li>
+</ul>
+<h3>批量下架</h3>
+<ul>
+<li>未选中 SKU 时，批量下架按钮不可用；直接触发时提示“请先选择商品”。</li>
+<li>选中一个或多个 SKU 后，打开批量下架确认弹窗。</li>
+<li>确认弹窗展示所选 SKU 和当前展示数量。</li>
+<li>存在已预占数量不阻止下架。</li>
+<li>点击确认后，所有选中 SKU 执行下架处理：<ul>
+<li>移出当前美国货盘在售列表；</li>
+<li>当前在售数量置为 0，停止继续产生新订单；</li>
+<li>关闭对外展示；</li>
+<li>保留 SKU 数据和已预占数量，不清除已有订单占用记录；</li>
+<li>清除当前页面中的批量选择状态。</li>
+</ul>
+</li>
+<li>完成后刷新统计、列表和分页，并提示“已批量下架”。</li>
+</ul>
+<h2>单个操作</h2>
+<h3>编辑</h3>
+<ul>
+<li>点击行内“编辑”打开编辑美国货盘配置弹窗。</li>
+<li>选择 SKU 固定为当前行 SKU，不允许切换。</li>
+<li>弹窗展示 OMS 可用库存、当前在售数量、售卖价格、最小起订量和对外可见状态。</li>
+<li>编辑数量时，最小值为 1，最大值不能超过 OMS 可用库存，且不能小于已预占数量。</li>
+<li>编辑售价时，必须大于 0，最多保留两位小数。</li>
+<li>保存成功后刷新当前行、统计区域和分页，并提示“配置修改成功”。</li>
+</ul>
+<h3>下架</h3>
+<ul>
+<li>点击行内“下架”后直接执行，不要求先清除预占数量。</li>
+<li>下架会将当前 SKU 移出美国货盘在售列表。</li>
+<li>当前在售数量置为 0，停止继续产生新订单。</li>
+<li>对外可见状态关闭。</li>
+<li>已预占数量和 SKU 数据保留，不清除已有订单占用记录。</li>
+<li>刷新统计、列表和分页，并提示“已下架”。</li>
+</ul>
+<h2>编辑和上架弹窗</h2>
+<h3>字段</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>校验规则</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>选择 SKU</td>
+<td>上架模式可选择未放入货盘的 SKU；编辑模式固定当前行 SKU</td>
+</tr>
+<tr>
+<td>可用库存</td>
+<td>展示 OMS 可用库存，数量输入的最大值不能超过该值</td>
+</tr>
+<tr>
+<td>放入美国货盘数量</td>
+<td>必填，整数，大于 0，不能超过 OMS 可用库存</td>
+</tr>
+<tr>
+<td>售卖价格</td>
+<td>必填，大于 0，允许小数，最多两位小数</td>
+</tr>
+<tr>
+<td>最小起订量</td>
+<td>上架时必填，大于 0 且严格小于 OMS 可用库存</td>
+</tr>
+<tr>
+<td>对外可见</td>
+<td>上架默认开启，编辑时可同步修改</td>
+</tr>
+</tbody></table>
+<h3>上架确认</h3>
+<ul>
+<li>上架成功后将 SKU 标记为美国货盘 SKU。</li>
+<li>在售数量写入本次填写的数量。</li>
+<li>售卖价格写入本次填写的价格。</li>
+<li>已预占数量初始化为 0。</li>
+<li>页面自动切换或保持在美国货盘列表，并刷新统计和分页。</li>
+<li>单个上架提示“已放入美国货盘”。</li>
+</ul>
+<h2>库存和预占规则</h2>
+<ul>
+<li>库存来源于 OMS SKU 库存数据。</li>
+<li>在售数量表示当前向外部用户开放的货盘数量。</li>
+<li>已预占表示已有外部订单占用但尚未发货的数量。</li>
+<li>正常编辑时，在售数量不能小于已预占数量，防止配置数量低于已有订单占用。</li>
+<li>下架时只停止新增销售，不清除已有预占数量。</li>
+<li>预占数量的释放由订单发货、取消或库存释放流程处理，不由下架按钮处理。</li>
+</ul>
+<h2>分页</h2>
+<ul>
+<li>默认每页展示 10 条美国货盘 SKU。</li>
+<li>展示当前筛选结果总数。</li>
+<li>提供上一页、当前页/总页数和下一页控件。</li>
+<li>当前页没有上一页或下一页时，对应按钮不可用。</li>
+<li>搜索、重置、排序、单个下架和批量下架后，分页根据最新结果重新计算。</li>
+<li>跨页勾选状态保留，批量操作可作用于已选中的 SKU。</li>
+</ul>
+</article></template><script data-html-annotator-document-runtime="">
+(function () {
+  var template = document.querySelector('[data-html-annotator-document-template]');
+  if (!template) return;
+  function applyDocument() {
+    var content = document.querySelector('#notes-panel .notes-content, .notes-panel .notes-content');
+    if (!content || content.querySelector('[data-html-annotator-injected-document]')) return;
+    content.innerHTML = template.innerHTML;
+  }
+  applyDocument();
+  var observer = new MutationObserver(applyDocument);
+  observer.observe(document.documentElement, { childList: true, subtree: true });
+  document.addEventListener('DOMContentLoaded', applyDocument);
+  window.addEventListener('load', applyDocument);
+})();
+</script></body></html>

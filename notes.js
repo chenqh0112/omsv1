@@ -78,16 +78,16 @@
 
   var pageKey=document.body.dataset.page||'default';
   var pageNotes={
-    sku:{title:'库存管理注释',markdown:'SKU管理页PRD.md'},
-    inbound:{title:'入库单注释',markdown:'入库单页PRD.md'},
-    'tray-v2':{title:'蜂鸟美国货盘页面注释',markdown:'美国货盘V2页PRD.md'},
-    orders:{title:'订单管理注释',markdown:'订单管理页PRD.md'},
-    returns:{title:'退货管理注释',markdown:'退货管理页PRD.md'},
-    'tray-management':{title:'美国货盘管理注释',markdown:'美国货盘管理页PRD.md'},
-    users:{title:'用户管理注释',markdown:'用户管理页PRD.md'},
+    sku:{title:'库存管理注释'},
+    inbound:{title:'入库单注释'},
+    'tray-v2':{title:'蜂鸟美国货盘页面注释'},
+    orders:{title:'订单管理注释'},
+    returns:{title:'退货管理注释'},
+    'tray-management':{title:'美国货盘管理注释'},
+    'packaging-shipping':{title:'包装发货注释'},
+    users:{title:'用户管理注释'},
     fees:{
       title:'费用注释',
-      markdown:'费用明细页PRD.md',
       images:[
         {src:'assets/fee-note-container.png',alt:'集装箱入库费用参考',caption:'集装箱入库费用参考'},
         {src:'assets/fee-note-pallet.png',alt:'托盘入库费用参考',caption:'托盘入库费用参考'},
@@ -97,8 +97,8 @@
         {src:'assets/fee-note-packaging.png',alt:'包材费参考',caption:'包材费参考'}
       ]
     },
-    'global-overview':{title:'全局说明注释',markdown:'全项目页面PRD.md'},
-    login:{title:'登录注释',markdown:'登录页PRD.md'}
+    'global-overview':{title:'全局说明注释'},
+    login:{title:'登录注释'}
   };
   var note=pageNotes[pageKey]||{title:'当前菜单注释'};
 
@@ -127,6 +127,7 @@
 
   applyNotesWidth(readNotesWidth(),false);
 
+  document.querySelectorAll('.notes-toggle-floating').forEach(function(existingButton){existingButton.remove()});
   var button=document.createElement('button');
   button.className='btn btn-ghost notes-toggle notes-toggle-floating';
   button.type='button';
@@ -136,6 +137,11 @@
   button.setAttribute('aria-controls','notes-panel');
   button.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h6"/></svg><span>查看注释</span>';
   document.body.appendChild(button);
+  setTimeout(function(){
+    document.querySelectorAll('.notes-toggle-floating').forEach(function(existingButton){
+      if(existingButton!==button)existingButton.remove();
+    });
+  },0);
 
   var panel=document.createElement('aside');
   panel.className='notes-panel';
@@ -205,6 +211,11 @@
   preview.setAttribute('aria-label','图片预览');
   preview.innerHTML='<button class="notes-preview-close" type="button" aria-label="关闭图片预览" title="关闭">&times;</button><img alt=""><div class="notes-preview-caption"></div>';
   document.body.appendChild(preview);
+  setTimeout(function(){
+    document.querySelectorAll('.notes-panel').forEach(function(existingPanel){if(existingPanel!==panel)existingPanel.remove()});
+    document.querySelectorAll('.notes-backdrop').forEach(function(existingBackdrop){if(existingBackdrop!==backdrop)existingBackdrop.remove()});
+    document.querySelectorAll('.notes-preview').forEach(function(existingPreview){if(existingPreview!==preview)existingPreview.remove()});
+  },0);
 
   function openNotes(){
     document.body.classList.add('notes-open');

@@ -5,26 +5,175 @@
       "fileHash": "",
       "annotations": [
         {
-          "id": "ann-1788859594652",
+          "id": "ann-1788934645961",
           "elementId": {
-            "selector": "div#head-upload-modal > div.head-upload-modal > div.head-upload-footer:nth-of-type(3) > button.btn.btn-primary:nth-of-type(2)",
+            "selector": "tbody#inv-tbody > tr:nth-of-type(1) > td.operation-column:nth-of-type(11) > button.btn-link",
+            "fingerprint": {
+              "tag": "BUTTON",
+              "classList": [
+                "btn-link"
+              ],
+              "textPreview": "上架",
+              "childCount": 0,
+              "depth": 11
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>点击后弹出【上架美国货盘】弹窗</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-09T06:17:25.961Z",
+          "updatedAt": "2026-09-09T06:48:47.835Z"
+        },
+        {
+          "id": "ann-1788934730177",
+          "elementId": {
+            "selector": "div.app-content:nth-of-type(1) > div.page-body:nth-of-type(3) > div.sku-content-grid.page-section:nth-of-type(3) > div.table-wrap > div.table-head-bar:nth-of-type(1)",
+            "fingerprint": {
+              "tag": "DIV",
+              "classList": [
+                "table-head-bar"
+              ],
+              "textPreview": "全部库存 100",
+              "childCount": 2,
+              "depth": 6
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>点击后弹出【上架美国货盘】弹窗，并将所选的列表中的SKU一并展示到弹窗中。一个SKU都没有勾选的话，toast提示“请先选择想要上架的SKU商品”</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-09T06:18:50.177Z",
+          "updatedAt": "2026-09-09T06:20:32.752Z"
+        },
+        {
+          "id": "ann-1788934861608",
+          "elementId": {
+            "selector": "div#inventory-cargo-dialog > div.modal-body:nth-of-type(2)",
+            "fingerprint": {
+              "tag": "DIV",
+              "classList": [
+                "modal-body"
+              ],
+              "textPreview": "请填写每个 SKU 的上架数量和售卖价格。\n      SKU可用库存上架数量售卖价格",
+              "childCount": 2,
+              "depth": 4
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>表格数据来源于在前置操作里所选的SKU数量或者是单击某个SKU项里操作项里的上架按钮。</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-09T06:21:01.608Z",
+          "updatedAt": "2026-09-09T06:21:50.240Z"
+        },
+        {
+          "id": "ann-1788934915687",
+          "elementId": {
+            "selector": "tbody#inventory-cargo-tbody > tr > td:nth-of-type(3) > input.cargo-qty-input",
+            "fingerprint": {
+              "tag": "INPUT",
+              "classList": [
+                "cargo-qty-input"
+              ],
+              "textPreview": "",
+              "childCount": 0,
+              "depth": 10
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>必填，不能为空</p><p>数字类型，不能有小数点</p><p>上架数量最大值不可超过可用库存，最小值0</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-09T06:21:55.687Z",
+          "updatedAt": "2026-09-09T06:23:58.366Z"
+        },
+        {
+          "id": "ann-1788934944839",
+          "elementId": {
+            "selector": "tbody#inventory-cargo-tbody > tr > td:nth-of-type(4) > div.inventory-price-control > input.cargo-price-input",
+            "fingerprint": {
+              "tag": "INPUT",
+              "classList": [
+                "cargo-price-input"
+              ],
+              "textPreview": "",
+              "childCount": 0,
+              "depth": 11
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>数字类型，可以保留小数点后两位</p><p>必填，不能为空</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-09T06:22:24.839Z",
+          "updatedAt": "2026-09-09T06:23:39.502Z"
+        },
+        {
+          "id": "ann-1788935040558",
+          "elementId": {
+            "selector": "tbody#inventory-cargo-tbody > tr > td:nth-of-type(5) > div.inventory-auth-select > button.inventory-auth-trigger",
+            "fingerprint": {
+              "tag": "BUTTON",
+              "classList": [
+                "inventory-auth-trigger"
+              ],
+              "textPreview": "请选择授权⌄",
+              "childCount": 2,
+              "depth": 11
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>多级联动多选框；</p><p>无默认值；</p><p>需要区分斑马和蜂鸟用户；</p><p>斑马用户按部门+成员进行二级分类，蜂鸟只有用户一级分类；</p><p>斑马展示所有部门+所有成员；</p><p>蜂鸟展示所有用户；</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-09T06:24:00.558Z",
+          "updatedAt": "2026-09-09T06:28:58.140Z"
+        },
+        {
+          "id": "ann-1788935233301",
+          "elementId": {
+            "selector": "button#inventory-cargo-confirm",
             "fingerprint": {
               "tag": "BUTTON",
               "classList": [
                 "btn",
                 "btn-primary"
               ],
-              "textPreview": "上传箱标文件",
+              "textPreview": "确认上架",
               "childCount": 0,
               "depth": 5
             }
           },
           "badgePosition": "top-right",
-          "content": "<p>需要判断当前货仓类型是不是海外仓并且是不是美国货盘仓库，是的话就调用海外仓接口/oms/api/warehouse/inbound_form创建入库单并获取到箱标信息</p>",
+          "content": "<p>点击后先校验必填字段是否为空，为空就在必填字段上标红并提示对应字段不能为空。</p><p>同步一次接口/oms/api/inventory/list_sku_stock，获取到SKU的最新库存，判断当前上架数量是否小于等于库存值，是就继续，不是的话就toast提示“SKUXXX库存不足”</p><p>以上判断都通过后，将SKU商品信息上架到美国货盘（就是对外展示了，有个界面可以用来看美国货盘里有什么货）</p>",
           "severity": "info",
           "tags": [],
-          "createdAt": "2026-09-08T09:26:34.652Z",
-          "updatedAt": "2026-09-08T09:27:23.775Z"
+          "createdAt": "2026-09-09T06:27:13.301Z",
+          "updatedAt": "2026-09-09T07:09:35.706Z"
+        },
+        {
+          "id": "ann-1788937916240",
+          "elementId": {
+            "selector": "tbody#inv-tbody > tr:nth-of-type(3) > td.sku-column:nth-of-type(2) > div.sku-profile > div.sku-profile-copy > div.sku-name-row > span.tag.tag-primary.sku-cargo-tag",
+            "fingerprint": {
+              "tag": "SPAN",
+              "classList": [
+                "tag",
+                "tag-primary",
+                "sku-cargo-tag"
+              ],
+              "textPreview": "美国货盘",
+              "childCount": 0,
+              "depth": 14
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>已经上架到美股货盘的SKU商品要有该标识</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-09T07:11:56.240Z",
+          "updatedAt": "2026-09-09T07:17:39.392Z"
         }
       ]
     },
@@ -32,48 +181,302 @@
       "fileHash": "",
       "annotations": [
         {
-          "id": "ann-1788859783066",
+          "id": "ann-1788936301093",
           "elementId": {
-            "selector": "div#head-upload-modal > div.head-upload-modal > div.head-upload-footer:nth-of-type(3) > button.btn.btn-primary:nth-of-type(2)",
+            "selector": "main.app-content > section.packaging-page > div.packaging-panel:nth-of-type(2) > div.packaging-table:nth-of-type(3) > table.data-table > tbody > tr:nth-of-type(3) > td.row-actions:nth-of-type(24) > button.link-btn.head-course:nth-of-type(2)",
             "fingerprint": {
               "tag": "BUTTON",
               "classList": [
-                "btn",
-                "btn-primary"
+                "link-btn",
+                "head-course"
               ],
-              "textPreview": "上传箱标文件",
+              "textPreview": "头程",
               "childCount": 0,
+              "depth": 10
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>点击这里</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-09T06:45:01.093Z",
+          "updatedAt": "2026-09-09T06:45:07.390Z"
+        }
+      ]
+    },
+    "inbound.html": {
+      "fileHash": "",
+      "annotations": [
+        {
+          "id": "ann-1788939895866",
+          "elementId": {
+            "selector": "select#warehouse-filter",
+            "fingerprint": {
+              "tag": "SELECT",
+              "classList": [],
+              "textPreview": "德州1号仓库美西仓(洛杉矶)",
+              "childCount": 2,
+              "depth": 6
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>下拉单选，默认选中第一个</p><p>下拉数据来源：平台仓库地址里的数据，要筛选出海外仓且为美国货盘的仓库数据（其实只有一个）</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-09T07:44:55.866Z",
+          "updatedAt": "2026-09-09T08:21:53.854Z"
+        },
+        {
+          "id": "ann-1788940701475",
+          "elementId": {
+            "selector": "select#status-filter",
+            "fingerprint": {
+              "tag": "SELECT",
+              "classList": [],
+              "textPreview": "状态草稿运输中部分入库全部入库全部已上架已取消",
+              "childCount": 7,
+              "depth": 6
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>下拉单选，可选项：全部/草稿/运输中/部分入库/全部入库/全部已上架/已取消</p><p>默认选中“全部”</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-09T07:58:21.475Z",
+          "updatedAt": "2026-09-09T08:22:01.006Z"
+        },
+        {
+          "id": "ann-1788942127182",
+          "elementId": {
+            "selector": "button#inbound-search",
+            "fingerprint": {
+              "tag": "BUTTON",
+              "classList": [
+                "inbound-primary-btn"
+              ],
+              "textPreview": "搜索",
+              "childCount": 1,
+              "depth": 6
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>点击后根据分配仓库、状态筛选出相应的入库单数据</p><p>分页查询，默认10页</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-09T08:22:07.182Z",
+          "updatedAt": "2026-09-09T08:22:14.022Z"
+        },
+        {
+          "id": "ann-1788942135126",
+          "elementId": {
+            "selector": "button#inbound-reset",
+            "fingerprint": {
+              "tag": "BUTTON",
+              "classList": [
+                "inbound-reset-btn"
+              ],
+              "textPreview": "重置",
+              "childCount": 1,
+              "depth": 6
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>点击后将分配仓库、状态还原为默认值</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-09T08:22:15.126Z",
+          "updatedAt": "2026-09-09T08:22:20.286Z"
+        },
+        {
+          "id": "ann-1788942142630",
+          "elementId": {
+            "selector": "tbody#inbound-tbody > tr:nth-of-type(2) > td:nth-of-type(4) > button.sku-more",
+            "fingerprint": {
+              "tag": "BUTTON",
+              "classList": [
+                "sku-more"
+              ],
+              "textPreview": "多个(2)",
+              "childCount": 0,
+              "depth": 10
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>多个SKU，将鼠标移动进去后会展示出相应的SKU信息，详细交互可以直接在页面上试一下</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-09T08:22:22.630Z",
+          "updatedAt": "2026-09-09T08:22:27.582Z"
+        }
+      ]
+    },
+    "cargo-tray-management.html": {
+      "fileHash": "",
+      "annotations": [
+        {
+          "id": "ann-1788949998910",
+          "elementId": {
+            "selector": "div.app-content:nth-of-type(1) > main.page-body.tray-management-body > section.table-wrap.tray-management-workspace.page-section:nth-of-type(3) > div.tray-management-tabs:nth-of-type(1)",
+            "fingerprint": {
+              "tag": "DIV",
+              "classList": [
+                "tray-management-tabs"
+              ],
+              "textPreview": "美国货盘 47",
+              "childCount": 2,
               "depth": 5
             }
           },
           "badgePosition": "top-right",
-          "content": "<p>需要判断当前货仓类型是不是海外仓并且是不是美国货盘仓库，是的话就调用海外仓接口/oms/api/warehouse/inbound_form创建入库单并获取到箱标信息</p>",
+          "content": "<p>批量修改：</p><p>点击后弹出编辑美国货盘配置弹窗，如果没选SKU点击的话toast提示“请先选择商品”</p><p>批量下架：</p><p>如果没选SKU点击的话toast提示“请先选择商品”</p>",
           "severity": "info",
           "tags": [],
-          "createdAt": "2026-09-08T09:29:43.066Z",
-          "updatedAt": "2026-09-08T09:29:46.738Z"
+          "createdAt": "2026-09-09T10:33:18.910Z",
+          "updatedAt": "2026-09-09T10:34:51.901Z"
         },
         {
-          "id": "ann-1788859852164",
+          "id": "ann-1788950242484",
           "elementId": {
-            "selector": "main.app-content > section.packaging-page > div.packaging-panel:nth-of-type(2) > div.packaging-actions:nth-of-type(2) > button.btn.btn-primary:nth-of-type(1)",
+            "selector": "tbody#marked-tbody > tr:nth-of-type(1) > td:nth-of-type(2) > span.tag.age-value.tag-warning",
+            "fingerprint": {
+              "tag": "SPAN",
+              "classList": [
+                "tag",
+                "age-value",
+                "tag-warning"
+              ],
+              "textPreview": "28天",
+              "childCount": 0,
+              "depth": 11
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>移动到该区域要展示出该SKU的所有库存信息</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-09T10:37:22.484Z",
+          "updatedAt": "2026-09-09T10:37:44.403Z"
+        },
+        {
+          "id": "ann-1788950277811",
+          "elementId": {
+            "selector": "tbody#marked-tbody > tr:nth-of-type(1) > td.operation-column:nth-of-type(8) > div.table-actions > button.btn-link:nth-of-type(1)",
             "fingerprint": {
               "tag": "BUTTON",
               "classList": [
-                "btn",
-                "btn-primary"
+                "btn-link"
               ],
-              "textPreview": "填写运单",
+              "textPreview": "编辑",
+              "childCount": 0,
+              "depth": 12
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>点击后弹出<strong>编辑美国货盘配置弹窗</strong></p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-09T10:37:57.811Z",
+          "updatedAt": "2026-09-09T10:38:15.155Z"
+        },
+        {
+          "id": "ann-1788950296211",
+          "elementId": {
+            "selector": "tbody#marked-tbody > tr:nth-of-type(1) > td.operation-column:nth-of-type(8) > div.table-actions > button.btn-link.danger:nth-of-type(2)",
+            "fingerprint": {
+              "tag": "BUTTON",
+              "classList": [
+                "btn-link",
+                "danger"
+              ],
+              "textPreview": "下架",
+              "childCount": 0,
+              "depth": 12
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>点击后将该SKU商品移出美国货盘</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-09T10:38:16.211Z",
+          "updatedAt": "2026-09-09T10:38:53.914Z"
+        },
+        {
+          "id": "ann-1788950476361",
+          "elementId": {
+            "selector": "div#marked-panel > div.table-scroll > table.data-table.manage-inventory-table > thead > tr > th:nth-of-type(3)",
+            "fingerprint": {
+              "tag": "TH",
+              "classList": [],
+              "textPreview": "单价",
+              "childCount": 0,
+              "depth": 10
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>上架时所填写的价格</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-09T10:41:16.361Z",
+          "updatedAt": "2026-09-09T10:41:25.129Z"
+        },
+        {
+          "id": "ann-1788950707662",
+          "elementId": {
+            "selector": "div#manage-mark-modal > div.modal.manage-mark-modal > div.modal-body:nth-of-type(2) > div.manage-available-hint:nth-of-type(2)",
+            "fingerprint": {
+              "tag": "DIV",
+              "classList": [
+                "manage-available-hint"
+              ],
+              "textPreview": "可用库存99 件",
+              "childCount": 2,
+              "depth": 5
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>该库存计算公司=库存-已预占</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-09T10:45:07.662Z",
+          "updatedAt": "2026-09-09T10:45:44.565Z"
+        },
+        {
+          "id": "ann-1788950875092",
+          "elementId": {
+            "selector": "input#manage-mark-qty",
+            "fingerprint": {
+              "tag": "INPUT",
+              "classList": [],
+              "textPreview": "",
               "childCount": 0,
               "depth": 6
             }
           },
           "badgePosition": "top-right",
-          "content": "<p>需要判断当前货仓类型是不是海外仓并且是不是美国货盘仓库，是的话就调用海外仓接口/oms/api/warehouse/inbound_form创建入库</p>",
+          "content": "<p>最小值1，最大值不能超过库存值</p>",
           "severity": "info",
           "tags": [],
-          "createdAt": "2026-09-08T09:30:52.164Z",
-          "updatedAt": "2026-09-08T09:30:54.281Z"
+          "createdAt": "2026-09-09T10:47:55.092Z",
+          "updatedAt": "2026-09-09T10:48:44.476Z"
+        },
+        {
+          "id": "ann-1788950933204",
+          "elementId": {
+            "selector": "input#manage-selling-price",
+            "fingerprint": {
+              "tag": "INPUT",
+              "classList": [],
+              "textPreview": "",
+              "childCount": 0,
+              "depth": 6
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>数值类型，可以填小数点后两位</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-09T10:48:53.204Z",
+          "updatedAt": "2026-09-09T10:49:07.924Z"
         }
       ]
     }

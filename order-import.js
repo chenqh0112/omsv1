@@ -45,9 +45,9 @@
     var created=[];
     importOrders.forEach(function(source,index){
       var orderNo='IMP-'+new Date().toISOString().slice(0,10).replace(/-/g,'')+'-'+String(now+index).slice(-6);
-      var amount=source.amount===''?0:Number(source.amount);
+      var amount=source.amount===''||source.amount===null||source.amount===undefined?null:Number(source.amount);
       var productAmount=source.items.reduce(function(sum,item){return sum+Number(item.subtotal||0)},0);
-      var order={id:orderNo,localOrderNo:orderNo,omsOrderNo:'',idempotencyKey:'ORDER-'+orderNo,userId:'USR-1001',userName:'订单导入',createdAt:new Date().toLocaleString('zh-CN',{hour12:false}).replace(/\//g,'-'),items:source.items,productAmount:productAmount,operationFee:0,logisticsFee:0,salesPrice:amount,salesShipping:0,salesTotal:amount,cargoPrice:productAmount,cargoShipping:0,cargoTotal:productAmount,amount:amount,feeSnapshot:{shipping:0,oms:0,total:amount,logistics:logistics},status:source.items.some(function(item){return !item.matchedSku})?'待关联':'待分配仓库',reviewReasons:[],logistics:logistics,tracking:'',packages:[{packageNo:'PKG-'+String(now+index).slice(-10),logistics:logistics,tracking:'',status:'待分配仓库'}],recipient:source.recipient,phone:source.phone,address:source.address};
+      var order={id:orderNo,localOrderNo:orderNo,omsOrderNo:'',idempotencyKey:'ORDER-'+orderNo,userId:'USR-1001',userName:'订单导入',createdAt:new Date().toLocaleString('zh-CN',{hour12:false}).replace(/\//g,'-'),items:source.items,productAmount:productAmount,operationFee:0,logisticsFee:0,salesPrice:amount,salesShipping:amount===null?null:0,salesTotal:amount,cargoPrice:productAmount,cargoShipping:0,cargoTotal:productAmount,amount:amount,feeSnapshot:{shipping:0,oms:0,total:amount,logistics:logistics},status:source.items.some(function(item){return !item.matchedSku})?'待关联':'待分配仓库',reviewReasons:[],logistics:logistics,tracking:'',packages:[{packageNo:'PKG-'+String(now+index).slice(-10),logistics:logistics,tracking:'',status:'待分配仓库'}],recipient:source.recipient,phone:source.phone,address:source.address};
       if(!saved.some(function(item){return item.idempotencyKey===order.idempotencyKey})){saved.unshift(order);created.unshift(order)}
     });
     try{localStorage.setItem('oms-v2-created-orders',JSON.stringify(saved))}catch(error){showToast('订单创建失败，请稍后重试','warning');return}

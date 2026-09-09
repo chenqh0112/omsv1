@@ -1,0 +1,1524 @@
+{
+  "version": "1.0.0",
+  "filePath": "C:\\Users\\Administrator\\Desktop\\oms v1.0\\inbound.html",
+  "content": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "页面结构"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1,
+          "type": null
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "筛选区域：分配仓库、状态、搜索、重置。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "入库单数据表：展示入库单字段和多 SKU 摘要。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "分页区域：展示结果总数、每页数量、页码和跳页入口。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "筛选功能"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "分配仓库"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "控件类型：下拉单选。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "默认值：第一个仓库。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "数据来源：平台仓库地址数据中符合海外仓、美国货盘条件的仓库。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "状态"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "控件类型：下拉单选。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "默认值：全选，表示不限制状态。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "可选值：草稿、运输中、部分入库、全部入库、全部已上架、已取消。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "搜索和重置"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "搜索：根据当前分配仓库和状态刷新列表。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "重置：将分配仓库和状态恢复默认值，并刷新全部列表。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "入库单表格"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "表格数据来源于：物流中心包装发货时，针对美国货盘海外仓，给货上传箱标时，调用海外仓配货入库单/oms/api/warehouse/inbound_form产生的数据以及查询入库单状态/oms/api/warehouse/inbound_form/status_list返回的数据。"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "查询无结果时展示“暂无入库单”。"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "表格只展示以下 10 列："
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "字段"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "展示规则以及数据来源"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "入库单编号"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "展示入库单唯一编号。海外仓配货入库接口返回"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "箱子数量"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "展示关联箱子数量。向海外仓创建配货入库单填写的箱子数量"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "入库件数"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "展示商品总件数。向海外仓创建配货入库单填写的入库件数"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "SKU名称/SKU条形码/数量"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "单 SKU 展示“名称 / 条形码 / 数量”；多 SKU 展示“多个(n)”。向海外仓创建配货入库单填写的SKU信息"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "入库类型"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "当前原型所有数据固定为 "
+                      },
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ],
+                        "text": "DROPSHIPPING_INBOUND"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "备注"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "无备注展示 "
+                      },
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ],
+                        "text": "-"
+                      },
+                      {
+                        "type": "text",
+                        "text": "，过长内容截断并保留完整内容提示。向海外仓创建配货入库单填写的备注"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "状态"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "使用不同颜色标签展示状态。海外仓查询入库单状态返回的"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "创建时间"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "展示创建日期。向海外仓创建配货入库单填写的创建时间"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "出发时间"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "展示发出日期，无数据展示 "
+                      },
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ],
+                        "text": "-"
+                      },
+                      {
+                        "type": "text",
+                        "text": "。向海外仓创建配货入库单填写的触发时间"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "预计到达时间"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "展示预计到达日期，无数据展示 "
+                      },
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ],
+                        "text": "-"
+                      },
+                      {
+                        "type": "text",
+                        "text": "。向海外仓创建配货入库单填写的预计到达时间"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "多 SKU 交互"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "多 SKU 入库单在 SKU 列显示“多个(n)”。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "鼠标移动到“多个(n)”后显示悬浮明细表。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "悬浮明细表字段：SKU名称、SKU条形码、数量。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "鼠标离开摘要和悬浮明细表后关闭悬浮层。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "悬浮层显示在表格上方，不能被表格容器裁剪。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "状态定义"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "该状态依赖于海外仓查询入库单状态接口"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "状态"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "说明"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "草稿"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "已创建但尚未进入运输流程"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "运输中"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "已发出，正在运输"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "部分入库"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "部分商品已完成入库"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "全部入库"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "商品已全部完成入库"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "全部已上架"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "商品已全部完成上架"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "已取消"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "已取消，不再继续处理"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "分页"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "默认每页 10 条。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "展示结果总数。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "提供上一页、当前页、下一页和跳转页码控件。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null
+        }
+      }
+    ]
+  },
+  "format": "markdown",
+  "markdown": "## 页面结构\n\n1. 筛选区域：分配仓库、状态、搜索、重置。\n2. 入库单数据表：展示入库单字段和多 SKU 摘要。\n3. 分页区域：展示结果总数、每页数量、页码和跳页入口。\n\n## 筛选功能\n\n### 分配仓库\n\n- 控件类型：下拉单选。\n- 默认值：第一个仓库。\n- 数据来源：平台仓库地址数据中符合海外仓、美国货盘条件的仓库。\n\n### 状态\n\n- 控件类型：下拉单选。\n- 默认值：全选，表示不限制状态。\n- 可选值：草稿、运输中、部分入库、全部入库、全部已上架、已取消。\n\n### 搜索和重置\n\n- 搜索：根据当前分配仓库和状态刷新列表。\n- 重置：将分配仓库和状态恢复默认值，并刷新全部列表。\n\n## 入库单表格\n表格数据来源于：物流中心包装发货时，针对美国货盘海外仓，给货上传箱标时，调用海外仓配货入库单/oms/api/warehouse/inbound_form产生的数据以及查询入库单状态/oms/api/warehouse/inbound_form/status_list返回的数据。\n\n查询无结果时展示“暂无入库单”。\n\n表格只展示以下 10 列：\n\n| 字段 | 展示规则以及数据来源 |\n| --- | --- |\n| 入库单编号 | 展示入库单唯一编号。海外仓配货入库接口返回 |\n| 箱子数量 | 展示关联箱子数量。向海外仓创建配货入库单填写的箱子数量  |\n| 入库件数 | 展示商品总件数。向海外仓创建配货入库单填写的入库件数 |\n| SKU名称/SKU条形码/数量 | 单 SKU 展示“名称 / 条形码 / 数量”；多 SKU 展示“多个(n)”。向海外仓创建配货入库单填写的SKU信息 |\n| 入库类型 | 当前原型所有数据固定为 `DROPSHIPPING_INBOUND` |\n| 备注 | 无备注展示 `-`，过长内容截断并保留完整内容提示。向海外仓创建配货入库单填写的备注 |\n| 状态 | 使用不同颜色标签展示状态。海外仓查询入库单状态返回的 |\n| 创建时间 | 展示创建日期。向海外仓创建配货入库单填写的创建时间 |\n| 出发时间 | 展示发出日期，无数据展示 `-`。向海外仓创建配货入库单填写的触发时间|\n| 预计到达时间 | 展示预计到达日期，无数据展示 `-`。向海外仓创建配货入库单填写的预计到达时间 |\n\n## 多 SKU 交互\n\n- 多 SKU 入库单在 SKU 列显示“多个(n)”。\n- 鼠标移动到“多个(n)”后显示悬浮明细表。\n- 悬浮明细表字段：SKU名称、SKU条形码、数量。\n- 鼠标离开摘要和悬浮明细表后关闭悬浮层。\n- 悬浮层显示在表格上方，不能被表格容器裁剪。\n\n## 状态定义\n\n该状态依赖于海外仓查询入库单状态接口\n\n| 状态 | 说明 |\n| --- | --- |\n| 草稿 | 已创建但尚未进入运输流程 |\n| 运输中 | 已发出，正在运输 |\n| 部分入库 | 部分商品已完成入库 |\n| 全部入库 | 商品已全部完成入库 |\n| 全部已上架 | 商品已全部完成上架 |\n| 已取消 | 已取消，不再继续处理 |\n\n## 分页\n\n- 默认每页 10 条。\n- 展示结果总数。\n- 提供上一页、当前页、下一页和跳转页码控件。\n\n",
+  "html": "<h2>页面结构</h2>\n<ol>\n<li>筛选区域：分配仓库、状态、搜索、重置。</li>\n<li>入库单数据表：展示入库单字段和多 SKU 摘要。</li>\n<li>分页区域：展示结果总数、每页数量、页码和跳页入口。</li>\n</ol>\n<h2>筛选功能</h2>\n<h3>分配仓库</h3>\n<ul>\n<li>控件类型：下拉单选。</li>\n<li>默认值：第一个仓库。</li>\n<li>数据来源：平台仓库地址数据中符合海外仓、美国货盘条件的仓库。</li>\n</ul>\n<h3>状态</h3>\n<ul>\n<li>控件类型：下拉单选。</li>\n<li>默认值：全选，表示不限制状态。</li>\n<li>可选值：草稿、运输中、部分入库、全部入库、全部已上架、已取消。</li>\n</ul>\n<h3>搜索和重置</h3>\n<ul>\n<li>搜索：根据当前分配仓库和状态刷新列表。</li>\n<li>重置：将分配仓库和状态恢复默认值，并刷新全部列表。</li>\n</ul>\n<h2>入库单表格</h2>\n<p>表格数据来源于：物流中心包装发货时，针对美国货盘海外仓，给货上传箱标时，调用海外仓配货入库单/oms/api/warehouse/inbound_form产生的数据以及查询入库单状态/oms/api/warehouse/inbound_form/status_list返回的数据。</p>\n<p>查询无结果时展示“暂无入库单”。</p>\n<p>表格只展示以下 10 列：</p>\n<table>\n<thead>\n<tr>\n<th>字段</th>\n<th>展示规则以及数据来源</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>入库单编号</td>\n<td>展示入库单唯一编号。海外仓配货入库接口返回</td>\n</tr>\n<tr>\n<td>箱子数量</td>\n<td>展示关联箱子数量。向海外仓创建配货入库单填写的箱子数量</td>\n</tr>\n<tr>\n<td>入库件数</td>\n<td>展示商品总件数。向海外仓创建配货入库单填写的入库件数</td>\n</tr>\n<tr>\n<td>SKU名称/SKU条形码/数量</td>\n<td>单 SKU 展示“名称 / 条形码 / 数量”；多 SKU 展示“多个(n)”。向海外仓创建配货入库单填写的SKU信息</td>\n</tr>\n<tr>\n<td>入库类型</td>\n<td>当前原型所有数据固定为 <code>DROPSHIPPING_INBOUND</code></td>\n</tr>\n<tr>\n<td>备注</td>\n<td>无备注展示 <code>-</code>，过长内容截断并保留完整内容提示。向海外仓创建配货入库单填写的备注</td>\n</tr>\n<tr>\n<td>状态</td>\n<td>使用不同颜色标签展示状态。海外仓查询入库单状态返回的</td>\n</tr>\n<tr>\n<td>创建时间</td>\n<td>展示创建日期。向海外仓创建配货入库单填写的创建时间</td>\n</tr>\n<tr>\n<td>出发时间</td>\n<td>展示发出日期，无数据展示 <code>-</code>。向海外仓创建配货入库单填写的触发时间</td>\n</tr>\n<tr>\n<td>预计到达时间</td>\n<td>展示预计到达日期，无数据展示 <code>-</code>。向海外仓创建配货入库单填写的预计到达时间</td>\n</tr>\n</tbody></table>\n<h2>多 SKU 交互</h2>\n<ul>\n<li>多 SKU 入库单在 SKU 列显示“多个(n)”。</li>\n<li>鼠标移动到“多个(n)”后显示悬浮明细表。</li>\n<li>悬浮明细表字段：SKU名称、SKU条形码、数量。</li>\n<li>鼠标离开摘要和悬浮明细表后关闭悬浮层。</li>\n<li>悬浮层显示在表格上方，不能被表格容器裁剪。</li>\n</ul>\n<h2>状态定义</h2>\n<p>该状态依赖于海外仓查询入库单状态接口</p>\n<table>\n<thead>\n<tr>\n<th>状态</th>\n<th>说明</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>草稿</td>\n<td>已创建但尚未进入运输流程</td>\n</tr>\n<tr>\n<td>运输中</td>\n<td>已发出，正在运输</td>\n</tr>\n<tr>\n<td>部分入库</td>\n<td>部分商品已完成入库</td>\n</tr>\n<tr>\n<td>全部入库</td>\n<td>商品已全部完成入库</td>\n</tr>\n<tr>\n<td>全部已上架</td>\n<td>商品已全部完成上架</td>\n</tr>\n<tr>\n<td>已取消</td>\n<td>已取消，不再继续处理</td>\n</tr>\n</tbody></table>\n<h2>分页</h2>\n<ul>\n<li>默认每页 10 条。</li>\n<li>展示结果总数。</li>\n<li>提供上一页、当前页、下一页和跳转页码控件。</li>\n</ul>\n",
+  "annotationRefs": [
+    "ann-1788939895866",
+    "ann-1788940701475",
+    "ann-1788942127182",
+    "ann-1788942135126",
+    "ann-1788942142630"
+  ],
+  "updatedAt": "2026-09-09T11:06:30.303Z"
+}

@@ -1,370 +1,415 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>入库管理 — 美国货盘PRD</title>
-<link rel="stylesheet" href="styles.css?v=20260828-overview-cart">
-<script src="navigation.js?v=20260901-auth-state" defer></script>
-</head>
-<body data-page="inbound">
-
-<!-- ===== App Shell (frozen — identical on every page) ===== -->
-<aside class="app-nav">
-  <div class="nav-brand">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
-    美国货盘PRD
-  </div>
-  <nav class="nav-list">
-    <a href="login.html" data-nav="login">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg>
-      登录
-    </a>
-    <a href="index.html" data-nav="sku">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-      SKU管理
-    </a>
-    <a href="cargo-tray-v2.html" data-nav="legacy-tray">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg>
-      美国货盘
-    </a>
-    <a href="order-management.html" data-nav="orders"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 8h8M8 12h8M8 16h5"></path></svg>订单管理</a>
-    <a href="cargo-tray-management.html" data-nav="tray-management">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>
-      美国货盘管理
-    </a>
-    <a href="fees.html" data-nav="fees">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/><path d="M7 15h3"/></svg>
-      费用
-    </a>
-    <a href="user-management.html" data-nav="users">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-      用户管理
-    </a>
-  </nav>
-  <div class="nav-footer">美国货盘PRD</div>
-</aside>
-
-<!-- ===== Main Content ===== -->
-<div class="app-content">
-  <div class="topbar">
-    <div class="topbar-left">
-      <h1>入库管理</h1>
-      <span class="tag tag-primary">美西仓</span>
-    </div>
-    <div class="topbar-right">
-      <button class="btn btn-primary" onclick="openCreateModal()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        新建入库单
-      </button>
-      <div class="user">
-        <button class="avatar" type="button" data-role-avatar aria-haspopup="dialog" aria-label="切换身份" title="切换身份">超</button>
-        <span data-role-name>超管</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="page-body">
-    <!-- ===== Stat Cards ===== -->
-    <div class="stat-grid page-section" style="grid-template-columns:repeat(4,1fr)">
-      <div class="stat-card">
-        <div class="stat-label">今日入库单</div>
-        <div class="stat-value">2</div>
-        <div class="stat-trend up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>较昨日 +1</div>
-        <div class="stat-icon" style="background:var(--primary-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">头程在途</div>
-        <div class="stat-value">3</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:6px">共 900 件</div>
-        <div class="stat-icon" style="background:var(--info-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--info)" stroke-width="1.8"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">待收货</div>
-        <div class="stat-value" style="color:var(--warning)">1</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:6px">120 件</div>
-        <div class="stat-icon" style="background:var(--warning-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">本月已上架</div>
-        <div class="stat-value">1,250</div>
-        <div class="stat-trend up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>+23%</div>
-        <div class="stat-icon" style="background:var(--success-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="1.8"><path d="M20 6 9 17l-5-5"/></svg></div>
-      </div>
-    </div>
-
-    <!-- ===== Type Tabs ===== -->
-    <div class="inbound-tabs page-section">
-      <div class="inbound-tab active" data-type="all" onclick="switchType('all')">全部<span class="tab-count">6</span></div>
-      <div class="inbound-tab" data-type="replenish" onclick="switchType('replenish')">补货入库<span class="tab-count">3</span></div>
-      <div class="inbound-tab" data-type="procure" onclick="switchType('procure')">外采入库<span class="tab-count">1</span></div>
-      <div class="inbound-tab" data-type="drop" onclick="switchType('drop')">一件代发<span class="tab-count">1</span></div>
-      <div class="inbound-tab" data-type="transfer" onclick="switchType('transfer')">中转入库<span class="tab-count">1</span></div>
-    </div>
-
-    <!-- ===== Inbound List ===== -->
-    <div class="page-section" id="inbound-list">
-      <!-- filled by JS -->
-    </div>
-  </div>
-</div>
-
-<!-- ===== Create Inbound Modal ===== -->
-<div class="modal-overlay" id="create-modal">
-  <div class="modal wide">
-    <div class="modal-head">
-      <h3>新建入库单</h3>
-      <button class="close" onclick="closeCreateModal()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div class="form-row">
-        <label>入库类型</label>
-        <select id="c-type" onchange="onTypeChange()">
-          <option value="replenish">补货入库（来自斑马）</option>
-          <option value="procure">外采入库（来自供应商）</option>
-          <option value="drop">一件代发入库</option>
-          <option value="transfer">中转入库</option>
-        </select>
-      </div>
-      <div class="form-row" id="row-source">
-        <label>来源单号</label>
-        <input type="text" id="c-source" placeholder="请输入斑马补货单号 / PO号">
-      </div>
-      <div class="form-row" id="row-transfer">
-        <label>转单号</label>
-        <input type="text" id="c-transfer" placeholder="如 ZW-5031255（选填，已有则填）">
-      </div>
-      <div class="form-hint">若转单号已存在，系统将自动开始头程在途跟踪；暂无则发货后补填。</div>
-      <div class="form-row">
-        <label>卖家</label>
-        <select id="c-seller">
-          <option value="s1">内部团队A</option>
-          <option value="s2">内部团队B</option>
-          <option value="s3">外部-蜂鸟</option>
-          <option value="s4">外部-跨境达人</option>
-          <option value="s5">内部团队C</option>
-        </select>
-      </div>
-      <div class="form-row">
-        <label>SKU 明细</label>
-        <div style="flex:1">
-          <div style="display:flex;gap:8px;margin-bottom:8px">
-            <select id="c-sku" style="flex:1;padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:13px">
-              <option value="">选择 SKU</option>
-              <option value="BT-EP-001">蓝牙耳机 Pro (BT-EP-001)</option>
-              <option value="PH-CC-002">iPhone手机壳 (PH-CC-002)</option>
-              <option value="LD-ST-003">LED灯带 5米 (LD-ST-003)</option>
-              <option value="PB-BK-005">便携充电宝 (PB-BK-005)</option>
-              <option value="WT-BT-006">智能手表 GPS (WT-BT-006)</option>
-            </select>
-            <input type="number" id="c-qty" placeholder="数量" style="width:100px;padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:13px">
-            <button class="btn btn-ghost btn-sm" onclick="addSkuLine()" style="height:36px">添加</button>
-          </div>
-          <div id="sku-lines" style="font-size:12.5px;color:var(--muted)">暂未添加 SKU</div>
-        </div>
-      </div>
-      <div class="form-row">
-        <label>预计到货</label>
-        <input type="date" id="c-eta">
-      </div>
-      <div class="form-row">
-        <label>备注</label>
-        <input type="text" id="c-remark" placeholder="选填">
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeCreateModal()">取消</button>
-      <button class="btn btn-primary" onclick="submitCreate()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6 9 17l-5-5"/></svg>
-        创建入库单
-      </button>
-    </div>
-  </div>
-</div>
-
-<script src="mock.js"></script>
+<html lang="zh-CN" style="--notes-panel-w: 420px;"><head>
+<base href="file:///C:/Users/Administrator/Desktop/oms%20v1.0/">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>入库单管理</title><link rel="stylesheet" href="styles.css?v=20260909-inbound-table"><script src="navigation.js?v=20260901-auth-state" defer=""></script>
+<link rel="stylesheet" href="marker-toggle.css"><style data-html-annotator-inline-style="">
+[data-html-annotator-inline-root] { position: fixed; inset: 0; z-index: 2147483000; pointer-events: none; }
+[data-html-annotator-inline-marker] { position: fixed; width: 22px; height: 22px; margin: -5px 0 0 -5px; border: 2px solid #fff; border-radius: 50%; box-shadow: 0 2px 7px rgba(0,0,0,.35); color: #fff; font: 700 11px/18px Arial,sans-serif; text-align: center; cursor: pointer; pointer-events: auto; }
+[data-html-annotator-inline-marker][data-severity="info"] { background: #3b82f6; }
+[data-html-annotator-inline-marker][data-severity="warning"] { background: #d97706; }
+[data-html-annotator-inline-marker][data-severity="error"] { background: #dc2626; }
+[data-html-annotator-inline-panel] { position: fixed; display: none; max-width: 360px; max-height: 260px; overflow: auto; padding: 12px 14px; border: 1px solid #334155; border-left: 3px solid #3b82f6; border-radius: 6px; background: #111827; color: #e5e7eb; box-shadow: 0 8px 28px rgba(0,0,0,.35); font: 13px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; pointer-events: auto; }
+[data-html-annotator-inline-panel][data-severity="warning"] { border-left-color: #d97706; }
+[data-html-annotator-inline-panel][data-severity="error"] { border-left-color: #dc2626; }
+[data-html-annotator-inline-panel] .html-annotator-inline-head { margin-bottom: 6px; color: #94a3b8; font-size: 11px; }
+[data-html-annotator-inline-panel] p { margin: 0 0 8px; }
+[data-html-annotator-inline-panel] p:last-child { margin-bottom: 0; }
+[data-html-annotator-inline-panel] .html-annotator-inline-tags { margin-top: 8px; color: #94a3b8; font-size: 11px; }
+</style><style data-html-annotator-document-rich-style="">
+.notes-content .notes-document { color:#334155; font-size:13px; line-height:1.7; overflow-wrap:anywhere; }
+.notes-content .notes-document h1,.notes-content .notes-document h2,.notes-content .notes-document h3 { color:#0f172a; font-weight:700; }
+.notes-content .notes-document h1 { margin:0 0 16px; font-size:22px; }
+.notes-content .notes-document h2 { margin:20px 0 10px; font-size:17px; }
+.notes-content .notes-document h3 { margin:16px 0 8px; font-size:15px; }
+.notes-content .notes-document p { margin:0 0 10px; }
+.notes-content .notes-document ul,.notes-content .notes-document ol { margin:0 0 12px; padding-left:22px; }
+.notes-content .notes-document blockquote { margin:12px 0; padding:8px 12px; border-left:3px solid #3b82f6; background:#f8fafc; color:#475569; }
+.notes-content .notes-document pre { margin:12px 0; overflow:auto; padding:12px; border-radius:6px; background:#0f172a; color:#e2e8f0; }
+.notes-content .notes-document code { font-family:ui-monospace,SFMono-Regular,Consolas,monospace; }
+.notes-content .notes-document :not(pre)>code { padding:1px 4px; border-radius:4px; background:#f1f5f9; color:#0369a1; }
+.notes-content .notes-document a { color:#2563eb; text-decoration:underline; }
+.notes-content .notes-document img { display:block; max-width:100%; height:auto; margin:12px 0; }
+.notes-content .notes-document table { width:100%; margin:12px 0; border-collapse:collapse; }
+.notes-content .notes-document th,.notes-content .notes-document td { padding:7px 9px; border:1px solid #e2e8f0; text-align:left; vertical-align:top; }
+.notes-content .notes-document th { background:#f8fafc; color:#0f172a; font-weight:600; }
+.notes-content .notes-document del { color:#64748b; }
+.notes-content .notes-document input[type="checkbox"] { margin-right:6px; }
+.notes-content .notes-document hr { margin:18px 0; border:0; border-top:1px solid #e2e8f0; }
+</style></head>
+<body data-page="inbound" class="">
+<aside class="app-nav"><div class="nav-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M9 22V12h6v10"></path></svg><span>工作管理平台</span></div><nav class="nav-list" aria-label="主导航"><a class="nav-primary" href="global-overview.html" data-nav="global-overview" title="全局说明"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path></svg><span>全局说明</span></a><div class="nav-group nav-hover-group nav-group-current"><div class="nav-group-toggle" tabindex="0" title="海外仓"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7.5 12 3l8 4.5v9L12 21l-8-4.5z"></path><path d="m4 7.5 8 4.5 8-4.5M12 12v9"></path></svg><span>海外仓</span><svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m7 10 5 5 5-5"></path></svg></div><div class="nav-children"><a class="nav-child active" href="inbound.html" data-nav="inbound">入库单管理</a><a class="nav-child" href="order-management.html" data-nav="orders">订单管理</a><a class="nav-child" href="index.html" data-nav="sku">库存管理</a><a class="nav-child" href="cargo-tray-management.html" data-nav="tray-management">美国货盘管理</a></div></div><div class="nav-group nav-hover-group"><div class="nav-group-toggle" tabindex="0" title="物流中心"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h11v11H3zM14 10h4l3 3v4h-7z"></path><circle cx="7" cy="19" r="2"></circle><circle cx="18" cy="19" r="2"></circle></svg><span>物流中心</span><svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m7 10 5 5 5-5"></path></svg></div><div class="nav-children"><a class="nav-child" href="packaging-shipping.html" data-nav="packaging-shipping">包装发货</a></div></div><a class="nav-primary" href="cargo-tray-v2.html" data-nav="tray-v2" title="美国货盘"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg><span>美国货盘</span></a></nav><div class="nav-footer"></div></aside>
+<div class="app-content inbound-app-content"><div class="topbar"><div class="topbar-left"><label class="bm-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><input type="search" placeholder="请输入菜单" aria-label="搜索菜单"></label><h1>入库单管理</h1></div><div class="topbar-right"><div class="user"><button class="avatar" type="button" data-role-avatar="" aria-haspopup="dialog" aria-label="切换身份" title="切换身份">超</button></div></div></div><div class="bm-page-tabs"><div class="bm-page-tab active">入库单管理<button type="button" aria-label="关闭页面标签">×</button></div></div>
+<main class="inbound-page-body">
+<section class="inbound-filter-bar" aria-label="入库单筛选"><label class="inbound-filter-field"><span>分配仓库</span><select id="warehouse-filter" data-annotation-id="ann-1788939895866"><option>德州1号仓库</option><option>美西仓(洛杉矶)</option></select></label><label class="inbound-filter-field status-filter"><span>状态</span><select id="status-filter" data-annotation-id="ann-1788940701475"><option value="">状态</option><option>草稿</option><option>运输中</option><option>部分入库</option><option>全部入库</option><option>全部已上架</option><option>已取消</option></select></label><div class="inbound-filter-actions"><button class="inbound-primary-btn" id="inbound-search" type="button" data-annotation-id="ann-1788942127182"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>搜索</button><button class="inbound-reset-btn" id="inbound-reset" type="button" data-annotation-id="ann-1788942135126"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 13.7-5.6L20 9"></path><path d="M20 4v5h-5"></path><path d="M20 12a8 8 0 0 1-13.7 5.6L4 15"></path><path d="M4 20v-5h5"></path></svg>重置</button></div></section>
+<section class="inbound-table-panel" aria-label="入库单列表"><div class="inbound-table-scroll"><table class="inbound-table"><colgroup><col class="col-id"><col class="col-box"><col class="col-qty"><col class="col-sku"><col class="col-type"><col class="col-note"><col class="col-status"><col class="col-date"><col class="col-date"><col class="col-date"><col class="col-action"></colgroup><thead><tr><th>入库单编号</th><th>箱子数量</th><th>入库件数</th><th>SKU名称/SKU条形码/数量</th><th>入库类型</th><th>备注</th><th>状态</th><th>创建时间</th><th>出发时间</th><th>预计到达时间</th><th style="padding: 8px 12px; border: 1px solid rgb(221, 221, 221);">操作</th></tr></thead><tbody id="inbound-tbody"><tr><td><a href="#">DI-KF-EB-260908</a></td><td>1</td><td>10</td><td>羽毛5 / 1964196450 / 10</td><td>DROPSHIPPING_INBOUND</td><td class="note-cell" title="-">-</td><td><span class="inbound-status transport">运输中</span></td><td>2026-09-08</td><td>2026-09-08</td><td>2026-09-15</td><td><div class="row-actions"><button><svg viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"></path><circle cx="12" cy="12" r="2.5"></circle></svg>详情</button></div></td></tr><tr><td><a href="#">RI-KF-EB-260818</a></td><td>1</td><td>0</td><td><button type="button" class="sku-more" data-row="1" data-annotation-id="ann-1788942142630">多个(2)</button></td><td>DROPSHIPPING_INBOUND</td><td class="note-cell" title="入库测试1">入库测试1</td><td><span class="inbound-status shelved">全部已上架</span></td><td>2026-08-18</td><td>-</td><td>-</td><td><div class="row-actions"><button><svg viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"></path><circle cx="12" cy="12" r="2.5"></circle></svg>详情</button></div></td></tr><tr><td><a href="#">DI-KFZ-250908-E...</a></td><td>4</td><td>264</td><td><button type="button" class="sku-more" data-row="2">多个(3)</button></td><td>DROPSHIPPING_INBOUND</td><td class="note-cell" title="备注内容">备注内容</td><td><span class="inbound-status partial">部分入库</span></td><td>2025-09-08</td><td>2025-09-02</td><td>2025-09-18</td><td><div class="row-actions"><button><svg viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"></path><circle cx="12" cy="12" r="2.5"></circle></svg>详情</button></div></td></tr><tr><td><a href="#">3351367682</a></td><td>1</td><td>30</td><td>南瓜2 / NG80086833 / 30</td><td>DROPSHIPPING_INBOUND</td><td class="note-cell" title="-">-</td><td><span class="inbound-status transport">运输中</span></td><td>2025-09-06</td><td>2025-09-09</td><td>2025-09-20</td><td><div class="row-actions"><button><svg viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"></path><circle cx="12" cy="12" r="2.5"></circle></svg>详情</button></div></td></tr><tr><td><a href="#">2426537986</a></td><td>3</td><td>161</td><td><button type="button" class="sku-more" data-row="4">多个(5)</button></td><td>DROPSHIPPING_INBOUND</td><td class="note-cell" title="-">-</td><td><span class="inbound-status transport">运输中</span></td><td>2025-08-30</td><td>2025-08-12</td><td>2025-09-20</td><td><div class="row-actions"><button><svg viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"></path><circle cx="12" cy="12" r="2.5"></circle></svg>详情</button></div></td></tr><tr><td><a href="#">2115472386</a></td><td>3</td><td>290</td><td><button type="button" class="sku-more" data-row="5">多个(2)</button></td><td>DROPSHIPPING_INBOUND</td><td class="note-cell" title="7245113162323833 ...">7245113162323833 ...</td><td><span class="inbound-status complete">全部入库</span></td><td>2025-08-30</td><td>2025-08-12</td><td>2025-09-20</td><td><div class="row-actions"><button><svg viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"></path><circle cx="12" cy="12" r="2.5"></circle></svg>详情</button></div></td></tr><tr><td><a href="#">0310040578</a></td><td>2</td><td>80</td><td><button type="button" class="sku-more" data-row="6">多个(3)</button></td><td>DROPSHIPPING_INBOUND</td><td class="note-cell" title="4187627401435748 ...">4187627401435748 ...</td><td><span class="inbound-status complete">全部入库</span></td><td>2025-08-30</td><td>2025-08-06</td><td>2025-08-20</td><td><div class="row-actions"><button><svg viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"></path><circle cx="12" cy="12" r="2.5"></circle></svg>详情</button></div></td></tr></tbody></table></div><div class="inbound-pagination"><span>共 <strong id="inbound-total">7</strong> 条</span><div class="inbound-page-controls"><span>10条/每页</span><button disabled="" aria-label="上一页">‹</button><button class="active" aria-label="第1页">1</button><button disabled="" aria-label="下一页">›</button><label>跳至 <input value="1" aria-label="跳转页码" readonly=""> 页</label></div></div></section>
+</main></div><div class="inbound-sku-popover" id="sku-popover" role="tooltip" style="left: 427.844px; top: 385.25px;"><table><thead><tr><th>SKU名称</th><th>SKU条形码</th><th>数量</th></tr></thead><tbody id="sku-popover-body"><tr><td>SKU-A</td><td>694670411</td><td>132</td></tr><tr><td>SKU-B</td><td>697123456</td><td>72</td></tr><tr><td>SKU-C</td><td>697123457</td><td>60</td></tr></tbody></table></div>
 <script>
-var currentType='all';
-var skuLines=[];
+(function(){var rows=[
+{id:'DI-KF-EB-260908',boxes:1,qty:10,skus:[{name:'羽毛5',barcode:'1964196450',qty:10}],type:'DROPSHIPPING_INBOUND',note:'-',status:'运输中',created:'2026-09-08',sent:'2026-09-08',eta:'2026-09-15',editable:true},
+{id:'RI-KF-EB-260818',boxes:1,qty:0,skus:[{name:'篮弦6',barcode:'694670410',qty:0},{name:'羽毛5',barcode:'1964196450',qty:0}],type:'DROPSHIPPING_INBOUND',note:'入库测试1',status:'全部已上架',created:'2026-08-18',sent:'-',eta:'-',editable:false},
+{id:'DI-KFZ-250908-E...',boxes:4,qty:264,skus:[{name:'SKU-A',barcode:'694670411',qty:132},{name:'SKU-B',barcode:'697123456',qty:72},{name:'SKU-C',barcode:'697123457',qty:60}],type:'DROPSHIPPING_INBOUND',note:'备注内容',status:'部分入库',created:'2025-09-08',sent:'2025-09-02',eta:'2025-09-18',editable:false},
+{id:'3351367682',boxes:1,qty:30,skus:[{name:'南瓜2',barcode:'NG80086833',qty:30}],type:'DROPSHIPPING_INBOUND',note:'-',status:'运输中',created:'2025-09-06',sent:'2025-09-09',eta:'2025-09-20',editable:true},
+{id:'2426537986',boxes:3,qty:161,skus:[{name:'SKU-A',barcode:'694670411',qty:80},{name:'SKU-B',barcode:'697123456',qty:51},{name:'SKU-C',barcode:'697123457',qty:30},{name:'SKU-D',barcode:'697123458',qty:0},{name:'SKU-E',barcode:'694670412',qty:0}],type:'DROPSHIPPING_INBOUND',note:'-',status:'运输中',created:'2025-08-30',sent:'2025-08-12',eta:'2025-09-20',editable:true},
+{id:'2115472386',boxes:3,qty:290,skus:[{name:'SKU-A',barcode:'694670411',qty:180},{name:'SKU-B',barcode:'697123456',qty:110}],type:'DROPSHIPPING_INBOUND',note:'7245113162323833 ...',status:'全部入库',created:'2025-08-30',sent:'2025-08-12',eta:'2025-09-20',editable:false},
+{id:'0310040578',boxes:2,qty:80,skus:[{name:'SKU-A',barcode:'694670411',qty:50},{name:'SKU-B',barcode:'697123456',qty:30},{name:'SKU-C',barcode:'697123457',qty:0}],type:'DROPSHIPPING_INBOUND',note:'4187627401435748 ...',status:'全部入库',created:'2025-08-30',sent:'2025-08-06',eta:'2025-08-20',editable:false}];
+function esc(v){return String(v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}function statusClass(s){return s==='运输中'?'transport':s==='全部已上架'?'shelved':s==='全部入库'?'complete':s==='部分入库'?'partial':s==='已取消'?'cancelled':'draft'}function skuSummary(r){if(r.skus.length===1){var s=r.skus[0];return esc(s.name)+' / '+esc(s.barcode)+' / '+s.qty}return '<button type="button" class="sku-more" data-row="'+rows.indexOf(r)+'">多个('+r.skus.length+')</button>'}function actionHtml(r){var eye='<svg viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"></path><circle cx="12" cy="12" r="2.5"></circle></svg>';return '<div class="row-actions"><button>'+eye+'详情</button></div>'}function render(){var selected=document.getElementById('status-filter').value;var data=selected?rows.filter(function(r){return r.status===selected}):rows;document.getElementById('inbound-total').textContent=data.length;document.getElementById('inbound-tbody').innerHTML=data.map(function(r){return '<tr><td><a href="#">'+esc(r.id)+'</a></td><td>'+r.boxes+'</td><td>'+r.qty+'</td><td>'+skuSummary(r)+'</td><td>'+esc(r.type)+'</td><td class="note-cell" title="'+esc(r.note)+'">'+esc(r.note)+'</td><td><span class="inbound-status '+statusClass(r.status)+'">'+esc(r.status)+'</span></td><td>'+r.created+'</td><td>'+r.sent+'</td><td>'+r.eta+'</td><td>'+actionHtml(r)+'</td></tr>'}).join('')||'<tr><td colspan="11" class="inbound-empty">暂无入库单</td></tr>'}function showSku(i,b){var p=document.getElementById('sku-popover');document.getElementById('sku-popover-body').innerHTML=rows[i].skus.map(function(s){return '<tr><td>'+esc(s.name)+'</td><td>'+esc(s.barcode)+'</td><td>'+s.qty+'</td></tr>'}).join('');var x=b.getBoundingClientRect();p.style.left=Math.max(12,Math.min(window.innerWidth-300,x.left-120))+'px';p.style.top=(x.bottom+10)+'px';p.classList.add('open')}document.getElementById('inbound-tbody').addEventListener('mouseover',function(e){var b=e.target.closest('.sku-more');if(b)showSku(Number(b.dataset.row),b)});document.getElementById('inbound-tbody').addEventListener('mouseout',function(e){if(e.relatedTarget&&e.relatedTarget.closest('.inbound-sku-popover'))return;document.getElementById('sku-popover').classList.remove('open')});document.getElementById('sku-popover').addEventListener('mouseleave',function(){this.classList.remove('open')});document.getElementById('inbound-search').addEventListener('click',render);document.getElementById('inbound-reset').addEventListener('click',function(){document.getElementById('status-filter').value='';render()});render()})();
+</script>
 
-// ===== Render Inbound List =====
-function renderInboundList(){
-  fetchInbound({type:currentType}).then(function(res){
-    var container=document.getElementById('inbound-list');
-    container.innerHTML='';
-    if(res.data.length===0){
-      container.innerHTML='<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>暂无入库单</div>';
-      return;
+<script src="marker-toggle.js"></script><script src="notes.js"></script><button type="button" class="marker-toggle" aria-pressed="true" title="关闭当前页面所有标记"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"></path><circle cx="12" cy="12" r="4"></circle></svg><span>关闭标记</span></button><button class="btn btn-ghost notes-toggle notes-toggle-floating" type="button" aria-label="查看注释" title="查看注释" aria-expanded="false" aria-controls="notes-panel" style="left: 802px; top: 8px; right: auto; transform: none;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M8 13h8"></path><path d="M8 17h6"></path></svg><span>查看注释</span></button><aside class="notes-panel" id="notes-panel" aria-label="入库单注释"><div class="notes-resizer" role="separator" tabindex="0" aria-label="调整注释区域宽度" aria-orientation="vertical" aria-valuemin="320" aria-valuemax="784" aria-valuenow="420"></div><div class="notes-panel-head"><h2>入库单注释</h2><button class="notes-close" type="button" aria-label="收起注释" title="收起注释">×</button></div><div class="notes-content"><article class="notes-document" data-html-annotator-injected-document=""><h2>页面结构</h2>
+<ol>
+<li>筛选区域：分配仓库、状态、搜索、重置。</li>
+<li>入库单数据表：展示入库单字段和多 SKU 摘要。</li>
+<li>分页区域：展示结果总数、每页数量、页码和跳页入口。</li>
+</ol>
+<h2>筛选功能</h2>
+<h3>分配仓库</h3>
+<ul>
+<li>控件类型：下拉单选。</li>
+<li>默认值：第一个仓库。</li>
+<li>数据来源：平台仓库地址数据中符合海外仓、美国货盘条件的仓库。</li>
+</ul>
+<h3>状态</h3>
+<ul>
+<li>控件类型：下拉单选。</li>
+<li>默认值：全选，表示不限制状态。</li>
+<li>可选值：草稿、运输中、部分入库、全部入库、全部已上架、已取消。</li>
+</ul>
+<h3>搜索和重置</h3>
+<ul>
+<li>搜索：根据当前分配仓库和状态刷新列表。</li>
+<li>重置：将分配仓库和状态恢复默认值，并刷新全部列表。</li>
+</ul>
+<h2>入库单表格</h2>
+<p>表格数据来源于：物流中心包装发货时，针对美国货盘海外仓，给货上传箱标时，调用海外仓配货入库单/oms/api/warehouse/inbound_form产生的数据以及查询入库单状态/oms/api/warehouse/inbound_form/status_list返回的数据。</p>
+<p>查询无结果时展示“暂无入库单”。</p>
+<p>表格只展示以下 10 列：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>展示规则以及数据来源</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>入库单编号</td>
+<td>展示入库单唯一编号。海外仓配货入库接口返回</td>
+</tr>
+<tr>
+<td>箱子数量</td>
+<td>展示关联箱子数量。向海外仓创建配货入库单填写的箱子数量</td>
+</tr>
+<tr>
+<td>入库件数</td>
+<td>展示商品总件数。向海外仓创建配货入库单填写的入库件数</td>
+</tr>
+<tr>
+<td>SKU名称/SKU条形码/数量</td>
+<td>单 SKU 展示“名称 / 条形码 / 数量”；多 SKU 展示“多个(n)”。向海外仓创建配货入库单填写的SKU信息</td>
+</tr>
+<tr>
+<td>入库类型</td>
+<td>当前原型所有数据固定为 <code>DROPSHIPPING_INBOUND</code></td>
+</tr>
+<tr>
+<td>备注</td>
+<td>无备注展示 <code>-</code>，过长内容截断并保留完整内容提示。向海外仓创建配货入库单填写的备注</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>使用不同颜色标签展示状态。海外仓查询入库单状态返回的</td>
+</tr>
+<tr>
+<td>创建时间</td>
+<td>展示创建日期。向海外仓创建配货入库单填写的创建时间</td>
+</tr>
+<tr>
+<td>出发时间</td>
+<td>展示发出日期，无数据展示 <code>-</code>。向海外仓创建配货入库单填写的触发时间</td>
+</tr>
+<tr>
+<td>预计到达时间</td>
+<td>展示预计到达日期，无数据展示 <code>-</code>。向海外仓创建配货入库单填写的预计到达时间</td>
+</tr>
+</tbody></table>
+<h2>多 SKU 交互</h2>
+<ul>
+<li>多 SKU 入库单在 SKU 列显示“多个(n)”。</li>
+<li>鼠标移动到“多个(n)”后显示悬浮明细表。</li>
+<li>悬浮明细表字段：SKU名称、SKU条形码、数量。</li>
+<li>鼠标离开摘要和悬浮明细表后关闭悬浮层。</li>
+<li>悬浮层显示在表格上方，不能被表格容器裁剪。</li>
+</ul>
+<h2>状态定义</h2>
+<p>该状态依赖于海外仓查询入库单状态接口</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>草稿</td>
+<td>已创建但尚未进入运输流程</td>
+</tr>
+<tr>
+<td>运输中</td>
+<td>已发出，正在运输</td>
+</tr>
+<tr>
+<td>部分入库</td>
+<td>部分商品已完成入库</td>
+</tr>
+<tr>
+<td>全部入库</td>
+<td>商品已全部完成入库</td>
+</tr>
+<tr>
+<td>全部已上架</td>
+<td>商品已全部完成上架</td>
+</tr>
+<tr>
+<td>已取消</td>
+<td>已取消，不再继续处理</td>
+</tr>
+</tbody></table>
+<h2>分页</h2>
+<ul>
+<li>默认每页 10 条。</li>
+<li>展示结果总数。</li>
+<li>提供上一页、当前页、下一页和跳转页码控件。</li>
+</ul>
+</article></div></aside><div class="notes-backdrop"></div><div class="notes-preview" role="dialog" aria-modal="true" aria-label="图片预览"><button class="notes-preview-close" type="button" aria-label="关闭图片预览" title="关闭">×</button><img alt=""><div class="notes-preview-caption"></div></div><div data-html-annotator-inline-root=""><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1788939895866" data-severity="info" data-annotation-index="0" data-annotation-updated-at="2026-09-09T08:21:53.854Z" data-target-selector="select#warehouse-filter" data-target-tag="SELECT" data-target-classes="[]" data-target-text="德州1号仓库美西仓(洛杉矶)" data-target-child-count="2" data-target-depth="6">1</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1788939895866" data-severity="info"><div class="html-annotator-inline-head">标注 · SELECT</div><div><p>下拉单选，默认选中第一个</p><p>下拉数据来源：平台仓库地址里的数据，要筛选出海外仓且为美国货盘的仓库数据（其实只有一个）</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1788940701475" data-severity="info" data-annotation-index="1" data-annotation-updated-at="2026-09-09T08:22:01.006Z" data-target-selector="select#status-filter" data-target-tag="SELECT" data-target-classes="[]" data-target-text="状态草稿运输中部分入库全部入库全部已上架已取消" data-target-child-count="7" data-target-depth="6">2</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1788940701475" data-severity="info"><div class="html-annotator-inline-head">标注 · SELECT</div><div><p>下拉单选，可选项：全部/草稿/运输中/部分入库/全部入库/全部已上架/已取消</p><p>默认选中“全部”</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1788942127182" data-severity="info" data-annotation-index="2" data-annotation-updated-at="2026-09-09T08:22:14.022Z" data-target-selector="button#inbound-search" data-target-tag="BUTTON" data-target-classes="[&quot;inbound-primary-btn&quot;]" data-target-text="搜索" data-target-child-count="1" data-target-depth="6">3</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1788942127182" data-severity="info"><div class="html-annotator-inline-head">标注 · BUTTON</div><div><p>点击后根据分配仓库、状态筛选出相应的入库单数据</p><p>分页查询，默认10页</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1788942135126" data-severity="info" data-annotation-index="3" data-annotation-updated-at="2026-09-09T08:22:20.286Z" data-target-selector="button#inbound-reset" data-target-tag="BUTTON" data-target-classes="[&quot;inbound-reset-btn&quot;]" data-target-text="重置" data-target-child-count="1" data-target-depth="6">4</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1788942135126" data-severity="info"><div class="html-annotator-inline-head">标注 · BUTTON</div><div><p>点击后将分配仓库、状态还原为默认值</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1788942142630" data-severity="info" data-annotation-index="4" data-annotation-updated-at="2026-09-09T08:22:27.582Z" data-target-selector="tbody#inbound-tbody > tr:nth-of-type(2) > td:nth-of-type(4) > button.sku-more" data-target-tag="BUTTON" data-target-classes="[&quot;sku-more&quot;]" data-target-text="多个(2)" data-target-child-count="0" data-target-depth="10">5</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1788942142630" data-severity="info"><div class="html-annotator-inline-head">标注 · BUTTON</div><div><p>多个SKU，将鼠标移动进去后会展示出相应的SKU信息，详细交互可以直接在页面上试一下</p></div></div></div><script data-html-annotator-inline-script="">
+(function () {
+  var root = document.querySelector('[data-html-annotator-inline-root]');
+  if (!root) return;
+  function depth(element) {
+    var value = 0;
+    while (element && element.parentElement) { value++; element = element.parentElement; }
+    return value;
+  }
+  function findById(id) {
+    var all = document.querySelectorAll('[data-annotation-id]');
+    for (var i = 0; i < all.length; i++) {
+      if (!root.contains(all[i]) && all[i].getAttribute('data-annotation-id') === id) return all[i];
     }
-    res.data.forEach(function(order){
-      var card=document.createElement('div');
-      card.className='inbound-card';
-      var sName=DB.sellers.find(function(x){return x.id===order.seller});
-      sName=sName?sName.name:order.seller;
-      var sourceLabel=order.source==='zebra'?'斑马补货':order.source==='po'?'采购PO':order.source==='seller'?'卖家发货':'其他';
-      var sourceCls=order.source==='zebra'?'zebra':order.source==='po'?'po':'';
-
-      // steps progress
-      var stepsHtml='';
-      order.steps.forEach(function(step,idx){
-        var stepIdx=idx+1;
-        var dotClass=stepIdx<order.currentStep?'done':stepIdx===order.currentStep?'active':'pending';
-        var lineClass=stepIdx<order.currentStep?'done':'';
-        stepsHtml+='<div style="text-align:center"><div class="step-dot '+dotClass+'"></div><div class="step-label">'+step+'</div></div>';
-        if(idx<order.steps.length-1){
-          stepsHtml+='<div class="step-line '+lineClass+'"></div>';
-        }
-      });
-
-      // sku chips
-      var skuHtml=order.skus.map(function(s){
-        return '<span class="sku-chip">'+s.img+' '+s.name+' <span class="qty">×'+s.qty+'</span></span>';
-      }).join('');
-
-      // status badge
-      var statusCls='tag-info';
-      if(order.status==='shelved')statusCls='tag-success';
-      else if(order.status==='received')statusCls='tag-warning';
-      else if(order.status==='arrived')statusCls='tag-primary';
-      else if(order.status==='intransit')statusCls='tag-info';
-
-      card.innerHTML='<div class="inbound-card-head">'
-        +'<div class="inbound-card-title">'
-        +'<span class="order-no">'+order.id+'</span>'
-        +'<span class="type-badge type-'+order.type+'">'+order.typeName+'</span>'
-        +'<span class="tag '+statusCls+'">'+order.statusText+'</span>'
-        +'</div>'
-        +'<div style="font-size:12px;color:var(--muted)">'+order.createTime+'</div>'
-        +'</div>'
-        +'<div class="inbound-card-meta">'
-        +'<div class="meta-item"><div class="meta-label">来源</div><div class="meta-value"><span class="source-tag '+sourceCls+'">'+sourceLabel+'</span> '+order.sourceNo+'</div></div>'
-        +'<div class="meta-item"><div class="meta-label">转单号</div><div class="meta-value" style="font-family:var(--font-mono)">'+order.transferNo+'</div></div>'
-        +'<div class="meta-item"><div class="meta-label">卖家</div><div class="meta-value">'+sName+'</div></div>'
-        +'<div class="meta-item"><div class="meta-label">总数量</div><div class="meta-value">'+order.totalQty+' 件</div></div>'
-        +'</div>'
-        +'<div class="sku-chips">'+skuHtml+'</div>'
-        +'<div class="inbound-card-progress">'
-        +'<div class="progress-steps">'+stepsHtml+'</div>'
-        +'<div class="inbound-card-actions">'
-        +(order.status!=='shelved'?'<button class="btn btn-sm btn-ghost" onclick="toggleDetail(this)">查看轨迹</button>':'')
-        +'<button class="btn btn-sm btn-primary">详情</button>'
-        +'</div>'
-        +'</div>'
-        // expandable tracking detail
-        +'<div class="intransit-expand">'
-        +'<div class="intransit-expand-inner">'
-        +'<div><div style="font-weight:600;font-size:13px;margin-bottom:10px">物流轨迹</div><div class="timeline">'+buildTimeline(order.trackingNodes)+'</div></div>'
-        +'<div>'
-        +'<div style="font-weight:600;font-size:13px;margin-bottom:10px">物流信息</div>'
-        +'<div class="tracking-info" style="margin-bottom:10px"><div class="tracking-title">转单号</div><div class="tracking-no">'+order.transferNo+'</div><div class="tracking-carrier">承运商：'+order.carrier+'</div></div>'
-        +'<div class="tracking-info"><div class="tracking-title">预计到货</div><div class="tracking-no" style="font-size:14px">'+order.eta+'</div><div class="tracking-carrier">美西仓 · 洛杉矶</div></div>'
-        +'</div>'
-        +'</div>'
-        +'</div>';
-
-      container.appendChild(card);
+    return null;
+  }
+  function findBySelector(marker) {
+    var selector = marker.getAttribute('data-target-selector');
+    if (!selector) return null;
+    try {
+      var all = document.querySelectorAll(selector);
+      for (var i = 0; i < all.length; i++) if (!root.contains(all[i])) return all[i];
+    } catch (_) {}
+    return null;
+  }
+  function findByFingerprint(marker) {
+    var tag = marker.getAttribute('data-target-tag');
+    if (!tag) return null;
+    var classes = [];
+    try { classes = JSON.parse(marker.getAttribute('data-target-classes') || '[]'); } catch (_) {}
+    var text = marker.getAttribute('data-target-text') || '';
+    var childCount = Number(marker.getAttribute('data-target-child-count'));
+    var targetDepth = Number(marker.getAttribute('data-target-depth'));
+    var all = document.querySelectorAll(tag);
+    for (var i = 0; i < all.length; i++) {
+      var element = all[i];
+      if (root.contains(element)) continue;
+      var elementText = (element.textContent || '').slice(0, 50).trim();
+      if (element.children.length === childCount && depth(element) === targetDepth && elementText === text && element.classList.length === classes.length && classes.every(function (name) { return element.classList.contains(name); })) return element;
+    }
+    return null;
+  }
+  function targetFor(marker) {
+    var id = marker.getAttribute('data-annotation-id');
+    var target = findById(id) || findBySelector(marker) || findByFingerprint(marker);
+    if (target && target.getAttribute('data-annotation-id') !== id) target.setAttribute('data-annotation-id', id);
+    return target;
+  }
+  function panelFor(id) {
+    var panels = root.querySelectorAll('[data-html-annotator-inline-panel]');
+    for (var i = 0; i < panels.length; i++) if (panels[i].getAttribute('data-annotation-id') === id) return panels[i];
+    return null;
+  }
+  function position() {
+    root.querySelectorAll('[data-html-annotator-inline-marker]').forEach(function (marker) {
+      var target = targetFor(marker);
+      var panel = panelFor(marker.getAttribute('data-annotation-id'));
+      if (!target || target.getClientRects().length === 0) {
+        marker.style.display = 'none';
+        if (panel) panel.style.display = 'none';
+        return;
+      }
+      var rect = target.getBoundingClientRect();
+      marker.style.display = 'block';
+      marker.style.left = rect.right + 'px';
+      marker.style.top = rect.top + 'px';
+    });
+  }
+  root.querySelectorAll('[data-html-annotator-inline-marker]').forEach(function (marker) {
+    marker.addEventListener('click', function (event) {
+      event.preventDefault(); event.stopPropagation();
+      var panel = panelFor(marker.getAttribute('data-annotation-id'));
+      root.querySelectorAll('[data-html-annotator-inline-panel]').forEach(function (item) { if (item !== panel) item.style.display = 'none'; });
+      if (!panel) return;
+      panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+      var rect = marker.getBoundingClientRect();
+      panel.style.left = Math.max(12, Math.min(rect.right + 8, window.innerWidth - panel.offsetWidth - 12)) + 'px';
+      panel.style.top = Math.max(12, Math.min(rect.top, window.innerHeight - panel.offsetHeight - 12)) + 'px';
     });
   });
-}
-
-// ===== Build Timeline =====
-function buildTimeline(nodes){
-  return nodes.map(function(n){
-    var cls='';
-    if(n.done)cls='done';
-    else if(n.active)cls='active';
-    else cls='pending';
-    return '<div class="timeline-item '+cls+'">'
-      +'<div class="timeline-dot"></div>'
-      +'<div class="timeline-content">'
-      +'<div class="timeline-title">'+n.title+'</div>'
-      +'<div class="timeline-time">'+n.time+'</div>'
-      +(n.desc?'<div class="timeline-desc">'+n.desc+'</div>':'')
-      +'</div></div>';
-  }).join('');
-}
-
-// ===== Toggle Detail =====
-function toggleDetail(btn){
-  var card=btn.closest('.inbound-card');
-  var expand=card.querySelector('.intransit-expand');
-  var isOpen=expand.classList.contains('open');
-  if(isOpen){expand.classList.remove('open');btn.textContent='查看轨迹';}
-  else{expand.classList.add('open');btn.textContent='收起轨迹';}
-}
-
-// ===== Type Switch =====
-function switchType(type){
-  currentType=type;
-  document.querySelectorAll('.inbound-tab').forEach(function(t){
-    t.classList.toggle('active',t.dataset.type===type);
-  });
-  renderInboundList();
-}
-
-// ===== Create Modal =====
-function openCreateModal(){
-  document.getElementById('create-modal').classList.add('open');
-  skuLines=[];
-  renderSkuLines();
-}
-function closeCreateModal(){
-  document.getElementById('create-modal').classList.remove('open');
-}
-function onTypeChange(){
-  var type=document.getElementById('c-type').value;
-  var label='来源单号';
-  var placeholder='请输入来源单号';
-  if(type==='replenish'){label='斑马补货单号';placeholder='如 ZEBRA-BU-20260820';}
-  else if(type==='procure'){label='采购PO号';placeholder='如 PO-2026-0801-007';}
-  else if(type==='drop'){label='卖家单号';placeholder='选填';}
-  document.querySelector('#row-source label').textContent=label;
-  document.getElementById('c-source').placeholder=placeholder;
-}
-function addSkuLine(){
-  var sku=document.getElementById('c-sku').value;
-  var qty=parseInt(document.getElementById('c-qty').value)||0;
-  if(!sku){showToast('请选择SKU');return}
-  if(qty<1){showToast('请输入有效数量');return}
-  skuLines.push({sku:sku,qty:qty});
-  document.getElementById('c-sku').value='';
-  document.getElementById('c-qty').value='';
-  renderSkuLines();
-}
-function renderSkuLines(){
-  var c=document.getElementById('sku-lines');
-  if(skuLines.length===0){c.innerHTML='暂未添加 SKU';c.style.color='var(--muted)';return}
-  c.style.color='var(--ink)';
-  c.innerHTML=skuLines.map(function(s,i){
-    return '<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 10px;background:var(--surface-2);border-radius:4px;margin-bottom:4px">'
-      +'<span>'+s.sku+' × '+s.qty+'</span>'
-      +'<button class="btn btn-sm btn-ghost" onclick="removeSku('+i+')">移除</button>'
-      +'</div>';
-  }).join('');
-}
-function removeSku(i){skuLines.splice(i,1);renderSkuLines()}
-
-function submitCreate(){
-  var type=document.getElementById('c-type').value;
-  var source=document.getElementById('c-source').value;
-  var seller=document.getElementById('c-seller').value;
-  if(!source){showToast('请输入来源单号');return}
-  if(skuLines.length===0){showToast('请至少添加一个SKU');return}
-  createInbound({type:type,source:source,seller:seller,skus:skuLines}).then(function(res){
-    closeCreateModal();
-    showToast('入库单创建成功，'+res.id);
-    renderInboundList();
-  });
-}
-
-// ===== Init =====
-renderInboundList();
-</script>
-<script src="toast.js?v=20260828-cart-action"></script>
-<script src="role-switch.js"></script>
-<script src="notes.js?v=20260828-local-prd-v2"></script>
-</body>
-</html>
-
+  document.addEventListener('click', function (event) { if (!root.contains(event.target)) root.querySelectorAll('[data-html-annotator-inline-panel]').forEach(function (item) { item.style.display = 'none'; }); });
+  window.addEventListener('scroll', position, true);
+  window.addEventListener('resize', position);
+  var pending = false;
+  new MutationObserver(function (records) {
+    var relevant = records.some(function (record) { return !root.contains(record.target); });
+    if (!relevant || pending) return;
+    pending = true;
+    setTimeout(function () { pending = false; position(); }, 0);
+  }).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'style', 'hidden'] });
+  position();
+})();
+</script><script>(function(){var markers=document.querySelectorAll('.marker-toggle');for(var i=1;i<markers.length;i++)markers[i].remove();var notes=document.querySelectorAll('.notes-toggle-floating');for(var j=1;j<notes.length;j++)notes[j].remove()})();</script><script>(function(){var table=document.querySelector('.inbound-table');if(!table)return;function removeOperationColumn(){table.querySelectorAll('tr').forEach(function(row){if(row.lastElementChild)row.lastElementChild.remove()});var colgroup=table.querySelector('colgroup');if(colgroup&&colgroup.lastElementChild)colgroup.lastElementChild.remove()}removeOperationColumn();new MutationObserver(removeOperationColumn).observe(table,{childList:true,subtree:true})})();</script>
+<template data-html-annotator-document-template=""><article class="notes-document" data-html-annotator-injected-document=""><h2>页面结构</h2>
+<ol>
+<li>筛选区域：分配仓库、状态、搜索、重置。</li>
+<li>入库单数据表：展示入库单字段和多 SKU 摘要。</li>
+<li>分页区域：展示结果总数、每页数量、页码和跳页入口。</li>
+</ol>
+<h2>筛选功能</h2>
+<h3>分配仓库</h3>
+<ul>
+<li>控件类型：下拉单选。</li>
+<li>默认值：第一个仓库。</li>
+<li>数据来源：平台仓库地址数据中符合海外仓、美国货盘条件的仓库。</li>
+</ul>
+<h3>状态</h3>
+<ul>
+<li>控件类型：下拉单选。</li>
+<li>默认值：全选，表示不限制状态。</li>
+<li>可选值：草稿、运输中、部分入库、全部入库、全部已上架、已取消。</li>
+</ul>
+<h3>搜索和重置</h3>
+<ul>
+<li>搜索：根据当前分配仓库和状态刷新列表。</li>
+<li>重置：将分配仓库和状态恢复默认值，并刷新全部列表。</li>
+</ul>
+<h2>入库单表格</h2>
+<p>表格数据来源于：物流中心包装发货时，针对美国货盘海外仓，给货上传箱标时，调用海外仓配货入库单/oms/api/warehouse/inbound_form产生的数据以及查询入库单状态/oms/api/warehouse/inbound_form/status_list返回的数据。</p>
+<p>查询无结果时展示“暂无入库单”。</p>
+<p>表格只展示以下 10 列：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>展示规则以及数据来源</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>入库单编号</td>
+<td>展示入库单唯一编号。海外仓配货入库接口返回</td>
+</tr>
+<tr>
+<td>箱子数量</td>
+<td>展示关联箱子数量。向海外仓创建配货入库单填写的箱子数量</td>
+</tr>
+<tr>
+<td>入库件数</td>
+<td>展示商品总件数。向海外仓创建配货入库单填写的入库件数</td>
+</tr>
+<tr>
+<td>SKU名称/SKU条形码/数量</td>
+<td>单 SKU 展示“名称 / 条形码 / 数量”；多 SKU 展示“多个(n)”。向海外仓创建配货入库单填写的SKU信息</td>
+</tr>
+<tr>
+<td>入库类型</td>
+<td>当前原型所有数据固定为 <code>DROPSHIPPING_INBOUND</code></td>
+</tr>
+<tr>
+<td>备注</td>
+<td>无备注展示 <code>-</code>，过长内容截断并保留完整内容提示。向海外仓创建配货入库单填写的备注</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>使用不同颜色标签展示状态。海外仓查询入库单状态返回的</td>
+</tr>
+<tr>
+<td>创建时间</td>
+<td>展示创建日期。向海外仓创建配货入库单填写的创建时间</td>
+</tr>
+<tr>
+<td>出发时间</td>
+<td>展示发出日期，无数据展示 <code>-</code>。向海外仓创建配货入库单填写的触发时间</td>
+</tr>
+<tr>
+<td>预计到达时间</td>
+<td>展示预计到达日期，无数据展示 <code>-</code>。向海外仓创建配货入库单填写的预计到达时间</td>
+</tr>
+</tbody></table>
+<h2>多 SKU 交互</h2>
+<ul>
+<li>多 SKU 入库单在 SKU 列显示“多个(n)”。</li>
+<li>鼠标移动到“多个(n)”后显示悬浮明细表。</li>
+<li>悬浮明细表字段：SKU名称、SKU条形码、数量。</li>
+<li>鼠标离开摘要和悬浮明细表后关闭悬浮层。</li>
+<li>悬浮层显示在表格上方，不能被表格容器裁剪。</li>
+</ul>
+<h2>状态定义</h2>
+<p>该状态依赖于海外仓查询入库单状态接口</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>草稿</td>
+<td>已创建但尚未进入运输流程</td>
+</tr>
+<tr>
+<td>运输中</td>
+<td>已发出，正在运输</td>
+</tr>
+<tr>
+<td>部分入库</td>
+<td>部分商品已完成入库</td>
+</tr>
+<tr>
+<td>全部入库</td>
+<td>商品已全部完成入库</td>
+</tr>
+<tr>
+<td>全部已上架</td>
+<td>商品已全部完成上架</td>
+</tr>
+<tr>
+<td>已取消</td>
+<td>已取消，不再继续处理</td>
+</tr>
+</tbody></table>
+<h2>分页</h2>
+<ul>
+<li>默认每页 10 条。</li>
+<li>展示结果总数。</li>
+<li>提供上一页、当前页、下一页和跳转页码控件。</li>
+</ul>
+</article></template><script data-html-annotator-document-runtime="">
+(function () {
+  var template = document.querySelector('[data-html-annotator-document-template]');
+  if (!template) return;
+  function applyDocument() {
+    var content = document.querySelector('#notes-panel .notes-content, .notes-panel .notes-content');
+    if (!content || content.querySelector('[data-html-annotator-injected-document]')) return;
+    content.innerHTML = template.innerHTML;
+  }
+  applyDocument();
+  var observer = new MutationObserver(applyDocument);
+  observer.observe(document.documentElement, { childList: true, subtree: true });
+  document.addEventListener('DOMContentLoaded', applyDocument);
+  window.addEventListener('load', applyDocument);
+})();
+</script></body></html>

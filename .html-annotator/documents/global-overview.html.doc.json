@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0",
+  "filePath": "C:\\Users\\Administrator\\Desktop\\oms v1.0\\global-overview.html",
+  "content": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null
+        }
+      }
+    ]
+  },
+  "format": "richtext",
+  "html": "<p></p>",
+  "annotationRefs": [],
+  "updatedAt": "2026-09-09T10:00:49.350Z"
+}
