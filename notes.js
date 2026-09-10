@@ -84,7 +84,7 @@
     orders:{title:'订单管理注释'},
     'tray-management':{title:'美国货盘管理注释'},
     'packaging-shipping':{title:'包装发货注释'},
-    'global-overview':{title:'全局说明注释'},
+    'global-overview':{title:'业务流程注释'},
     login:{title:'登录注释'}
   };
   var note=pageNotes[pageKey]||{title:'当前菜单注释'};
