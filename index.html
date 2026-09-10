@@ -176,6 +176,28 @@
   </div>
 </div>
 
+<div class="modal-overlay" id="inventory-operation-log-modal" role="dialog" aria-modal="true" aria-labelledby="inventory-operation-log-title">
+  <div class="modal inventory-operation-log-modal">
+    <div class="modal-head">
+      <div class="inventory-operation-log-heading">
+        <h3 id="inventory-operation-log-title">操作日志</h3>
+        <span id="inventory-operation-log-count">0 条记录</span>
+      </div>
+      <button class="close" type="button" id="inventory-operation-log-close" aria-label="关闭">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="inventory-operation-log-sku" id="inventory-operation-log-sku"></div>
+      <div class="inventory-operation-log-table-wrap">
+        <table class="data-table inventory-operation-log-table">
+          <thead><tr><th>操作类型</th><th>操作内容</th><th>操作人</th><th>操作时间</th></tr></thead>
+          <tbody id="inventory-operation-log-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-primary" type="button" id="inventory-operation-log-confirm">关闭</button></div>
+  </div>
+</div>
+
 <div id="img-preview" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;cursor:pointer" onclick="closePreview()">
   <img id="preview-img" src="" style="max-width:80%;max-height:80%;border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,0.4)">
   <div style="position:absolute;top:20px;right:20px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px">x</div>
@@ -373,7 +395,7 @@ function renderTable(data){
       +'<td class="num" style="text-align:right;color:var(--success);font-weight:500">'+item.available+'</td>'
       +'<td class="num" style="text-align:right;color:var(--warning);font-weight:500">'+item.locked+'</td>'
       +'<td class="num" style="text-align:right;font-weight:700">'+item.total+'</td>'
-      +'<td class="operation-column"><button class="btn-link" type="button" data-cargo-mark="'+item.barcode+'">上架</button></td>';
+      +'<td class="operation-column"><div class="inventory-row-actions"><button class="btn-link" type="button" data-cargo-mark="'+item.barcode+'">上架</button><button class="btn-link" type="button" data-operation-log="'+item.barcode+'">操作日志</button></div></td>';
     if(item.lowStock){tr.style.background='rgba(220,38,38,0.04)'}
     tbody.appendChild(tr);
   });
@@ -420,6 +442,48 @@ function closePreview(){
   var overlay=document.getElementById('img-preview');
   overlay.style.display='none';
   document.getElementById('preview-img').src='';
+}
+
+function formatInventoryLogTime(date){
+  function pad(value){return String(value).padStart(2,'0')}
+  return date.getFullYear()+'-'+pad(date.getMonth()+1)+'-'+pad(date.getDate())+' '+pad(date.getHours())+':'+pad(date.getMinutes())+':'+pad(date.getSeconds());
+}
+
+function getInventoryOperationLogs(item){
+  var seed=item.barcode.split('').reduce(function(total,character){return total+character.charCodeAt(0)},0);
+  var currentUser=window.OMSRole&&window.OMSRole.getCurrent?window.OMSRole.getCurrent().name:(currentRole.name||'超管');
+  var latest=new Date(2026,8,9,16-(seed%4),20+(seed%31),seed%60);
+  var currentPrice=Number(item.cargoPrice||item.unitPrice||19.99);
+  var currentQuantity=Math.max(1,Number(item.cargoQuantity||Math.min(item.available||10,20)));
+  var records=[
+    {type:'售价调整',detail:'售卖价格由 $'+Math.max(0.01,currentPrice-2).toFixed(2)+' 调整为 $'+currentPrice.toFixed(2),offset:0,className:'price'},
+    {type:'上架数量调整',detail:'上架数量由 '+Math.max(0,currentQuantity-5)+' 件调整为 '+currentQuantity+' 件',offset:29,className:'adjust'},
+    {type:'下架操作',detail:'从美国货盘下架 '+(seed%8+1)+' 件',offset:87,className:'off'},
+    {type:'上架操作',detail:'上架至美国货盘，共 '+currentQuantity+' 件',offset:183,className:'on'},
+    {type:'入库存储时间',detail:'SKU 完成入库存储',offset:426,className:'inbound'}
+  ];
+  return records.map(function(record){
+    var time=new Date(latest.getTime()-record.offset*60*60*1000);
+    return {type:record.type,detail:record.detail,operator:currentUser,time:formatInventoryLogTime(time),className:record.className};
+  });
+}
+
+function openInventoryOperationLog(barcode){
+  var item=skuData.find(function(entry){return entry.barcode===barcode});
+  if(!item){showToast('未找到该 SKU','warning');return}
+  var logs=getInventoryOperationLogs(item);
+  var image=item.img&&item.img.indexOf('.')>-1?'<img src="'+item.img+'" alt="'+item.name+'">':'<span class="inventory-operation-log-placeholder">'+(item.img||'SKU')+'</span>';
+  document.getElementById('inventory-operation-log-sku').innerHTML='<div class="inventory-operation-log-image">'+image+'</div><div><strong>'+item.name+'</strong><span>'+item.spec+'</span><code>'+item.barcode+'</code></div>';
+  document.getElementById('inventory-operation-log-count').textContent=logs.length+' 条记录';
+  document.getElementById('inventory-operation-log-tbody').innerHTML=logs.map(function(log){
+    return '<tr><td><span class="inventory-operation-type inventory-operation-type-'+log.className+'">'+log.type+'</span></td><td>'+log.detail+'</td><td>'+log.operator+'</td><td><time>'+log.time+'</time></td></tr>';
+  }).join('');
+  document.getElementById('inventory-operation-log-modal').classList.add('open');
+  document.getElementById('inventory-operation-log-close').focus();
+}
+
+function closeInventoryOperationLog(){
+  document.getElementById('inventory-operation-log-modal').classList.remove('open');
 }
 
 function applyFilters(){
@@ -473,6 +537,8 @@ document.addEventListener('change',function(event){
   var button=document.getElementById('batch-cargo-btn');if(button)button.disabled=Object.keys(inventorySelected).length===0;
 });
 document.addEventListener('click',function(event){
+  var operationLog=event.target.closest('[data-operation-log]');
+  if(operationLog){openInventoryOperationLog(operationLog.dataset.operationLog);return}
   var mark=event.target.closest('[data-cargo-mark]');
   if(mark){openInventoryCargoModal([mark.dataset.cargoMark]);}
   if(event.target.id==='inventory-select-all'){
@@ -622,6 +688,10 @@ document.getElementById('inventory-cargo-modal').addEventListener('input',functi
   if(!event.target.matches('.inventory-auth-search-input'))return;
   var select=event.target.closest('.inventory-auth-select');renderInventoryAuthSearch(select.querySelector('.inventory-auth-menu'),select.dataset.authSelect);
 });
+document.getElementById('inventory-operation-log-close').addEventListener('click',closeInventoryOperationLog);
+document.getElementById('inventory-operation-log-confirm').addEventListener('click',closeInventoryOperationLog);
+document.getElementById('inventory-operation-log-modal').addEventListener('click',function(event){if(event.target===this)closeInventoryOperationLog()});
+document.addEventListener('keydown',function(event){if(event.key==='Escape'&&document.getElementById('inventory-operation-log-modal').classList.contains('open'))closeInventoryOperationLog()});
 
 function updateSummary(){
   var data=getRoleScopedData();
@@ -677,6 +747,8 @@ applyFilters();
   .sku-name-row{display:flex;align-items:center;gap:6px;min-width:0;width:100%;white-space:nowrap}
   .sku-name-row strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .sku-cargo-tag{flex:0 0 auto;font-size:11px;padding:3px 8px;white-space:nowrap;background:#fff3a3;color:#111827!important;border:1px solid #facc15;border-radius:4px;font-weight:750;box-shadow:0 1px 3px rgba(161,98,7,.22)}
+  #inv-table .operation-column{width:132px;min-width:132px;white-space:nowrap}
+  .inventory-row-actions{display:flex;align-items:center;justify-content:center;gap:2px;white-space:nowrap}
   .inventory-table-tabs{align-self:stretch;display:flex;align-items:flex-end;gap:22px;margin:-12px 0}
   .inventory-table-tab{position:relative;height:48px;padding:0 2px;border:0;background:transparent;color:var(--muted);font-size:13px;font-weight:600;cursor:pointer}
   .inventory-table-tab span{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:18px;margin-left:4px;padding:0 6px;border-radius:9px;background:var(--surface-2);color:var(--muted);font-size:10px;font-weight:600}
@@ -734,6 +806,27 @@ applyFilters();
   .inventory-auth-children{border-left:1px solid var(--border);margin-left:13px}
   .inventory-auth-hint{padding:7px;border-top:1px solid var(--border);margin-top:4px;color:var(--muted);font-size:10px;line-height:1.4}
   .inventory-cargo-modal.is-batch .inventory-auth-menu{width:280px}
+  .inventory-operation-log-modal{width:min(880px,calc(100vw - 32px));max-width:none;max-height:calc(100vh - 32px);display:flex;flex-direction:column;overflow:hidden}
+  .inventory-operation-log-modal .modal-head{padding:17px 20px;border-bottom:1px solid var(--border)}
+  .inventory-operation-log-heading{display:flex;align-items:center;gap:10px}
+  .inventory-operation-log-heading h3{font-size:16px}
+  .inventory-operation-log-heading span{padding:3px 8px;border-radius:10px;background:var(--surface-2);color:var(--muted);font-size:11px;font-weight:600}
+  .inventory-operation-log-modal .modal-body{display:grid;gap:14px;min-height:0;padding:16px 20px;overflow:hidden}
+  .inventory-operation-log-sku{display:grid;grid-template-columns:48px minmax(0,1fr);align-items:center;gap:11px;padding:10px 12px;border:1px solid var(--border);border-radius:6px;background:var(--surface-2)}
+  .inventory-operation-log-sku>div:last-child{display:grid;gap:2px;min-width:0}
+  .inventory-operation-log-sku strong,.inventory-operation-log-sku span,.inventory-operation-log-sku code{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .inventory-operation-log-sku strong{font-size:13px}.inventory-operation-log-sku span,.inventory-operation-log-sku code{color:var(--muted);font-size:11px}
+  .inventory-operation-log-image{width:48px;height:48px;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--border);border-radius:5px;background:var(--surface)}
+  .inventory-operation-log-image img{width:100%;height:100%;object-fit:cover}.inventory-operation-log-placeholder{font-size:16px}
+  .inventory-operation-log-table-wrap{min-height:0;overflow:auto;border:1px solid var(--border);border-radius:6px}
+  .inventory-operation-log-table{width:100%;min-width:650px!important}
+  .inventory-operation-log-table th{position:sticky;top:0;z-index:1;background:var(--surface-2)}
+  .inventory-operation-log-table th:nth-child(1){width:150px}.inventory-operation-log-table th:nth-child(3){width:150px}.inventory-operation-log-table th:nth-child(4){width:180px}
+  .inventory-operation-log-table td{height:48px}.inventory-operation-log-table time{font-family:var(--font-mono);font-size:11.5px;color:var(--muted);white-space:nowrap}
+  .inventory-operation-type{display:inline-flex;align-items:center;min-height:24px;padding:3px 8px;border:1px solid transparent;border-radius:4px;font-size:11px;font-weight:650;white-space:nowrap}
+  .inventory-operation-type-inbound{background:#eef6ff;border-color:#bfdbfe;color:#1d4ed8}.inventory-operation-type-on{background:#ecfdf5;border-color:#a7f3d0;color:#047857}.inventory-operation-type-off{background:#fff1f2;border-color:#fecdd3;color:#be123c}.inventory-operation-type-adjust{background:#fff7ed;border-color:#fed7aa;color:#c2410c}.inventory-operation-type-price{background:#f5f3ff;border-color:#ddd6fe;color:#6d28d9}
+  .inventory-operation-log-modal .modal-footer{padding:13px 20px;border-top:1px solid var(--border);background:var(--surface-2)}
+  @media (max-width:640px){.inventory-operation-log-modal{width:calc(100vw - 16px);max-height:calc(100vh - 16px)}.inventory-operation-log-modal .modal-head,.inventory-operation-log-modal .modal-body,.inventory-operation-log-modal .modal-footer{padding-left:12px;padding-right:12px}}
   .inventory-auth-menu{width:min(520px,calc(100vw - 40px));padding:0;overflow:hidden;max-height:none}
   .inventory-auth-search{padding:9px;border-bottom:1px solid var(--border);background:var(--surface-2)}
   .inventory-auth-search-input{width:100%!important;height:30px!important;min-width:0!important;padding:0 9px!important;border:1px solid var(--border)!important;border-radius:5px!important;background:var(--surface)!important;text-align:left!important;font-size:12px!important}

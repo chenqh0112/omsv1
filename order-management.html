@@ -1,50 +1,103 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head>
+<html lang="zh-CN" style="--notes-panel-w: 545px;"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>订单管理 — 美国货盘PRD</title><link rel="stylesheet" href="styles.css?v=20260907-order-label-upload"><script src="navigation.js?v=20260901-auth-state" defer></script>
-</head><body data-page="orders">
-<aside class="app-nav"><div class="nav-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M9 22V12h6v10"></path></svg>美国货盘PRD</div><nav class="nav-list"></nav><div class="nav-footer">美国货盘PRD</div></aside>
+<title>订单管理 — 美国货盘PRD</title><link rel="stylesheet" href="styles.css?v=20260907-order-label-upload"><script src="navigation.js?v=20260901-auth-state" defer=""></script>
+<link rel="stylesheet" href="marker-toggle.css"><link rel="stylesheet" href="marker-toggle.css"><link rel="stylesheet" href="marker-toggle.css"><link rel="stylesheet" href="marker-toggle.css"><link rel="stylesheet" href="marker-toggle.css"><link rel="stylesheet" href="marker-toggle.css"><link rel="stylesheet" href="marker-toggle.css"><link rel="stylesheet" href="marker-toggle.css"><style data-html-annotator-inline-style="">
+[data-html-annotator-inline-root] { position: fixed; inset: 0; z-index: 2147483000; pointer-events: none; }
+[data-html-annotator-inline-marker] { position: fixed; width: 22px; height: 22px; margin: -5px 0 0 -5px; border: 2px solid #fff; border-radius: 50%; box-shadow: 0 2px 7px rgba(0,0,0,.35); color: #fff; font: 700 11px/18px Arial,sans-serif; text-align: center; cursor: pointer; pointer-events: auto; }
+[data-html-annotator-inline-marker][data-severity="info"] { background: #3b82f6; }
+[data-html-annotator-inline-marker][data-severity="warning"] { background: #d97706; }
+[data-html-annotator-inline-marker][data-severity="error"] { background: #dc2626; }
+[data-html-annotator-inline-panel] { position: fixed; display: none; max-width: 360px; max-height: 260px; overflow: auto; padding: 12px 14px; border: 1px solid #334155; border-left: 3px solid #3b82f6; border-radius: 6px; background: #111827; color: #e5e7eb; box-shadow: 0 8px 28px rgba(0,0,0,.35); font: 13px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; pointer-events: auto; }
+[data-html-annotator-inline-panel][data-severity="warning"] { border-left-color: #d97706; }
+[data-html-annotator-inline-panel][data-severity="error"] { border-left-color: #dc2626; }
+[data-html-annotator-inline-panel] .html-annotator-inline-head { margin-bottom: 6px; color: #94a3b8; font-size: 11px; }
+[data-html-annotator-inline-panel] p { margin: 0 0 8px; }
+[data-html-annotator-inline-panel] p:last-child { margin-bottom: 0; }
+[data-html-annotator-inline-panel] .html-annotator-inline-tags { margin-top: 8px; color: #94a3b8; font-size: 11px; }
+</style><link rel="stylesheet" href="marker-toggle.css"><link rel="stylesheet" href="marker-toggle.css"><style data-html-annotator-document-rich-style="">
+.notes-content .notes-document { color:#334155; font-size:13px; line-height:1.7; overflow-wrap:anywhere; }
+.notes-content .notes-document h1,.notes-content .notes-document h2,.notes-content .notes-document h3 { color:#0f172a; font-weight:700; }
+.notes-content .notes-document h1 { margin:0 0 16px; font-size:22px; }
+.notes-content .notes-document h2 { margin:20px 0 10px; font-size:17px; }
+.notes-content .notes-document h3 { margin:16px 0 8px; font-size:15px; }
+.notes-content .notes-document p { margin:0 0 10px; }
+.notes-content .notes-document ul,.notes-content .notes-document ol { margin:0 0 12px; padding-left:22px; }
+.notes-content .notes-document blockquote { margin:12px 0; padding:8px 12px; border-left:3px solid #3b82f6; background:#f8fafc; color:#475569; }
+.notes-content .notes-document pre { margin:12px 0; overflow:auto; padding:12px; border-radius:6px; background:#0f172a; color:#e2e8f0; }
+.notes-content .notes-document code { font-family:ui-monospace,SFMono-Regular,Consolas,monospace; }
+.notes-content .notes-document :not(pre)>code { padding:1px 4px; border-radius:4px; background:#f1f5f9; color:#0369a1; }
+.notes-content .notes-document a { color:#2563eb; text-decoration:underline; }
+.notes-content .notes-document img { display:block; max-width:100%; height:auto; margin:12px 0; }
+.notes-content .notes-document table { width:100%; margin:12px 0; border-collapse:collapse; }
+.notes-content .notes-document th,.notes-content .notes-document td { padding:7px 9px; border:1px solid #e2e8f0; text-align:left; vertical-align:top; }
+.notes-content .notes-document th { background:#f8fafc; color:#0f172a; font-weight:600; }
+.notes-content .notes-document del { color:#64748b; }
+.notes-content .notes-document input[type="checkbox"] { margin-right:6px; }
+.notes-content .notes-document hr { margin:18px 0; border:0; border-top:1px solid #e2e8f0; }
+</style></head><body data-page="orders" class="">
+<aside class="app-nav"><div class="nav-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M9 22V12h6v10"></path></svg><span>工作管理平台</span></div><nav class="nav-list" aria-label="主导航"><a class="nav-primary" href="global-overview.html" data-nav="global-overview" title="全局说明"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path></svg><span>全局说明</span></a><div class="nav-group nav-hover-group nav-group-current"><div class="nav-group-toggle" tabindex="0" title="海外仓"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7.5 12 3l8 4.5v9L12 21l-8-4.5z"></path><path d="m4 7.5 8 4.5 8-4.5M12 12v9"></path></svg><span>海外仓</span><svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m7 10 5 5 5-5"></path></svg></div><div class="nav-children"><a class="nav-child" href="inbound.html" data-nav="inbound">入库单管理</a><a class="nav-child active" href="order-management.html" data-nav="orders">订单管理</a><a class="nav-child" href="index.html" data-nav="sku">库存管理</a><a class="nav-child" href="cargo-tray-management.html" data-nav="tray-management">美国货盘管理</a></div></div><div class="nav-group nav-hover-group"><div class="nav-group-toggle" tabindex="0" title="物流中心"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h11v11H3zM14 10h4l3 3v4h-7z"></path><circle cx="7" cy="19" r="2"></circle><circle cx="18" cy="19" r="2"></circle></svg><span>物流中心</span><svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m7 10 5 5 5-5"></path></svg></div><div class="nav-children"><a class="nav-child" href="packaging-shipping.html" data-nav="packaging-shipping">包装发货</a></div></div><a class="nav-primary" href="cargo-tray-v2.html" data-nav="tray-v2" title="美国货盘"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg><span>美国货盘</span></a></nav><div class="nav-footer"></div></aside>
 <div class="app-content">
-  <div class="topbar"><div class="topbar-left"><h1>订单管理</h1></div><div class="topbar-right"><div class="user"><button class="avatar" type="button" data-role-avatar aria-haspopup="dialog" aria-label="切换身份" title="切换身份">超</button></div></div></div>
+  <div class="topbar"><div class="topbar-left"><label class="bm-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><input type="search" placeholder="请输入菜单" aria-label="搜索菜单"></label><h1>订单管理</h1></div><div class="topbar-right"><div class="user"><button class="avatar avatar--super" type="button" data-role-avatar="" aria-haspopup="dialog" aria-label="当前身份：超管，切换身份" title="当前身份：超管，点击切换">超</button></div></div></div><div class="bm-page-tabs"><div class="bm-page-tab active">订单管理<button type="button" aria-label="关闭页面标签">×</button></div></div>
   <main class="page-body ops-page-body">
     <section class="ops-stat-grid page-section" aria-label="订单统计">
-      <div class="stat-card ops-stat ops-stat-pending"><div class="stat-heading"><div class="stat-label">待关联订单</div><p>存在未匹配 SKU，等待关联美国货盘</p></div><div class="stat-metric-row"><div class="stat-value" id="order-stat-pending">0</div></div></div>
-      <div class="stat-card ops-stat ops-stat-processing"><div class="stat-heading"><div class="stat-label">处理中</div><p>OMS 正在分仓、拣货或等待收揽</p></div><div class="stat-metric-row"><div class="stat-value" id="order-stat-processing">0</div></div></div>
-      <div class="stat-card ops-stat ops-stat-shipped"><div class="stat-heading"><div class="stat-label">已发货</div><p>已出库等待签收</p></div><div class="stat-metric-row"><div class="stat-value" id="order-stat-shipped">0</div></div></div>
-      <div class="stat-card ops-stat ops-stat-revenue"><div class="stat-heading"><div class="stat-label">本月订单金额</div><p>本月非取消订单金额</p></div><div class="stat-metric-row"><div class="stat-value" id="order-stat-revenue">$0.00</div></div></div>
+      <div class="stat-card ops-stat ops-stat-pending"><div class="stat-heading"><div class="stat-label">待关联订单<button type="button" class="overview-help" aria-label="待关联订单说明" data-tooltip="存在未匹配 SKU，等待关联美国货盘">?</button></div><p>存在未匹配 SKU，等待关联美国货盘</p></div><div class="stat-metric-row"><div class="stat-value" id="order-stat-pending">4</div></div></div>
+      <div class="stat-card ops-stat ops-stat-processing"><div class="stat-heading"><div class="stat-label">处理中<button type="button" class="overview-help" aria-label="处理中说明" data-tooltip="OMS 正在分仓、拣货或等待收揽">?</button></div><p>OMS 正在分仓、拣货或等待收揽</p></div><div class="stat-metric-row"><div class="stat-value" id="order-stat-processing">12</div></div></div>
+      <div class="stat-card ops-stat ops-stat-shipped"><div class="stat-heading"><div class="stat-label">已发货<button type="button" class="overview-help" aria-label="已发货说明" data-tooltip="已出库等待签收">?</button></div><p>已出库等待签收</p></div><div class="stat-metric-row"><div class="stat-value" id="order-stat-shipped">7</div></div></div>
+      <div class="stat-card ops-stat ops-stat-revenue"><div class="stat-heading"><div class="stat-label">本月订单金额<button type="button" class="overview-help" aria-label="本月订单金额说明" data-tooltip="本月非取消订单金额">?</button></div><p>本月非取消订单金额</p></div><div class="stat-metric-row"><div class="stat-value" id="order-stat-revenue">$27,477.60</div></div></div>
     </section>
     <section class="filter-bar ops-filter-bar page-section" aria-label="订单筛选">
       <div class="filter-group"><label for="order-filter-id">订单号</label><input id="order-filter-id" type="text" placeholder="请输入订单号" autocomplete="off"></div>
-      <div class="filter-group"><label for="order-filter-user">下单用户</label><input id="order-filter-user" type="text" placeholder="请输入用户名" autocomplete="off"></div>
-      <div class="filter-group"><label for="order-filter-phone">手机号</label><input id="order-filter-phone" type="text" placeholder="请输入手机号" inputmode="tel" autocomplete="off"></div>
-      <div class="filter-group"><label for="order-filter-status">订单状态</label><select id="order-filter-status"><option value="">全部</option><option>待关联</option><option>待支付</option><option>待分配仓库</option><option>待仓库拣货</option><option>待物流收揽</option><option>部分发货</option><option>已发货</option><option>商品缺货</option><option>已关闭</option><option>拦截发货成功</option></select></div>
-      <div class="filter-actions"><button class="btn btn-primary" id="order-search" type="button">搜索</button><button class="btn btn-ghost" id="order-reset" type="button">重置</button><button class="btn order-batch-pay" id="order-batch-pay-open" type="button" disabled>批量付款</button><button class="btn order-batch-label order-label-batch-open" id="order-label-batch-open" type="button" disabled>批量上传面单</button><button class="btn order-import-action order-import-open" id="order-import-open" type="button">订单导入</button></div>
+      <div class="filter-group"><label for="order-filter-sku">SKU编码</label><input id="order-filter-sku" type="text" placeholder="请输入SKU编码" autocomplete="off"></div>
+      <div class="filter-group"><label for="order-filter-sku-name">SKU名称</label><input id="order-filter-sku-name" type="text" placeholder="请输入SKU名称" autocomplete="off"></div>
+      <div class="filter-group"><label for="order-filter-source">订单来源</label><select id="order-filter-source"><option value="">全部</option><option>前端下单</option><option>订单导入</option></select></div>
+      <div class="filter-group"><label for="order-filter-status">订单状态</label><select id="order-filter-status" data-annotation-id="ann-1789018534538"><option value="">全部</option><option>待关联</option><option>待支付</option><option>待分配仓库</option><option>待仓库拣货</option><option>待物流收揽</option><option>部分发货</option><option>已发货</option><option>商品缺货</option><option>已关闭</option><option>拦截发货成功</option></select></div>
+      <div class="filter-actions"><button class="btn btn-primary" id="order-search" type="button">搜索</button><button class="btn btn-ghost" id="order-reset" type="button">重置</button><button class="btn order-batch-pay" id="order-batch-pay-open" type="button" disabled="" data-annotation-id="ann-1789018664817">批量付款</button><button class="btn order-batch-label order-label-batch-open" id="order-label-batch-open" type="button" disabled="" data-annotation-id="ann-1789019346932">批量上传面单</button><button class="btn order-import-action order-import-open" id="order-import-open" type="button" data-annotation-id="ann-1789020518043">订单导入</button></div>
     </section>
-    <section class="table-wrap ops-table-wrap page-section"><div class="table-head-bar"><h3>订单列表</h3><span class="result-count" id="order-result-count">共 0 条</span></div><div class="table-scroll"><table class="data-table order-admin-table"><colgroup><col class="order-col-select"><col class="order-col-number"><col class="order-col-product"><col class="order-col-sales"><col class="order-col-cargo"><col class="order-col-status"><col class="order-col-recipient"><col class="order-col-address"><col class="order-col-logistics"><col class="order-col-operation"></colgroup><thead><tr><th class="selection-column"><input id="order-select-all" type="checkbox" aria-label="全选当前页订单"></th><th>订单号</th><th>产品信息</th><th>销售金额</th><th>货款金额</th><th>订单状态</th><th>收货人</th><th>收货地址</th><th>物流</th><th class="operation-column">操作</th></tr></thead><tbody id="order-tbody"></tbody></table></div><div class="pagination"><span class="pagination-info">共 <strong id="order-total-count">0</strong> 条</span><div class="pagination-btns"><button class="page-btn" id="order-prev" type="button">‹</button><button class="page-btn active" id="order-current" type="button">1</button><button class="page-btn" id="order-next" type="button">›</button></div></div></section>
+    <section class="table-wrap ops-table-wrap page-section"><div class="table-head-bar"><h3>订单列表</h3><span class="result-count" id="order-result-count">共 36 条</span></div><div class="table-scroll"><table class="data-table order-admin-table"><colgroup><col class="order-col-select"><col class="order-col-number"><col class="order-col-product"><col class="order-col-sales"><col class="order-col-cargo"><col class="order-col-status"><col class="order-col-recipient"><col class="order-col-address"><col class="order-col-logistics"><col class="order-col-operation"></colgroup><thead><tr><th class="selection-column"><input id="order-select-all" type="checkbox" aria-label="全选当前页订单"></th><th>订单号</th><th>产品信息</th><th>销售金额</th><th>货款金额</th><th>订单状态</th><th>收货人</th><th>收货地址</th><th>物流</th><th class="operation-column">操作</th></tr></thead><tbody id="order-tbody"><tr><td class="selection-column"><input class="order-row-select" type="checkbox" data-order-select="US-202608-1036" aria-label="选择订单 US-202608-1036"></td><td><code class="order-id">US-202608-1036</code></td><td><div class="order-product-cell"><div class="order-product-item"><span class="order-product-placeholder" role="img" aria-label="待关联商品">图片占位</span><div class="order-product-info"><strong class="order-product-name" title="极光随行保温杯">极光随行保温杯</strong><span class="order-product-copy-row"><span>平台SKU <code>PLATFORM-UNMATCHED-0</code></span><button class="order-copy-button" type="button" title="复制平台SKU" aria-label="复制平台SKU" data-order-copy="PLATFORM-UNMATCHED-0" data-order-copy-label="平台SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-copy-row"><span>SKU <code>-</code></span><button class="order-copy-button" type="button" title="复制SKU" aria-label="复制SKU" disabled=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-spec">规格颜色 20OZ · 雾灰</span><span class="order-product-copy-row order-product-id"><span>产品ID <code>-</code></span><button class="order-copy-button" type="button" title="复制产品ID" aria-label="复制产品ID" disabled=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-price">单价 $24.90</span><span class="order-product-quantity">数量 2</span></div><div class="order-product-action"><button class="btn-link order-association-action" type="button" data-order-link-sku="US-202608-1036" data-order-link-index="0" data-annotation-id="ann-1789021614683">关联产品</button></div></div><div class="order-product-item"><img src="img3.jpg" alt="商务直饮保温杯"><div class="order-product-info"><strong class="order-product-name" title="商务直饮保温杯">商务直饮保温杯</strong><span class="order-product-copy-row"><span>平台SKU <code>DS-BIZ-03-D</code></span><button class="order-copy-button" type="button" title="复制平台SKU" aria-label="复制平台SKU" data-order-copy="DS-BIZ-03-D" data-order-copy-label="平台SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-copy-row"><span>SKU <code>DS-BIZ-03-D</code></span><button class="order-copy-button" type="button" title="复制SKU" aria-label="复制SKU" data-order-copy="DS-BIZ-03-D" data-order-copy-label="SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-spec">规格颜色 64OZ · 墨黑</span><span class="order-product-copy-row order-product-id"><span>产品ID <code>SKU-0012</code></span><button class="order-copy-button" type="button" title="复制产品ID" aria-label="复制产品ID" data-order-copy="SKU-0012" data-order-copy-label="产品ID"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-price">单价 $45.40</span><span class="order-product-quantity">数量 5</span></div><div class="order-product-action"><button class="btn-link order-association-action" type="button" data-order-link-sku="US-202608-1036" data-order-link-index="1" data-annotation-id="ann-1789021637723">重新关联</button></div></div></div></td><td><div class="order-amount-summary order-sales-summary"><div><span>销售价：</span><strong class="">$284.80</strong></div><div><span>运费：</span><strong class="">$18.00</strong></div><div><span>总计：</span><strong class="">$302.80</strong></div></div></td><td><div class="order-amount-summary order-cargo-summary"><div><span>货款：</span><strong class="">$276.80</strong></div><div><span>运费：</span><strong class="">$18.00</strong></div><div><span>总计：</span><strong class="">$294.80</strong></div></div></td><td><span class="order-status order-status-review">待关联</span></td><td>采购用户A</td><td><span class="order-address">120 Commerce Ave, Dallas, TX 75201</span></td><td><div class="order-logistics-cell"><button class="btn-link order-tracking-upload" type="button" data-order-upload-tracking="US-202608-1036" data-annotation-id="ann-1789021653668">上传</button></div></td><td class="operation-column"><div class="table-actions"><button class="btn-link" type="button" data-order-detail="US-202608-1036" data-annotation-id="ann-1789021665084">查看</button></div></td></tr><tr><td class="selection-column"><input class="order-row-select" type="checkbox" data-order-select="US-202608-1035" aria-label="选择订单 US-202608-1035"></td><td><code class="order-id">US-202608-1035</code></td><td><div class="order-product-cell"><div class="order-product-item"><img src="img2.jpg" alt="山野运动水壶"><div class="order-product-info"><strong class="order-product-name" title="山野运动水壶">山野运动水壶</strong><span class="order-product-copy-row"><span>平台SKU <code>DS-MNT-02-D</code></span><button class="order-copy-button" type="button" title="复制平台SKU" aria-label="复制平台SKU" data-order-copy="DS-MNT-02-D" data-order-copy-label="平台SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-copy-row"><span>SKU <code>DS-MNT-02-D</code></span><button class="order-copy-button" type="button" title="复制SKU" aria-label="复制SKU" data-order-copy="DS-MNT-02-D" data-order-copy-label="SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-spec">规格颜色 64OZ · 墨黑</span><span class="order-product-copy-row order-product-id"><span>产品ID <code>SKU-0008</code></span><button class="order-copy-button" type="button" title="复制产品ID" aria-label="复制产品ID" data-order-copy="SKU-0008" data-order-copy-label="产品ID"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-price">单价 $42.90</span><span class="order-product-quantity">数量 3</span></div><div class="order-product-action"><button class="btn-link order-association-action" type="button" data-order-link-sku="US-202608-1035" data-order-link-index="0">重新关联</button></div></div><div class="order-product-item"><img src="img5.jpg" alt="旅行大容量水杯"><div class="order-product-info"><strong class="order-product-name" title="旅行大容量水杯">旅行大容量水杯</strong><span class="order-product-copy-row"><span>平台SKU <code>DS-TRV-05-C</code></span><button class="order-copy-button" type="button" title="复制平台SKU" aria-label="复制平台SKU" data-order-copy="DS-TRV-05-C" data-order-copy-label="平台SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-copy-row"><span>SKU <code>DS-TRV-05-C</code></span><button class="order-copy-button" type="button" title="复制SKU" aria-label="复制SKU" data-order-copy="DS-TRV-05-C" data-order-copy-label="SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-spec">规格颜色 40OZ · 樱粉</span><span class="order-product-copy-row order-product-id"><span>产品ID <code>SKU-0019</code></span><button class="order-copy-button" type="button" title="复制产品ID" aria-label="复制产品ID" data-order-copy="SKU-0019" data-order-copy-label="产品ID"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-price">单价 $42.40</span><span class="order-product-quantity">数量 6</span></div><div class="order-product-action"><button class="btn-link order-association-action" type="button" data-order-link-sku="US-202608-1035" data-order-link-index="1">重新关联</button></div></div><div class="order-product-item"><img src="img3.jpg" alt="草莓吸管随行杯"><div class="order-product-info"><strong class="order-product-name" title="草莓吸管随行杯">草莓吸管随行杯</strong><span class="order-product-copy-row"><span>平台SKU <code>DS-STR-08-B</code></span><button class="order-copy-button" type="button" title="复制平台SKU" aria-label="复制平台SKU" data-order-copy="DS-STR-08-B" data-order-copy-label="平台SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-copy-row"><span>SKU <code>DS-STR-08-B</code></span><button class="order-copy-button" type="button" title="复制SKU" aria-label="复制SKU" data-order-copy="DS-STR-08-B" data-order-copy-label="SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-spec">规格颜色 30OZ · 海蓝</span><span class="order-product-copy-row order-product-id"><span>产品ID <code>SKU-0030</code></span><button class="order-copy-button" type="button" title="复制产品ID" aria-label="复制产品ID" data-order-copy="SKU-0030" data-order-copy-label="产品ID"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-price">单价 $26.90</span><span class="order-product-quantity">数量 9</span></div><div class="order-product-action"><button class="btn-link order-association-action" type="button" data-order-link-sku="US-202608-1035" data-order-link-index="2">重新关联</button></div></div></div></td><td><div class="order-amount-summary order-sales-summary"><div><span>销售价：</span><strong class="">$635.20</strong></div><div><span>运费：</span><strong class="">$24.00</strong></div><div><span>总计：</span><strong class="">$659.20</strong></div></div></td><td><div class="order-amount-summary order-cargo-summary"><div><span>货款：</span><strong class="">$625.20</strong></div><div><span>运费：</span><strong class="">$24.00</strong></div><div><span>总计：</span><strong class="">$649.20</strong></div></div></td><td><span class="order-status order-status-payment">待支付</span></td><td>采购用户B</td><td><span class="order-address">121 Commerce Ave, Dallas, TX 75201</span></td><td><div class="order-logistics-cell"><button class="btn-link order-tracking-upload" type="button" data-order-upload-tracking="US-202608-1035">上传</button></div></td><td class="operation-column"><div class="table-actions"><button class="btn-link order-payment-action" type="button" data-order-payment="US-202608-1035" data-annotation-id="ann-1789021680843">支付</button><button class="btn-link" type="button" data-order-detail="US-202608-1035">查看</button></div></td></tr><tr><td class="selection-column"><input class="order-row-select" type="checkbox" data-order-select="US-202608-1034" aria-label="选择订单 US-202608-1034"></td><td><code class="order-id">US-202608-1034</code></td><td><div class="order-product-cell"><div class="order-product-item"><img src="img4.jpg" alt="儿童防漏吸管杯"><div class="order-product-info"><strong class="order-product-name" title="儿童防漏吸管杯">儿童防漏吸管杯</strong><span class="order-product-copy-row"><span>平台SKU <code>DS-KID-04-C</code></span><button class="order-copy-button" type="button" title="复制平台SKU" aria-label="复制平台SKU" data-order-copy="DS-KID-04-C" data-order-copy-label="平台SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-copy-row"><span>SKU <code>DS-KID-04-C</code></span><button class="order-copy-button" type="button" title="复制SKU" aria-label="复制SKU" data-order-copy="DS-KID-04-C" data-order-copy-label="SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-spec">规格颜色 40OZ · 樱粉</span><span class="order-product-copy-row order-product-id"><span>产品ID <code>SKU-0015</code></span><button class="order-copy-button" type="button" title="复制产品ID" aria-label="复制产品ID" data-order-copy="SKU-0015" data-order-copy-label="产品ID"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-price">单价 $26.90</span><span class="order-product-quantity">数量 4</span></div><div class="order-product-action"><button class="btn-link order-association-action" type="button" data-order-link-sku="US-202608-1034" data-order-link-index="0">重新关联</button></div></div><div class="order-product-item"><img src="img2.jpg" alt="熊猫主题保温杯"><div class="order-product-info"><strong class="order-product-name" title="熊猫主题保温杯">熊猫主题保温杯</strong><span class="order-product-copy-row"><span>平台SKU <code>DS-PND-07-B</code></span><button class="order-copy-button" type="button" title="复制平台SKU" aria-label="复制平台SKU" data-order-copy="DS-PND-07-B" data-order-copy-label="平台SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-copy-row"><span>SKU <code>DS-PND-07-B</code></span><button class="order-copy-button" type="button" title="复制SKU" aria-label="复制SKU" data-order-copy="DS-PND-07-B" data-order-copy-label="SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-spec">规格颜色 30OZ · 海蓝</span><span class="order-product-copy-row order-product-id"><span>产品ID <code>SKU-0026</code></span><button class="order-copy-button" type="button" title="复制产品ID" aria-label="复制产品ID" data-order-copy="SKU-0026" data-order-copy-label="产品ID"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-price">单价 $30.90</span><span class="order-product-quantity">数量 7</span></div><div class="order-product-action"><button class="btn-link order-association-action" type="button" data-order-link-sku="US-202608-1034" data-order-link-index="1">重新关联</button></div></div><div class="order-product-item"><img src="img5.jpg" alt="虎纹车载保温杯"><div class="order-product-info"><strong class="order-product-name" title="虎纹车载保温杯">虎纹车载保温杯</strong><span class="order-product-copy-row"><span>平台SKU <code>DS-TGR-10-A</code></span><button class="order-copy-button" type="button" title="复制平台SKU" aria-label="复制平台SKU" data-order-copy="DS-TGR-10-A" data-order-copy-label="平台SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-copy-row"><span>SKU <code>DS-TGR-10-A</code></span><button class="order-copy-button" type="button" title="复制SKU" aria-label="复制SKU" data-order-copy="DS-TGR-10-A" data-order-copy-label="SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-spec">规格颜色 20OZ · 雾灰</span><span class="order-product-copy-row order-product-id"><span>产品ID <code>SKU-0037</code></span><button class="order-copy-button" type="button" title="复制产品ID" aria-label="复制产品ID" data-order-copy="SKU-0037" data-order-copy-label="产品ID"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-price">单价 $34.40</span><span class="order-product-quantity">数量 10</span></div><div class="order-product-action"><button class="btn-link order-association-action" type="button" data-order-link-sku="US-202608-1034" data-order-link-index="2">重新关联</button></div></div><div class="order-product-item"><img src="img2.jpg" alt="森林露营保温壶"><div class="order-product-info"><strong class="order-product-name" title="森林露营保温壶">森林露营保温壶</strong><span class="order-product-copy-row"><span>平台SKU <code>DS-FRS-12-D</code></span><button class="order-copy-button" type="button" title="复制平台SKU" aria-label="复制平台SKU" data-order-copy="DS-FRS-12-D" data-order-copy-label="平台SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-copy-row"><span>SKU <code>DS-FRS-12-D</code></span><button class="order-copy-button" type="button" title="复制SKU" aria-label="复制SKU" data-order-copy="DS-FRS-12-D" data-order-copy-label="SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-spec">规格颜色 64OZ · 墨黑</span><span class="order-product-copy-row order-product-id"><span>产品ID <code>SKU-0048</code></span><button class="order-copy-button" type="button" title="复制产品ID" aria-label="复制产品ID" data-order-copy="SKU-0048" data-order-copy-label="产品ID"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-price">单价 $52.90</span><span class="order-product-quantity">数量 13</span></div><div class="order-product-action"><button class="btn-link order-association-action" type="button" data-order-link-sku="US-202608-1034" data-order-link-index="3">重新关联</button></div></div></div></td><td><div class="order-amount-summary order-sales-summary"><div><span>销售价：</span><strong class="">$1,367.60</strong></div><div><span>运费：</span><strong class="">$30.00</strong></div><div><span>总计：</span><strong class="">$1,397.60</strong></div></div></td><td><div class="order-amount-summary order-cargo-summary"><div><span>货款：</span><strong class="">$1,355.60</strong></div><div><span>运费：</span><strong class="">$30.00</strong></div><div><span>总计：</span><strong class="">$1,385.60</strong></div></div></td><td><span class="order-status order-status-allocating">待分配仓库</span></td><td>Emily Chen</td><td><span class="order-address">122 Commerce Ave, Dallas, TX 75201</span></td><td><div class="order-logistics-cell"><button class="btn-link order-tracking-upload" type="button" data-order-upload-tracking="US-202608-1034">上传</button></div></td><td class="operation-column"><div class="table-actions"><button class="btn-link" type="button" data-order-detail="US-202608-1034">查看</button></div></td></tr><tr><td class="selection-column"><input class="order-row-select" type="checkbox" data-order-select="US-202608-1033" aria-label="选择订单 US-202608-1033"></td><td><code class="order-id">US-202608-1033</code></td><td><div class="order-product-cell"><div class="order-product-item"><img src="img1.jpg" alt="羽毛轻量随手杯"><div class="order-product-info"><strong class="order-product-name" title="羽毛轻量随手杯">羽毛轻量随手杯</strong><span class="order-product-copy-row"><span>平台SKU <code>DS-FTH-06-B</code></span><button class="order-copy-button" type="button" title="复制平台SKU" aria-label="复制平台SKU" data-order-copy="DS-FTH-06-B" data-order-copy-label="平台SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-copy-row"><span>SKU <code>DS-FTH-06-B</code></span><button class="order-copy-button" type="button" title="复制SKU" aria-label="复制SKU" data-order-copy="DS-FTH-06-B" data-order-copy-label="SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-spec">规格颜色 30OZ · 海蓝</span><span class="order-product-copy-row order-product-id"><span>产品ID <code>SKU-0022</code></span><button class="order-copy-button" type="button" title="复制产品ID" aria-label="复制产品ID" data-order-copy="SKU-0022" data-order-copy-label="产品ID"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-price">单价 $26.40</span><span class="order-product-quantity">数量 5</span></div><div class="order-product-action"></div></div><div class="order-product-item"><img src="img4.jpg" alt="篮球运动吨吨桶"><div class="order-product-info"><strong class="order-product-name" title="篮球运动吨吨桶">篮球运动吨吨桶</strong><span class="order-product-copy-row"><span>平台SKU <code>DS-BKT-09-A</code></span><button class="order-copy-button" type="button" title="复制平台SKU" aria-label="复制平台SKU" data-order-copy="DS-BKT-09-A" data-order-copy-label="平台SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-copy-row"><span>SKU <code>DS-BKT-09-A</code></span><button class="order-copy-button" type="button" title="复制SKU" aria-label="复制SKU" data-order-copy="DS-BKT-09-A" data-order-copy-label="SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-spec">规格颜色 20OZ · 雾灰</span><span class="order-product-copy-row order-product-id"><span>产品ID <code>SKU-0033</code></span><button class="order-copy-button" type="button" title="复制产品ID" aria-label="复制产品ID" data-order-copy="SKU-0033" data-order-copy-label="产品ID"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-price">单价 $32.90</span><span class="order-product-quantity">数量 8</span></div><div class="order-product-action"></div></div></div></td><td><div class="order-amount-summary order-sales-summary"><div><span>销售价：</span><strong class="">$409.20</strong></div><div><span>运费：</span><strong class="">$36.00</strong></div><div><span>总计：</span><strong class="">$445.20</strong></div></div></td><td><div class="order-amount-summary order-cargo-summary"><div><span>货款：</span><strong class="">$395.20</strong></div><div><span>运费：</span><strong class="">$36.00</strong></div><div><span>总计：</span><strong class="">$431.20</strong></div></div></td><td><span class="order-status order-status-warehouse">待仓库拣货</span></td><td>Michael Lee</td><td><span class="order-address">123 Commerce Ave, Dallas, TX 75201</span></td><td><div class="order-logistics-cell"><button class="btn-link order-tracking-upload" type="button" data-order-upload-tracking="US-202608-1033">上传</button></div></td><td class="operation-column"><div class="table-actions"><button class="btn-link" type="button" data-order-detail="US-202608-1033">查看</button></div></td></tr><tr><td class="selection-column"><input class="order-row-select" type="checkbox" data-order-select="US-202608-1032" aria-label="选择订单 US-202608-1032"></td><td><code class="order-id">US-202608-1032</code></td><td><div class="order-product-cell"><div class="order-product-item"><img src="img3.jpg" alt="草莓吸管随行杯"><div class="order-product-info"><strong class="order-product-name" title="草莓吸管随行杯">草莓吸管随行杯</strong><span class="order-product-copy-row"><span>平台SKU <code>DS-STR-08-A</code></span><button class="order-copy-button" type="button" title="复制平台SKU" aria-label="复制平台SKU" data-order-copy="DS-STR-08-A" data-order-copy-label="平台SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-copy-row"><span>SKU <code>DS-STR-08-A</code></span><button class="order-copy-button" type="button" title="复制SKU" aria-label="复制SKU" data-order-copy="DS-STR-08-A" data-order-copy-label="SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-spec">规格颜色 20OZ · 雾灰</span><span class="order-product-copy-row order-product-id"><span>产品ID <code>SKU-0029</code></span><button class="order-copy-button" type="button" title="复制产品ID" aria-label="复制产品ID" data-order-copy="SKU-0029" data-order-copy-label="产品ID"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-price">单价 $23.40</span><span class="order-product-quantity">数量 6</span></div><div class="order-product-action"></div></div><div class="order-product-item"><img src="img5.jpg" alt="虎纹车载保温杯"><div class="order-product-info"><strong class="order-product-name" title="虎纹车载保温杯">虎纹车载保温杯</strong><span class="order-product-copy-row"><span>平台SKU <code>DS-TGR-10-D</code></span><button class="order-copy-button" type="button" title="复制平台SKU" aria-label="复制平台SKU" data-order-copy="DS-TGR-10-D" data-order-copy-label="平台SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-copy-row"><span>SKU <code>DS-TGR-10-D</code></span><button class="order-copy-button" type="button" title="复制SKU" aria-label="复制SKU" data-order-copy="DS-TGR-10-D" data-order-copy-label="SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-spec">规格颜色 64OZ · 墨黑</span><span class="order-product-copy-row order-product-id"><span>产品ID <code>SKU-0040</code></span><button class="order-copy-button" type="button" title="复制产品ID" aria-label="复制产品ID" data-order-copy="SKU-0040" data-order-copy-label="产品ID"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-price">单价 $47.90</span><span class="order-product-quantity">数量 9</span></div><div class="order-product-action"></div></div><div class="order-product-item"><img src="img3.jpg" alt="花朵手柄马克杯"><div class="order-product-info"><strong class="order-product-name" title="花朵手柄马克杯">花朵手柄马克杯</strong><span class="order-product-copy-row"><span>平台SKU <code>DS-FLW-13-C</code></span><button class="order-copy-button" type="button" title="复制平台SKU" aria-label="复制平台SKU" data-order-copy="DS-FLW-13-C" data-order-copy-label="平台SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-copy-row"><span>SKU <code>DS-FLW-13-C</code></span><button class="order-copy-button" type="button" title="复制SKU" aria-label="复制SKU" data-order-copy="DS-FLW-13-C" data-order-copy-label="SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-spec">规格颜色 40OZ · 樱粉</span><span class="order-product-copy-row order-product-id"><span>产品ID <code>SKU-0051</code></span><button class="order-copy-button" type="button" title="复制产品ID" aria-label="复制产品ID" data-order-copy="SKU-0051" data-order-copy-label="产品ID"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-price">单价 $29.90</span><span class="order-product-quantity">数量 12</span></div><div class="order-product-action"></div></div></div></td><td><div class="order-amount-summary order-sales-summary"><div><span>销售价：</span><strong class="">$946.30</strong></div><div><span>运费：</span><strong class="">$18.00</strong></div><div><span>总计：</span><strong class="">$964.30</strong></div></div></td><td><div class="order-amount-summary order-cargo-summary"><div><span>货款：</span><strong class="">$930.30</strong></div><div><span>运费：</span><strong class="">$18.00</strong></div><div><span>总计：</span><strong class="">$948.30</strong></div></div></td><td><span class="order-status order-status-pickup">待物流收揽</span></td><td>采购用户C</td><td><span class="order-address">124 Commerce Ave, Dallas, TX 75201</span></td><td><div class="order-logistics-cell"><code>1Z908172635404</code></div></td><td class="operation-column"><div class="table-actions"><button class="btn-link" type="button" data-order-detail="US-202608-1032">查看</button></div></td></tr><tr><td class="selection-column"><input class="order-row-select" type="checkbox" data-order-select="US-202608-1031" aria-label="选择订单 US-202608-1031"></td><td><code class="order-id">US-202608-1031</code></td><td><div class="order-product-cell"><div class="order-product-item"><img src="img4.jpg" alt="篮球运动吨吨桶"><div class="order-product-info"><strong class="order-product-name" title="篮球运动吨吨桶">篮球运动吨吨桶</strong><span class="order-product-copy-row"><span>平台SKU <code>DS-BKT-09-D</code></span><button class="order-copy-button" type="button" title="复制平台SKU" aria-label="复制平台SKU" data-order-copy="DS-BKT-09-D" data-order-copy-label="平台SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-copy-row"><span>SKU <code>DS-BKT-09-D</code></span><button class="order-copy-button" type="button" title="复制SKU" aria-label="复制SKU" data-order-copy="DS-BKT-09-D" data-order-copy-label="SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-spec">规格颜色 64OZ · 墨黑</span><span class="order-product-copy-row order-product-id"><span>产品ID <code>SKU-0036</code></span><button class="order-copy-button" type="button" title="复制产品ID" aria-label="复制产品ID" data-order-copy="SKU-0036" data-order-copy-label="产品ID"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-price">单价 $43.90</span><span class="order-product-quantity">数量 7</span></div><div class="order-product-action"></div></div><div class="order-product-item"><img src="img2.jpg" alt="森林露营保温壶"><div class="order-product-info"><strong class="order-product-name" title="森林露营保温壶">森林露营保温壶</strong><span class="order-product-copy-row"><span>平台SKU <code>DS-FRS-12-C</code></span><button class="order-copy-button" type="button" title="复制平台SKU" aria-label="复制平台SKU" data-order-copy="DS-FRS-12-C" data-order-copy-label="平台SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-copy-row"><span>SKU <code>DS-FRS-12-C</code></span><button class="order-copy-button" type="button" title="复制SKU" aria-label="复制SKU" data-order-copy="DS-FRS-12-C" data-order-copy-label="SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-spec">规格颜色 40OZ · 樱粉</span><span class="order-product-copy-row order-product-id"><span>产品ID <code>SKU-0047</code></span><button class="order-copy-button" type="button" title="复制产品ID" aria-label="复制产品ID" data-order-copy="SKU-0047" data-order-copy-label="产品ID"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-price">单价 $46.40</span><span class="order-product-quantity">数量 10</span></div><div class="order-product-action"></div></div><div class="order-product-item"><img src="img5.jpg" alt="云朵便携冷水杯"><div class="order-product-info"><strong class="order-product-name" title="云朵便携冷水杯">云朵便携冷水杯</strong><span class="order-product-copy-row"><span>平台SKU <code>DS-CLD-15-B</code></span><button class="order-copy-button" type="button" title="复制平台SKU" aria-label="复制平台SKU" data-order-copy="DS-CLD-15-B" data-order-copy-label="平台SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-copy-row"><span>SKU <code>DS-CLD-15-B</code></span><button class="order-copy-button" type="button" title="复制SKU" aria-label="复制SKU" data-order-copy="DS-CLD-15-B" data-order-copy-label="SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-spec">规格颜色 30OZ · 海蓝</span><span class="order-product-copy-row order-product-id"><span>产品ID <code>SKU-0058</code></span><button class="order-copy-button" type="button" title="复制产品ID" aria-label="复制产品ID" data-order-copy="SKU-0058" data-order-copy-label="产品ID"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-price">单价 $23.90</span><span class="order-product-quantity">数量 13</span></div><div class="order-product-action"></div></div><div class="order-product-item"><img src="img3.jpg" alt="城市通勤咖啡杯"><div class="order-product-info"><strong class="order-product-name" title="城市通勤咖啡杯">城市通勤咖啡杯</strong><span class="order-product-copy-row"><span>平台SKU <code>DS-CTY-18-A</code></span><button class="order-copy-button" type="button" title="复制平台SKU" aria-label="复制平台SKU" data-order-copy="DS-CTY-18-A" data-order-copy-label="平台SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-copy-row"><span>SKU <code>DS-CTY-18-A</code></span><button class="order-copy-button" type="button" title="复制SKU" aria-label="复制SKU" data-order-copy="DS-CTY-18-A" data-order-copy-label="SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-spec">规格颜色 20OZ · 雾灰</span><span class="order-product-copy-row order-product-id"><span>产品ID <code>SKU-0069</code></span><button class="order-copy-button" type="button" title="复制产品ID" aria-label="复制产品ID" data-order-copy="SKU-0069" data-order-copy-label="产品ID"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-price">单价 $30.40</span><span class="order-product-quantity">数量 4</span></div><div class="order-product-action"></div></div></div></td><td><div class="order-amount-summary order-sales-summary"><div><span>销售价：</span><strong class="">$1,211.60</strong></div><div><span>运费：</span><strong class="">$24.00</strong></div><div><span>总计：</span><strong class="">$1,235.60</strong></div></div></td><td><div class="order-amount-summary order-cargo-summary"><div><span>货款：</span><strong class="">$1,203.60</strong></div><div><span>运费：</span><strong class="">$24.00</strong></div><div><span>总计：</span><strong class="">$1,227.60</strong></div></div></td><td><span class="order-status order-status-shipped">已发货</span></td><td>Sophia Wang</td><td><span class="order-address">125 Commerce Ave, Dallas, TX 75201</span></td><td><div class="order-logistics-cell"><code>1Z908172635415</code><code>1Z908172635405</code></div></td><td class="operation-column"><div class="table-actions"><button class="btn-link" type="button" data-order-detail="US-202608-1031">查看</button></div></td></tr><tr><td class="selection-column"><input class="order-row-select" type="checkbox" data-order-select="US-202608-1030" aria-label="选择订单 US-202608-1030"></td><td><code class="order-id">US-202608-1030</code></td><td><div class="order-product-cell"><div class="order-product-item"><img src="img1.jpg" alt="海盐渐变咖啡杯"><div class="order-product-info"><strong class="order-product-name" title="海盐渐变咖啡杯">海盐渐变咖啡杯</strong><span class="order-product-copy-row"><span>平台SKU <code>DS-SEA-11-C</code></span><button class="order-copy-button" type="button" title="复制平台SKU" aria-label="复制平台SKU" data-order-copy="DS-SEA-11-C" data-order-copy-label="平台SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-copy-row"><span>SKU <code>DS-SEA-11-C</code></span><button class="order-copy-button" type="button" title="复制SKU" aria-label="复制SKU" data-order-copy="DS-SEA-11-C" data-order-copy-label="SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-spec">规格颜色 40OZ · 樱粉</span><span class="order-product-copy-row order-product-id"><span>产品ID <code>SKU-0043</code></span><button class="order-copy-button" type="button" title="复制产品ID" aria-label="复制产品ID" data-order-copy="SKU-0043" data-order-copy-label="产品ID"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-price">单价 $33.90</span><span class="order-product-quantity">数量 8</span></div><div class="order-product-action"></div></div><div class="order-product-item"><img src="img4.jpg" alt="曜石真空保温杯"><div class="order-product-info"><strong class="order-product-name" title="曜石真空保温杯">曜石真空保温杯</strong><span class="order-product-copy-row"><span>平台SKU <code>DS-BLK-14-B</code></span><button class="order-copy-button" type="button" title="复制平台SKU" aria-label="复制平台SKU" data-order-copy="DS-BLK-14-B" data-order-copy-label="平台SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-copy-row"><span>SKU <code>DS-BLK-14-B</code></span><button class="order-copy-button" type="button" title="复制SKU" aria-label="复制SKU" data-order-copy="DS-BLK-14-B" data-order-copy-label="SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-spec">规格颜色 30OZ · 海蓝</span><span class="order-product-copy-row order-product-id"><span>产品ID <code>SKU-0054</code></span><button class="order-copy-button" type="button" title="复制产品ID" aria-label="复制产品ID" data-order-copy="SKU-0054" data-order-copy-label="产品ID"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-price">单价 $40.40</span><span class="order-product-quantity">数量 11</span></div><div class="order-product-action"></div></div></div></td><td><div class="order-amount-summary order-sales-summary"><div><span>销售价：</span><strong class="">$725.60</strong></div><div><span>运费：</span><strong class="">$30.00</strong></div><div><span>总计：</span><strong class="">$755.60</strong></div></div></td><td><div class="order-amount-summary order-cargo-summary"><div><span>货款：</span><strong class="">$715.60</strong></div><div><span>运费：</span><strong class="">$30.00</strong></div><div><span>总计：</span><strong class="">$745.60</strong></div></div></td><td><span class="order-status order-status-shipped">部分发货</span></td><td>采购用户D</td><td><span class="order-address">126 Commerce Ave, Dallas, TX 75201</span></td><td><div class="order-logistics-cell"><code>1Z908172635418</code></div></td><td class="operation-column"><div class="table-actions"><button class="btn-link" type="button" data-order-detail="US-202608-1030">查看</button></div></td></tr><tr><td class="selection-column"><input class="order-row-select" type="checkbox" data-order-select="US-202608-1029" aria-label="选择订单 US-202608-1029"></td><td><code class="order-id">US-202608-1029</code></td><td><div class="order-product-cell"><div class="order-product-item"><img src="img3.jpg" alt="花朵手柄马克杯"><div class="order-product-info"><strong class="order-product-name" title="花朵手柄马克杯">花朵手柄马克杯</strong><span class="order-product-copy-row"><span>平台SKU <code>DS-FLW-13-B</code></span><button class="order-copy-button" type="button" title="复制平台SKU" aria-label="复制平台SKU" data-order-copy="DS-FLW-13-B" data-order-copy-label="平台SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-copy-row"><span>SKU <code>DS-FLW-13-B</code></span><button class="order-copy-button" type="button" title="复制SKU" aria-label="复制SKU" data-order-copy="DS-FLW-13-B" data-order-copy-label="SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-spec">规格颜色 30OZ · 海蓝</span><span class="order-product-copy-row order-product-id"><span>产品ID <code>SKU-0050</code></span><button class="order-copy-button" type="button" title="复制产品ID" aria-label="复制产品ID" data-order-copy="SKU-0050" data-order-copy-label="产品ID"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-price">单价 $28.90</span><span class="order-product-quantity">数量 9</span></div><div class="order-product-action"></div></div><div class="order-product-item"><img src="img1.jpg" alt="向日葵吸管杯"><div class="order-product-info"><strong class="order-product-name" title="向日葵吸管杯">向日葵吸管杯</strong><span class="order-product-copy-row"><span>平台SKU <code>DS-SUN-16-A</code></span><button class="order-copy-button" type="button" title="复制平台SKU" aria-label="复制平台SKU" data-order-copy="DS-SUN-16-A" data-order-copy-label="平台SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-copy-row"><span>SKU <code>DS-SUN-16-A</code></span><button class="order-copy-button" type="button" title="复制SKU" aria-label="复制SKU" data-order-copy="DS-SUN-16-A" data-order-copy-label="SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-spec">规格颜色 20OZ · 雾灰</span><span class="order-product-copy-row order-product-id"><span>产品ID <code>SKU-0061</code></span><button class="order-copy-button" type="button" title="复制产品ID" aria-label="复制产品ID" data-order-copy="SKU-0061" data-order-copy-label="产品ID"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-price">单价 $20.90</span><span class="order-product-quantity">数量 12</span></div><div class="order-product-action"></div></div><div class="order-product-item"><img src="img3.jpg" alt="城市通勤咖啡杯"><div class="order-product-info"><strong class="order-product-name" title="城市通勤咖啡杯">城市通勤咖啡杯</strong><span class="order-product-copy-row"><span>平台SKU <code>DS-CTY-18-D</code></span><button class="order-copy-button" type="button" title="复制平台SKU" aria-label="复制平台SKU" data-order-copy="DS-CTY-18-D" data-order-copy-label="平台SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-copy-row"><span>SKU <code>DS-CTY-18-D</code></span><button class="order-copy-button" type="button" title="复制SKU" aria-label="复制SKU" data-order-copy="DS-CTY-18-D" data-order-copy-label="SKU"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-spec">规格颜色 64OZ · 墨黑</span><span class="order-product-copy-row order-product-id"><span>产品ID <code>SKU-0072</code></span><button class="order-copy-button" type="button" title="复制产品ID" aria-label="复制产品ID" data-order-copy="SKU-0072" data-order-copy-label="产品ID"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></span><span class="order-product-price">单价 $41.40</span><span class="order-product-quantity">数量 3</span></div><div class="order-product-action"></div></div></div></td><td><div class="order-amount-summary order-sales-summary"><div><span>销售价：</span><strong class="">$647.10</strong></div><div><span>运费：</span><strong class="">$36.00</strong></div><div><span>总计：</span><strong class="">$683.10</strong></div></div></td><td><div class="order-amount-summary order-cargo-summary"><div><span>货款：</span><strong class="">$635.10</strong></div><div><span>运费：</span><strong class="">$36.00</strong></div><div><span>总计：</span><strong class="">$671.10</strong></div></div></td><td><span class="order-status order-status-outofstock">商品缺货</span></td><td>采购用户A</td><td><span class="order-address">127 Commerce Ave, Dallas, TX 75201</span></td><td><div class="order-logistics-cell"><button class="btn-link order-tracking-upload" type="button" data-order-upload-tracking="US-202608-1029">上传</button></div></td><td class="operation-column"><div class="table-actions"><button class="btn-link" type="button" data-order-detail="US-202608-1029">查看</button></div></td></tr></tbody></table></div><div class="pagination"><span class="pagination-info">共 <strong id="order-total-count">36</strong> 条</span><div class="pagination-btns"><button class="page-btn" id="order-prev" type="button" disabled="">‹</button><button class="page-btn active" id="order-current" type="button">1 / 5</button><button class="page-btn" id="order-next" type="button">›</button></div></div></section>
   </main>
 </div>
-<div class="modal-overlay" id="order-detail-modal" role="dialog" aria-modal="true" aria-labelledby="order-detail-title"><div class="modal order-detail-modal"><div class="modal-head"><h3 id="order-detail-title">订单详情</h3><button class="close" type="button" data-order-detail-close aria-label="关闭">&times;</button></div><div class="modal-body" id="order-detail-content"></div><div class="modal-footer"><button class="btn btn-primary" type="button" data-order-detail-close>关闭</button></div></div></div>
-<div class="modal-overlay" id="order-action-modal" role="dialog" aria-modal="true" aria-labelledby="order-action-title"><div class="modal order-action-modal"><div class="modal-head"><h3 id="order-action-title">审核订单</h3><button class="close" type="button" id="order-action-close" aria-label="关闭">&times;</button></div><div class="modal-body"><p class="order-action-copy" id="order-action-copy"></p><div class="order-review-rules" id="order-review-rules"></div><div class="manage-form-field" id="order-reason-field" hidden><label for="order-reject-reason">关闭原因</label><textarea id="order-reject-reason" rows="3" placeholder="请输入关闭原因"></textarea></div><div id="order-tracking-field" hidden><input id="order-tracking-input" type="hidden"></div></div><div class="modal-footer"><button class="btn btn-ghost" type="button" id="order-action-cancel">取消</button><button class="btn btn-primary" type="button" id="order-action-confirm">确认</button></div></div></div>
-<div class="modal-overlay" id="order-import-modal" role="dialog" aria-modal="true" aria-labelledby="order-import-title">
-  <div class="modal v2-order-import-modal">
-    <div class="modal-head"><div><h3 id="order-import-title">订单导入</h3><p class="v2-order-import-subtitle">导入平台订单，确认后创建订单</p></div><button class="close" type="button" id="order-import-close" aria-label="关闭订单导入">&times;</button></div>
-    <div class="v2-order-import-steps" role="list" aria-label="订单导入进度"><div class="v2-order-import-step active" data-order-import-step-indicator="1"><b>1</b><span>上传文件</span></div><i></i><div class="v2-order-import-step" data-order-import-step-indicator="2"><b>2</b><span>订单预览</span></div></div>
-    <div class="modal-body v2-order-import-body">
-      <section class="v2-import-step-panel" data-order-import-panel="1">
-        <div class="v2-import-upload-card"><div class="v2-import-upload-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"></path><path d="M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"></path></svg></div><strong id="order-import-upload-title">上传平台订单文件</strong><p id="order-import-upload-copy">支持 TXT、XLS、XLSX 格式，上传后进入订单预览并检查 SKU 关联状态</p><label class="btn btn-ghost v2-import-file-label" for="order-import-file">选择文件<input id="order-import-file" type="file" accept=".txt,.xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/plain"></label><span id="order-import-file-name" class="v2-import-file-name">尚未选择文件</span></div>
+<div class="modal-overlay" id="order-detail-modal" role="dialog" aria-modal="true" aria-labelledby="order-detail-title"><div class="modal order-detail-modal"><div class="modal-head"><h3 id="order-detail-title">订单详情</h3><button class="close" type="button" data-order-detail-close="" aria-label="关闭">×</button></div><div class="modal-body" id="order-detail-content"></div><div class="modal-footer"><button class="btn btn-primary" type="button" data-order-detail-close="">关闭</button></div></div></div>
+<div class="modal-overlay" id="order-operation-log-modal" role="dialog" aria-modal="true" aria-labelledby="order-operation-log-title"><div class="modal order-operation-log-modal"><div class="modal-head"><div><h3 id="order-operation-log-title">操作日志</h3><p class="order-operation-log-subtitle">按事件发生时间正序排列</p></div><button class="close" type="button" data-order-operation-log-close="" aria-label="关闭操作日志">×</button></div><div class="modal-body order-operation-log-body"><div class="order-operation-log-summary"><span>订单号</span><code id="order-operation-log-order-no">-</code><b id="order-operation-log-count">0 条记录</b></div><ol class="order-operation-log-list" id="order-operation-log-list"></ol></div><div class="modal-footer"><button class="btn btn-primary" type="button" data-order-operation-log-close="">关闭</button></div></div></div>
+<div class="modal-overlay" id="order-action-modal" role="dialog" aria-modal="true" aria-labelledby="order-action-title"><div class="modal order-action-modal"><div class="modal-head"><h3 id="order-action-title">审核订单</h3><button class="close" type="button" id="order-action-close" aria-label="关闭">×</button></div><div class="modal-body"><p class="order-action-copy" id="order-action-copy"></p><div class="order-review-rules" id="order-review-rules"></div><div class="manage-form-field" id="order-reason-field" hidden=""><label for="order-reject-reason">关闭原因</label><textarea id="order-reject-reason" rows="3" placeholder="请输入关闭原因"></textarea></div><div id="order-tracking-field" hidden=""><input id="order-tracking-input" type="hidden"></div></div><div class="modal-footer"><button class="btn btn-ghost" type="button" id="order-action-cancel">取消</button><button class="btn btn-primary" type="button" id="order-action-confirm">确认</button></div></div></div>
+<div class="modal-overlay order-payment-overlay" id="order-payment-modal" role="dialog" aria-modal="true" aria-labelledby="order-payment-title">
+  <div class="modal order-payment-modal">
+    <div class="order-payment-head"><h3 id="order-payment-title">批量支付</h3><button class="close" type="button" id="order-payment-close" aria-label="关闭支付弹窗">×</button></div>
+    <div class="order-payment-body">
+      <p class="order-payment-type"><strong>支付类型：</strong><span>订单货款</span></p>
+      <section class="order-payment-detail" aria-labelledby="order-payment-detail-title">
+        <h4 id="order-payment-detail-title">支付明细:</h4>
+        <p class="order-payment-counts">订单总数：<b id="order-payment-total-count">0</b>【可支付订单：<b class="payable" id="order-payment-payable-count">0</b> 不可支付订单：<b class="unpayable" id="order-payment-unpayable-count">0</b>】</p>
+        <div class="order-payment-table-wrap"><table class="order-payment-table"><thead><tr><th><input id="order-payment-select-all" type="checkbox" aria-label="全选可支付订单"></th><th>序号</th><th>订单编号</th><th>总件数</th><th>货款($)</th><th>配件费($)</th><th>物流中心发货费($)</th><th>运费($)</th><th>支付总计($)</th><th>物流方式</th></tr></thead><tbody id="order-payment-tbody"></tbody></table></div>
       </section>
-      <section class="v2-import-step-panel" data-order-import-panel="2" hidden><div class="v2-import-preview-head"><div><h4>订单预览</h4><p>核对订单商品关联状态后创建订单</p></div><div class="v2-import-preview-tools"><label class="v2-import-filter"><input id="order-import-unmatched" type="checkbox"> 待关联</label><span class="v2-import-preview-count" id="order-import-preview-count">0 笔订单</span></div></div><div class="v2-import-preview-wrap"><table class="data-table v2-import-preview-table"><thead><tr><th>订单编号</th><th>SKU</th><th>产品数量</th><th>平台</th><th>订单金额</th><th>收件人</th><th>收货信息</th><th>匹配状态</th><th>操作</th></tr></thead><tbody id="order-import-preview-body"></tbody></table></div></section>
+      <div class="order-payment-method-row"><strong>支付方式：</strong><button type="button" class="active" aria-pressed="true">账户余额</button></div>
+      <div class="order-payment-account"><span>支付账户: I-SVIP@qq.com(I-SVIP)</span><span>可用余额: <strong id="order-payment-balance">$0.00</strong> 元</span><button class="order-payment-refresh" id="order-payment-refresh" type="button" title="刷新余额" aria-label="刷新余额"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0-15.5-2M4 4v5h5"></path><path d="M4 13a8.1 8.1 0 0 0 15.5 2M20 20v-5h-5"></path></svg></button><button class="order-payment-recharge" id="order-payment-recharge" type="button">充值</button></div>
+      <div class="order-payment-amount"><strong>应付金额:</strong><b id="order-payment-amount">$0.00</b><span>元</span></div>
+      <button class="order-payment-submit" id="order-payment-submit" type="button">立即支付</button>
     </div>
-    <div class="modal-footer v2-order-import-footer"><button class="btn btn-ghost" type="button" id="order-import-back" hidden>上一步</button><span class="v2-import-footer-spacer"></span><button class="btn btn-ghost" type="button" id="order-import-cancel">取消</button><button class="btn btn-primary" type="button" id="order-import-next">下一步</button><button class="btn btn-primary" type="button" id="order-import-submit" hidden>创建订单</button></div>
+    <div class="order-payment-footer"><button class="btn btn-ghost" id="order-payment-cancel" type="button">关闭</button></div>
   </div>
 </div>
-<div class="modal-overlay" id="order-import-link-modal" role="dialog" aria-modal="true" aria-labelledby="order-import-link-title"><div class="modal v2-import-link-modal"><div class="modal-head"><h3 id="order-import-link-title">关联美国货盘 SKU</h3><button class="close" type="button" id="order-import-link-close" aria-label="关闭">&times;</button></div><div class="modal-body"><p class="v2-import-link-copy">选择与待匹配商品对应的美国货盘产品</p><div class="v2-import-product-list" id="order-import-product-list"></div></div><div class="modal-footer"><button class="btn btn-ghost" type="button" id="order-import-link-cancel">取消</button></div></div></div>
-<input id="order-tracking-file-input" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp" hidden>
+<div class="modal-overlay" id="order-import-modal" role="dialog" aria-modal="true" aria-labelledby="order-import-title">
+  <div class="modal v2-order-import-modal">
+    <div class="modal-head"><div><h3 id="order-import-title">订单预览</h3><p class="v2-order-import-subtitle">导入平台订单，确认后创建订单（目前只支持沃尔玛订单导入）</p></div><button class="close" type="button" id="order-import-close" aria-label="关闭订单导入">×</button></div>
+    <div class="v2-order-import-steps" role="list" aria-label="订单导入进度"><div class="v2-order-import-step done" data-order-import-step-indicator="1"><b style="color: rgb(47, 39, 39);">1</b><span>上传文件</span></div><i></i><div class="v2-order-import-step active" data-order-import-step-indicator="2"><b style="color: rgb(32, 30, 30);">2</b><span>订单预览</span></div></div>
+    <div class="modal-body v2-order-import-body">
+      <section class="v2-import-step-panel" data-order-import-panel="1" hidden="">
+        <div class="v2-import-upload-card"><div class="v2-import-upload-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"></path><path d="M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"></path></svg></div><strong id="order-import-upload-title">上传平台订单文件</strong><p id="order-import-upload-copy">支持 TXT、XLS、XLSX 格式，上传后进入订单预览并检查 SKU 关联状态</p><label class="btn btn-ghost v2-import-file-label" for="order-import-file" data-annotation-id="ann-1789020871409">选择文件<input id="order-import-file" type="file" accept=".txt,.xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/plain"></label><span id="order-import-file-name" class="v2-import-file-name">尚未选择文件</span></div>
+      </section>
+      <section class="v2-import-step-panel" data-order-import-panel="2"><div class="v2-import-preview-head"><div><h4>订单预览</h4><p>核对订单商品关联状态后创建订单</p></div><div class="v2-import-preview-tools"><label class="v2-import-filter" data-annotation-id="ann-1789021055584"><input id="order-import-unmatched" type="checkbox"> 待关联</label><span class="v2-import-preview-count" id="order-import-preview-count">2 笔订单</span></div></div><div class="v2-import-preview-wrap"><table class="data-table v2-import-preview-table"><thead><tr><th>订单编号</th><th>SKU</th><th>产品数量</th><th>平台</th><th>订单金额</th><th>收件人</th><th>收货信息</th><th>匹配状态</th><th>操作</th></tr></thead><tbody id="order-import-preview-body"><tr><td><code class="v2-import-order-id">AMZ-20260902-001</code></td><td><div class="v2-import-sku-list"><div class="v2-import-sku-item"><img src="img1.jpg" alt=""><span><strong>极光随行保温杯</strong><small>20OZ · 雾灰 · DS-AUR-01-A</small></span></div><div class="v2-import-sku-item"><img src="img1.jpg" alt=""><span><strong>平台待匹配商品</strong><small>默认规格 · AMZ-UNKNOWN-01</small></span></div></div></td><td>10 件</td><td>沃尔玛</td><td><span class="muted">$300.12</span></td><td>Olivia Chen</td><td><div class="v2-import-address">Austin, TX 78701</div></td><td><span class="v2-match-pending">待关联</span><div class="v2-linked-skus"><code>DS-AUR-01-A</code></div></td><td><span class="muted">-</span><br><button class="btn-link v2-link-sku" type="button" data-link-order="AMZ-20260902-001" data-link-item="1" data-annotation-id="ann-1789021153255">关联</button></td></tr><tr><td><code class="v2-import-order-id">WM-20260902-018</code></td><td><div class="v2-import-sku-list"><div class="v2-import-sku-item"><img src="img1.jpg" alt=""><span><strong>极光随行保温杯</strong><small>30OZ · 海蓝 · DS-AUR-01-B</small></span></div><div class="v2-import-sku-item"><img src="img1.jpg" alt=""><span><strong>极光随行保温杯</strong><small>40OZ · 樱粉 · DS-AUR-01-C</small></span></div></div></td><td>7 件</td><td>沃尔玛</td><td>$209.30</td><td>Daniel Lee</td><td><div class="v2-import-address">Irvine, CA 92612</div></td><td><span class="v2-match-ok">已关联</span><div class="v2-linked-skus"><code>DS-AUR-01-B</code><br><code>DS-AUR-01-C</code></div></td><td><span class="muted">-</span><br><span class="muted">-</span></td></tr></tbody></table></div></section>
+    </div>
+    <div class="modal-footer v2-order-import-footer"><button class="btn btn-ghost" type="button" id="order-import-back">上一步</button><span class="v2-import-footer-spacer"></span><button class="btn btn-ghost" type="button" id="order-import-cancel">取消</button><button class="btn btn-primary" type="button" id="order-import-next" hidden="">下一步</button><button class="btn btn-primary" type="button" id="order-import-submit" data-annotation-id="ann-1789021261414">确认导入</button></div>
+  </div>
+</div>
+<div class="modal-overlay" id="order-import-link-modal" role="dialog" aria-modal="true" aria-labelledby="order-import-link-title"><div class="modal v2-import-link-modal"><div class="modal-head"><h3 id="order-import-link-title">关联美国货盘 SKU</h3><button class="close" type="button" id="order-import-link-close" aria-label="关闭">×</button></div><div class="modal-body"><p class="v2-import-link-copy">选择与待匹配商品对应的美国货盘产品</p><div class="v2-import-product-list" id="order-import-product-list"></div></div><div class="modal-footer"><button class="btn btn-ghost" type="button" id="order-import-link-cancel">取消</button></div></div></div>
+<input id="order-tracking-file-input" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp" hidden="">
 <div class="modal-overlay" id="order-label-batch-modal" role="dialog" aria-modal="true" aria-labelledby="order-label-batch-title">
   <div class="modal order-label-batch-modal">
-    <div class="modal-head"><div><h3 id="order-label-batch-title">批量上传面单</h3><p class="order-label-batch-subtitle">为所选订单上传面单，确认后回显到订单列表</p></div><button class="close" type="button" id="order-label-batch-close" aria-label="关闭批量上传面单">&times;</button></div>
+    <div class="modal-head"><div><h3 id="order-label-batch-title">批量上传面单</h3><p class="order-label-batch-subtitle">为所选订单上传面单，确认后回显到订单列表</p></div><button class="close" type="button" id="order-label-batch-close" aria-label="关闭批量上传面单">×</button></div>
     <div class="modal-body order-label-batch-body">
-      <div class="order-label-batch-toolbar"><button class="btn btn-primary" type="button" id="order-label-upload-trigger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"></path><path d="M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"></path></svg><span>上传面单</span></button><input id="order-label-batch-file-input" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp" multiple hidden><span id="order-label-batch-file-count" class="order-label-batch-file-count">尚未选择面单</span></div>
+      <div class="order-label-batch-toolbar"><button class="btn btn-primary" type="button" id="order-label-upload-trigger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"></path><path d="M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"></path></svg><span>上传面单</span></button><input id="order-label-batch-file-input" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp" multiple="" hidden=""><span id="order-label-batch-file-count" class="order-label-batch-file-count">尚未选择面单</span></div>
       <div class="table-scroll order-label-batch-table-wrap"><table class="data-table order-label-batch-table"><thead><tr><th>订单号</th><th>收件人</th><th>物流</th></tr></thead><tbody id="order-label-batch-body"></tbody></table></div>
     </div>
     <div class="modal-footer"><button class="btn btn-ghost" type="button" id="order-label-batch-cancel">取消</button><button class="btn btn-primary" type="button" id="order-label-batch-confirm">确认</button></div>
@@ -52,28 +105,48 @@
 </div>
 <script src="sku-data.js"></script><script src="order-data.js?v=20260901-stable-user-id"></script>
 <script>
-var orderData=(window.OMS_ORDER_DATA||[]).map(function(order){return Object.assign({},order,{items:order.items.map(function(item){return Object.assign({},item)})})});try{JSON.parse(localStorage.getItem('oms-v2-created-orders')||'[]').forEach(function(order){if(!orderData.some(function(item){return item.idempotencyKey===order.idempotencyKey}))orderData.unshift(order)})}catch(error){}var orderFiltered=orderData.slice();var orderPage=1;var orderPageSize=8;var orderAction={type:'',id:''};var requestedUserId=new URLSearchParams(location.search).get('userId')||'';var orderSelectedIds=[];var trackingUploadOrderId='';var batchLabelOrderIds=[];var batchLabelFiles=[];
-function orderEscape(value){return String(value).replace(/[&<>"']/g,function(char){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]})}function orderMoney(value){return '$'+Number(value||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}function orderNumericValue(value){if(value===undefined||value===null||value==='')return null;var number=Number(value);return Number.isFinite(number)?number:null}function orderValue(order,key,fallback){var value=orderNumericValue(order[key]);return value!==null?value:(fallback?fallback():null)}function orderSalesShipping(order){return orderValue(order,'salesShipping')}function orderSalesTotal(order){return orderValue(order,'salesTotal',function(){return orderNumericValue(order.amount)})}function orderSalesPrice(order){return orderValue(order,'salesPrice',function(){var total=orderSalesTotal(order),shipping=orderSalesShipping(order);return total!==null&&shipping!==null?total-shipping:null})}function orderCargoPrice(order){return orderValue(order,'cargoPrice',function(){var productAmount=orderNumericValue(order.productAmount);if(productAmount!==null)return productAmount;if(!Array.isArray(order.items)||!order.items.length)return null;var subtotals=order.items.map(function(item){return orderNumericValue(item.subtotal)});return subtotals.some(function(value){return value===null})?null:subtotals.reduce(function(sum,value){return sum+value},0)})}function orderCargoShipping(order){return orderValue(order,'cargoShipping',function(){return orderNumericValue(order.logisticsFee)})}function orderCargoTotal(order){return orderValue(order,'cargoTotal',function(){var cargo=orderCargoPrice(order),shipping=orderCargoShipping(order);return cargo!==null&&shipping!==null?cargo+shipping:null})}function orderAmountSummary(order,type){var sales=type==='sales';var lines=sales?[["销售价",orderSalesPrice(order)],["运费",orderSalesShipping(order)],["总计",orderSalesTotal(order)]]:[["货款",orderCargoPrice(order)],["运费",orderCargoShipping(order)],["总计",orderCargoTotal(order)]];return '<div class="order-amount-summary '+(sales?'order-sales-summary':'order-cargo-summary')+'">'+lines.map(function(line){return '<div><span>'+line[0]+'：</span><strong class="'+(line[1]===null?'is-empty':'')+'">'+(line[1]===null?'--':orderMoney(line[1]))+'</strong></div>'}).join('')+'</div>'}function orderStatusClass(status){return 'order-status-'+({待关联:'review',待支付:'payment',待分配仓库:'allocating',待仓库拣货:'warehouse',待物流收揽:'pickup',部分发货:'shipped',已发货:'shipped',商品缺货:'outofstock',已关闭:'closed',拦截发货成功:'intercepted'}[status]||'review')}function findOrder(id){return orderData.find(function(order){return order.id===id})}
+var orderData=(window.OMS_ORDER_DATA||[]).map(function(order){return Object.assign({},order,{items:order.items.map(function(item){return Object.assign({},item)})})});try{JSON.parse(localStorage.getItem('oms-v2-created-orders')||'[]').forEach(function(order){if(!orderData.some(function(item){return item.idempotencyKey===order.idempotencyKey}))orderData.unshift(order)})}catch(error){}var orderFiltered=orderData.slice();var orderPage=1;var orderPageSize=8;var orderAction={type:'',id:''};var requestedUserId=new URLSearchParams(location.search).get('userId')||'';var orderSelectedIds=[];var trackingUploadOrderId='';var batchLabelOrderIds=[];var batchLabelFiles=[];var paymentOrderIds=[];var paymentSelectedIds=[];var paymentMode='batch';var orderOperationLogKey='oms-order-operation-logs';var orderOperationLogStore={};try{orderOperationLogStore=JSON.parse(localStorage.getItem(orderOperationLogKey)||'{}')||{}}catch(error){}var savedPaymentBalanceRaw=localStorage.getItem('oms-payment-balance');var savedPaymentBalance=savedPaymentBalanceRaw===null?NaN:Number(savedPaymentBalanceRaw);var paymentAccountBalance=Number.isFinite(savedPaymentBalance)&&savedPaymentBalance>=0?savedPaymentBalance:999315.22;
+function orderEscape(value){return String(value).replace(/[&<>"']/g,function(char){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]})}function orderMoney(value){return '$'+Number(value||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}function orderNumericValue(value){if(value===undefined||value===null||value==='')return null;var number=Number(value);return Number.isFinite(number)?number:null}function orderValue(order,key,fallback){var value=orderNumericValue(order[key]);return value!==null?value:(fallback?fallback():null)}function orderSalesShipping(order){return orderValue(order,'salesShipping')}function orderSalesTotal(order){return orderValue(order,'salesTotal',function(){return orderNumericValue(order.amount)})}function orderSalesPrice(order){return orderValue(order,'salesPrice',function(){var total=orderSalesTotal(order),shipping=orderSalesShipping(order);return total!==null&&shipping!==null?total-shipping:null})}function orderCargoPrice(order){return orderValue(order,'cargoPrice',function(){var productAmount=orderNumericValue(order.productAmount);if(productAmount!==null)return productAmount;if(!Array.isArray(order.items)||!order.items.length)return null;var subtotals=order.items.map(function(item){return orderNumericValue(item.subtotal)});return subtotals.some(function(value){return value===null})?null:subtotals.reduce(function(sum,value){return sum+value},0)})}function orderCargoShipping(order){return orderValue(order,'cargoShipping',function(){return orderNumericValue(order.logisticsFee)})}function orderCargoTotal(order){return orderValue(order,'cargoTotal',function(){var cargo=orderCargoPrice(order),shipping=orderCargoShipping(order);return cargo!==null&&shipping!==null?cargo+shipping:null})}function orderAmountSummary(order,type){var sales=type==='sales';var lines=sales?[["销售价",orderSalesPrice(order)],["运费",orderSalesShipping(order)],["总计",orderSalesTotal(order)]]:[["货款",orderCargoPrice(order)],["运费",orderCargoShipping(order)],["总计",orderCargoTotal(order)]];return '<div class="order-amount-summary '+(sales?'order-sales-summary':'order-cargo-summary')+'">'+lines.map(function(line){return '<div><span>'+line[0]+'：</span><strong class="'+(line[1]===null?'is-empty':'')+'">'+(line[1]===null?'--':orderMoney(line[1]))+'</strong></div>'}).join('')+'</div>'}function orderStatusClass(status){return 'order-status-'+({待关联:'review',待支付:'payment',待分配仓库:'allocating',待仓库拣货:'warehouse',待物流收揽:'pickup',部分发货:'shipped',已发货:'shipped',商品缺货:'outofstock',已关闭:'closed',拦截发货成功:'intercepted'}[status]||'review')}function orderSource(order){var source=order&&(order.orderSource||order.source);var id=String(order&&(order.localOrderNo||order.id)||'');return source==='订单导入'||order&&order.userName==='订单导入'||/^IMP-/i.test(id)?'订单导入':'前端下单'}function findOrder(id){return orderData.find(function(order){return order.id===id})}
+function orderLogDate(value){var text=String(value||'').trim();if(!text)return new Date();var date=new Date(text.indexOf('T')>-1?text:text.replace(' ','T'));return Number.isNaN(date.getTime())?new Date():date}
+function orderLogTimeAfter(order,minutes){return new Date(orderLogDate(order.createdAt).getTime()+minutes*60000).toISOString()}
+function orderLogDisplayTime(value){var date=orderLogDate(value);function pad(number){return String(number).padStart(2,'0')}return date.getFullYear()+'-'+pad(date.getMonth()+1)+'-'+pad(date.getDate())+' '+pad(date.getHours())+':'+pad(date.getMinutes())+':'+pad(date.getSeconds())}
+function orderHasRecordedLog(logs,type){return logs.some(function(log){return log.type===type})}
+function orderDerivedStatusSequence(status){var fulfillment=['待分配仓库','待仓库拣货','待物流收揽','部分发货','已发货'];var index=fulfillment.indexOf(status);if(index>-1)return ['待支付'].concat(fulfillment.slice(0,index+1));if(status==='拦截发货成功')return ['待支付','待分配仓库','待仓库拣货','待物流收揽','拦截发货成功'];return [status||'待关联']}
+function orderOperationLogs(order){var logs=[];(order.operationLogs||[]).concat(orderOperationLogStore[order.id]||[]).forEach(function(log){if(log&&log.time)logs.push(Object.assign({},log))});if(!orderHasRecordedLog(logs,'import'))logs.push({id:'derived-import',type:'import',title:'订单导入时间',detail:orderSource(order)+'订单已进入订单管理',time:order.createdAt,operator:'系统'});var matched=(order.items||[]).filter(function(item){return !!item.matchedSku});if(matched.length&&!orderHasRecordedLog(logs,'association'))logs.push({id:'derived-association',type:'association',title:'关联操作',detail:'已关联 '+matched.length+' 个商品 SKU',time:orderLogTimeAfter(order,1),operator:'系统'});var packages=order.packages||[],tracking=packages.map(function(item){return item&&item.tracking}).concat(order.tracking||[]).filter(Boolean),labelName=order.labelFileName||(packages.find(function(item){return item&&item.labelFileName})||{}).labelFileName;if((tracking.length||labelName)&&!orderHasRecordedLog(logs,'logistics'))logs.push({id:'derived-logistics',type:'logistics',title:'物流信息上传操作',detail:labelName?'已上传面单：'+labelName:'已上传物流单号：'+tracking.join('、'),time:order.labelFileUploadedAt||order.trackingUploadedAt||orderLogTimeAfter(order,2),operator:'系统'});var paymentStatuses=['待分配仓库','待仓库拣货','待物流收揽','部分发货','已发货','拦截发货成功'];if((order.paidAt||paymentStatuses.indexOf(order.status)>-1)&&!orderHasRecordedLog(logs,'payment'))logs.push({id:'derived-payment',type:'payment',title:'付款操作',detail:'订单付款成功，应付金额 '+orderMoney(orderPaymentParts(order).total),time:order.paidAt||orderLogTimeAfter(order,3),operator:'系统'});if(!orderHasRecordedLog(logs,'status'))orderDerivedStatusSequence(order.status).forEach(function(status,index){logs.push({id:'derived-status-'+index,type:'status',title:'订单状态记录',detail:'订单状态更新为“'+status+'”',time:orderLogTimeAfter(order,4+index),operator:'系统'})});var seen={};return logs.filter(function(log){var key=log.id||[log.type,log.time,log.detail].join('|');if(seen[key])return false;seen[key]=true;return true}).sort(function(a,b){return orderLogDate(a.time)-orderLogDate(b.time)})}
+function recordOrderOperation(order,type,title,detail,time,operator){if(!order)return;var entry={id:'log-'+Date.now()+'-'+Math.random().toString(16).slice(2),type:type,title:title,detail:detail,time:time||new Date().toISOString(),operator:operator||'当前用户'};var logs=orderOperationLogStore[order.id]||[];logs.push(entry);orderOperationLogStore[order.id]=logs;try{localStorage.setItem(orderOperationLogKey,JSON.stringify(orderOperationLogStore))}catch(error){}return entry}
+window.recordOrderOperation=recordOrderOperation;
 function updateOrderStats(){document.getElementById('order-stat-pending').textContent=orderData.filter(function(order){return order.status==='待关联'}).length;document.getElementById('order-stat-processing').textContent=orderData.filter(function(order){return ['待分配仓库','待仓库拣货','待物流收揽'].indexOf(order.status)>-1}).length;document.getElementById('order-stat-shipped').textContent=orderData.filter(function(order){return order.status==='已发货'||order.status==='部分发货'}).length;document.getElementById('order-stat-revenue').textContent=orderMoney(orderData.filter(function(order){return order.createdAt.indexOf('2026-08')===0&&order.status!=='已关闭'}).reduce(function(sum,order){return sum+order.amount},0))}
-function orderLogisticsSummary(order){var trackingNumbers=(order.packages||[]).map(function(item){return item&&item.tracking}).concat(order.tracking||[]).filter(function(value,index,list){return value&&list.indexOf(value)===index});var content=trackingNumbers.length?trackingNumbers.map(function(tracking){return '<code>'+orderEscape(tracking)+'</code>'}).join(''):'<button class="btn-link order-tracking-upload" type="button" data-order-upload-tracking="'+orderEscape(order.id)+'">上传</button>';return '<div class="order-logistics-cell">'+content+'</div>'}
+function orderLogisticsSummary(order){var packages=order.packages||[];var trackingNumbers=packages.map(function(item){return item&&item.tracking}).concat(order.tracking||[]).filter(function(value,index,list){return value&&list.indexOf(value)===index});var labelName=order.labelFileName||(packages.find(function(item){return item&&item.labelFileName})||{}).labelFileName;var content=trackingNumbers.length?trackingNumbers.map(function(tracking){return '<code>'+orderEscape(tracking)+'</code>'}).join(''):labelName?'<span class="order-logistics-uploaded">已上传</span><small class="order-label-file-name" title="'+orderEscape(labelName)+'">'+orderEscape(labelName)+'</small>':'<button class="btn-link order-tracking-upload" type="button" data-order-upload-tracking="'+orderEscape(order.id)+'">上传</button>';return '<div class="order-logistics-cell">'+content+'</div>'}
 function orderCopyIcon(value,label){var disabled=!value||value==='-';return '<button class="order-copy-button" type="button" title="复制'+label+'" aria-label="复制'+label+'" '+(disabled?'disabled':'data-order-copy="'+orderEscape(value)+'" data-order-copy-label="'+label+'"')+'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button>'}function orderProductSummary(order){var canRelink=['待关联','待支付','待分配仓库'].indexOf(order.status)>-1;var items=order.items.map(function(item,index){var platformSku=item.platformSku||item.sku||item.barcode||'-';var productSku=item.matchedSku||'-';var productId=item.productId||'-';var productImage=item.matchedSku?'<img src="'+orderEscape(item.img||'')+'" alt="'+orderEscape(item.name)+'">':'<span class="order-product-placeholder" role="img" aria-label="待关联商品">图片占位</span>';var actionLabel=item.matchedSku?(canRelink?'重新关联':''):'关联产品';var linkButton=actionLabel?'<button class="btn-link order-association-action" type="button" data-order-link-sku="'+orderEscape(order.id)+'" data-order-link-index="'+index+'">'+actionLabel+'</button>':'';return '<div class="order-product-item">'+productImage+'<div class="order-product-info"><strong class="order-product-name" title="'+orderEscape(item.name)+'">'+orderEscape(item.name)+'</strong><span class="order-product-copy-row"><span>平台SKU <code>'+orderEscape(platformSku)+'</code></span>'+orderCopyIcon(platformSku,'平台SKU')+'</span><span class="order-product-copy-row"><span>SKU <code>'+orderEscape(productSku)+'</code></span>'+orderCopyIcon(productSku,'SKU')+'</span><span class="order-product-spec">规格颜色 '+orderEscape(item.spec||'-')+'</span><span class="order-product-copy-row order-product-id"><span>产品ID <code>'+orderEscape(productId)+'</code></span>'+orderCopyIcon(productId,'产品ID')+'</span><span class="order-product-price">单价 '+orderMoney(item.unitPrice)+'</span><span class="order-product-quantity">数量 '+orderEscape(item.quantity)+'</span></div><div class="order-product-action">'+linkButton+'</div></div>'}).join('');return '<div class="order-product-cell">'+items+'</div>'}
 function copyOrderValue(value,label){function done(success){showToast(success?label+'已复制':'复制失败，请重试',success?'success':'warning')}if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(value).then(function(){done(true)}).catch(function(){copyOrderValueFallback(value,label)})}else copyOrderValueFallback(value,label)}function copyOrderValueFallback(value,label){var input=document.createElement('textarea');input.value=value;input.setAttribute('readonly','');input.style.position='fixed';input.style.opacity='0';document.body.appendChild(input);input.select();var copied=false;try{copied=document.execCommand('copy')}catch(error){}document.body.removeChild(input);showToast(copied?label+'已复制':'复制失败，请重试',copied?'success':'warning')}
-function orderActions(order){var actions=[];if(order.status==='待支付')actions.push('<button class="btn-link order-payment-action" type="button" data-order-payment="'+order.id+'">支付</button>');actions.push('<button class="btn-link" type="button" data-order-detail="'+order.id+'">查看</button>');return '<div class="table-actions">'+actions.join('')+'</div>'}
+function orderActions(order){var actions=[];if(order.status==='待支付')actions.push('<button class="btn-link order-payment-action" type="button" data-order-payment="'+order.id+'">支付</button>');actions.push('<button class="btn-link" type="button" data-order-detail="'+order.id+'">查看</button>');actions.push('<button class="btn-link order-operation-log-action" type="button" data-order-operation-log="'+order.id+'">操作日志</button>');return '<div class="table-actions">'+actions.join('')+'</div>'}
 function syncOrderSelectionControls(pageData){var selectAll=document.getElementById('order-select-all');var batchLabelButton=document.getElementById('order-label-batch-open');var batchPayButton=document.getElementById('order-batch-pay-open');var selectedOnPage=pageData.filter(function(order){return orderSelectedIds.indexOf(order.id)>-1}).length;var payableSelected=orderSelectedIds.some(function(id){var order=findOrder(id);return order&&order.status==='待支付'});selectAll.checked=pageData.length>0&&selectedOnPage===pageData.length;selectAll.indeterminate=selectedOnPage>0&&selectedOnPage<pageData.length;batchLabelButton.disabled=orderSelectedIds.length===0;batchPayButton.disabled=!payableSelected}
-function renderOrders(){var pages=Math.max(1,Math.ceil(orderFiltered.length/orderPageSize));orderPage=Math.min(orderPage,pages);var pageData=orderFiltered.slice((orderPage-1)*orderPageSize,orderPage*orderPageSize);document.getElementById('order-tbody').innerHTML=pageData.length?pageData.map(function(order){return '<tr><td class="selection-column"><input class="order-row-select" type="checkbox" data-order-select="'+orderEscape(order.id)+'" aria-label="选择订单 '+orderEscape(order.localOrderNo||order.id)+'" '+(orderSelectedIds.indexOf(order.id)>-1?'checked':'')+'></td><td><code class="order-id">'+orderEscape(order.localOrderNo||order.id)+'</code></td><td>'+orderProductSummary(order)+'</td><td>'+orderAmountSummary(order,'sales')+'</td><td>'+orderAmountSummary(order,'cargo')+'</td><td><span class="order-status '+orderStatusClass(order.status)+'">'+orderEscape(order.status)+'</span></td><td>'+orderEscape(order.recipient||'-')+'</td><td><span class="order-address">'+orderEscape(order.address||'-')+'</span></td><td>'+orderLogisticsSummary(order)+'</td><td class="operation-column">'+orderActions(order)+'</td></tr>'}).join(''):'<tr><td colspan="10" class="mark-table-empty">暂无匹配订单</td></tr>';document.getElementById('order-result-count').textContent='共 '+orderFiltered.length+' 条';document.getElementById('order-total-count').textContent=orderFiltered.length;document.getElementById('order-current').textContent=orderPage;document.getElementById('order-prev').disabled=orderPage<=1;document.getElementById('order-next').disabled=orderPage>=pages||orderFiltered.length===0;syncOrderSelectionControls(pageData)}
+function renderOrders(){var pages=Math.max(1,Math.ceil(orderFiltered.length/orderPageSize));orderPage=Math.min(orderPage,pages);var pageData=orderFiltered.slice((orderPage-1)*orderPageSize,orderPage*orderPageSize);document.getElementById('order-tbody').innerHTML=pageData.length?pageData.map(function(order){var source=orderSource(order);return '<tr><td class="selection-column"><input class="order-row-select" type="checkbox" data-order-select="'+orderEscape(order.id)+'" aria-label="选择订单 '+orderEscape(order.localOrderNo||order.id)+'" '+(orderSelectedIds.indexOf(order.id)>-1?'checked':'')+'></td><td><div class="order-number-cell"><code class="order-id">'+orderEscape(order.localOrderNo||order.id)+'</code><span class="order-source-tag '+(source==='订单导入'?'is-imported':'is-frontend')+'">'+source+'</span></div></td><td>'+orderProductSummary(order)+'</td><td>'+orderAmountSummary(order,'sales')+'</td><td>'+orderAmountSummary(order,'cargo')+'</td><td><span class="order-status '+orderStatusClass(order.status)+'">'+orderEscape(order.status)+'</span></td><td>'+orderEscape(order.recipient||'-')+'</td><td><span class="order-address">'+orderEscape(order.address||'-')+'</span></td><td>'+orderLogisticsSummary(order)+'</td><td class="operation-column">'+orderActions(order)+'</td></tr>'}).join(''):'<tr><td colspan="10" class="mark-table-empty">暂无匹配订单</td></tr>';document.getElementById('order-result-count').textContent='共 '+orderFiltered.length+' 条';document.getElementById('order-total-count').textContent=orderFiltered.length;document.getElementById('order-current').textContent=orderPage;document.getElementById('order-prev').disabled=orderPage<=1;document.getElementById('order-next').disabled=orderPage>=pages||orderFiltered.length===0;syncOrderSelectionControls(pageData)}
 function persistOrder(order){try{var saved=JSON.parse(localStorage.getItem('oms-v2-created-orders')||'[]');var savedOrder=saved.find(function(item){return item.idempotencyKey===order.idempotencyKey});if(savedOrder)Object.assign(savedOrder,order);localStorage.setItem('oms-v2-created-orders',JSON.stringify(saved))}catch(error){}}
 function openTrackingUpload(id){trackingUploadOrderId=id;var input=document.getElementById('order-tracking-file-input');input.value='';input.click()}
-function handleTrackingUpload(){var file=this.files&&this.files[0],order=findOrder(trackingUploadOrderId);if(!file||!order)return;order.labelFileName=file.name;order.labelFileUploadedAt=new Date().toISOString();(order.packages&&order.packages[0]||order).labelFileName=file.name;persistOrder(order);renderOrders();showToast('面单上传成功')}
-function completeOrderPayment(order){if(!order||order.status!=='待支付')return false;var suffix=String(Date.now()).slice(-10);if(!order.omsOrderNo)order.omsOrderNo='OMS-'+suffix;if(!order.packages||!order.packages.length)order.packages=[{packageNo:'PKG-'+suffix,logistics:order.logistics||'待分配物流',tracking:'',status:'待分配仓库'}];order.status='待分配仓库';order.paidAt=new Date().toISOString();persistOrder(order);return true}
-function payOrder(id){var order=findOrder(id);if(!completeOrderPayment(order))return;updateOrderStats();applyOrderFilters();showToast('订单支付成功，已进入待分配仓库')}
-function batchPayOrders(){var payable=selectedOrders().filter(function(order){return order.status==='待支付'});if(!payable.length){showToast('请选择待支付订单','warning');return}payable.forEach(completeOrderPayment);updateOrderStats();applyOrderFilters();showToast('批量付款成功，已更新 '+payable.length+' 笔订单')}
+function handleTrackingUpload(){var file=this.files&&this.files[0],order=findOrder(trackingUploadOrderId);if(!file||!order)return;order.labelFileName=file.name;order.labelFileUploadedAt=new Date().toISOString();(order.packages&&order.packages[0]||order).labelFileName=file.name;recordOrderOperation(order,'logistics','物流信息上传操作','上传面单：'+file.name,order.labelFileUploadedAt);persistOrder(order);renderOrders();showToast('面单上传成功')}
+function orderHasLinkedProducts(order){return !!(order&&Array.isArray(order.items)&&order.items.length&&order.items.every(function(item){return !!item.matchedSku}))}
+function orderHasUploadedLogistics(order){if(!order)return false;var packages=order.packages||[];return !!(order.labelFileName||order.tracking||packages.some(function(item){return item&&(item.labelFileName||item.tracking)}))}
+function orderPaymentIssue(order){if(!order||order.status!=='待支付')return '订单状态不是待支付';if(!orderHasLinkedProducts(order))return '存在未关联产品';if(!orderHasUploadedLogistics(order))return '未上传物流';return ''}
+function orderPaymentParts(order){var cargo=orderCargoPrice(order)||0;var accessory=orderNumericValue(order.accessoryFee);if(accessory===null)accessory=orderNumericValue(order.operationFee)||0;var dispatch=orderNumericValue(order.warehouseDispatchFee);if(dispatch===null)dispatch=orderNumericValue(order.fulfillmentFee)||0;var freight=orderCargoShipping(order)||0;return {cargo:cargo,accessory:accessory,dispatch:dispatch,freight:freight,total:cargo+accessory+dispatch+freight}}
+function orderPaymentMoney(value){return Number(value||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function paymentOrders(){return paymentOrderIds.map(function(id){return findOrder(id)}).filter(Boolean)}
+function selectedPaymentOrders(){return paymentSelectedIds.map(function(id){return findOrder(id)}).filter(function(order){return order&&!orderPaymentIssue(order)})}
+function paymentBlockMessage(orders){var hasUnlinked=orders.some(function(order){return order&&order.status==='待支付'&&!orderHasLinkedProducts(order)});var hasMissingLogistics=orders.some(function(order){return order&&order.status==='待支付'&&!orderHasUploadedLogistics(order)});if(hasUnlinked&&hasMissingLogistics)return '订单存在未关联产品且未上传物流，请先处理后再支付';if(hasUnlinked)return '订单存在未关联产品，请先完成关联';if(hasMissingLogistics)return '订单未上传物流，请先上传后再支付';return '请选择待支付订单'}
+function renderPaymentModal(){var orders=paymentOrders();var payable=orders.filter(function(order){return !orderPaymentIssue(order)});document.getElementById('order-payment-title').textContent=paymentMode==='single'?'订单支付':'批量支付';document.getElementById('order-payment-total-count').textContent=orders.length;document.getElementById('order-payment-payable-count').textContent=payable.length;document.getElementById('order-payment-unpayable-count').textContent=orders.length-payable.length;document.getElementById('order-payment-tbody').innerHTML=orders.map(function(order,index){var issue=orderPaymentIssue(order),parts=orderPaymentParts(order),quantity=(order.items||[]).reduce(function(sum,item){return sum+Number(item.quantity||0)},0),checked=paymentSelectedIds.indexOf(order.id)>-1;var logistics=(order.packages||[]).map(function(item){return item&&item.logistics}).filter(Boolean);if(order.logistics)logistics.unshift(order.logistics);logistics=logistics.filter(function(value,itemIndex,list){return list.indexOf(value)===itemIndex});return '<tr class="'+(issue?'unpayable':'')+'" title="'+orderEscape(issue)+'"><td><input type="checkbox" data-order-payment-select="'+orderEscape(order.id)+'" aria-label="选择订单 '+orderEscape(order.localOrderNo||order.id)+'" '+(checked?'checked':'')+' '+(issue?'disabled':'')+'></td><td>'+(index+1)+'</td><td>'+orderEscape(order.localOrderNo||order.id)+'</td><td>'+quantity+'</td><td>'+orderPaymentMoney(parts.cargo)+'</td><td>'+orderPaymentMoney(parts.accessory)+'</td><td>'+orderPaymentMoney(parts.dispatch)+'</td><td>'+orderPaymentMoney(parts.freight)+'</td><td>'+orderPaymentMoney(parts.total)+'</td><td>'+orderEscape(logistics.join('、')||'--')+'</td></tr>'}).join('');var selectAll=document.getElementById('order-payment-select-all'),selectedPayable=payable.filter(function(order){return paymentSelectedIds.indexOf(order.id)>-1}).length;selectAll.checked=payable.length>0&&selectedPayable===payable.length;selectAll.indeterminate=selectedPayable>0&&selectedPayable<payable.length;selectAll.disabled=payable.length===0;var amount=selectedPaymentOrders().reduce(function(sum,order){return sum+orderPaymentParts(order).total},0);document.getElementById('order-payment-balance').textContent='$'+orderPaymentMoney(paymentAccountBalance);document.getElementById('order-payment-amount').textContent='$'+orderPaymentMoney(amount);document.getElementById('order-payment-submit').disabled=!paymentSelectedIds.length}
+function openPaymentModal(orders,mode){orders=(orders||[]).filter(Boolean);if(!orders.length){showToast('请选择待支付订单','warning');return}var payable=orders.filter(function(order){return !orderPaymentIssue(order)});paymentMode=mode||'batch';paymentOrderIds=orders.map(function(order){return order.id});paymentSelectedIds=payable.map(function(order){return order.id});renderPaymentModal();document.body.classList.add('order-payment-open');document.getElementById('order-payment-modal').classList.add('open');if(!payable.length)showToast(paymentBlockMessage(orders),'warning')}
+function closePaymentModal(){document.getElementById('order-payment-modal').classList.remove('open');document.body.classList.remove('order-payment-open')}
+function completeOrderPayment(order){if(orderPaymentIssue(order))return false;var suffix=String(Date.now()).slice(-10);if(!order.omsOrderNo)order.omsOrderNo='OMS-'+suffix;if(!order.packages||!order.packages.length)order.packages=[{packageNo:'PKG-'+suffix,logistics:order.logistics||'待分配物流',tracking:'',status:'待分配仓库'}];order.paidAt=new Date().toISOString();recordOrderOperation(order,'payment','付款操作','订单付款成功，应付金额 '+orderMoney(orderPaymentParts(order).total),order.paidAt);order.status='待分配仓库';recordOrderOperation(order,'status','订单状态记录','订单状态更新为“待分配仓库”',new Date(orderLogDate(order.paidAt).getTime()+1).toISOString(),'系统');persistOrder(order);return true}
+function confirmOrderPayment(){var orders=selectedPaymentOrders();if(!orders.length){showToast('请选择可支付订单','warning');return}var amount=orders.reduce(function(sum,order){return sum+orderPaymentParts(order).total},0);if(amount>paymentAccountBalance){showToast('账户余额不足，请先充值','warning');return}orders.forEach(completeOrderPayment);paymentAccountBalance-=amount;localStorage.setItem('oms-payment-balance',String(paymentAccountBalance));orderSelectedIds=orderSelectedIds.filter(function(id){return paymentSelectedIds.indexOf(id)<0});closePaymentModal();updateOrderStats();applyOrderFilters();showToast((paymentMode==='single'?'订单':'批量')+'支付成功，已进入待分配仓库')}
+function payOrder(id){var order=findOrder(id);if(!order)return;openPaymentModal([order],'single')}
+function batchPayOrders(){var orders=selectedOrders();if(!orders.length){showToast('请选择待支付订单','warning');return}openPaymentModal(orders,'batch')}
 function selectedOrders(){return orderSelectedIds.map(function(id){return findOrder(id)}).filter(Boolean)}
 function renderBatchLabelOrders(){var body=document.getElementById('order-label-batch-body');body.innerHTML=batchLabelOrderIds.map(function(id){var order=findOrder(id);if(!order)return '';return '<tr><td><code class="order-id">'+orderEscape(order.localOrderNo||order.id)+'</code></td><td>'+orderEscape(order.recipient||'-')+'</td><td>'+orderLogisticsSummary(order)+'</td></tr>'}).join('')}
 function openBatchLabelModal(){var orders=selectedOrders();if(!orders.length){showToast('请先选择订单','warning');return}batchLabelOrderIds=orders.map(function(order){return order.id});batchLabelFiles=[];document.getElementById('order-label-batch-file-input').value='';document.getElementById('order-label-batch-file-count').textContent='尚未选择面单';renderBatchLabelOrders();document.getElementById('order-label-batch-modal').classList.add('open')}
 function closeBatchLabelModal(){document.getElementById('order-label-batch-modal').classList.remove('open')}
 function handleBatchLabelFiles(){batchLabelFiles=Array.prototype.slice.call(this.files||[]);document.getElementById('order-label-batch-file-count').textContent=batchLabelFiles.length?'已选择 '+batchLabelFiles.length+' 个面单':'尚未选择面单';renderBatchLabelOrders()}
-function confirmBatchLabelUpload(){if(!batchLabelFiles.length){showToast('请先上传面单','warning');return}batchLabelOrderIds.forEach(function(id,index){var order=findOrder(id),file=batchLabelFiles.length===1?batchLabelFiles[0]:batchLabelFiles[index];if(!order||!file)return;order.labelFileName=file.name;order.labelFileUploadedAt=new Date().toISOString();(order.packages&&order.packages[0]||order).labelFileName=file.name;persistOrder(order)});closeBatchLabelModal();renderOrders();showToast('面单上传成功')}
-function applyOrderFilters(){var id=document.getElementById('order-filter-id').value.trim().toLowerCase();var user=document.getElementById('order-filter-user').value.trim().toLowerCase();var phone=document.getElementById('order-filter-phone').value.trim().toLowerCase();var status=document.getElementById('order-filter-status').value;orderFiltered=orderData.filter(function(order){return (!requestedUserId||order.userId===requestedUserId)&&(!id||String(order.localOrderNo||order.id).toLowerCase().indexOf(id)>-1||String(order.omsOrderNo||'').toLowerCase().indexOf(id)>-1)&&(!user||order.userName.toLowerCase().indexOf(user)>-1)&&(!phone||String(order.phone||'').toLowerCase().indexOf(phone)>-1)&&(!status||order.status===status)});orderPage=1;renderOrders()}function resetOrderFilters(){document.getElementById('order-filter-id').value='';document.getElementById('order-filter-user').value='';document.getElementById('order-filter-phone').value='';document.getElementById('order-filter-status').value='';applyOrderFilters()}
+function confirmBatchLabelUpload(){if(!batchLabelFiles.length){showToast('请先上传面单','warning');return}batchLabelOrderIds.forEach(function(id,index){var order=findOrder(id),file=batchLabelFiles.length===1?batchLabelFiles[0]:batchLabelFiles[index];if(!order||!file)return;order.labelFileName=file.name;order.labelFileUploadedAt=new Date().toISOString();(order.packages&&order.packages[0]||order).labelFileName=file.name;recordOrderOperation(order,'logistics','物流信息上传操作','批量上传面单：'+file.name,order.labelFileUploadedAt);persistOrder(order)});closeBatchLabelModal();renderOrders();showToast('面单上传成功')}
+function applyOrderFilters(){var id=document.getElementById('order-filter-id').value.trim().toLowerCase();var sku=document.getElementById('order-filter-sku').value.trim().toLowerCase();var skuName=document.getElementById('order-filter-sku-name').value.trim().toLowerCase();var source=document.getElementById('order-filter-source').value;var status=document.getElementById('order-filter-status').value;orderFiltered=orderData.filter(function(order){var items=Array.isArray(order.items)?order.items:[];var matchesSku=!sku||items.some(function(item){return [item.platformSku,item.matchedSku,item.sku,item.barcode].some(function(value){return String(value||'').toLowerCase().indexOf(sku)>-1})});var matchesSkuName=!skuName||items.some(function(item){return String(item.name||'').toLowerCase().indexOf(skuName)>-1});return (!requestedUserId||order.userId===requestedUserId)&&(!id||String(order.localOrderNo||order.id).toLowerCase().indexOf(id)>-1||String(order.omsOrderNo||'').toLowerCase().indexOf(id)>-1)&&matchesSku&&matchesSkuName&&(!source||orderSource(order)===source)&&(!status||order.status===status)});orderPage=1;renderOrders()}function resetOrderFilters(){document.getElementById('order-filter-id').value='';document.getElementById('order-filter-sku').value='';document.getElementById('order-filter-sku-name').value='';document.getElementById('order-filter-source').value='';document.getElementById('order-filter-status').value='';applyOrderFilters()}
 function openOrderDetail(id){var order=findOrder(id);if(!order)return;var totalQty=order.items.reduce(function(sum,item){return sum+item.quantity},0);document.getElementById('order-detail-title').textContent='订单详情 · '+(order.localOrderNo||order.id);document.getElementById('order-detail-content').innerHTML='<div class="order-detail-meta"><div><span>下单用户</span><strong>'+orderEscape(order.userName)+'</strong></div><div><span>下单时间</span><strong>'+order.createdAt+'</strong></div><div><span>订单状态</span><strong><span class="order-status '+orderStatusClass(order.status)+'">'+order.status+'</span></strong></div><div><span>用户ID</span><strong>'+orderEscape(order.userId||'-')+'</strong></div><div class="wide"><span>收货信息</span><strong>'+orderEscape(order.recipient)+' · '+orderEscape(order.phone)+' · '+orderEscape(order.address)+'</strong></div></div><h4>SKU明细</h4><div class="table-scroll"><table class="data-table order-detail-items"><thead><tr><th>SKU</th><th>单价</th><th>数量</th><th>小计</th></tr></thead><tbody>'+order.items.map(function(item){return '<tr><td><div class="order-detail-sku"><img src="'+orderEscape(item.img)+'" alt=""><div><strong>'+orderEscape(item.name)+'</strong><span>'+orderEscape(item.spec)+' · '+orderEscape(item.sku)+'</span></div></div></td><td>'+orderMoney(item.unitPrice)+'</td><td>'+item.quantity+'</td><td>'+orderMoney(item.subtotal)+'</td></tr>'}).join('')+'</tbody></table></div><div class="order-detail-bottom"><div><h4>费用明细</h4><p><span>商品金额</span><strong>'+orderMoney(order.productAmount)+'</strong></p><p><span>操作费</span><strong>'+orderMoney(order.operationFee)+'</strong></p><p><span>物流费</span><strong>'+orderMoney(order.logisticsFee)+'</strong></p><p class="total"><span>订单金额</span><strong>'+orderMoney(order.amount)+'</strong></p></div><div><h4>OMS履约进度</h4><ol class="order-timeline"></ol></div></div><p class="order-detail-qty">共 '+order.items.length+' 个SKU / '+totalQty+' 件</p>';document.getElementById('order-detail-modal').classList.add('open')}
 var openOrderDetailBase=openOrderDetail;
 openOrderDetail=function(id){
@@ -92,12 +165,836 @@ openOrderDetail=function(id){
     timeline.innerHTML='<li class="done">本站订单已创建</li><li class="'+(order.omsOrderNo?'done':'')+'">'+(order.omsOrderNo?'OMS订单已创建并锁定库存':'等待 SKU 关联，暂未创建 OMS 订单')+'</li><li class="'+(reached>=0?'done':'')+'">等待分配仓库</li><li class="'+(reached>=1?'done':'')+'">仓库拣货</li><li class="'+(reached>=2?'done':'')+'">等待物流收揽</li><li class="'+(reached>=3?'done':'')+'">部分或全部发货</li>'+(['商品缺货','已关闭','拦截发货成功'].indexOf(order.status)>-1?'<li class="order-timeline-exception">'+order.status+'</li>':'');
   }
 };
+function openOrderOperationLog(id){var order=findOrder(id);if(!order)return;var logs=orderOperationLogs(order);document.getElementById('order-operation-log-title').textContent='操作日志 · '+(order.localOrderNo||order.id);document.getElementById('order-operation-log-order-no').textContent=order.localOrderNo||order.id;document.getElementById('order-operation-log-count').textContent=logs.length+' 条记录';document.getElementById('order-operation-log-list').innerHTML=logs.map(function(log){return '<li class="order-operation-log-item is-'+orderEscape(log.type||'status')+'"><time>'+orderLogDisplayTime(log.time)+'</time><span class="order-operation-log-dot" aria-hidden="true"></span><div><div class="order-operation-log-item-head"><strong>'+orderEscape(log.title||'操作记录')+'</strong><span>'+orderEscape(({import:'订单导入',association:'关联',logistics:'物流',payment:'付款',status:'状态'}[log.type]||'操作'))+'</span></div><p>'+orderEscape(log.detail||'-')+'</p><small>操作人：'+orderEscape(log.operator||'系统')+'</small></div></li>'}).join('');document.getElementById('order-operation-log-modal').classList.add('open')}
+function closeOrderOperationLog(){document.getElementById('order-operation-log-modal').classList.remove('open')}
 function closeOrderDetail(){document.getElementById('order-detail-modal').classList.remove('open')}
 function openOrderAction(type,id){var order=findOrder(id);if(!order||order.status!=='待审核')return;orderAction={type:type,id:id};document.getElementById('order-reason-field').hidden=type!=='close';document.getElementById('order-tracking-field').hidden=true;document.getElementById('order-reject-reason').value='';var titles={approve:'审核通过',close:'关闭订单'};var copies={approve:'审核通过后，订单进入“待分配仓库”，后续状态由 OMS 自动同步。',close:'关闭后订单不再进入履约，请填写关闭原因。'};document.getElementById('order-action-title').textContent=titles[type];document.getElementById('order-action-copy').textContent=copies[type];document.getElementById('order-review-rules').innerHTML='<strong>触发规则</strong><div>'+((order.reviewReasons&&order.reviewReasons.length)?order.reviewReasons:['待人工复核']).map(function(reason){return '<span>'+orderEscape(reason)+'</span>'}).join('')+'</div>';document.getElementById('order-action-confirm').textContent=type==='approve'?'确认通过':'确认关闭';document.getElementById('order-action-modal').classList.add('open');if(type==='close')document.getElementById('order-reject-reason').focus()}
 function closeOrderAction(){document.getElementById('order-action-modal').classList.remove('open')}
-function submitOrderAction(){var order=findOrder(orderAction.id);if(!order||order.status!=='待审核')return;if(orderAction.type==='approve'){if(!order.omsOrderNo){var suffix=String(Date.now()).slice(-10);order.omsOrderNo='OMS-'+suffix;order.packages=[{packageNo:'PKG-'+suffix,logistics:order.logistics||'待分配物流',tracking:'',status:'待分配仓库'}]}order.status='待分配仓库';order.reviewedAt=new Date().toLocaleString('zh-CN',{hour12:false});order.reviewReasons=[];showToast('审核通过，OMS订单已按本站业务单号幂等创建')}if(orderAction.type==='close'){var reason=document.getElementById('order-reject-reason').value.trim();if(!reason){showToast('请输入关闭原因','warning');return}order.status='已关闭';order.closeReason=reason;showToast('订单已关闭')}try{var saved=JSON.parse(localStorage.getItem('oms-v2-created-orders')||'[]');var savedOrder=saved.find(function(item){return item.idempotencyKey===order.idempotencyKey});if(savedOrder)Object.assign(savedOrder,order);localStorage.setItem('oms-v2-created-orders',JSON.stringify(saved))}catch(error){}closeOrderAction();updateOrderStats();applyOrderFilters()}
-document.getElementById('order-search').addEventListener('click',applyOrderFilters);document.getElementById('order-reset').addEventListener('click',resetOrderFilters);document.querySelector('.ops-filter-bar').addEventListener('keydown',function(event){if(event.key==='Enter'){event.preventDefault();applyOrderFilters()}});document.getElementById('order-prev').addEventListener('click',function(){orderPage=Math.max(1,orderPage-1);renderOrders()});document.getElementById('order-next').addEventListener('click',function(){orderPage++;renderOrders()});document.getElementById('order-select-all').addEventListener('change',function(){var pageData=orderFiltered.slice((orderPage-1)*orderPageSize,orderPage*orderPageSize);pageData.forEach(function(order){var index=orderSelectedIds.indexOf(order.id);if(this.checked&&index<0)orderSelectedIds.push(order.id);if(!this.checked&&index>-1)orderSelectedIds.splice(index,1)},this);renderOrders()});document.getElementById('order-tbody').addEventListener('change',function(event){var checkbox=event.target.closest('[data-order-select]');if(!checkbox)return;var id=checkbox.dataset.orderSelect,index=orderSelectedIds.indexOf(id);if(checkbox.checked&&index<0)orderSelectedIds.push(id);if(!checkbox.checked&&index>-1)orderSelectedIds.splice(index,1);syncOrderSelectionControls(orderFiltered.slice((orderPage-1)*orderPageSize,orderPage*orderPageSize))});document.getElementById('order-tbody').addEventListener('click',function(event){var copyButton=event.target.closest('[data-order-copy]');if(copyButton){copyOrderValue(copyButton.dataset.orderCopy,copyButton.dataset.orderCopyLabel);return}var upload=event.target.closest('[data-order-upload-tracking]');if(upload){openTrackingUpload(upload.dataset.orderUploadTracking);return}var detail=event.target.closest('[data-order-detail]');if(detail){openOrderDetail(detail.dataset.orderDetail);return}var action=event.target.closest('[data-order-action]');if(action)openOrderAction(action.dataset.orderAction,action.dataset.orderId)});document.querySelectorAll('[data-order-detail-close]').forEach(function(button){button.addEventListener('click',closeOrderDetail)});document.getElementById('order-detail-modal').addEventListener('click',function(event){if(event.target===this)closeOrderDetail()});document.getElementById('order-action-close').addEventListener('click',closeOrderAction);document.getElementById('order-action-cancel').addEventListener('click',closeOrderAction);document.getElementById('order-action-confirm').addEventListener('click',submitOrderAction);document.getElementById('order-action-modal').addEventListener('click',function(event){if(event.target===this)closeOrderAction()});document.getElementById('order-tracking-file-input').addEventListener('change',handleTrackingUpload);document.getElementById('order-label-batch-open').addEventListener('click',openBatchLabelModal);document.getElementById('order-label-upload-trigger').addEventListener('click',function(){document.getElementById('order-label-batch-file-input').click()});document.getElementById('order-label-batch-file-input').addEventListener('change',handleBatchLabelFiles);document.getElementById('order-label-batch-confirm').addEventListener('click',confirmBatchLabelUpload);document.getElementById('order-label-batch-cancel').addEventListener('click',closeBatchLabelModal);document.getElementById('order-label-batch-close').addEventListener('click',closeBatchLabelModal);document.getElementById('order-label-batch-modal').addEventListener('click',function(event){if(event.target===this)closeBatchLabelModal()});document.addEventListener('keydown',function(event){if(event.key==='Escape'){closeOrderDetail();closeOrderAction();closeBatchLabelModal()}});updateOrderStats();applyOrderFilters();
+function submitOrderAction(){var order=findOrder(orderAction.id);if(!order||order.status!=='待审核')return;if(orderAction.type==='approve'){if(!order.omsOrderNo){var suffix=String(Date.now()).slice(-10);order.omsOrderNo='OMS-'+suffix;order.packages=[{packageNo:'PKG-'+suffix,logistics:order.logistics||'待分配物流',tracking:'',status:'待分配仓库'}]}order.status='待分配仓库';order.reviewedAt=new Date().toLocaleString('zh-CN',{hour12:false});order.reviewReasons=[];recordOrderOperation(order,'status','订单状态记录','审核通过，订单状态更新为“待分配仓库”');showToast('审核通过，OMS订单已按本站业务单号幂等创建')}if(orderAction.type==='close'){var reason=document.getElementById('order-reject-reason').value.trim();if(!reason){showToast('请输入关闭原因','warning');return}order.status='已关闭';order.closeReason=reason;recordOrderOperation(order,'status','订单状态记录','订单状态更新为“已关闭”，原因：'+reason);showToast('订单已关闭')}try{var saved=JSON.parse(localStorage.getItem('oms-v2-created-orders')||'[]');var savedOrder=saved.find(function(item){return item.idempotencyKey===order.idempotencyKey});if(savedOrder)Object.assign(savedOrder,order);localStorage.setItem('oms-v2-created-orders',JSON.stringify(saved))}catch(error){}closeOrderAction();updateOrderStats();applyOrderFilters()}
+document.getElementById('order-search').addEventListener('click',applyOrderFilters);document.getElementById('order-reset').addEventListener('click',resetOrderFilters);document.querySelector('.ops-filter-bar').addEventListener('keydown',function(event){if(event.key==='Enter'){event.preventDefault();applyOrderFilters()}});document.getElementById('order-prev').addEventListener('click',function(){orderPage=Math.max(1,orderPage-1);renderOrders()});document.getElementById('order-next').addEventListener('click',function(){orderPage++;renderOrders()});document.getElementById('order-select-all').addEventListener('change',function(){var pageData=orderFiltered.slice((orderPage-1)*orderPageSize,orderPage*orderPageSize);pageData.forEach(function(order){var index=orderSelectedIds.indexOf(order.id);if(this.checked&&index<0)orderSelectedIds.push(order.id);if(!this.checked&&index>-1)orderSelectedIds.splice(index,1)},this);renderOrders()});document.getElementById('order-tbody').addEventListener('change',function(event){var checkbox=event.target.closest('[data-order-select]');if(!checkbox)return;var id=checkbox.dataset.orderSelect,index=orderSelectedIds.indexOf(id);if(checkbox.checked&&index<0)orderSelectedIds.push(id);if(!checkbox.checked&&index>-1)orderSelectedIds.splice(index,1);syncOrderSelectionControls(orderFiltered.slice((orderPage-1)*orderPageSize,orderPage*orderPageSize))});document.getElementById('order-tbody').addEventListener('click',function(event){var copyButton=event.target.closest('[data-order-copy]');if(copyButton){copyOrderValue(copyButton.dataset.orderCopy,copyButton.dataset.orderCopyLabel);return}var upload=event.target.closest('[data-order-upload-tracking]');if(upload){openTrackingUpload(upload.dataset.orderUploadTracking);return}var operationLog=event.target.closest('[data-order-operation-log]');if(operationLog){openOrderOperationLog(operationLog.dataset.orderOperationLog);return}var detail=event.target.closest('[data-order-detail]');if(detail){openOrderDetail(detail.dataset.orderDetail);return}var action=event.target.closest('[data-order-action]');if(action)openOrderAction(action.dataset.orderAction,action.dataset.orderId)});document.querySelectorAll('[data-order-detail-close]').forEach(function(button){button.addEventListener('click',closeOrderDetail)});document.getElementById('order-detail-modal').addEventListener('click',function(event){if(event.target===this)closeOrderDetail()});document.querySelectorAll('[data-order-operation-log-close]').forEach(function(button){button.addEventListener('click',closeOrderOperationLog)});document.getElementById('order-operation-log-modal').addEventListener('click',function(event){if(event.target===this)closeOrderOperationLog()});document.getElementById('order-action-close').addEventListener('click',closeOrderAction);document.getElementById('order-action-cancel').addEventListener('click',closeOrderAction);document.getElementById('order-action-confirm').addEventListener('click',submitOrderAction);document.getElementById('order-action-modal').addEventListener('click',function(event){if(event.target===this)closeOrderAction()});document.getElementById('order-tracking-file-input').addEventListener('change',handleTrackingUpload);document.getElementById('order-label-batch-open').addEventListener('click',openBatchLabelModal);document.getElementById('order-label-upload-trigger').addEventListener('click',function(){document.getElementById('order-label-batch-file-input').click()});document.getElementById('order-label-batch-file-input').addEventListener('change',handleBatchLabelFiles);document.getElementById('order-label-batch-confirm').addEventListener('click',confirmBatchLabelUpload);document.getElementById('order-label-batch-cancel').addEventListener('click',closeBatchLabelModal);document.getElementById('order-label-batch-close').addEventListener('click',closeBatchLabelModal);document.getElementById('order-label-batch-modal').addEventListener('click',function(event){if(event.target===this)closeBatchLabelModal()});document.addEventListener('keydown',function(event){if(event.key==='Escape'){closeOrderDetail();closeOrderOperationLog();closeOrderAction();closeBatchLabelModal()}});updateOrderStats();applyOrderFilters();
 var renderOrdersBase=renderOrders;renderOrders=function(){renderOrdersBase();var pages=Math.max(1,Math.ceil(orderFiltered.length/orderPageSize));document.getElementById('order-current').textContent=orderPage+' / '+pages};renderOrders();
-</script><script src="toast.js?v=20260828-cart-action"></script><script src="order-import.js?v=20260907-order-import"></script><script src="role-switch.js"></script><script src="notes.js?v=20260828-local-prd-v2"></script>
-<script>document.getElementById('order-batch-pay-open').addEventListener('click',batchPayOrders);document.getElementById('order-tbody').addEventListener('click',function(event){var payment=event.target.closest('[data-order-payment]');if(payment){payOrder(payment.dataset.orderPayment);return}var link=event.target.closest('[data-order-link-sku]');if(link&&window.openOrderSkuLink)window.openOrderSkuLink(link.dataset.orderLinkSku,Number(link.dataset.orderLinkIndex))});</script></body></html>
+</script><script src="toast.js?v=20260828-cart-action"></script><div class="toast" id="global-toast" role="status" aria-live="polite" aria-atomic="true"><span class="toast-icon" aria-hidden="true">✓</span><span class="toast-message"></span><a class="toast-action" href="#购物车" hidden="">查看购物车</a></div><div class="toast" id="global-toast" role="status" aria-live="polite" aria-atomic="true"><span class="toast-icon" aria-hidden="true">✓</span><span class="toast-message"></span><a class="toast-action" href="#购物车" hidden="">查看购物车</a></div><div class="toast" id="global-toast" role="status" aria-live="polite" aria-atomic="true"><span class="toast-icon" aria-hidden="true">✓</span><span class="toast-message"></span><a class="toast-action" href="#购物车" hidden="">查看购物车</a></div><div class="toast" id="global-toast" role="status" aria-live="polite" aria-atomic="true"><span class="toast-icon" aria-hidden="true">✓</span><span class="toast-message"></span><a class="toast-action" href="#购物车" hidden="">查看购物车</a></div><div class="toast" id="global-toast" role="status" aria-live="polite" aria-atomic="true"><span class="toast-icon" aria-hidden="true">✓</span><span class="toast-message"></span><a class="toast-action" href="#购物车" hidden="">查看购物车</a></div><div class="toast" id="global-toast" role="status" aria-live="polite" aria-atomic="true"><span class="toast-icon" aria-hidden="true">✓</span><span class="toast-message"></span><a class="toast-action" href="#购物车" hidden="">查看购物车</a></div><div class="toast" id="global-toast" role="status" aria-live="polite" aria-atomic="true"><span class="toast-icon" aria-hidden="true">✓</span><span class="toast-message"></span><a class="toast-action" href="#购物车" hidden="">查看购物车</a></div><div class="toast" id="global-toast" role="status" aria-live="polite" aria-atomic="true"><span class="toast-icon" aria-hidden="true">✓</span><span class="toast-message"></span><a class="toast-action" href="#购物车" hidden="">查看购物车</a></div><div class="toast" id="global-toast" role="status" aria-live="polite" aria-atomic="true"><span class="toast-icon" aria-hidden="true">✓</span><span class="toast-message"></span><a class="toast-action" href="#购物车" hidden="">查看购物车</a></div><div class="toast" id="global-toast" role="status" aria-live="polite" aria-atomic="true"><span class="toast-icon" aria-hidden="true">✓</span><span class="toast-message"></span><a class="toast-action" href="#购物车" hidden="">查看购物车</a></div><script src="order-import.js?v=20260907-order-import"></script><script src="role-switch.js"></script><div class="modal-overlay" id="role-switch-modal" role="dialog" aria-modal="true" aria-labelledby="role-switch-title"><div class="modal role-modal"><div class="modal-head"><h3 id="role-switch-title">切换身份</h3><button class="close" type="button" data-role-close="" aria-label="关闭">×</button></div><div class="modal-body"><div class="role-current" id="role-current-text"></div><div class="role-list" role="radiogroup" aria-label="可切换身份"><button class="role-option" type="button" role="radio" data-role-id="super-admin" aria-checked="false"><span class="role-option-avatar super">超</span><span class="role-option-copy"><span class="role-option-name">超管</span><span class="role-option-desc">查看全部公司与业务组数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="company-admin" aria-checked="false"><span class="role-option-avatar company">公</span><span class="role-option-copy"><span class="role-option-name">公司A管理员</span><span class="role-option-desc">管理公司A的全部业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="group-admin" aria-checked="false"><span class="role-option-avatar group">组</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A管理员</span><span class="role-option-desc">管理公司A业务组A的数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="salesperson" aria-checked="false"><span class="role-option-avatar sales">员</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A业务员</span><span class="role-option-desc">查看本人负责的业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button></div></div><div class="modal-footer"><button class="btn btn-ghost" type="button" data-role-close="">取消</button><button class="btn btn-primary" type="button" id="role-switch-confirm">确认切换</button></div></div></div><div class="modal-overlay" id="role-switch-modal" role="dialog" aria-modal="true" aria-labelledby="role-switch-title"><div class="modal role-modal"><div class="modal-head"><h3 id="role-switch-title">切换身份</h3><button class="close" type="button" data-role-close="" aria-label="关闭">×</button></div><div class="modal-body"><div class="role-current" id="role-current-text"></div><div class="role-list" role="radiogroup" aria-label="可切换身份"><button class="role-option" type="button" role="radio" data-role-id="super-admin" aria-checked="false"><span class="role-option-avatar super">超</span><span class="role-option-copy"><span class="role-option-name">超管</span><span class="role-option-desc">查看全部公司与业务组数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="company-admin" aria-checked="false"><span class="role-option-avatar company">公</span><span class="role-option-copy"><span class="role-option-name">公司A管理员</span><span class="role-option-desc">管理公司A的全部业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="group-admin" aria-checked="false"><span class="role-option-avatar group">组</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A管理员</span><span class="role-option-desc">管理公司A业务组A的数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="salesperson" aria-checked="false"><span class="role-option-avatar sales">员</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A业务员</span><span class="role-option-desc">查看本人负责的业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button></div></div><div class="modal-footer"><button class="btn btn-ghost" type="button" data-role-close="">取消</button><button class="btn btn-primary" type="button" id="role-switch-confirm">确认切换</button></div></div></div><div class="modal-overlay" id="role-switch-modal" role="dialog" aria-modal="true" aria-labelledby="role-switch-title"><div class="modal role-modal"><div class="modal-head"><h3 id="role-switch-title">切换身份</h3><button class="close" type="button" data-role-close="" aria-label="关闭">×</button></div><div class="modal-body"><div class="role-current" id="role-current-text"></div><div class="role-list" role="radiogroup" aria-label="可切换身份"><button class="role-option" type="button" role="radio" data-role-id="super-admin" aria-checked="false"><span class="role-option-avatar super">超</span><span class="role-option-copy"><span class="role-option-name">超管</span><span class="role-option-desc">查看全部公司与业务组数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="company-admin" aria-checked="false"><span class="role-option-avatar company">公</span><span class="role-option-copy"><span class="role-option-name">公司A管理员</span><span class="role-option-desc">管理公司A的全部业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="group-admin" aria-checked="false"><span class="role-option-avatar group">组</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A管理员</span><span class="role-option-desc">管理公司A业务组A的数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="salesperson" aria-checked="false"><span class="role-option-avatar sales">员</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A业务员</span><span class="role-option-desc">查看本人负责的业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button></div></div><div class="modal-footer"><button class="btn btn-ghost" type="button" data-role-close="">取消</button><button class="btn btn-primary" type="button" id="role-switch-confirm">确认切换</button></div></div></div><div class="modal-overlay" id="role-switch-modal" role="dialog" aria-modal="true" aria-labelledby="role-switch-title"><div class="modal role-modal"><div class="modal-head"><h3 id="role-switch-title">切换身份</h3><button class="close" type="button" data-role-close="" aria-label="关闭">×</button></div><div class="modal-body"><div class="role-current" id="role-current-text"></div><div class="role-list" role="radiogroup" aria-label="可切换身份"><button class="role-option" type="button" role="radio" data-role-id="super-admin" aria-checked="false"><span class="role-option-avatar super">超</span><span class="role-option-copy"><span class="role-option-name">超管</span><span class="role-option-desc">查看全部公司与业务组数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="company-admin" aria-checked="false"><span class="role-option-avatar company">公</span><span class="role-option-copy"><span class="role-option-name">公司A管理员</span><span class="role-option-desc">管理公司A的全部业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="group-admin" aria-checked="false"><span class="role-option-avatar group">组</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A管理员</span><span class="role-option-desc">管理公司A业务组A的数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="salesperson" aria-checked="false"><span class="role-option-avatar sales">员</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A业务员</span><span class="role-option-desc">查看本人负责的业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button></div></div><div class="modal-footer"><button class="btn btn-ghost" type="button" data-role-close="">取消</button><button class="btn btn-primary" type="button" id="role-switch-confirm">确认切换</button></div></div></div><div class="modal-overlay" id="role-switch-modal" role="dialog" aria-modal="true" aria-labelledby="role-switch-title"><div class="modal role-modal"><div class="modal-head"><h3 id="role-switch-title">切换身份</h3><button class="close" type="button" data-role-close="" aria-label="关闭">×</button></div><div class="modal-body"><div class="role-current" id="role-current-text"></div><div class="role-list" role="radiogroup" aria-label="可切换身份"><button class="role-option" type="button" role="radio" data-role-id="super-admin" aria-checked="false"><span class="role-option-avatar super">超</span><span class="role-option-copy"><span class="role-option-name">超管</span><span class="role-option-desc">查看全部公司与业务组数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="company-admin" aria-checked="false"><span class="role-option-avatar company">公</span><span class="role-option-copy"><span class="role-option-name">公司A管理员</span><span class="role-option-desc">管理公司A的全部业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="group-admin" aria-checked="false"><span class="role-option-avatar group">组</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A管理员</span><span class="role-option-desc">管理公司A业务组A的数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="salesperson" aria-checked="false"><span class="role-option-avatar sales">员</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A业务员</span><span class="role-option-desc">查看本人负责的业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button></div></div><div class="modal-footer"><button class="btn btn-ghost" type="button" data-role-close="">取消</button><button class="btn btn-primary" type="button" id="role-switch-confirm">确认切换</button></div></div></div><div class="modal-overlay" id="role-switch-modal" role="dialog" aria-modal="true" aria-labelledby="role-switch-title"><div class="modal role-modal"><div class="modal-head"><h3 id="role-switch-title">切换身份</h3><button class="close" type="button" data-role-close="" aria-label="关闭">×</button></div><div class="modal-body"><div class="role-current" id="role-current-text"></div><div class="role-list" role="radiogroup" aria-label="可切换身份"><button class="role-option" type="button" role="radio" data-role-id="super-admin" aria-checked="false"><span class="role-option-avatar super">超</span><span class="role-option-copy"><span class="role-option-name">超管</span><span class="role-option-desc">查看全部公司与业务组数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="company-admin" aria-checked="false"><span class="role-option-avatar company">公</span><span class="role-option-copy"><span class="role-option-name">公司A管理员</span><span class="role-option-desc">管理公司A的全部业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="group-admin" aria-checked="false"><span class="role-option-avatar group">组</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A管理员</span><span class="role-option-desc">管理公司A业务组A的数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="salesperson" aria-checked="false"><span class="role-option-avatar sales">员</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A业务员</span><span class="role-option-desc">查看本人负责的业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button></div></div><div class="modal-footer"><button class="btn btn-ghost" type="button" data-role-close="">取消</button><button class="btn btn-primary" type="button" id="role-switch-confirm">确认切换</button></div></div></div><div class="modal-overlay" id="role-switch-modal" role="dialog" aria-modal="true" aria-labelledby="role-switch-title"><div class="modal role-modal"><div class="modal-head"><h3 id="role-switch-title">切换身份</h3><button class="close" type="button" data-role-close="" aria-label="关闭">×</button></div><div class="modal-body"><div class="role-current" id="role-current-text"></div><div class="role-list" role="radiogroup" aria-label="可切换身份"><button class="role-option" type="button" role="radio" data-role-id="super-admin" aria-checked="false"><span class="role-option-avatar super">超</span><span class="role-option-copy"><span class="role-option-name">超管</span><span class="role-option-desc">查看全部公司与业务组数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="company-admin" aria-checked="false"><span class="role-option-avatar company">公</span><span class="role-option-copy"><span class="role-option-name">公司A管理员</span><span class="role-option-desc">管理公司A的全部业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="group-admin" aria-checked="false"><span class="role-option-avatar group">组</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A管理员</span><span class="role-option-desc">管理公司A业务组A的数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="salesperson" aria-checked="false"><span class="role-option-avatar sales">员</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A业务员</span><span class="role-option-desc">查看本人负责的业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button></div></div><div class="modal-footer"><button class="btn btn-ghost" type="button" data-role-close="">取消</button><button class="btn btn-primary" type="button" id="role-switch-confirm">确认切换</button></div></div></div><div class="modal-overlay" id="role-switch-modal" role="dialog" aria-modal="true" aria-labelledby="role-switch-title"><div class="modal role-modal"><div class="modal-head"><h3 id="role-switch-title">切换身份</h3><button class="close" type="button" data-role-close="" aria-label="关闭">×</button></div><div class="modal-body"><div class="role-current" id="role-current-text"></div><div class="role-list" role="radiogroup" aria-label="可切换身份"><button class="role-option" type="button" role="radio" data-role-id="super-admin" aria-checked="false"><span class="role-option-avatar super">超</span><span class="role-option-copy"><span class="role-option-name">超管</span><span class="role-option-desc">查看全部公司与业务组数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="company-admin" aria-checked="false"><span class="role-option-avatar company">公</span><span class="role-option-copy"><span class="role-option-name">公司A管理员</span><span class="role-option-desc">管理公司A的全部业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="group-admin" aria-checked="false"><span class="role-option-avatar group">组</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A管理员</span><span class="role-option-desc">管理公司A业务组A的数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="salesperson" aria-checked="false"><span class="role-option-avatar sales">员</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A业务员</span><span class="role-option-desc">查看本人负责的业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button></div></div><div class="modal-footer"><button class="btn btn-ghost" type="button" data-role-close="">取消</button><button class="btn btn-primary" type="button" id="role-switch-confirm">确认切换</button></div></div></div><div class="modal-overlay" id="role-switch-modal" role="dialog" aria-modal="true" aria-labelledby="role-switch-title"><div class="modal role-modal"><div class="modal-head"><h3 id="role-switch-title">切换身份</h3><button class="close" type="button" data-role-close="" aria-label="关闭">×</button></div><div class="modal-body"><div class="role-current" id="role-current-text"></div><div class="role-list" role="radiogroup" aria-label="可切换身份"><button class="role-option" type="button" role="radio" data-role-id="super-admin" aria-checked="false"><span class="role-option-avatar super">超</span><span class="role-option-copy"><span class="role-option-name">超管</span><span class="role-option-desc">查看全部公司与业务组数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="company-admin" aria-checked="false"><span class="role-option-avatar company">公</span><span class="role-option-copy"><span class="role-option-name">公司A管理员</span><span class="role-option-desc">管理公司A的全部业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="group-admin" aria-checked="false"><span class="role-option-avatar group">组</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A管理员</span><span class="role-option-desc">管理公司A业务组A的数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="salesperson" aria-checked="false"><span class="role-option-avatar sales">员</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A业务员</span><span class="role-option-desc">查看本人负责的业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button></div></div><div class="modal-footer"><button class="btn btn-ghost" type="button" data-role-close="">取消</button><button class="btn btn-primary" type="button" id="role-switch-confirm">确认切换</button></div></div></div><div class="modal-overlay" id="role-switch-modal" role="dialog" aria-modal="true" aria-labelledby="role-switch-title"><div class="modal role-modal"><div class="modal-head"><h3 id="role-switch-title">切换身份</h3><button class="close" type="button" data-role-close="" aria-label="关闭">×</button></div><div class="modal-body"><div class="role-current" id="role-current-text"></div><div class="role-list" role="radiogroup" aria-label="可切换身份"><button class="role-option" type="button" role="radio" data-role-id="super-admin" aria-checked="false"><span class="role-option-avatar super">超</span><span class="role-option-copy"><span class="role-option-name">超管</span><span class="role-option-desc">查看全部公司与业务组数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="company-admin" aria-checked="false"><span class="role-option-avatar company">公</span><span class="role-option-copy"><span class="role-option-name">公司A管理员</span><span class="role-option-desc">管理公司A的全部业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="group-admin" aria-checked="false"><span class="role-option-avatar group">组</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A管理员</span><span class="role-option-desc">管理公司A业务组A的数据</span></span><span class="role-option-check" aria-hidden="true"></span></button><button class="role-option" type="button" role="radio" data-role-id="salesperson" aria-checked="false"><span class="role-option-avatar sales">员</span><span class="role-option-copy"><span class="role-option-name">公司A业务组A业务员</span><span class="role-option-desc">查看本人负责的业务数据</span></span><span class="role-option-check" aria-hidden="true"></span></button></div></div><div class="modal-footer"><button class="btn btn-ghost" type="button" data-role-close="">取消</button><button class="btn btn-primary" type="button" id="role-switch-confirm">确认切换</button></div></div></div><script src="notes.js?v=20260828-local-prd-v2"></script><button class="btn btn-ghost notes-toggle notes-toggle-floating" type="button" aria-label="查看注释" title="查看注释" aria-expanded="false" aria-controls="notes-panel" style="left: 1013px; top: 8px; right: auto; transform: none;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M8 13h8"></path><path d="M8 17h6"></path></svg><span>查看注释</span></button><aside class="notes-panel" id="notes-panel" aria-label="订单管理注释"><div class="notes-resizer" role="separator" tabindex="0" aria-label="调整注释区域宽度" aria-orientation="vertical" aria-valuemin="320" aria-valuemax="734" aria-valuenow="545"></div><div class="notes-panel-head"><h2>订单管理注释</h2><button class="notes-close" type="button" aria-label="收起注释" title="收起注释">×</button></div><div class="notes-content"><article class="notes-document" data-html-annotator-injected-document=""><h2>本页数据来源</h2>
+<p>主要是前端页面下单和订单导入。
+订单进入仓库作业后的状态值需要依赖于海外仓查询包裹状态接口/oms/api/indent/indent_parcel/status_list_by_parcel_code、/oms/api/indent/indent_parcel/status_list_by_indent_code</p>
+<h2>页面结构</h2>
+<ol>
+<li>统计区域：展示待关联订单、处理中订单、已发货订单和本月订单金额。</li>
+<li>筛选区域：按订单号、SKU 编码、SKU 名称、订单状态还有订单来源筛选订单，并提供搜索、重置、批量付款、批量上传面单和订单导入入口。</li>
+<li>订单列表：展示订单号、产品信息、销售金额、货款金额、订单状态、收货人、收货地址、物流和操作。</li>
+<li>分页区域：展示筛选结果总数、当前页和分页切换入口。</li>
+</ol>
+<h2>统计区域</h2>
+<p>统计数据基于当前订单数据计算，不随订单号、SKU 编码、SKU 名称和订单状态筛选条件变化。</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>计算规则</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>待关联订单</td>
+<td>订单状态为“待关联”的订单数量</td>
+</tr>
+<tr>
+<td>处理中订单</td>
+<td>订单状态为“待分配仓库”“待仓库拣货”或“待物流收揽”的订单数量</td>
+</tr>
+<tr>
+<td>已发货订单</td>
+<td>订单状态为“部分发货”或“已发货”的订单数量</td>
+</tr>
+<tr>
+<td>本月订单金额</td>
+<td>创建时间属于当前统计月份且订单状态不是“已关闭”的订单金额之和</td>
+</tr>
+</tbody></table>
+<h2>筛选功能</h2>
+<h3>订单号</h3>
+<ul>
+<li>控件类型：文本输入。</li>
+<li>匹配规则：支持按本站订单号（前端下单）、订单导入订单号模糊查询，不区分大小写。</li>
+</ul>
+<h3>SKU 编码</h3>
+<ul>
+<li>控件类型：文本输入。</li>
+<li>匹配范围：平台 SKU、原始SKU。</li>
+<li>匹配规则：支持模糊查询，不区分大小写。</li>
+</ul>
+<h3>SKU 名称</h3>
+<ul>
+<li>控件类型：文本输入。</li>
+<li>匹配规则：按订单商品名称模糊查询，不区分大小写。</li>
+</ul>
+<h3>订单状态</h3>
+<ul>
+<li>控件类型：单选下拉框。</li>
+<li>默认值：全部。</li>
+<li>可选项：待关联、待支付、待分配仓库、待仓库拣货、待物流收揽、部分发货、已发货、商品缺货、已关闭、拦截发货成功。</li>
+</ul>
+<h3>订单来源</h3>
+<ul>
+<li>控件类型：单选下拉框。</li>
+<li>默认值：全部。</li>
+<li>可选项：全部、前端下单、订单导入。</li>
+</ul>
+<h3>搜索和重置</h3>
+<ul>
+<li>搜索：按照已填写的条件刷新订单列表、结果条数和分页。</li>
+<li>重置：清空订单号、SKU 编码、SKU 名称和订单状态，恢复全部订单并回到第一页。</li>
+<li>多个筛选条件之间为“且”关系。</li>
+<li>筛选结果为空时展示“暂无匹配订单”。</li>
+</ul>
+<h2>订单列表</h2>
+<p>数据来源：订单导入数据、系统订单数据及已创建的 OMS 订单数据。</p>
+<p>表格从左到右只展示以下 10 列：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>展示规则</th>
+<th>数据来源</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>勾选框</td>
+<td>提供当前页全选、取消全选和半选状态；行选择用于批量付款和批量上传面单</td>
+<td>-</td>
+</tr>
+<tr>
+<td>订单号</td>
+<td>优先展示本站订单号；没有本站订单号时展示订单数据中的订单 ID</td>
+<td>前端下单或者订单导入</td>
+</tr>
+<tr>
+<td>产品信息</td>
+<td>展示订单内全部商品的图片、名称、平台 SKU、SKU、规格颜色、产品 ID、单价、数量及关联操作</td>
+<td>系统内数据表</td>
+</tr>
+<tr>
+<td>销售金额</td>
+<td>分三行展示销售价、运费、总计；没有值时使用 <code>--</code>；通常来源于订单导入金额</td>
+<td>订单导入时的金额或者是前端下单的金额</td>
+</tr>
+<tr>
+<td>货款金额</td>
+<td>分三行展示货款、运费、总计；三个字段始终展示，没有值时使用 <code>--</code></td>
+<td>上架到美国货盘时针对商品填写的定价</td>
+</tr>
+<tr>
+<td>订单状态</td>
+<td>展示订单当前状态，使用状态标签样式区分状态</td>
+<td>【待关联、待支付、商品缺货、已关闭】都为本系统维护的状态；【待分配仓库、待仓库拣货、待物流收揽、部分发货、已发货、拦截发货成功】为海外仓接口维护的字段</td>
+</tr>
+<tr>
+<td>收货人</td>
+<td>展示收货人姓名，没有值时展示 <code>-</code></td>
+<td>前端订单或订单导入里的收货人字段</td>
+</tr>
+<tr>
+<td>收货地址</td>
+<td>展示收货地址，超长内容截断并支持查看完整值</td>
+<td>前端订单或订单导入里的收货地址字段</td>
+</tr>
+<tr>
+<td>物流</td>
+<td>有物流单号时展示物流单号；没有物流信息时展示上传入口</td>
+<td>订单里自带的物流信息或者是手动上传</td>
+</tr>
+<tr>
+<td>操作</td>
+<td>正常状态展示“查看”；订单状态为“待支付”时额外展示“支付”</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h3>表格列宽和对齐</h3>
+<ul>
+<li>表格超出容器宽度时允许横向滚动，不改变列顺序。</li>
+</ul>
+<h2>产品信息单元格</h2>
+<p>订单内每个商品独立展示一个商品行，商品图片和信息区域横向排列，关联操作位于商品行右侧并垂直居中。</p>
+<p>商品信息从上到下按照以下顺序展示：</p>
+<ol>
+<li>商品名称：作为主要识别信息，字体加大；超长时截断并保留完整名称提示。</li>
+<li>平台 SKU：展示原始平台商品编码，右侧提供复制按钮。</li>
+<li>SKU：展示已匹配的美国货盘 SKU；未匹配时展示 <code>-</code>，右侧复制按钮不可用。</li>
+<li>规格颜色：展示商品规格和颜色。</li>
+<li>产品 ID：展示美国货盘产品 ID；未关联时展示 <code>-</code>，右侧复制按钮不可用。</li>
+<li>单价：按美元金额展示。</li>
+<li>数量：展示当前商品数量。</li>
+</ol>
+<h3>复制功能</h3>
+<ul>
+<li>平台 SKU、SKU 和产品 ID 右侧提供复制图标按钮。</li>
+<li>有有效值时点击复制到剪贴板，并toast提示“平台 SKU 已复制”“SKU 已复制”或“产品 ID 已复制”。</li>
+<li>值为空或为 <code>-</code> 时按钮禁用。</li>
+<li>剪贴板不可用时使用兼容复制方式；复制失败提示“复制失败，请重试”。</li>
+</ul>
+<h3>商品图片</h3>
+<ul>
+<li>已关联商品展示美国货盘商品图片。</li>
+<li>未关联商品使用占位图。</li>
+<li>图片尺寸保持固定，不能因商品名称、SKU 或按钮文字变化导致表格布局跳动。</li>
+</ul>
+<h3>商品关联操作</h3>
+<ul>
+<li>SKU 未匹配时，商品行展示“关联产品”按钮。</li>
+<li>已匹配商品在允许重新关联的订单状态下展示“重新关联”按钮。</li>
+<li>订单进入海外仓处理流程时“关联产品”和“重新关联”就都不展示了，已关闭也不展示这两个按钮。</li>
+<li>点击“关联产品”或“重新关联”打开美国货盘 SKU 选择弹窗并进行美国货盘商品的选择。</li>
+<li>关联成功后提示关联成功，更新商品图片、SKU、规格、产品 ID、单价及订单状态，并刷新订单列表。</li>
+<li>订单中只要存在一个商品未匹配，整笔订单进入“待关联”状态。</li>
+</ul>
+<p>允许重新关联的状态范围：待关联、待支付。进入待仓库流程及之后的履约状态后不再展示重新关联按钮。</p>
+<h2>订单金额</h2>
+<h3>销售金额</h3>
+<p>销售金额通常来自平台订单导入数据，固定展示以下三行：</p>
+<pre><code class="language-text">销售价：$xxx.xx
+运费：$xxx.xx
+总计：$xxx.xx
+</code></pre>
+<p>任一字段没有值时展示 <code>--</code>，不能用 <code>0</code> 替代缺失值。</p>
+<h3>货款金额</h3>
+<p>货款金额来自美国货盘商品及履约费用，固定展示以下三行：</p>
+<pre><code class="language-text">货款：$xxx.xx
+运费：$xxx.xx
+总计：$xxx.xx
+</code></pre>
+<p>三个字段必须始终存在；无值时展示 <code>--</code>。支付弹窗中的支付总计按照货款、配件费、物流中心发货费和运费计算。</p>
+<h2>订单状态</h2>
+<p>订单状态使用标签样式展示，至少支持以下状态：</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>业务含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>待关联</td>
+<td>存在未匹配商品，等待关联美国货盘 SKU</td>
+</tr>
+<tr>
+<td>待支付</td>
+<td>商品已关联，等待订单货款支付</td>
+</tr>
+<tr>
+<td>待分配仓库</td>
+<td>已支付，等待分配仓库；此时的美国货盘库存已冻结</td>
+</tr>
+<tr>
+<td>待仓库拣货</td>
+<td>已分配仓库，等待拣货</td>
+</tr>
+<tr>
+<td>待物流收揽</td>
+<td>已完成拣货，等待物流收揽</td>
+</tr>
+<tr>
+<td>部分发货</td>
+<td>订单已部分发货；此时的美国货盘库存要释放并扣除</td>
+</tr>
+<tr>
+<td>已发货</td>
+<td>订单已全部发货；此时的美国货盘库存要释放并扣除</td>
+</tr>
+<tr>
+<td>商品缺货</td>
+<td>商品库存不足，无法继续履约</td>
+</tr>
+<tr>
+<td>已关闭</td>
+<td>订单已关闭，不再进入履约；此时的美国货盘库存要释放</td>
+</tr>
+<tr>
+<td>拦截发货成功</td>
+<td>订单发货已被成功拦截；此时的美国货盘库存要释放并还原</td>
+</tr>
+</tbody></table>
+<h2>物流信息</h2>
+<h3>单个订单上传面单</h3>
+<ul>
+<li>没有物流单号或面单文件时，物流列展示“上传”。</li>
+<li>点击“上传”打开文件选择框。</li>
+<li>支持面单文件格式由页面文件选择器配置；上传成功后保存文件名和上传时间，并刷新物流列。</li>
+<li>物流单号存在时优先展示物流单号。</li>
+<li>一个物流单号重复绑定多个无关订单时必须拦截。</li>
+</ul>
+<h3>批量上传面单</h3>
+<ul>
+<li>未选择订单时，按钮不可用；直接触发时提示“请先选择订单”。</li>
+<li>选择一个或多个订单后打开批量上传面单弹窗。</li>
+<li>弹窗展示所选订单号、收件人和当前物流信息。</li>
+<li>允许一次选择多个面单文件，并在弹窗内展示已选择文件数量。</li>
+<li>单个 PDF 文件小于 20M，一次最多解析 200 个文件，暂不支持多联面单。</li>
+<li>系统自动拆分并识别面单，提取物流单号并绑定订单。</li>
+<li>一个物流单号重复绑定多个无关订单时必须拦截。</li>
+<li>业务校验失败的订单返回具体原因，其他异常统一提示绑定失败。</li>
+<li>绑定成功后将面单文件和物流单号回显到订单列表，并提示“面单上传成功”。</li>
+<li>批量上传面单会直接影响后续订单发货，必须保留订单与物流单号的绑定关系。</li>
+</ul>
+<h2>批量选择和批量操作</h2>
+<h3>选择规则</h3>
+<ul>
+<li>表头全选只作用于当前页订单。</li>
+<li>跨页选择状态保留，切换分页不会清除已选订单。</li>
+<li>当前页部分选中时，表头复选框进入半选状态。</li>
+<li>筛选、重置、支付成功或完成面单上传后，按照最新结果同步选择状态。</li>
+</ul>
+<h3>批量付款</h3>
+<ul>
+<li>没有选择订单时，批量付款按钮不可用；直接触发时提示“请选择待支付订单”。</li>
+<li>选择订单后点击批量付款，先打开“批量支付”弹窗，再进行支付资格展示。</li>
+<li>弹窗只展示本次选择的订单，包含订单总数、可支付订单数和不可支付订单数。</li>
+<li>订单必须同时满足以下条件才可支付：<ul>
+<li>订单状态为待支付；</li>
+<li>订单内所有商品均已关联美国货盘 SKU；</li>
+<li>订单已上传面单或存在物流单号。</li>
+<li>库存充足。</li>
+</ul>
+</li>
+<li>不满足条件的订单在弹窗中禁止勾选，并标识不可支付原因：订单状态不是待支付、存在未关联产品或未上传物流或者库存不足。</li>
+<li>不可支付订单不计入应付金额。</li>
+<li>支付弹窗订单表格字段为：勾选框、序号、订单编号、总件数、货款、配件费、物流中心发货费、运费、支付总计、物流方式；不可支付订单还应展示原因说明。</li>
+<li>弹窗中的全选只选择可支付订单，并支持半选状态。</li>
+<li>付款逻辑沿用斑马的付款逻辑。</li>
+<li>支付成功后同时向海外仓创建包裹明细/oms/api/indent/indent_parcel/add、/oms/api/indent/indent_parcel/add_batch，成功就存储返回的数据，不成功则提示相应信息（海外仓返回的错误信息）</li>
+<li>创建包裹明细成功后，需要对美国货盘里的商品进行库存的冻结。</li>
+</ul>
+<h2>单个付款</h2>
+<ul>
+<li>只有订单状态为“待支付”时，操作列展示“支付”。</li>
+<li>点击后先打开“订单支付”弹窗，表格仅展示当前订单。</li>
+<li>订单未关联产品或未上传物流时，订单在弹窗内不可勾选，“立即支付”按钮禁用，并提示具体原因。</li>
+<li>应付金额由当前勾选订单的支付总计相加得到。</li>
+<li>付款逻辑沿用斑马的付款逻辑。</li>
+<li>支付成功后同时向海外仓创建包裹明细/oms/api/indent/indent_parcel/add、/oms/api/indent/indent_parcel/add_batch，成功就存储返回的数据，不成功则提示相应信息（海外仓返回的错误信息）</li>
+<li>创建包裹明细成功后，需要对美国货盘里的商品进行库存的冻结。</li>
+</ul>
+<h2>订单导入</h2>
+<h3>打开导入弹窗</h3>
+<ul>
+<li>点击“订单导入”打开订单导入弹窗。</li>
+<li>弹窗默认打开第一步“上传文件”，不能在进入订单管理页时自动打开订单预览。</li>
+</ul>
+<h3>上传文件</h3>
+<ul>
+<li>当前仅支持沃尔玛订单导入。</li>
+<li>订单文件来自沃尔玛卖家平台下载文件。</li>
+<li>支持 XLS、XLSX 文件格式。</li>
+<li>解析规则沿用蜂鸟和斑马的沃尔玛订单导入规则，兼容加拿大和沃尔玛订单导入逻辑。</li>
+<li>解析异常时提示具体异常信息。</li>
+<li>导入文件里没有订单信息时（空数据）提示“不能上传空文件”并且不能跳转到订单预览。</li>
+<li>解析成功后进入第二步订单预览。</li>
+</ul>
+<h3>订单预览</h3>
+<p>预览表格展示：订单编号、SKU、产品数量、平台、订单金额、收件人、收货信息、匹配状态和操作。</p>
+<ul>
+<li>根据平台 SKU 匹配美国货盘 SKU。</li>
+<li>一笔订单内只要存在一个未匹配商品，整笔订单标记为待关联。</li>
+<li>提供“待关联”筛选开关，只展示存在未匹配商品的订单。</li>
+<li>未匹配商品在操作列展示“关联”，点击后打开美国货盘商品列表。</li>
+<li>关联成功后回填匹配状态和关联 SKU。</li>
+<li>使用“平台＋平台订单号”判断重复，提示已存在订单。</li>
+</ul>
+<h3>确认导入</h3>
+<ul>
+<li>导入成功后将订单写入订单数据。</li>
+<li>导入订单的状态根据商品关联结果初始化为“待关联”或“待支付”。</li>
+<li>导入完成后关闭订单导入弹窗，并提示“订单导入成功”并刷新订单统计、列表和分页。</li>
+<li>预览页确认导入时保存所有订单数据，不校验订单状态；后续订单状态在订单管理页继续处理。</li>
+</ul>
+<h2>订单详情</h2>
+<ul>
+<li>点击操作列“查看”打开订单详情弹窗。</li>
+<li>详情展示本站订单号、下单时间、订单状态、收货信息。</li>
+<li>SKU 明细展示商品图片、商品名称、规格、SKU、单价、数量和小计。</li>
+<li>费用明细展示商品金额、操作费、物流费和订单金额。</li>
+<li>包裹与物流区域展示物流方式、包裹号、物流单号和包裹状态。</li>
+<li>OMS 履约进度展示订单创建、OMS 订单创建与锁定库存、仓库分配、仓库拣货、物流收揽和发货节点。</li>
+<li>待关联订单展示“等待 SKU 关联，暂未创建 OMS 订单”。</li>
+<li>商品缺货、已关闭和拦截发货成功等异常状态展示在履约进度中。</li>
+<li>点击关闭按钮、取消按钮或遮罩区域关闭弹窗。</li>
+</ul>
+<h2>分页</h2>
+<ul>
+<li>默认每页展示 10 条订单。</li>
+<li>展示当前筛选结果总数、当前页/总页数、上一页和下一页。</li>
+<li>当前页没有上一页或下一页时，对应按钮不可用。</li>
+<li>搜索、重置、状态更新、订单导入、面单上传和支付成功后，分页根据最新结果重新计算并回到有效页码。</li>
+</ul>
+</article></div></aside><div class="notes-backdrop"></div><div class="notes-preview" role="dialog" aria-modal="true" aria-label="图片预览"><button class="notes-preview-close" type="button" aria-label="关闭图片预览" title="关闭">×</button><img alt=""><div class="notes-preview-caption"></div></div>
+<script>
+document.getElementById('order-batch-pay-open').addEventListener('click',batchPayOrders);
+document.getElementById('order-tbody').addEventListener('click',function(event){var payment=event.target.closest('[data-order-payment]');if(payment){payOrder(payment.dataset.orderPayment);return}var link=event.target.closest('[data-order-link-sku]');if(link&&window.openOrderSkuLink)window.openOrderSkuLink(link.dataset.orderLinkSku,Number(link.dataset.orderLinkIndex))});
+document.getElementById('order-payment-select-all').addEventListener('change',function(){paymentSelectedIds=this.checked?paymentOrders().filter(function(order){return !orderPaymentIssue(order)}).map(function(order){return order.id}):[];renderPaymentModal()});
+document.getElementById('order-payment-tbody').addEventListener('change',function(event){var checkbox=event.target.closest('[data-order-payment-select]');if(!checkbox)return;var id=checkbox.dataset.orderPaymentSelect,index=paymentSelectedIds.indexOf(id);if(checkbox.checked&&index<0)paymentSelectedIds.push(id);if(!checkbox.checked&&index>-1)paymentSelectedIds.splice(index,1);renderPaymentModal()});
+document.getElementById('order-payment-submit').addEventListener('click',confirmOrderPayment);
+document.getElementById('order-payment-close').addEventListener('click',closePaymentModal);
+document.getElementById('order-payment-cancel').addEventListener('click',closePaymentModal);
+document.getElementById('order-payment-modal').addEventListener('click',function(event){if(event.target===this)closePaymentModal()});
+document.getElementById('order-payment-refresh').addEventListener('click',function(){var stored=localStorage.getItem('oms-payment-balance'),latest=stored===null?paymentAccountBalance:Number(stored);if(Number.isFinite(latest)&&latest>=0)paymentAccountBalance=latest;renderPaymentModal();showToast('账户余额已刷新')});
+document.getElementById('order-payment-recharge').addEventListener('click',function(){showToast('请前往资金账户充值','warning')});
+document.addEventListener('keydown',function(event){if(event.key==='Escape')closePaymentModal()});
+</script>
 
+<script src="marker-toggle.js"></script><script src="marker-toggle.js"></script><script src="marker-toggle.js"></script><div class="overview-tooltip" role="tooltip"></div><script src="marker-toggle.js"></script><div class="overview-tooltip" role="tooltip"></div><script src="marker-toggle.js"></script><div class="overview-tooltip" role="tooltip"></div><script src="marker-toggle.js"></script><div data-html-annotator-inline-root="" style="display: none;"><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1789018534538" data-severity="info" data-annotation-index="0" data-annotation-updated-at="2026-09-10T05:37:24.532Z" data-target-selector="select#order-filter-status" data-target-tag="SELECT" data-target-classes="[]" data-target-text="全部待关联待支付待分配仓库待仓库拣货待物流收揽部分发货已发货商品缺货已关闭拦截发货成功" data-target-child-count="11" data-target-depth="6" style="display: block; left: 941px; top: 285.75px;">1</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1789018534538" data-severity="info" style="display: none;"><div class="html-annotator-inline-head">标注 · SELECT</div><div><p>默认选中全部，下拉单选框</p><p>可选项：待关联/待支付/待分配仓库/待仓库拣货/待物流收揽/部分发货/已发货/商品缺货/已关闭/拦截发货成功</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1789018664817" data-severity="info" data-annotation-index="1" data-annotation-updated-at="2026-09-10T05:49:04.004Z" data-target-selector="button#order-batch-pay-open" data-target-tag="BUTTON" data-target-classes="[&quot;btn&quot;,&quot;order-batch-pay&quot;]" data-target-text="批量付款" data-target-child-count="0" data-target-depth="6" style="display: block; left: 1055px; top: 330.75px;">2</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1789018664817" data-severity="info" style="display: none;"><div class="html-annotator-inline-head">标注 · BUTTON</div><div><p>点击前需要判断：</p><p>是否选择列表里的数据，一个都没选toast提示“请先选择商品”</p><p>点击后弹出支付弹窗，并将选中数据放入弹窗里的表格</p><p>需要判断订单是否待关联和物流信息是否上传，如果任意一个条件不满足都不能进行付款；付款弹窗里就禁止勾选，并标红整行，在备注列里说明不能支付的原因</p><p>不能支付的原因有：订单待支付、订单无物流信息</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1789019346932" data-severity="info" data-annotation-index="2" data-annotation-updated-at="2026-09-10T06:08:35.460Z" data-target-selector="button#order-label-batch-open" data-target-tag="BUTTON" data-target-classes="[&quot;btn&quot;,&quot;order-batch-label&quot;,&quot;order-label-batch-open&quot;]" data-target-text="批量上传面单" data-target-child-count="0" data-target-depth="6" style="display: block; left: 1172px; top: 330.75px;">3</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1789019346932" data-severity="info" style="display: none;"><div class="html-annotator-inline-head">标注 · BUTTON</div><div><p>点击先判断是否选择了列表里的商品数据，一个没选toast提示“请先选择商品”</p><p>校验通过后弹出文件选择弹窗，文件处理逻辑如下：</p><p>处理逻辑:<br>1. 可一次选择多个 PDF;单个文件须小于 20M。超出20Mtoast提示“文件过大”并中断文件处理<br>2. 系统自动拆分、识别面单,一次最多解析 200 个,暂不支持多联面单。<br>3. 订单关联面单文件和物流单号,并批量绑定;成功项进入成功结果,业务校验失败项返回具体原因,其他异常统一提示绑定失败。<br>影响:绑定后的面单及物流单号将用于后续订单发货;传错物流单号或面单会直接影响发货。</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1789020518043" data-severity="info" data-annotation-index="3" data-annotation-updated-at="2026-09-10T06:13:37.025Z" data-target-selector="button#order-import-open" data-target-tag="BUTTON" data-target-classes="[&quot;btn&quot;,&quot;order-import-action&quot;,&quot;order-import-open&quot;]" data-target-text="订单导入" data-target-child-count="0" data-target-depth="6" style="display: block; left: 1263px; top: 330.75px;">4</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1789020518043" data-severity="info" style="display: none;"><div class="html-annotator-inline-head">标注 · BUTTON</div><div><p>点击后弹出订单导入弹窗</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1789020871409" data-severity="info" data-annotation-index="4" data-annotation-updated-at="2026-09-10T06:15:29.272Z" data-target-selector="div#order-import-modal > div.modal.v2-order-import-modal > div.modal-body.v2-order-import-body:nth-of-type(3) > section.v2-import-step-panel:nth-of-type(1) > div.v2-import-upload-card > label.btn.btn-ghost.v2-import-file-label" data-target-tag="LABEL" data-target-classes="[&quot;btn&quot;,&quot;btn-ghost&quot;,&quot;v2-import-file-label&quot;]" data-target-text="选择文件" data-target-child-count="1" data-target-depth="7" style="display: none;">5</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1789020871409" data-severity="info" style="display: none;"><div class="html-annotator-inline-head">标注 · LABEL</div><div><p>目前只支持沃尔玛订单的导入。</p><p>订单来自沃尔玛卖家平台下载的订单文件。</p><p>文件解析逻辑沿用蜂鸟和斑马对于沃尔玛订单导入文件解析规则（合并加拿大和沃尔玛的订单导入逻辑）</p><p>解析异常提示相应异常信息。</p><p>解析成功后提示解析成功，并自动进入下一步</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1789021055584" data-severity="info" data-annotation-index="5" data-annotation-updated-at="2026-09-10T06:18:57.296Z" data-target-selector="div#order-import-modal > div.modal.v2-order-import-modal > div.modal-body.v2-order-import-body:nth-of-type(3) > section.v2-import-step-panel:nth-of-type(2) > div.v2-import-preview-head:nth-of-type(1) > div.v2-import-preview-tools:nth-of-type(2) > label.v2-import-filter" data-target-tag="LABEL" data-target-classes="[&quot;v2-import-filter&quot;]" data-target-text="待关联" data-target-child-count="1" data-target-depth="8" style="display: none;">6</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1789021055584" data-severity="info" style="display: none;"><div class="html-annotator-inline-head">标注 · LABEL</div><div><p>订单导入后根据平台SKU去匹配美国货盘里是否有对应的SKU，没有就标记为待关联产品，一笔订单里有一个产品未关联，那整笔订单都处于待关联状态。勾选按钮后在列表里筛选出待关联订单。</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1789021153255" data-severity="info" data-annotation-index="6" data-annotation-updated-at="2026-09-10T06:19:31.199Z" data-target-selector="tbody#order-import-preview-body > tr:nth-of-type(1) > td:nth-of-type(9) > button.btn-link.v2-link-sku" data-target-tag="BUTTON" data-target-classes="[&quot;btn-link&quot;,&quot;v2-link-sku&quot;]" data-target-text="关联" data-target-child-count="0" data-target-depth="11" style="display: none;">7</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1789021153255" data-severity="info" style="display: none;"><div class="html-annotator-inline-head">标注 · BUTTON</div><div><p>点击后弹出美国货盘商品列表</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1789021261414" data-severity="info" data-annotation-index="7" data-annotation-updated-at="2026-09-10T06:23:02.509Z" data-target-selector="button#order-import-submit" data-target-tag="BUTTON" data-target-classes="[&quot;btn&quot;,&quot;btn-primary&quot;]" data-target-text="确认导入" data-target-child-count="0" data-target-depth="5" style="display: none;">8</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1789021261414" data-severity="info" style="display: none;"><div class="html-annotator-inline-head">标注 · BUTTON</div><div><p>点击后，将所有订单数据保存下来，不校验订单的状态，后续都能在列表里进行处理。</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1789021614683" data-severity="info" data-annotation-index="8" data-annotation-updated-at="2026-09-10T06:27:15.292Z" data-target-selector="tbody#order-tbody > tr:nth-of-type(1) > td:nth-of-type(3) > div.order-product-cell > div.order-product-item:nth-of-type(1) > div.order-product-action:nth-of-type(2) > button.btn-link.order-association-action" data-target-tag="BUTTON" data-target-classes="[&quot;btn-link&quot;,&quot;order-association-action&quot;]" data-target-text="关联产品" data-target-child-count="0" data-target-depth="13" style="display: block; left: 687px; top: 541.938px;">9</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1789021614683" data-severity="info" style="display: none;"><div class="html-annotator-inline-head">标注 · BUTTON</div><div><p>点击后弹出美国货盘商品列表</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1789021637723" data-severity="info" data-annotation-index="9" data-annotation-updated-at="2026-09-10T06:27:29.467Z" data-target-selector="tbody#order-tbody > tr:nth-of-type(1) > td:nth-of-type(3) > div.order-product-cell > div.order-product-item:nth-of-type(2) > div.order-product-action:nth-of-type(2) > button.btn-link.order-association-action" data-target-tag="BUTTON" data-target-classes="[&quot;btn-link&quot;,&quot;order-association-action&quot;]" data-target-text="重新关联" data-target-child-count="0" data-target-depth="13" style="display: block; left: 687px; top: 712.016px;">10</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1789021637723" data-severity="info" style="display: none;"><div class="html-annotator-inline-head">标注 · BUTTON</div><div><p>点击后弹出美国货盘商品列表</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1789021653668" data-severity="info" data-annotation-index="10" data-annotation-updated-at="2026-09-10T06:27:43.412Z" data-target-selector="tbody#order-tbody > tr:nth-of-type(1) > td:nth-of-type(9) > div.order-logistics-cell > button.btn-link.order-tracking-upload" data-target-tag="BUTTON" data-target-classes="[&quot;btn-link&quot;,&quot;order-tracking-upload&quot;]" data-target-text="上传" data-target-child-count="0" data-target-depth="11" style="display: block; left: 1465.5px; top: 631.078px;">11</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1789021653668" data-severity="info" style="display: none;"><div class="html-annotator-inline-head">标注 · BUTTON</div><div><p>点击后弹出文件选择框</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1789021665084" data-severity="info" data-annotation-index="11" data-annotation-updated-at="2026-09-10T06:27:57.819Z" data-target-selector="tbody#order-tbody > tr:nth-of-type(1) > td.operation-column:nth-of-type(10) > div.table-actions > button.btn-link" data-target-tag="BUTTON" data-target-classes="[&quot;btn-link&quot;]" data-target-text="查看" data-target-child-count="0" data-target-depth="11" style="display: block; left: 1583.5px; top: 627.578px;">12</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1789021665084" data-severity="info" style="display: none;"><div class="html-annotator-inline-head">标注 · BUTTON</div><div><p>点击后弹出订单详情弹窗</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1789021680843" data-severity="info" data-annotation-index="12" data-annotation-updated-at="2026-09-10T06:28:25.412Z" data-target-selector="tbody#order-tbody > tr:nth-of-type(2) > td.operation-column:nth-of-type(10) > div.table-actions > button.btn-link.order-payment-action:nth-of-type(1)" data-target-tag="BUTTON" data-target-classes="[&quot;btn-link&quot;,&quot;order-payment-action&quot;]" data-target-text="支付" data-target-child-count="0" data-target-depth="11" style="display: block; left: 1562.5px; top: 1054.77px;">13</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1789021680843" data-severity="info" style="display: none;"><div class="html-annotator-inline-head">标注 · BUTTON</div><div><p>支付只有在订单状态为待支付的时候展示出来</p><p>点击后弹出支付弹窗列表</p></div></div></div><script data-html-annotator-inline-script="">
+(function () {
+  var root = document.querySelector('[data-html-annotator-inline-root]');
+  if (!root) return;
+  function depth(element) {
+    var value = 0;
+    while (element && element.parentElement) { value++; element = element.parentElement; }
+    return value;
+  }
+  function findById(id) {
+    var all = document.querySelectorAll('[data-annotation-id]');
+    for (var i = 0; i < all.length; i++) {
+      if (!root.contains(all[i]) && all[i].getAttribute('data-annotation-id') === id) return all[i];
+    }
+    return null;
+  }
+  function findBySelector(marker) {
+    var selector = marker.getAttribute('data-target-selector');
+    if (!selector) return null;
+    try {
+      var all = document.querySelectorAll(selector);
+      for (var i = 0; i < all.length; i++) if (!root.contains(all[i])) return all[i];
+    } catch (_) {}
+    return null;
+  }
+  function findByFingerprint(marker) {
+    var tag = marker.getAttribute('data-target-tag');
+    if (!tag) return null;
+    var classes = [];
+    try { classes = JSON.parse(marker.getAttribute('data-target-classes') || '[]'); } catch (_) {}
+    var text = marker.getAttribute('data-target-text') || '';
+    var childCount = Number(marker.getAttribute('data-target-child-count'));
+    var targetDepth = Number(marker.getAttribute('data-target-depth'));
+    var all = document.querySelectorAll(tag);
+    for (var i = 0; i < all.length; i++) {
+      var element = all[i];
+      if (root.contains(element)) continue;
+      var elementText = (element.textContent || '').slice(0, 50).trim();
+      if (element.children.length === childCount && depth(element) === targetDepth && elementText === text && element.classList.length === classes.length && classes.every(function (name) { return element.classList.contains(name); })) return element;
+    }
+    return null;
+  }
+  function targetFor(marker) {
+    var id = marker.getAttribute('data-annotation-id');
+    var target = findById(id) || findBySelector(marker) || findByFingerprint(marker);
+    if (target && target.getAttribute('data-annotation-id') !== id) target.setAttribute('data-annotation-id', id);
+    return target;
+  }
+  function panelFor(id) {
+    var panels = root.querySelectorAll('[data-html-annotator-inline-panel]');
+    for (var i = 0; i < panels.length; i++) if (panels[i].getAttribute('data-annotation-id') === id) return panels[i];
+    return null;
+  }
+  function position() {
+    root.querySelectorAll('[data-html-annotator-inline-marker]').forEach(function (marker) {
+      var target = targetFor(marker);
+      var panel = panelFor(marker.getAttribute('data-annotation-id'));
+      if (!target || target.getClientRects().length === 0) {
+        marker.style.display = 'none';
+        if (panel) panel.style.display = 'none';
+        return;
+      }
+      var rect = target.getBoundingClientRect();
+      marker.style.display = 'block';
+      marker.style.left = rect.right + 'px';
+      marker.style.top = rect.top + 'px';
+    });
+  }
+  root.querySelectorAll('[data-html-annotator-inline-marker]').forEach(function (marker) {
+    marker.addEventListener('click', function (event) {
+      event.preventDefault(); event.stopPropagation();
+      var panel = panelFor(marker.getAttribute('data-annotation-id'));
+      root.querySelectorAll('[data-html-annotator-inline-panel]').forEach(function (item) { if (item !== panel) item.style.display = 'none'; });
+      if (!panel) return;
+      panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+      var rect = marker.getBoundingClientRect();
+      panel.style.left = Math.max(12, Math.min(rect.right + 8, window.innerWidth - panel.offsetWidth - 12)) + 'px';
+      panel.style.top = Math.max(12, Math.min(rect.top, window.innerHeight - panel.offsetHeight - 12)) + 'px';
+    });
+  });
+  document.addEventListener('click', function (event) { if (!root.contains(event.target)) root.querySelectorAll('[data-html-annotator-inline-panel]').forEach(function (item) { item.style.display = 'none'; }); });
+  window.addEventListener('scroll', position, true);
+  window.addEventListener('resize', position);
+  var pending = false;
+  new MutationObserver(function (records) {
+    var relevant = records.some(function (record) { return !root.contains(record.target); });
+    if (!relevant || pending) return;
+    pending = true;
+    setTimeout(function () { pending = false; position(); }, 0);
+  }).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'style', 'hidden'] });
+  position();
+})();
+</script>
+<div class="overview-tooltip" role="tooltip"></div><script src="marker-toggle.js"></script><button type="button" class="marker-toggle" data-marker-toggle-ready="true" aria-pressed="true" title="关闭当前页面所有标记"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"></path><circle cx="12" cy="12" r="4"></circle></svg><span>关闭标记</span></button><div class="overview-tooltip" role="tooltip"></div><script src="marker-toggle.js"></script>
+<template data-html-annotator-document-template=""><article class="notes-document" data-html-annotator-injected-document=""><h2>本页数据来源</h2>
+<p>主要是前端页面下单和订单导入。
+订单进入仓库作业后的状态值需要依赖于海外仓查询包裹状态接口/oms/api/indent/indent_parcel/status_list_by_parcel_code、/oms/api/indent/indent_parcel/status_list_by_indent_code</p>
+<h2>页面结构</h2>
+<ol>
+<li>统计区域：展示待关联订单、处理中订单、已发货订单和本月订单金额。</li>
+<li>筛选区域：按订单号、SKU 编码、SKU 名称、订单状态还有订单来源筛选订单，并提供搜索、重置、批量付款、批量上传面单和订单导入入口。</li>
+<li>订单列表：展示订单号、产品信息、销售金额、货款金额、订单状态、收货人、收货地址、物流和操作。</li>
+<li>分页区域：展示筛选结果总数、当前页和分页切换入口。</li>
+</ol>
+<h2>统计区域</h2>
+<p>统计数据基于当前订单数据计算，不随订单号、SKU 编码、SKU 名称和订单状态筛选条件变化。</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>计算规则</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>待关联订单</td>
+<td>订单状态为“待关联”的订单数量</td>
+</tr>
+<tr>
+<td>处理中订单</td>
+<td>订单状态为“待分配仓库”“待仓库拣货”或“待物流收揽”的订单数量</td>
+</tr>
+<tr>
+<td>已发货订单</td>
+<td>订单状态为“部分发货”或“已发货”的订单数量</td>
+</tr>
+<tr>
+<td>本月订单金额</td>
+<td>创建时间属于当前统计月份且订单状态不是“已关闭”的订单金额之和</td>
+</tr>
+</tbody></table>
+<h2>筛选功能</h2>
+<h3>订单号</h3>
+<ul>
+<li>控件类型：文本输入。</li>
+<li>匹配规则：支持按本站订单号（前端下单）、订单导入订单号模糊查询，不区分大小写。</li>
+</ul>
+<h3>SKU 编码</h3>
+<ul>
+<li>控件类型：文本输入。</li>
+<li>匹配范围：平台 SKU、原始SKU。</li>
+<li>匹配规则：支持模糊查询，不区分大小写。</li>
+</ul>
+<h3>SKU 名称</h3>
+<ul>
+<li>控件类型：文本输入。</li>
+<li>匹配规则：按订单商品名称模糊查询，不区分大小写。</li>
+</ul>
+<h3>订单状态</h3>
+<ul>
+<li>控件类型：单选下拉框。</li>
+<li>默认值：全部。</li>
+<li>可选项：待关联、待支付、待分配仓库、待仓库拣货、待物流收揽、部分发货、已发货、商品缺货、已关闭、拦截发货成功。</li>
+</ul>
+<h3>订单来源</h3>
+<ul>
+<li>控件类型：单选下拉框。</li>
+<li>默认值：全部。</li>
+<li>可选项：全部、前端下单、订单导入。</li>
+</ul>
+<h3>搜索和重置</h3>
+<ul>
+<li>搜索：按照已填写的条件刷新订单列表、结果条数和分页。</li>
+<li>重置：清空订单号、SKU 编码、SKU 名称和订单状态，恢复全部订单并回到第一页。</li>
+<li>多个筛选条件之间为“且”关系。</li>
+<li>筛选结果为空时展示“暂无匹配订单”。</li>
+</ul>
+<h2>订单列表</h2>
+<p>数据来源：订单导入数据、系统订单数据及已创建的 OMS 订单数据。</p>
+<p>表格从左到右只展示以下 10 列：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>展示规则</th>
+<th>数据来源</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>勾选框</td>
+<td>提供当前页全选、取消全选和半选状态；行选择用于批量付款和批量上传面单</td>
+<td>-</td>
+</tr>
+<tr>
+<td>订单号</td>
+<td>优先展示本站订单号；没有本站订单号时展示订单数据中的订单 ID</td>
+<td>前端下单或者订单导入</td>
+</tr>
+<tr>
+<td>产品信息</td>
+<td>展示订单内全部商品的图片、名称、平台 SKU、SKU、规格颜色、产品 ID、单价、数量及关联操作</td>
+<td>系统内数据表</td>
+</tr>
+<tr>
+<td>销售金额</td>
+<td>分三行展示销售价、运费、总计；没有值时使用 <code>--</code>；通常来源于订单导入金额</td>
+<td>订单导入时的金额或者是前端下单的金额</td>
+</tr>
+<tr>
+<td>货款金额</td>
+<td>分三行展示货款、运费、总计；三个字段始终展示，没有值时使用 <code>--</code></td>
+<td>上架到美国货盘时针对商品填写的定价</td>
+</tr>
+<tr>
+<td>订单状态</td>
+<td>展示订单当前状态，使用状态标签样式区分状态</td>
+<td>【待关联、待支付、商品缺货、已关闭】都为本系统维护的状态；【待分配仓库、待仓库拣货、待物流收揽、部分发货、已发货、拦截发货成功】为海外仓接口维护的字段</td>
+</tr>
+<tr>
+<td>收货人</td>
+<td>展示收货人姓名，没有值时展示 <code>-</code></td>
+<td>前端订单或订单导入里的收货人字段</td>
+</tr>
+<tr>
+<td>收货地址</td>
+<td>展示收货地址，超长内容截断并支持查看完整值</td>
+<td>前端订单或订单导入里的收货地址字段</td>
+</tr>
+<tr>
+<td>物流</td>
+<td>有物流单号时展示物流单号；没有物流信息时展示上传入口</td>
+<td>订单里自带的物流信息或者是手动上传</td>
+</tr>
+<tr>
+<td>操作</td>
+<td>正常状态展示“查看”；订单状态为“待支付”时额外展示“支付”</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h3>表格列宽和对齐</h3>
+<ul>
+<li>表格超出容器宽度时允许横向滚动，不改变列顺序。</li>
+</ul>
+<h2>产品信息单元格</h2>
+<p>订单内每个商品独立展示一个商品行，商品图片和信息区域横向排列，关联操作位于商品行右侧并垂直居中。</p>
+<p>商品信息从上到下按照以下顺序展示：</p>
+<ol>
+<li>商品名称：作为主要识别信息，字体加大；超长时截断并保留完整名称提示。</li>
+<li>平台 SKU：展示原始平台商品编码，右侧提供复制按钮。</li>
+<li>SKU：展示已匹配的美国货盘 SKU；未匹配时展示 <code>-</code>，右侧复制按钮不可用。</li>
+<li>规格颜色：展示商品规格和颜色。</li>
+<li>产品 ID：展示美国货盘产品 ID；未关联时展示 <code>-</code>，右侧复制按钮不可用。</li>
+<li>单价：按美元金额展示。</li>
+<li>数量：展示当前商品数量。</li>
+</ol>
+<h3>复制功能</h3>
+<ul>
+<li>平台 SKU、SKU 和产品 ID 右侧提供复制图标按钮。</li>
+<li>有有效值时点击复制到剪贴板，并toast提示“平台 SKU 已复制”“SKU 已复制”或“产品 ID 已复制”。</li>
+<li>值为空或为 <code>-</code> 时按钮禁用。</li>
+<li>剪贴板不可用时使用兼容复制方式；复制失败提示“复制失败，请重试”。</li>
+</ul>
+<h3>商品图片</h3>
+<ul>
+<li>已关联商品展示美国货盘商品图片。</li>
+<li>未关联商品使用占位图。</li>
+<li>图片尺寸保持固定，不能因商品名称、SKU 或按钮文字变化导致表格布局跳动。</li>
+</ul>
+<h3>商品关联操作</h3>
+<ul>
+<li>SKU 未匹配时，商品行展示“关联产品”按钮。</li>
+<li>已匹配商品在允许重新关联的订单状态下展示“重新关联”按钮。</li>
+<li>订单进入海外仓处理流程时“关联产品”和“重新关联”就都不展示了，已关闭也不展示这两个按钮。</li>
+<li>点击“关联产品”或“重新关联”打开美国货盘 SKU 选择弹窗并进行美国货盘商品的选择。</li>
+<li>关联成功后提示关联成功，更新商品图片、SKU、规格、产品 ID、单价及订单状态，并刷新订单列表。</li>
+<li>订单中只要存在一个商品未匹配，整笔订单进入“待关联”状态。</li>
+</ul>
+<p>允许重新关联的状态范围：待关联、待支付。进入待仓库流程及之后的履约状态后不再展示重新关联按钮。</p>
+<h2>订单金额</h2>
+<h3>销售金额</h3>
+<p>销售金额通常来自平台订单导入数据，固定展示以下三行：</p>
+<pre><code class="language-text">销售价：$xxx.xx
+运费：$xxx.xx
+总计：$xxx.xx
+</code></pre>
+<p>任一字段没有值时展示 <code>--</code>，不能用 <code>0</code> 替代缺失值。</p>
+<h3>货款金额</h3>
+<p>货款金额来自美国货盘商品及履约费用，固定展示以下三行：</p>
+<pre><code class="language-text">货款：$xxx.xx
+运费：$xxx.xx
+总计：$xxx.xx
+</code></pre>
+<p>三个字段必须始终存在；无值时展示 <code>--</code>。支付弹窗中的支付总计按照货款、配件费、物流中心发货费和运费计算。</p>
+<h2>订单状态</h2>
+<p>订单状态使用标签样式展示，至少支持以下状态：</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>业务含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>待关联</td>
+<td>存在未匹配商品，等待关联美国货盘 SKU</td>
+</tr>
+<tr>
+<td>待支付</td>
+<td>商品已关联，等待订单货款支付</td>
+</tr>
+<tr>
+<td>待分配仓库</td>
+<td>已支付，等待分配仓库；此时的美国货盘库存已冻结</td>
+</tr>
+<tr>
+<td>待仓库拣货</td>
+<td>已分配仓库，等待拣货</td>
+</tr>
+<tr>
+<td>待物流收揽</td>
+<td>已完成拣货，等待物流收揽</td>
+</tr>
+<tr>
+<td>部分发货</td>
+<td>订单已部分发货；此时的美国货盘库存要释放并扣除</td>
+</tr>
+<tr>
+<td>已发货</td>
+<td>订单已全部发货；此时的美国货盘库存要释放并扣除</td>
+</tr>
+<tr>
+<td>商品缺货</td>
+<td>商品库存不足，无法继续履约</td>
+</tr>
+<tr>
+<td>已关闭</td>
+<td>订单已关闭，不再进入履约；此时的美国货盘库存要释放</td>
+</tr>
+<tr>
+<td>拦截发货成功</td>
+<td>订单发货已被成功拦截；此时的美国货盘库存要释放并还原</td>
+</tr>
+</tbody></table>
+<h2>物流信息</h2>
+<h3>单个订单上传面单</h3>
+<ul>
+<li>没有物流单号或面单文件时，物流列展示“上传”。</li>
+<li>点击“上传”打开文件选择框。</li>
+<li>支持面单文件格式由页面文件选择器配置；上传成功后保存文件名和上传时间，并刷新物流列。</li>
+<li>物流单号存在时优先展示物流单号。</li>
+<li>一个物流单号重复绑定多个无关订单时必须拦截。</li>
+</ul>
+<h3>批量上传面单</h3>
+<ul>
+<li>未选择订单时，按钮不可用；直接触发时提示“请先选择订单”。</li>
+<li>选择一个或多个订单后打开批量上传面单弹窗。</li>
+<li>弹窗展示所选订单号、收件人和当前物流信息。</li>
+<li>允许一次选择多个面单文件，并在弹窗内展示已选择文件数量。</li>
+<li>单个 PDF 文件小于 20M，一次最多解析 200 个文件，暂不支持多联面单。</li>
+<li>系统自动拆分并识别面单，提取物流单号并绑定订单。</li>
+<li>一个物流单号重复绑定多个无关订单时必须拦截。</li>
+<li>业务校验失败的订单返回具体原因，其他异常统一提示绑定失败。</li>
+<li>绑定成功后将面单文件和物流单号回显到订单列表，并提示“面单上传成功”。</li>
+<li>批量上传面单会直接影响后续订单发货，必须保留订单与物流单号的绑定关系。</li>
+</ul>
+<h2>批量选择和批量操作</h2>
+<h3>选择规则</h3>
+<ul>
+<li>表头全选只作用于当前页订单。</li>
+<li>跨页选择状态保留，切换分页不会清除已选订单。</li>
+<li>当前页部分选中时，表头复选框进入半选状态。</li>
+<li>筛选、重置、支付成功或完成面单上传后，按照最新结果同步选择状态。</li>
+</ul>
+<h3>批量付款</h3>
+<ul>
+<li>没有选择订单时，批量付款按钮不可用；直接触发时提示“请选择待支付订单”。</li>
+<li>选择订单后点击批量付款，先打开“批量支付”弹窗，再进行支付资格展示。</li>
+<li>弹窗只展示本次选择的订单，包含订单总数、可支付订单数和不可支付订单数。</li>
+<li>订单必须同时满足以下条件才可支付：<ul>
+<li>订单状态为待支付；</li>
+<li>订单内所有商品均已关联美国货盘 SKU；</li>
+<li>订单已上传面单或存在物流单号。</li>
+<li>库存充足。</li>
+</ul>
+</li>
+<li>不满足条件的订单在弹窗中禁止勾选，并标识不可支付原因：订单状态不是待支付、存在未关联产品或未上传物流或者库存不足。</li>
+<li>不可支付订单不计入应付金额。</li>
+<li>支付弹窗订单表格字段为：勾选框、序号、订单编号、总件数、货款、配件费、物流中心发货费、运费、支付总计、物流方式；不可支付订单还应展示原因说明。</li>
+<li>弹窗中的全选只选择可支付订单，并支持半选状态。</li>
+<li>付款逻辑沿用斑马的付款逻辑。</li>
+<li>支付成功后同时向海外仓创建包裹明细/oms/api/indent/indent_parcel/add、/oms/api/indent/indent_parcel/add_batch，成功就存储返回的数据，不成功则提示相应信息（海外仓返回的错误信息）</li>
+<li>创建包裹明细成功后，需要对美国货盘里的商品进行库存的冻结。</li>
+</ul>
+<h2>单个付款</h2>
+<ul>
+<li>只有订单状态为“待支付”时，操作列展示“支付”。</li>
+<li>点击后先打开“订单支付”弹窗，表格仅展示当前订单。</li>
+<li>订单未关联产品或未上传物流时，订单在弹窗内不可勾选，“立即支付”按钮禁用，并提示具体原因。</li>
+<li>应付金额由当前勾选订单的支付总计相加得到。</li>
+<li>付款逻辑沿用斑马的付款逻辑。</li>
+<li>支付成功后同时向海外仓创建包裹明细/oms/api/indent/indent_parcel/add、/oms/api/indent/indent_parcel/add_batch，成功就存储返回的数据，不成功则提示相应信息（海外仓返回的错误信息）</li>
+<li>创建包裹明细成功后，需要对美国货盘里的商品进行库存的冻结。</li>
+</ul>
+<h2>订单导入</h2>
+<h3>打开导入弹窗</h3>
+<ul>
+<li>点击“订单导入”打开订单导入弹窗。</li>
+<li>弹窗默认打开第一步“上传文件”，不能在进入订单管理页时自动打开订单预览。</li>
+</ul>
+<h3>上传文件</h3>
+<ul>
+<li>当前仅支持沃尔玛订单导入。</li>
+<li>订单文件来自沃尔玛卖家平台下载文件。</li>
+<li>支持 XLS、XLSX 文件格式。</li>
+<li>解析规则沿用蜂鸟和斑马的沃尔玛订单导入规则，兼容加拿大和沃尔玛订单导入逻辑。</li>
+<li>解析异常时提示具体异常信息。</li>
+<li>导入文件里没有订单信息时（空数据）提示“不能上传空文件”并且不能跳转到订单预览。</li>
+<li>解析成功后进入第二步订单预览。</li>
+</ul>
+<h3>订单预览</h3>
+<p>预览表格展示：订单编号、SKU、产品数量、平台、订单金额、收件人、收货信息、匹配状态和操作。</p>
+<ul>
+<li>根据平台 SKU 匹配美国货盘 SKU。</li>
+<li>一笔订单内只要存在一个未匹配商品，整笔订单标记为待关联。</li>
+<li>提供“待关联”筛选开关，只展示存在未匹配商品的订单。</li>
+<li>未匹配商品在操作列展示“关联”，点击后打开美国货盘商品列表。</li>
+<li>关联成功后回填匹配状态和关联 SKU。</li>
+<li>使用“平台＋平台订单号”判断重复，提示已存在订单。</li>
+</ul>
+<h3>确认导入</h3>
+<ul>
+<li>导入成功后将订单写入订单数据。</li>
+<li>导入订单的状态根据商品关联结果初始化为“待关联”或“待支付”。</li>
+<li>导入完成后关闭订单导入弹窗，并提示“订单导入成功”并刷新订单统计、列表和分页。</li>
+<li>预览页确认导入时保存所有订单数据，不校验订单状态；后续订单状态在订单管理页继续处理。</li>
+</ul>
+<h2>订单详情</h2>
+<ul>
+<li>点击操作列“查看”打开订单详情弹窗。</li>
+<li>详情展示本站订单号、下单时间、订单状态、收货信息。</li>
+<li>SKU 明细展示商品图片、商品名称、规格、SKU、单价、数量和小计。</li>
+<li>费用明细展示商品金额、操作费、物流费和订单金额。</li>
+<li>包裹与物流区域展示物流方式、包裹号、物流单号和包裹状态。</li>
+<li>OMS 履约进度展示订单创建、OMS 订单创建与锁定库存、仓库分配、仓库拣货、物流收揽和发货节点。</li>
+<li>待关联订单展示“等待 SKU 关联，暂未创建 OMS 订单”。</li>
+<li>商品缺货、已关闭和拦截发货成功等异常状态展示在履约进度中。</li>
+<li>点击关闭按钮、取消按钮或遮罩区域关闭弹窗。</li>
+</ul>
+<h2>分页</h2>
+<ul>
+<li>默认每页展示 10 条订单。</li>
+<li>展示当前筛选结果总数、当前页/总页数、上一页和下一页。</li>
+<li>当前页没有上一页或下一页时，对应按钮不可用。</li>
+<li>搜索、重置、状态更新、订单导入、面单上传和支付成功后，分页根据最新结果重新计算并回到有效页码。</li>
+</ul>
+</article></template><script data-html-annotator-document-runtime="">
+(function () {
+  var template = document.querySelector('[data-html-annotator-document-template]');
+  if (!template) return;
+  function applyDocument() {
+    var content = document.querySelector('#notes-panel .notes-content, .notes-panel .notes-content');
+    if (!content || content.querySelector('[data-html-annotator-injected-document]')) return;
+    content.innerHTML = template.innerHTML;
+  }
+  applyDocument();
+  var observer = new MutationObserver(applyDocument);
+  observer.observe(document.documentElement, { childList: true, subtree: true });
+  document.addEventListener('DOMContentLoaded', applyDocument);
+  window.addEventListener('load', applyDocument);
+})();
+</script></body></html>

@@ -3,7 +3,9 @@
   var buttons=document.querySelectorAll('.marker-toggle');
   var existing=buttons[0]||null;
   buttons.forEach(function(item,index){if(index>0)item.remove()});
-  if(existing&&existing.dataset.markerToggleReady==='true')return;
+  // The data attribute may be persisted in generated HTML, but event listeners are not.
+  // Keep the idempotency guard on the live DOM node so every page load binds once.
+  if(existing&&existing.__markerToggleBound)return;
   var pageKey=document.body.dataset.page||location.pathname;
   var visibilityKey='oms-page-markers-visible:'+pageKey;
   var positionKey='oms-marker-toggle-position';
@@ -18,6 +20,7 @@
     document.body.appendChild(button);
   }
   if(!button.querySelector('span'))button.appendChild(document.createElement('span'));
+  button.__markerToggleBound=true;
   button.dataset.markerToggleReady='true';
 
   function applyVisibility(nextVisible){

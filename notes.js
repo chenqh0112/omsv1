@@ -82,21 +82,8 @@
     inbound:{title:'入库单注释'},
     'tray-v2':{title:'蜂鸟美国货盘页面注释'},
     orders:{title:'订单管理注释'},
-    returns:{title:'退货管理注释'},
     'tray-management':{title:'美国货盘管理注释'},
     'packaging-shipping':{title:'包装发货注释'},
-    users:{title:'用户管理注释'},
-    fees:{
-      title:'费用注释',
-      images:[
-        {src:'assets/fee-note-container.png',alt:'集装箱入库费用参考',caption:'集装箱入库费用参考'},
-        {src:'assets/fee-note-pallet.png',alt:'托盘入库费用参考',caption:'托盘入库费用参考'},
-        {src:'assets/fee-note-loose-carton.png',alt:'散箱入库费用参考',caption:'散箱入库费用参考'},
-        {src:'assets/fee-note-return.png',alt:'退货入库处理费参考',caption:'退货入库处理费参考'},
-        {src:'assets/fee-note-storage.png',alt:'仓租费参考',caption:'仓租费参考'},
-        {src:'assets/fee-note-packaging.png',alt:'包材费参考',caption:'包材费参考'}
-      ]
-    },
     'global-overview':{title:'全局说明注释'},
     login:{title:'登录注释'}
   };

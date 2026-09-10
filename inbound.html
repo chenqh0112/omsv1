@@ -2,20 +2,7 @@
 <html lang="zh-CN" style="--notes-panel-w: 420px;"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>入库单管理</title><link rel="stylesheet" href="styles.css?v=20260909-inbound-table"><script src="navigation.js?v=20260901-auth-state" defer=""></script>
-<link rel="stylesheet" href="marker-toggle.css"><style data-html-annotator-inline-style="">
-[data-html-annotator-inline-root] { position: fixed; inset: 0; z-index: 2147483000; pointer-events: none; }
-[data-html-annotator-inline-marker] { position: fixed; width: 22px; height: 22px; margin: -5px 0 0 -5px; border: 2px solid #fff; border-radius: 50%; box-shadow: 0 2px 7px rgba(0,0,0,.35); color: #fff; font: 700 11px/18px Arial,sans-serif; text-align: center; cursor: pointer; pointer-events: auto; }
-[data-html-annotator-inline-marker][data-severity="info"] { background: #3b82f6; }
-[data-html-annotator-inline-marker][data-severity="warning"] { background: #d97706; }
-[data-html-annotator-inline-marker][data-severity="error"] { background: #dc2626; }
-[data-html-annotator-inline-panel] { position: fixed; display: none; max-width: 360px; max-height: 260px; overflow: auto; padding: 12px 14px; border: 1px solid #334155; border-left: 3px solid #3b82f6; border-radius: 6px; background: #111827; color: #e5e7eb; box-shadow: 0 8px 28px rgba(0,0,0,.35); font: 13px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; pointer-events: auto; }
-[data-html-annotator-inline-panel][data-severity="warning"] { border-left-color: #d97706; }
-[data-html-annotator-inline-panel][data-severity="error"] { border-left-color: #dc2626; }
-[data-html-annotator-inline-panel] .html-annotator-inline-head { margin-bottom: 6px; color: #94a3b8; font-size: 11px; }
-[data-html-annotator-inline-panel] p { margin: 0 0 8px; }
-[data-html-annotator-inline-panel] p:last-child { margin-bottom: 0; }
-[data-html-annotator-inline-panel] .html-annotator-inline-tags { margin-top: 8px; color: #94a3b8; font-size: 11px; }
-</style><style data-html-annotator-document-rich-style="">
+<link rel="stylesheet" href="marker-toggle.css"><style data-html-annotator-document-rich-style="">
 .notes-content .notes-document { color:#334155; font-size:13px; line-height:1.7; overflow-wrap:anywhere; }
 .notes-content .notes-document h1,.notes-content .notes-document h2,.notes-content .notes-document h3 { color:#0f172a; font-weight:700; }
 .notes-content .notes-document h1 { margin:0 0 16px; font-size:22px; }
@@ -35,6 +22,19 @@
 .notes-content .notes-document del { color:#64748b; }
 .notes-content .notes-document input[type="checkbox"] { margin-right:6px; }
 .notes-content .notes-document hr { margin:18px 0; border:0; border-top:1px solid #e2e8f0; }
+</style><style data-html-annotator-inline-style="">
+[data-html-annotator-inline-root] { position: fixed; inset: 0; z-index: 2147483000; pointer-events: none; }
+[data-html-annotator-inline-marker] { position: fixed; width: 22px; height: 22px; margin: -5px 0 0 -5px; border: 2px solid #fff; border-radius: 50%; box-shadow: 0 2px 7px rgba(0,0,0,.35); color: #fff; font: 700 11px/18px Arial,sans-serif; text-align: center; cursor: pointer; pointer-events: auto; }
+[data-html-annotator-inline-marker][data-severity="info"] { background: #3b82f6; }
+[data-html-annotator-inline-marker][data-severity="warning"] { background: #d97706; }
+[data-html-annotator-inline-marker][data-severity="error"] { background: #dc2626; }
+[data-html-annotator-inline-panel] { position: fixed; display: none; max-width: 360px; max-height: 260px; overflow: auto; padding: 12px 14px; border: 1px solid #334155; border-left: 3px solid #3b82f6; border-radius: 6px; background: #111827; color: #e5e7eb; box-shadow: 0 8px 28px rgba(0,0,0,.35); font: 13px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; pointer-events: auto; }
+[data-html-annotator-inline-panel][data-severity="warning"] { border-left-color: #d97706; }
+[data-html-annotator-inline-panel][data-severity="error"] { border-left-color: #dc2626; }
+[data-html-annotator-inline-panel] .html-annotator-inline-head { margin-bottom: 6px; color: #94a3b8; font-size: 11px; }
+[data-html-annotator-inline-panel] p { margin: 0 0 8px; }
+[data-html-annotator-inline-panel] p:last-child { margin-bottom: 0; }
+[data-html-annotator-inline-panel] .html-annotator-inline-tags { margin-top: 8px; color: #94a3b8; font-size: 11px; }
 </style></head>
 <body data-page="inbound" class="">
 <aside class="app-nav"><div class="nav-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M9 22V12h6v10"></path></svg><span>工作管理平台</span></div><nav class="nav-list" aria-label="主导航"><a class="nav-primary" href="global-overview.html" data-nav="global-overview" title="全局说明"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path></svg><span>全局说明</span></a><div class="nav-group nav-hover-group nav-group-current"><div class="nav-group-toggle" tabindex="0" title="海外仓"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7.5 12 3l8 4.5v9L12 21l-8-4.5z"></path><path d="m4 7.5 8 4.5 8-4.5M12 12v9"></path></svg><span>海外仓</span><svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m7 10 5 5 5-5"></path></svg></div><div class="nav-children"><a class="nav-child active" href="inbound.html" data-nav="inbound">入库单管理</a><a class="nav-child" href="order-management.html" data-nav="orders">订单管理</a><a class="nav-child" href="index.html" data-nav="sku">库存管理</a><a class="nav-child" href="cargo-tray-management.html" data-nav="tray-management">美国货盘管理</a></div></div><div class="nav-group nav-hover-group"><div class="nav-group-toggle" tabindex="0" title="物流中心"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h11v11H3zM14 10h4l3 3v4h-7z"></path><circle cx="7" cy="19" r="2"></circle><circle cx="18" cy="19" r="2"></circle></svg><span>物流中心</span><svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m7 10 5 5 5-5"></path></svg></div><div class="nav-children"><a class="nav-child" href="packaging-shipping.html" data-nav="packaging-shipping">包装发货</a></div></div><a class="nav-primary" href="cargo-tray-v2.html" data-nav="tray-v2" title="美国货盘"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg><span>美国货盘</span></a></nav><div class="nav-footer"></div></aside>
@@ -179,99 +179,7 @@ function esc(v){return String(v).replace(/[&<>"']/g,function(c){return {'&':'&am
 <li>展示结果总数。</li>
 <li>提供上一页、当前页、下一页和跳转页码控件。</li>
 </ul>
-</article></div></aside><div class="notes-backdrop"></div><div class="notes-preview" role="dialog" aria-modal="true" aria-label="图片预览"><button class="notes-preview-close" type="button" aria-label="关闭图片预览" title="关闭">×</button><img alt=""><div class="notes-preview-caption"></div></div><div data-html-annotator-inline-root=""><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1788939895866" data-severity="info" data-annotation-index="0" data-annotation-updated-at="2026-09-09T08:21:53.854Z" data-target-selector="select#warehouse-filter" data-target-tag="SELECT" data-target-classes="[]" data-target-text="德州1号仓库美西仓(洛杉矶)" data-target-child-count="2" data-target-depth="6">1</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1788939895866" data-severity="info"><div class="html-annotator-inline-head">标注 · SELECT</div><div><p>下拉单选，默认选中第一个</p><p>下拉数据来源：平台仓库地址里的数据，要筛选出海外仓且为美国货盘的仓库数据（其实只有一个）</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1788940701475" data-severity="info" data-annotation-index="1" data-annotation-updated-at="2026-09-09T08:22:01.006Z" data-target-selector="select#status-filter" data-target-tag="SELECT" data-target-classes="[]" data-target-text="状态草稿运输中部分入库全部入库全部已上架已取消" data-target-child-count="7" data-target-depth="6">2</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1788940701475" data-severity="info"><div class="html-annotator-inline-head">标注 · SELECT</div><div><p>下拉单选，可选项：全部/草稿/运输中/部分入库/全部入库/全部已上架/已取消</p><p>默认选中“全部”</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1788942127182" data-severity="info" data-annotation-index="2" data-annotation-updated-at="2026-09-09T08:22:14.022Z" data-target-selector="button#inbound-search" data-target-tag="BUTTON" data-target-classes="[&quot;inbound-primary-btn&quot;]" data-target-text="搜索" data-target-child-count="1" data-target-depth="6">3</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1788942127182" data-severity="info"><div class="html-annotator-inline-head">标注 · BUTTON</div><div><p>点击后根据分配仓库、状态筛选出相应的入库单数据</p><p>分页查询，默认10页</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1788942135126" data-severity="info" data-annotation-index="3" data-annotation-updated-at="2026-09-09T08:22:20.286Z" data-target-selector="button#inbound-reset" data-target-tag="BUTTON" data-target-classes="[&quot;inbound-reset-btn&quot;]" data-target-text="重置" data-target-child-count="1" data-target-depth="6">4</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1788942135126" data-severity="info"><div class="html-annotator-inline-head">标注 · BUTTON</div><div><p>点击后将分配仓库、状态还原为默认值</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1788942142630" data-severity="info" data-annotation-index="4" data-annotation-updated-at="2026-09-09T08:22:27.582Z" data-target-selector="tbody#inbound-tbody > tr:nth-of-type(2) > td:nth-of-type(4) > button.sku-more" data-target-tag="BUTTON" data-target-classes="[&quot;sku-more&quot;]" data-target-text="多个(2)" data-target-child-count="0" data-target-depth="10">5</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1788942142630" data-severity="info"><div class="html-annotator-inline-head">标注 · BUTTON</div><div><p>多个SKU，将鼠标移动进去后会展示出相应的SKU信息，详细交互可以直接在页面上试一下</p></div></div></div><script data-html-annotator-inline-script="">
-(function () {
-  var root = document.querySelector('[data-html-annotator-inline-root]');
-  if (!root) return;
-  function depth(element) {
-    var value = 0;
-    while (element && element.parentElement) { value++; element = element.parentElement; }
-    return value;
-  }
-  function findById(id) {
-    var all = document.querySelectorAll('[data-annotation-id]');
-    for (var i = 0; i < all.length; i++) {
-      if (!root.contains(all[i]) && all[i].getAttribute('data-annotation-id') === id) return all[i];
-    }
-    return null;
-  }
-  function findBySelector(marker) {
-    var selector = marker.getAttribute('data-target-selector');
-    if (!selector) return null;
-    try {
-      var all = document.querySelectorAll(selector);
-      for (var i = 0; i < all.length; i++) if (!root.contains(all[i])) return all[i];
-    } catch (_) {}
-    return null;
-  }
-  function findByFingerprint(marker) {
-    var tag = marker.getAttribute('data-target-tag');
-    if (!tag) return null;
-    var classes = [];
-    try { classes = JSON.parse(marker.getAttribute('data-target-classes') || '[]'); } catch (_) {}
-    var text = marker.getAttribute('data-target-text') || '';
-    var childCount = Number(marker.getAttribute('data-target-child-count'));
-    var targetDepth = Number(marker.getAttribute('data-target-depth'));
-    var all = document.querySelectorAll(tag);
-    for (var i = 0; i < all.length; i++) {
-      var element = all[i];
-      if (root.contains(element)) continue;
-      var elementText = (element.textContent || '').slice(0, 50).trim();
-      if (element.children.length === childCount && depth(element) === targetDepth && elementText === text && element.classList.length === classes.length && classes.every(function (name) { return element.classList.contains(name); })) return element;
-    }
-    return null;
-  }
-  function targetFor(marker) {
-    var id = marker.getAttribute('data-annotation-id');
-    var target = findById(id) || findBySelector(marker) || findByFingerprint(marker);
-    if (target && target.getAttribute('data-annotation-id') !== id) target.setAttribute('data-annotation-id', id);
-    return target;
-  }
-  function panelFor(id) {
-    var panels = root.querySelectorAll('[data-html-annotator-inline-panel]');
-    for (var i = 0; i < panels.length; i++) if (panels[i].getAttribute('data-annotation-id') === id) return panels[i];
-    return null;
-  }
-  function position() {
-    root.querySelectorAll('[data-html-annotator-inline-marker]').forEach(function (marker) {
-      var target = targetFor(marker);
-      var panel = panelFor(marker.getAttribute('data-annotation-id'));
-      if (!target || target.getClientRects().length === 0) {
-        marker.style.display = 'none';
-        if (panel) panel.style.display = 'none';
-        return;
-      }
-      var rect = target.getBoundingClientRect();
-      marker.style.display = 'block';
-      marker.style.left = rect.right + 'px';
-      marker.style.top = rect.top + 'px';
-    });
-  }
-  root.querySelectorAll('[data-html-annotator-inline-marker]').forEach(function (marker) {
-    marker.addEventListener('click', function (event) {
-      event.preventDefault(); event.stopPropagation();
-      var panel = panelFor(marker.getAttribute('data-annotation-id'));
-      root.querySelectorAll('[data-html-annotator-inline-panel]').forEach(function (item) { if (item !== panel) item.style.display = 'none'; });
-      if (!panel) return;
-      panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
-      var rect = marker.getBoundingClientRect();
-      panel.style.left = Math.max(12, Math.min(rect.right + 8, window.innerWidth - panel.offsetWidth - 12)) + 'px';
-      panel.style.top = Math.max(12, Math.min(rect.top, window.innerHeight - panel.offsetHeight - 12)) + 'px';
-    });
-  });
-  document.addEventListener('click', function (event) { if (!root.contains(event.target)) root.querySelectorAll('[data-html-annotator-inline-panel]').forEach(function (item) { item.style.display = 'none'; }); });
-  window.addEventListener('scroll', position, true);
-  window.addEventListener('resize', position);
-  var pending = false;
-  new MutationObserver(function (records) {
-    var relevant = records.some(function (record) { return !root.contains(record.target); });
-    if (!relevant || pending) return;
-    pending = true;
-    setTimeout(function () { pending = false; position(); }, 0);
-  }).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'style', 'hidden'] });
-  position();
-})();
-</script><script>(function(){var markers=document.querySelectorAll('.marker-toggle');for(var i=1;i<markers.length;i++)markers[i].remove();var notes=document.querySelectorAll('.notes-toggle-floating');for(var j=1;j<notes.length;j++)notes[j].remove()})();</script><script>(function(){var table=document.querySelector('.inbound-table');if(!table)return;function removeOperationColumn(){table.querySelectorAll('tr').forEach(function(row){if(row.lastElementChild)row.lastElementChild.remove()});var colgroup=table.querySelector('colgroup');if(colgroup&&colgroup.lastElementChild)colgroup.lastElementChild.remove()}removeOperationColumn();new MutationObserver(removeOperationColumn).observe(table,{childList:true,subtree:true})})();</script>
+</article></div></aside><div class="notes-backdrop"></div><div class="notes-preview" role="dialog" aria-modal="true" aria-label="图片预览"><button class="notes-preview-close" type="button" aria-label="关闭图片预览" title="关闭">×</button><img alt=""><div class="notes-preview-caption"></div></div><script>(function(){var markers=document.querySelectorAll('.marker-toggle');for(var i=1;i<markers.length;i++)markers[i].remove();var notes=document.querySelectorAll('.notes-toggle-floating');for(var j=1;j<notes.length;j++)notes[j].remove()})();</script><script>(function(){var table=document.querySelector('.inbound-table');if(!table)return;function removeOperationColumn(){table.querySelectorAll('tr').forEach(function(row){if(row.lastElementChild)row.lastElementChild.remove()});var colgroup=table.querySelector('colgroup');if(colgroup&&colgroup.lastElementChild)colgroup.lastElementChild.remove()}removeOperationColumn();new MutationObserver(removeOperationColumn).observe(table,{childList:true,subtree:true})})();</script>
 <template data-html-annotator-document-template=""><article class="notes-document" data-html-annotator-injected-document=""><h2>页面结构</h2>
 <ol>
 <li>筛选区域：分配仓库、状态、搜索、重置。</li>
@@ -410,5 +318,97 @@ function esc(v){return String(v).replace(/[&<>"']/g,function(c){return {'&':'&am
   observer.observe(document.documentElement, { childList: true, subtree: true });
   document.addEventListener('DOMContentLoaded', applyDocument);
   window.addEventListener('load', applyDocument);
+})();
+</script><div data-html-annotator-inline-root=""><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1788939895866" data-severity="info" data-annotation-index="0" data-annotation-updated-at="2026-09-09T08:21:53.854Z" data-target-selector="select#warehouse-filter" data-target-tag="SELECT" data-target-classes="[]" data-target-text="德州1号仓库美西仓(洛杉矶)" data-target-child-count="2" data-target-depth="6">1</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1788939895866" data-severity="info"><div class="html-annotator-inline-head">标注 · SELECT</div><div><p>下拉单选，默认选中第一个</p><p>下拉数据来源：平台仓库地址里的数据，要筛选出海外仓且为美国货盘的仓库数据（其实只有一个）</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1788940701475" data-severity="info" data-annotation-index="1" data-annotation-updated-at="2026-09-09T08:22:01.006Z" data-target-selector="select#status-filter" data-target-tag="SELECT" data-target-classes="[]" data-target-text="状态草稿运输中部分入库全部入库全部已上架已取消" data-target-child-count="7" data-target-depth="6">2</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1788940701475" data-severity="info"><div class="html-annotator-inline-head">标注 · SELECT</div><div><p>下拉单选，可选项：全部/草稿/运输中/部分入库/全部入库/全部已上架/已取消</p><p>默认选中“全部”</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1788942127182" data-severity="info" data-annotation-index="2" data-annotation-updated-at="2026-09-10T08:48:40.370Z" data-target-selector="button#inbound-search" data-target-tag="BUTTON" data-target-classes="[&quot;inbound-primary-btn&quot;]" data-target-text="搜索" data-target-child-count="1" data-target-depth="6">3</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1788942127182" data-severity="info"><div class="html-annotator-inline-head">标注 · BUTTON</div><div><p>点击后根据分配仓库、状态筛选出相应的入库单数据</p><p>分页查询，默认10条</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1788942135126" data-severity="info" data-annotation-index="3" data-annotation-updated-at="2026-09-09T08:22:20.286Z" data-target-selector="button#inbound-reset" data-target-tag="BUTTON" data-target-classes="[&quot;inbound-reset-btn&quot;]" data-target-text="重置" data-target-child-count="1" data-target-depth="6">4</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1788942135126" data-severity="info"><div class="html-annotator-inline-head">标注 · BUTTON</div><div><p>点击后将分配仓库、状态还原为默认值</p></div></div><button type="button" data-html-annotator-inline-marker="" data-annotation-id="ann-1788942142630" data-severity="info" data-annotation-index="4" data-annotation-updated-at="2026-09-09T08:22:27.582Z" data-target-selector="tbody#inbound-tbody > tr:nth-of-type(2) > td:nth-of-type(4) > button.sku-more" data-target-tag="BUTTON" data-target-classes="[&quot;sku-more&quot;]" data-target-text="多个(2)" data-target-child-count="0" data-target-depth="10">5</button><div data-html-annotator-inline-panel="" data-annotation-id="ann-1788942142630" data-severity="info"><div class="html-annotator-inline-head">标注 · BUTTON</div><div><p>多个SKU，将鼠标移动进去后会展示出相应的SKU信息，详细交互可以直接在页面上试一下</p></div></div></div><script data-html-annotator-inline-script="">
+(function () {
+  var root = document.querySelector('[data-html-annotator-inline-root]');
+  if (!root) return;
+  function depth(element) {
+    var value = 0;
+    while (element && element.parentElement) { value++; element = element.parentElement; }
+    return value;
+  }
+  function findById(id) {
+    var all = document.querySelectorAll('[data-annotation-id]');
+    for (var i = 0; i < all.length; i++) {
+      if (!root.contains(all[i]) && all[i].getAttribute('data-annotation-id') === id) return all[i];
+    }
+    return null;
+  }
+  function findBySelector(marker) {
+    var selector = marker.getAttribute('data-target-selector');
+    if (!selector) return null;
+    try {
+      var all = document.querySelectorAll(selector);
+      for (var i = 0; i < all.length; i++) if (!root.contains(all[i])) return all[i];
+    } catch (_) {}
+    return null;
+  }
+  function findByFingerprint(marker) {
+    var tag = marker.getAttribute('data-target-tag');
+    if (!tag) return null;
+    var classes = [];
+    try { classes = JSON.parse(marker.getAttribute('data-target-classes') || '[]'); } catch (_) {}
+    var text = marker.getAttribute('data-target-text') || '';
+    var childCount = Number(marker.getAttribute('data-target-child-count'));
+    var targetDepth = Number(marker.getAttribute('data-target-depth'));
+    var all = document.querySelectorAll(tag);
+    for (var i = 0; i < all.length; i++) {
+      var element = all[i];
+      if (root.contains(element)) continue;
+      var elementText = (element.textContent || '').slice(0, 50).trim();
+      if (element.children.length === childCount && depth(element) === targetDepth && elementText === text && element.classList.length === classes.length && classes.every(function (name) { return element.classList.contains(name); })) return element;
+    }
+    return null;
+  }
+  function targetFor(marker) {
+    var id = marker.getAttribute('data-annotation-id');
+    var target = findById(id) || findBySelector(marker) || findByFingerprint(marker);
+    if (target && target.getAttribute('data-annotation-id') !== id) target.setAttribute('data-annotation-id', id);
+    return target;
+  }
+  function panelFor(id) {
+    var panels = root.querySelectorAll('[data-html-annotator-inline-panel]');
+    for (var i = 0; i < panels.length; i++) if (panels[i].getAttribute('data-annotation-id') === id) return panels[i];
+    return null;
+  }
+  function position() {
+    root.querySelectorAll('[data-html-annotator-inline-marker]').forEach(function (marker) {
+      var target = targetFor(marker);
+      var panel = panelFor(marker.getAttribute('data-annotation-id'));
+      if (!target || target.getClientRects().length === 0) {
+        marker.style.display = 'none';
+        if (panel) panel.style.display = 'none';
+        return;
+      }
+      var rect = target.getBoundingClientRect();
+      marker.style.display = 'block';
+      marker.style.left = rect.right + 'px';
+      marker.style.top = rect.top + 'px';
+    });
+  }
+  root.querySelectorAll('[data-html-annotator-inline-marker]').forEach(function (marker) {
+    marker.addEventListener('click', function (event) {
+      event.preventDefault(); event.stopPropagation();
+      var panel = panelFor(marker.getAttribute('data-annotation-id'));
+      root.querySelectorAll('[data-html-annotator-inline-panel]').forEach(function (item) { if (item !== panel) item.style.display = 'none'; });
+      if (!panel) return;
+      panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+      var rect = marker.getBoundingClientRect();
+      panel.style.left = Math.max(12, Math.min(rect.right + 8, window.innerWidth - panel.offsetWidth - 12)) + 'px';
+      panel.style.top = Math.max(12, Math.min(rect.top, window.innerHeight - panel.offsetHeight - 12)) + 'px';
+    });
+  });
+  document.addEventListener('click', function (event) { if (!root.contains(event.target)) root.querySelectorAll('[data-html-annotator-inline-panel]').forEach(function (item) { item.style.display = 'none'; }); });
+  window.addEventListener('scroll', position, true);
+  window.addEventListener('resize', position);
+  var pending = false;
+  new MutationObserver(function (records) {
+    var relevant = records.some(function (record) { return !root.contains(record.target); });
+    if (!relevant || pending) return;
+    pending = true;
+    setTimeout(function () { pending = false; position(); }, 0);
+  }).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'style', 'hidden'] });
+  position();
 })();
 </script></body></html>

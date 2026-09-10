@@ -201,6 +201,51 @@
           "tags": [],
           "createdAt": "2026-09-09T06:45:01.093Z",
           "updatedAt": "2026-09-09T06:45:07.390Z"
+        },
+        {
+          "id": "ann-1789003818888",
+          "elementId": {
+            "selector": "div#head-modal > div.modal.head-modal > div.head-content:nth-of-type(3) > aside > div.head-label-actions > button.btn.btn-primary.head-upload:nth-of-type(1)",
+            "fingerprint": {
+              "tag": "BUTTON",
+              "classList": [
+                "btn",
+                "btn-primary",
+                "head-upload"
+              ],
+              "textPreview": "上传",
+              "childCount": 0,
+              "depth": 7
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>当状态为包装完成时，会有上传箱标的按钮，点击这里</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-10T01:30:18.888Z",
+          "updatedAt": "2026-09-10T01:31:00.896Z"
+        },
+        {
+          "id": "ann-1789003870280",
+          "elementId": {
+            "selector": "div#head-upload-modal > div.head-upload-modal > div.head-upload-footer:nth-of-type(3) > button.btn.btn-primary:nth-of-type(2)",
+            "fingerprint": {
+              "tag": "BUTTON",
+              "classList": [
+                "btn",
+                "btn-primary"
+              ],
+              "textPreview": "上传箱标文件",
+              "childCount": 0,
+              "depth": 5
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>点击后需要判断货仓类型是否为【海外仓&amp;美国&amp;美国货盘海外仓】</p><p>不是就走原逻辑</p><p>是就按以下逻辑处理：</p><ul><li><p>判断当前表单的必填项等（沿用原逻辑判断）</p></li><li><p>调用海外仓配货入库单接口/oms/api/warehouse/inbound_form，异常就报错，创建成功就进行下一步</p></li><li><p>拿到箱标信息，将箱标信息和本次头程批次号进行关联，成功后toast提示“上传箱标文件成功”</p></li><li><p>关闭当前弹窗，把箱标文件回显到箱标文本下方（沿用原本逻辑）</p></li></ul><p></p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-10T01:31:10.280Z",
+          "updatedAt": "2026-09-10T01:43:30.903Z"
         }
       ]
     },
@@ -260,11 +305,11 @@
             }
           },
           "badgePosition": "top-right",
-          "content": "<p>点击后根据分配仓库、状态筛选出相应的入库单数据</p><p>分页查询，默认10页</p>",
+          "content": "<p>点击后根据分配仓库、状态筛选出相应的入库单数据</p><p>分页查询，默认10条</p>",
           "severity": "info",
           "tags": [],
           "createdAt": "2026-09-09T08:22:07.182Z",
-          "updatedAt": "2026-09-09T08:22:14.022Z"
+          "updatedAt": "2026-09-10T08:48:40.370Z"
         },
         {
           "id": "ann-1788942135126",
@@ -477,6 +522,295 @@
           "tags": [],
           "createdAt": "2026-09-09T10:48:53.204Z",
           "updatedAt": "2026-09-09T10:49:07.924Z"
+        }
+      ]
+    },
+    "order-management.html": {
+      "fileHash": "",
+      "annotations": [
+        {
+          "id": "ann-1789018534538",
+          "elementId": {
+            "selector": "select#order-filter-status",
+            "fingerprint": {
+              "tag": "SELECT",
+              "classList": [],
+              "textPreview": "全部待关联待支付待分配仓库待仓库拣货待物流收揽部分发货已发货商品缺货已关闭拦截发货成功",
+              "childCount": 11,
+              "depth": 6
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>默认选中全部，下拉单选框</p><p>可选项：待关联/待支付/待分配仓库/待仓库拣货/待物流收揽/部分发货/已发货/商品缺货/已关闭/拦截发货成功</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-10T05:35:34.538Z",
+          "updatedAt": "2026-09-10T05:37:24.532Z"
+        },
+        {
+          "id": "ann-1789018664817",
+          "elementId": {
+            "selector": "button#order-batch-pay-open",
+            "fingerprint": {
+              "tag": "BUTTON",
+              "classList": [
+                "btn",
+                "order-batch-pay"
+              ],
+              "textPreview": "批量付款",
+              "childCount": 0,
+              "depth": 6
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>点击前需要判断：</p><p>是否选择列表里的数据，一个都没选toast提示“请先选择商品”</p><p>点击后弹出支付弹窗，并将选中数据放入弹窗里的表格</p><p>需要判断订单是否待关联和物流信息是否上传，如果任意一个条件不满足都不能进行付款；付款弹窗里就禁止勾选，并标红整行，在备注列里说明不能支付的原因</p><p>不能支付的原因有：订单待支付、订单无物流信息</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-10T05:37:44.817Z",
+          "updatedAt": "2026-09-10T05:49:04.004Z"
+        },
+        {
+          "id": "ann-1789019346932",
+          "elementId": {
+            "selector": "button#order-label-batch-open",
+            "fingerprint": {
+              "tag": "BUTTON",
+              "classList": [
+                "btn",
+                "order-batch-label",
+                "order-label-batch-open"
+              ],
+              "textPreview": "批量上传面单",
+              "childCount": 0,
+              "depth": 6
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>点击先判断是否选择了列表里的商品数据，一个没选toast提示“请先选择商品”</p><p>校验通过后弹出文件选择弹窗，文件处理逻辑如下：</p><p>处理逻辑:<br>1. 可一次选择多个 PDF;单个文件须小于 20M。超出20Mtoast提示“文件过大”并中断文件处理<br>2. 系统自动拆分、识别面单,一次最多解析 200 个,暂不支持多联面单。<br>3. 订单关联面单文件和物流单号,并批量绑定;成功项进入成功结果,业务校验失败项返回具体原因,其他异常统一提示绑定失败。<br>影响:绑定后的面单及物流单号将用于后续订单发货;传错物流单号或面单会直接影响发货。</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-10T05:49:06.932Z",
+          "updatedAt": "2026-09-10T06:08:35.460Z"
+        },
+        {
+          "id": "ann-1789020518043",
+          "elementId": {
+            "selector": "button#order-import-open",
+            "fingerprint": {
+              "tag": "BUTTON",
+              "classList": [
+                "btn",
+                "order-import-action",
+                "order-import-open"
+              ],
+              "textPreview": "订单导入",
+              "childCount": 0,
+              "depth": 6
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>点击后弹出订单导入弹窗</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-10T06:08:38.043Z",
+          "updatedAt": "2026-09-10T06:13:37.025Z"
+        },
+        {
+          "id": "ann-1789020871409",
+          "elementId": {
+            "selector": "div#order-import-modal > div.modal.v2-order-import-modal > div.modal-body.v2-order-import-body:nth-of-type(3) > section.v2-import-step-panel:nth-of-type(1) > div.v2-import-upload-card > label.btn.btn-ghost.v2-import-file-label",
+            "fingerprint": {
+              "tag": "LABEL",
+              "classList": [
+                "btn",
+                "btn-ghost",
+                "v2-import-file-label"
+              ],
+              "textPreview": "选择文件",
+              "childCount": 1,
+              "depth": 7
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>目前只支持沃尔玛订单的导入。</p><p>订单来自沃尔玛卖家平台下载的订单文件。</p><p>文件解析逻辑沿用蜂鸟和斑马对于沃尔玛订单导入文件解析规则（合并加拿大和沃尔玛的订单导入逻辑）</p><p>解析异常提示相应异常信息。</p><p>解析成功后提示解析成功，并自动进入下一步</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-10T06:14:31.409Z",
+          "updatedAt": "2026-09-10T06:15:29.272Z"
+        },
+        {
+          "id": "ann-1789021055584",
+          "elementId": {
+            "selector": "div#order-import-modal > div.modal.v2-order-import-modal > div.modal-body.v2-order-import-body:nth-of-type(3) > section.v2-import-step-panel:nth-of-type(2) > div.v2-import-preview-head:nth-of-type(1) > div.v2-import-preview-tools:nth-of-type(2) > label.v2-import-filter",
+            "fingerprint": {
+              "tag": "LABEL",
+              "classList": [
+                "v2-import-filter"
+              ],
+              "textPreview": "待关联",
+              "childCount": 1,
+              "depth": 8
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>订单导入后根据平台SKU去匹配美国货盘里是否有对应的SKU，没有就标记为待关联产品，一笔订单里有一个产品未关联，那整笔订单都处于待关联状态。勾选按钮后在列表里筛选出待关联订单。</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-10T06:17:35.584Z",
+          "updatedAt": "2026-09-10T06:18:57.296Z"
+        },
+        {
+          "id": "ann-1789021153255",
+          "elementId": {
+            "selector": "tbody#order-import-preview-body > tr:nth-of-type(1) > td:nth-of-type(9) > button.btn-link.v2-link-sku",
+            "fingerprint": {
+              "tag": "BUTTON",
+              "classList": [
+                "btn-link",
+                "v2-link-sku"
+              ],
+              "textPreview": "关联",
+              "childCount": 0,
+              "depth": 11
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>点击后弹出美国货盘商品列表</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-10T06:19:13.255Z",
+          "updatedAt": "2026-09-10T06:19:31.199Z"
+        },
+        {
+          "id": "ann-1789021261414",
+          "elementId": {
+            "selector": "button#order-import-submit",
+            "fingerprint": {
+              "tag": "BUTTON",
+              "classList": [
+                "btn",
+                "btn-primary"
+              ],
+              "textPreview": "确认导入",
+              "childCount": 0,
+              "depth": 5
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>点击后，将所有订单数据保存下来，不校验订单的状态，后续都能在列表里进行处理。</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-10T06:21:01.414Z",
+          "updatedAt": "2026-09-10T06:23:02.509Z"
+        },
+        {
+          "id": "ann-1789021614683",
+          "elementId": {
+            "selector": "tbody#order-tbody > tr:nth-of-type(1) > td:nth-of-type(3) > div.order-product-cell > div.order-product-item:nth-of-type(1) > div.order-product-action:nth-of-type(2) > button.btn-link.order-association-action",
+            "fingerprint": {
+              "tag": "BUTTON",
+              "classList": [
+                "btn-link",
+                "order-association-action"
+              ],
+              "textPreview": "关联产品",
+              "childCount": 0,
+              "depth": 13
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>点击后弹出美国货盘商品列表</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-10T06:26:54.683Z",
+          "updatedAt": "2026-09-10T06:27:15.292Z"
+        },
+        {
+          "id": "ann-1789021637723",
+          "elementId": {
+            "selector": "tbody#order-tbody > tr:nth-of-type(1) > td:nth-of-type(3) > div.order-product-cell > div.order-product-item:nth-of-type(2) > div.order-product-action:nth-of-type(2) > button.btn-link.order-association-action",
+            "fingerprint": {
+              "tag": "BUTTON",
+              "classList": [
+                "btn-link",
+                "order-association-action"
+              ],
+              "textPreview": "重新关联",
+              "childCount": 0,
+              "depth": 13
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>点击后弹出美国货盘商品列表</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-10T06:27:17.723Z",
+          "updatedAt": "2026-09-10T06:27:29.467Z"
+        },
+        {
+          "id": "ann-1789021653668",
+          "elementId": {
+            "selector": "tbody#order-tbody > tr:nth-of-type(1) > td:nth-of-type(9) > div.order-logistics-cell > button.btn-link.order-tracking-upload",
+            "fingerprint": {
+              "tag": "BUTTON",
+              "classList": [
+                "btn-link",
+                "order-tracking-upload"
+              ],
+              "textPreview": "上传",
+              "childCount": 0,
+              "depth": 11
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>点击后弹出文件选择框</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-10T06:27:33.668Z",
+          "updatedAt": "2026-09-10T06:27:43.412Z"
+        },
+        {
+          "id": "ann-1789021665084",
+          "elementId": {
+            "selector": "tbody#order-tbody > tr:nth-of-type(1) > td.operation-column:nth-of-type(10) > div.table-actions > button.btn-link",
+            "fingerprint": {
+              "tag": "BUTTON",
+              "classList": [
+                "btn-link"
+              ],
+              "textPreview": "查看",
+              "childCount": 0,
+              "depth": 11
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>点击后弹出订单详情弹窗</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-10T06:27:45.084Z",
+          "updatedAt": "2026-09-10T06:27:57.819Z"
+        },
+        {
+          "id": "ann-1789021680843",
+          "elementId": {
+            "selector": "tbody#order-tbody > tr:nth-of-type(2) > td.operation-column:nth-of-type(10) > div.table-actions > button.btn-link.order-payment-action:nth-of-type(1)",
+            "fingerprint": {
+              "tag": "BUTTON",
+              "classList": [
+                "btn-link",
+                "order-payment-action"
+              ],
+              "textPreview": "支付",
+              "childCount": 0,
+              "depth": 11
+            }
+          },
+          "badgePosition": "top-right",
+          "content": "<p>支付只有在订单状态为待支付的时候展示出来</p><p>点击后弹出支付弹窗列表</p>",
+          "severity": "info",
+          "tags": [],
+          "createdAt": "2026-09-10T06:28:00.843Z",
+          "updatedAt": "2026-09-10T06:28:25.412Z"
         }
       ]
     }

@@ -1,0 +1,4366 @@
+{
+  "version": "1.0.0",
+  "filePath": "C:\\Users\\Administrator\\Desktop\\oms v1.0\\order-management.html",
+  "content": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "页面结构"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1,
+          "type": null
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "统计区域：展示待关联订单、处理中订单、已发货订单和本月订单金额。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "筛选区域：按订单号、SKU 编码、SKU 名称、订单状态还有订单来源筛选订单，并提供搜索、重置、批量付款、批量上传面单和订单导入入口。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "订单列表：展示订单号、产品信息、销售金额、货款金额、订单状态、收货人、收货地址、物流和操作。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "分页区域：展示筛选结果总数、当前页和分页切换入口。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "统计区域"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "统计数据基于当前订单数据计算，不随订单号、SKU 编码、SKU 名称和订单状态筛选条件变化。"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "指标"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "计算规则"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "待关联订单"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "订单状态为“待关联”的订单数量"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "处理中订单"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "订单状态为“待分配仓库”“待仓库拣货”或“待物流收揽”的订单数量"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "已发货订单"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "订单状态为“部分发货”或“已发货”的订单数量"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "本月订单金额"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "创建时间属于当前统计月份且订单状态不是“已关闭”的订单金额之和"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "筛选功能"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "订单号"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "控件类型：文本输入。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "匹配规则：支持按本站订单号（前端下单）、订单导入订单号模糊查询，不区分大小写。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "SKU 编码"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "控件类型：文本输入。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "匹配范围：平台 SKU、原始SKU。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "匹配规则：支持模糊查询，不区分大小写。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "SKU 名称"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "控件类型：文本输入。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "匹配规则：按订单商品名称模糊查询，不区分大小写。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "订单状态"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "控件类型：单选下拉框。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "默认值：全部。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "可选项：待关联、待支付、待分配仓库、待仓库拣货、待物流收揽、部分发货、已发货、商品缺货、已关闭、拦截发货成功。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "订单来源"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "控件类型：单选下拉框。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "默认值：全部。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "可选项：全部、前端下单、订单导入。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "搜索和重置"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "搜索：按照已填写的条件刷新订单列表、结果条数和分页。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "重置：清空订单号、SKU 编码、SKU 名称和订单状态，恢复全部订单并回到第一页。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "多个筛选条件之间为“且”关系。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "筛选结果为空时展示“暂无匹配订单”。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "订单列表"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "数据来源：订单导入数据、系统订单数据及已创建的 OMS 订单数据。"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "表格从左到右只展示以下 10 列："
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "字段"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "展示规则"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "数据来源"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "勾选框"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "提供当前页全选、取消全选和半选状态；行选择用于批量付款和批量上传面单"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "-"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "订单号"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "优先展示本站订单号；没有本站订单号时展示订单数据中的订单 ID"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "前端下单或者订单导入"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "产品信息"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "展示订单内全部商品的图片、名称、平台 SKU、SKU、规格颜色、产品 ID、单价、数量及关联操作"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "系统内数据表"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "销售金额"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "分三行展示销售价、运费、总计；没有值时使用 "
+                      },
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ],
+                        "text": "--"
+                      },
+                      {
+                        "type": "text",
+                        "text": "；通常来源于订单导入金额"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "订单导入时的金额或者是前端下单的金额"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "货款金额"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "分三行展示货款、运费、总计；三个字段始终展示，没有值时使用 "
+                      },
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ],
+                        "text": "--"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "上架到美国货盘时针对商品填写的定价"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "订单状态"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "展示订单当前状态，使用状态标签样式区分状态"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "【待关联、待支付、商品缺货、已关闭】都为本系统维护的状态；【待分配仓库、待仓库拣货、待物流收揽、部分发货、已发货、拦截发货成功】为海外仓接口维护的字段"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "收货人"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "展示收货人姓名，没有值时展示 "
+                      },
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ],
+                        "text": "-"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "前端订单或订单导入里的收货人字段"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "收货地址"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "展示收货地址，超长内容截断并支持查看完整值"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "前端订单或订单导入里的收货地址字段"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "物流"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "有物流单号时展示物流单号；没有物流信息时展示上传入口"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "订单里自带的物流信息或者是手动上传"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "操作"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "正常状态展示“查看”；订单状态为“待支付”时额外展示“支付”"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "-"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "表格列宽和对齐"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "表格超出容器宽度时允许横向滚动，不改变列顺序。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "产品信息单元格"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "订单内每个商品独立展示一个商品行，商品图片和信息区域横向排列，关联操作位于商品行右侧并垂直居中。"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "商品信息从上到下按照以下顺序展示："
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1,
+          "type": null
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "商品名称：作为主要识别信息，字体加大；超长时截断并保留完整名称提示。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "平台 SKU：展示原始平台商品编码，右侧提供复制按钮。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "SKU：展示已匹配的美国货盘 SKU；未匹配时展示 "
+                  },
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "code"
+                      }
+                    ],
+                    "text": "-"
+                  },
+                  {
+                    "type": "text",
+                    "text": "，右侧复制按钮不可用。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "规格颜色：展示商品规格和颜色。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "产品 ID：展示美国货盘产品 ID；未关联时展示 "
+                  },
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "code"
+                      }
+                    ],
+                    "text": "-"
+                  },
+                  {
+                    "type": "text",
+                    "text": "，右侧复制按钮不可用。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "单价：按美元金额展示。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "数量：展示当前商品数量。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "复制功能"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "平台 SKU、SKU 和产品 ID 右侧提供复制图标按钮。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "有有效值时点击复制到剪贴板，并toast提示“平台 SKU 已复制”“SKU 已复制”或“产品 ID 已复制”。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "值为空或为 "
+                  },
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "code"
+                      }
+                    ],
+                    "text": "-"
+                  },
+                  {
+                    "type": "text",
+                    "text": " 时按钮禁用。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "剪贴板不可用时使用兼容复制方式；复制失败提示“复制失败，请重试”。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "商品图片"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "已关联商品展示美国货盘商品图片。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "未关联商品使用占位图。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "图片尺寸保持固定，不能因商品名称、SKU 或按钮文字变化导致表格布局跳动。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "商品关联操作"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "SKU 未匹配时，商品行展示“关联产品”按钮。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "已匹配商品在允许重新关联的订单状态下展示“重新关联”按钮。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "订单进入海外仓处理流程时“关联产品”和“重新关联”就都不展示了，已关闭也不展示这两个按钮。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "点击“关联产品”或“重新关联”打开美国货盘 SKU 选择弹窗并进行美国货盘商品的选择。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "关联成功后提示关联成功，更新商品图片、SKU、规格、产品 ID、单价及订单状态，并刷新订单列表。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "订单中只要存在一个商品未匹配，整笔订单进入“待关联”状态。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "允许重新关联的状态范围：待关联、待支付。进入待仓库流程及之后的履约状态后不再展示重新关联按钮。"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "订单金额"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "销售金额"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "销售金额通常来自平台订单导入数据，固定展示以下三行："
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "text"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "销售价：$xxx.xx\n运费：$xxx.xx\n总计：$xxx.xx\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "任一字段没有值时展示 "
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "text": "--"
+          },
+          {
+            "type": "text",
+            "text": "，不能用 "
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "text": "0"
+          },
+          {
+            "type": "text",
+            "text": " 替代缺失值。"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "货款金额"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "货款金额来自美国货盘商品及履约费用，固定展示以下三行："
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "text"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "货款：$xxx.xx\n运费：$xxx.xx\n总计：$xxx.xx\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "三个字段必须始终存在；无值时展示 "
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "text": "--"
+          },
+          {
+            "type": "text",
+            "text": "。支付弹窗中的支付总计按照货款、配件费、物流中心发货费和运费计算。"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "订单状态"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "订单状态使用标签样式展示，至少支持以下状态："
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "状态"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "业务含义"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "待关联"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "存在未匹配商品，等待关联美国货盘 SKU"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "待支付"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "商品已关联，等待订单货款支付"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "待分配仓库"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "已支付，等待分配仓库"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "待仓库拣货"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "已分配仓库，等待拣货"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "待物流收揽"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "已完成拣货，等待物流收揽"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "部分发货"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "订单已部分发货"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "已发货"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "订单已全部发货"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "商品缺货"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "商品库存不足，无法继续履约"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "已关闭"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "订单已关闭，不再进入履约"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "拦截发货成功"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "attrs": {
+                      "textAlign": null
+                    },
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "订单发货已被成功拦截"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "物流信息"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "单个订单上传面单"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "没有物流单号或面单文件时，物流列展示“上传”。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "点击“上传”打开文件选择框。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "支持面单文件格式由页面文件选择器配置；上传成功后保存文件名和上传时间，并刷新物流列。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "物流单号存在时优先展示物流单号。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "批量上传面单"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "未选择订单时，按钮不可用；直接触发时提示“请先选择订单”。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "选择一个或多个订单后打开批量上传面单弹窗。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "弹窗展示所选订单号、收件人和当前物流信息。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "允许一次选择多个面单文件，并在弹窗内展示已选择文件数量。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "单个 PDF 文件小于 20M，一次最多解析 200 个文件，暂不支持多联面单。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "系统自动拆分并识别面单，提取物流单号并绑定订单。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "业务校验失败的订单返回具体原因，其他异常统一提示绑定失败。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "绑定成功后将面单文件和物流单号回显到订单列表，并提示“面单上传成功”。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "批量上传面单会直接影响后续订单发货，必须保留订单与物流单号的绑定关系。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "批量选择和批量操作"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "选择规则"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "表头全选只作用于当前页订单。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "跨页选择状态保留，切换分页不会清除已选订单。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "当前页部分选中时，表头复选框进入半选状态。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "筛选、重置、支付成功或完成面单上传后，按照最新结果同步选择状态。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "批量付款"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "没有选择订单时，批量付款按钮不可用；直接触发时提示“请选择待支付订单”。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "选择订单后点击批量付款，先打开“批量支付”弹窗，再进行支付资格展示。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "弹窗只展示本次选择的订单，包含订单总数、可支付订单数和不可支付订单数。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "订单必须同时满足以下条件才可支付："
+                  }
+                ]
+              },
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "attrs": {
+                          "textAlign": null
+                        },
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "订单状态为待支付；"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "attrs": {
+                          "textAlign": null
+                        },
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "订单内所有商品均已关联美国货盘 SKU；"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "attrs": {
+                          "textAlign": null
+                        },
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "订单已上传面单或存在物流单号。"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "不满足条件的订单在弹窗中禁止勾选，并标识不可支付原因：订单状态不是待支付、存在未关联产品或未上传物流。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "不可支付订单不计入应付金额。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "支付弹窗订单表格字段为：勾选框、序号、订单编号、总件数、货款、配件费、物流中心发货费、运费、支付总计、物流方式；不可支付订单还应展示原因说明。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "弹窗中的全选只选择可支付订单，并支持半选状态。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "付款逻辑沿用斑马的付款逻辑。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "支付成功后同时向海外仓创建包裹明细/oms/api/indent/indent_parcel/add、/oms/api/indent/indent_parcel/add_batch，成功就存储返回的数据，不成功则提示相应信息（海外仓返回的错误信息）"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "单个付款"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "只有订单状态为“待支付”时，操作列展示“支付”。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "点击后先打开“订单支付”弹窗，表格仅展示当前订单。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "订单未关联产品或未上传物流时，订单在弹窗内不可勾选，“立即支付”按钮禁用，并提示具体原因。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "应付金额由当前勾选订单的支付总计相加得到。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "付款逻辑沿用斑马的付款逻辑。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "支付成功后同时向海外仓创建包裹明细/oms/api/indent/indent_parcel/add、/oms/api/indent/indent_parcel/add_batch，成功就存储返回的数据，不成功则提示相应信息（海外仓返回的错误信息）"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "订单导入"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "打开导入弹窗"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "点击“订单导入”打开订单导入弹窗。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "弹窗默认打开第一步“上传文件”，不能在进入订单管理页时自动打开订单预览。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "上传文件"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "当前仅支持沃尔玛订单导入。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "订单文件来自沃尔玛卖家平台下载文件。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "支持 XLS、XLSX 文件格式。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "解析规则沿用蜂鸟和斑马的沃尔玛订单导入规则，兼容加拿大和沃尔玛订单导入逻辑。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "解析异常时提示具体异常信息。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "导入文件里没有订单信息时（空数据）提示“不能上传空文件”并且不能跳转到订单预览。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "解析成功后进入第二步订单预览。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "订单预览"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "预览表格展示：订单编号、SKU、产品数量、平台、订单金额、收件人、收货信息、匹配状态和操作。"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "根据平台 SKU 匹配美国货盘 SKU。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "一笔订单内只要存在一个未匹配商品，整笔订单标记为待关联。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "提供“待关联”筛选开关，只展示存在未匹配商品的订单。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "未匹配商品在操作列展示“关联”，点击后打开美国货盘商品列表。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "关联成功后回填匹配状态和关联 SKU。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "确认导入"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "导入成功后将订单写入订单数据"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "导入订单的状态根据商品关联结果初始化为“待关联”或“待支付”。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "导入完成后关闭订单导入弹窗，并提示“订单导入成功”并刷新订单统计、列表和分页。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "预览页确认导入时保存所有订单数据，不校验订单状态；后续订单状态在订单管理页继续处理。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "订单详情"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "点击操作列“查看”打开订单详情弹窗。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "详情展示本站订单号、下单时间、订单状态、收货信息。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "SKU 明细展示商品图片、商品名称、规格、SKU、单价、数量和小计。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "费用明细展示商品金额、操作费、物流费和订单金额。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "包裹与物流区域展示物流方式、包裹号、物流单号和包裹状态。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "OMS 履约进度展示订单创建、OMS 订单创建与锁定库存、仓库分配、仓库拣货、物流收揽和发货节点。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "待关联订单展示“等待 SKU 关联，暂未创建 OMS 订单”。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "商品缺货、已关闭和拦截发货成功等异常状态展示在履约进度中。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "点击关闭按钮、取消按钮或遮罩区域关闭弹窗。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "textAlign": null,
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "分页"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "默认每页展示 10 条订单。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "展示当前筛选结果总数、当前页/总页数、上一页和下一页。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "当前页没有上一页或下一页时，对应按钮不可用。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "attrs": {
+                  "textAlign": null
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "搜索、重置、状态更新、订单导入、面单上传和支付成功后，分页根据最新结果重新计算并回到有效页码。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "attrs": {
+          "textAlign": null
+        }
+      }
+    ]
+  },
+  "format": "markdown",
+  "markdown": "## 本页数据来源\n主要是前端页面下单和订单导入。\n订单进入仓库作业后的状态值需要依赖于海外仓查询包裹状态接口/oms/api/indent/indent_parcel/status_list_by_parcel_code、/oms/api/indent/indent_parcel/status_list_by_indent_code\n\n## 页面结构\n\n1. 统计区域：展示待关联订单、处理中订单、已发货订单和本月订单金额。\n2. 筛选区域：按订单号、SKU 编码、SKU 名称、订单状态还有订单来源筛选订单，并提供搜索、重置、批量付款、批量上传面单和订单导入入口。\n3. 订单列表：展示订单号、产品信息、销售金额、货款金额、订单状态、收货人、收货地址、物流和操作。\n4. 分页区域：展示筛选结果总数、当前页和分页切换入口。\n\n## 统计区域\n\n统计数据基于当前订单数据计算，不随订单号、SKU 编码、SKU 名称和订单状态筛选条件变化。\n\n| 指标 | 计算规则 |\n| --- | --- |\n| 待关联订单 | 订单状态为“待关联”的订单数量 |\n| 处理中订单 | 订单状态为“待分配仓库”“待仓库拣货”或“待物流收揽”的订单数量 |\n| 已发货订单 | 订单状态为“部分发货”或“已发货”的订单数量 |\n| 本月订单金额 | 创建时间属于当前统计月份且订单状态不是“已关闭”的订单金额之和 |\n\n\n## 筛选功能\n\n### 订单号\n\n- 控件类型：文本输入。\n- 匹配规则：支持按本站订单号（前端下单）、订单导入订单号模糊查询，不区分大小写。\n\n### SKU 编码\n\n- 控件类型：文本输入。\n- 匹配范围：平台 SKU、原始SKU。\n- 匹配规则：支持模糊查询，不区分大小写。\n\n### SKU 名称\n\n- 控件类型：文本输入。\n- 匹配规则：按订单商品名称模糊查询，不区分大小写。\n\n### 订单状态\n\n- 控件类型：单选下拉框。\n- 默认值：全部。\n- 可选项：待关联、待支付、待分配仓库、待仓库拣货、待物流收揽、部分发货、已发货、商品缺货、已关闭、拦截发货成功。\n\n### 订单来源\n\n- 控件类型：单选下拉框。\n- 默认值：全部。\n- 可选项：全部、前端下单、订单导入。\n\n### 搜索和重置\n\n- 搜索：按照已填写的条件刷新订单列表、结果条数和分页。\n- 重置：清空订单号、SKU 编码、SKU 名称和订单状态，恢复全部订单并回到第一页。\n- 多个筛选条件之间为“且”关系。\n- 筛选结果为空时展示“暂无匹配订单”。\n\n## 订单列表\n\n数据来源：订单导入数据、系统订单数据及已创建的 OMS 订单数据。\n\n表格从左到右只展示以下 10 列：\n\n| 字段 | 展示规则 |数据来源|\n| --- | --- | --- |\n| 勾选框 | 提供当前页全选、取消全选和半选状态；行选择用于批量付款和批量上传面单 |-\n| 订单号 | 优先展示本站订单号；没有本站订单号时展示订单数据中的订单 ID | 前端下单或者订单导入\n| 产品信息 | 展示订单内全部商品的图片、名称、平台 SKU、SKU、规格颜色、产品 ID、单价、数量及关联操作 |系统内数据表\n| 销售金额 | 分三行展示销售价、运费、总计；没有值时使用 `--`；通常来源于订单导入金额 |订单导入时的金额或者是前端下单的金额\n| 货款金额 | 分三行展示货款、运费、总计；三个字段始终展示，没有值时使用 `--` |上架到美国货盘时针对商品填写的定价\n| 订单状态 | 展示订单当前状态，使用状态标签样式区分状态 |【待关联、待支付、商品缺货、已关闭】都为本系统维护的状态；【待分配仓库、待仓库拣货、待物流收揽、部分发货、已发货、拦截发货成功】为海外仓接口维护的字段\n| 收货人 | 展示收货人姓名，没有值时展示 `-` | 前端订单或订单导入里的收货人字段\n| 收货地址 | 展示收货地址，超长内容截断并支持查看完整值 |前端订单或订单导入里的收货地址字段\n| 物流 | 有物流单号时展示物流单号；没有物流信息时展示上传入口 |订单里自带的物流信息或者是手动上传\n| 操作 | 正常状态展示“查看”；订单状态为“待支付”时额外展示“支付” |-\n\n### 表格列宽和对齐\n\n- 表格超出容器宽度时允许横向滚动，不改变列顺序。\n\n## 产品信息单元格\n\n订单内每个商品独立展示一个商品行，商品图片和信息区域横向排列，关联操作位于商品行右侧并垂直居中。\n\n商品信息从上到下按照以下顺序展示：\n\n1. 商品名称：作为主要识别信息，字体加大；超长时截断并保留完整名称提示。\n2. 平台 SKU：展示原始平台商品编码，右侧提供复制按钮。\n3. SKU：展示已匹配的美国货盘 SKU；未匹配时展示 `-`，右侧复制按钮不可用。\n4. 规格颜色：展示商品规格和颜色。\n5. 产品 ID：展示美国货盘产品 ID；未关联时展示 `-`，右侧复制按钮不可用。\n6. 单价：按美元金额展示。\n7. 数量：展示当前商品数量。\n\n### 复制功能\n\n- 平台 SKU、SKU 和产品 ID 右侧提供复制图标按钮。\n- 有有效值时点击复制到剪贴板，并toast提示“平台 SKU 已复制”“SKU 已复制”或“产品 ID 已复制”。\n- 值为空或为 `-` 时按钮禁用。\n- 剪贴板不可用时使用兼容复制方式；复制失败提示“复制失败，请重试”。\n\n### 商品图片\n\n- 已关联商品展示美国货盘商品图片。\n- 未关联商品使用占位图。\n- 图片尺寸保持固定，不能因商品名称、SKU 或按钮文字变化导致表格布局跳动。\n\n### 商品关联操作\n\n- SKU 未匹配时，商品行展示“关联产品”按钮。\n- 已匹配商品在允许重新关联的订单状态下展示“重新关联”按钮。\n- 订单进入海外仓处理流程时“关联产品”和“重新关联”就都不展示了，已关闭也不展示这两个按钮。\n- 点击“关联产品”或“重新关联”打开美国货盘 SKU 选择弹窗并进行美国货盘商品的选择。\n- 关联成功后提示关联成功，更新商品图片、SKU、规格、产品 ID、单价及订单状态，并刷新订单列表。\n- 订单中只要存在一个商品未匹配，整笔订单进入“待关联”状态。\n\n允许重新关联的状态范围：待关联、待支付。进入待仓库流程及之后的履约状态后不再展示重新关联按钮。\n\n## 订单金额\n\n### 销售金额\n\n销售金额通常来自平台订单导入数据，固定展示以下三行：\n\n```text\n销售价：$xxx.xx\n运费：$xxx.xx\n总计：$xxx.xx\n```\n\n任一字段没有值时展示 `--`，不能用 `0` 替代缺失值。\n\n### 货款金额\n\n货款金额来自美国货盘商品及履约费用，固定展示以下三行：\n\n```text\n货款：$xxx.xx\n运费：$xxx.xx\n总计：$xxx.xx\n```\n\n三个字段必须始终存在；无值时展示 `--`。支付弹窗中的支付总计按照货款、配件费、物流中心发货费和运费计算。\n\n## 订单状态\n\n订单状态使用标签样式展示，至少支持以下状态：\n\n| 状态 | 业务含义 |\n| --- | --- |\n| 待关联 | 存在未匹配商品，等待关联美国货盘 SKU |\n| 待支付 | 商品已关联，等待订单货款支付 |\n| 待分配仓库 | 已支付，等待分配仓库；此时的美国货盘库存已冻结 |\n| 待仓库拣货 | 已分配仓库，等待拣货 |\n| 待物流收揽 | 已完成拣货，等待物流收揽 |\n| 部分发货 | 订单已部分发货；此时的美国货盘库存要释放并扣除 |\n| 已发货 | 订单已全部发货；此时的美国货盘库存要释放并扣除 |\n| 商品缺货 | 商品库存不足，无法继续履约 |\n| 已关闭 | 订单已关闭，不再进入履约；此时的美国货盘库存要释放 |\n| 拦截发货成功 | 订单发货已被成功拦截；此时的美国货盘库存要释放并还原 |\n\n## 物流信息\n\n### 单个订单上传面单\n\n- 没有物流单号或面单文件时，物流列展示“上传”。\n- 点击“上传”打开文件选择框。\n- 支持面单文件格式由页面文件选择器配置；上传成功后保存文件名和上传时间，并刷新物流列。\n- 物流单号存在时优先展示物流单号。\n- 一个物流单号重复绑定多个无关订单时必须拦截。\n\n### 批量上传面单\n\n- 未选择订单时，按钮不可用；直接触发时提示“请先选择订单”。\n- 选择一个或多个订单后打开批量上传面单弹窗。\n- 弹窗展示所选订单号、收件人和当前物流信息。\n- 允许一次选择多个面单文件，并在弹窗内展示已选择文件数量。\n- 单个 PDF 文件小于 20M，一次最多解析 200 个文件，暂不支持多联面单。\n- 系统自动拆分并识别面单，提取物流单号并绑定订单。\n- 一个物流单号重复绑定多个无关订单时必须拦截。\n- 业务校验失败的订单返回具体原因，其他异常统一提示绑定失败。\n- 绑定成功后将面单文件和物流单号回显到订单列表，并提示“面单上传成功”。\n- 批量上传面单会直接影响后续订单发货，必须保留订单与物流单号的绑定关系。\n\n## 批量选择和批量操作\n\n### 选择规则\n\n- 表头全选只作用于当前页订单。\n- 跨页选择状态保留，切换分页不会清除已选订单。\n- 当前页部分选中时，表头复选框进入半选状态。\n- 筛选、重置、支付成功或完成面单上传后，按照最新结果同步选择状态。\n\n### 批量付款\n\n- 没有选择订单时，批量付款按钮不可用；直接触发时提示“请选择待支付订单”。\n- 选择订单后点击批量付款，先打开“批量支付”弹窗，再进行支付资格展示。\n- 弹窗只展示本次选择的订单，包含订单总数、可支付订单数和不可支付订单数。\n- 订单必须同时满足以下条件才可支付：\n  - 订单状态为待支付；\n  - 订单内所有商品均已关联美国货盘 SKU；\n  - 订单已上传面单或存在物流单号。\n  - 库存充足。\n- 不满足条件的订单在弹窗中禁止勾选，并标识不可支付原因：订单状态不是待支付、存在未关联产品或未上传物流或者库存不足。\n- 不可支付订单不计入应付金额。\n- 支付弹窗订单表格字段为：勾选框、序号、订单编号、总件数、货款、配件费、物流中心发货费、运费、支付总计、物流方式；不可支付订单还应展示原因说明。\n- 弹窗中的全选只选择可支付订单，并支持半选状态。\n- 付款逻辑沿用斑马的付款逻辑。\n- 支付成功后同时向海外仓创建包裹明细/oms/api/indent/indent_parcel/add、/oms/api/indent/indent_parcel/add_batch，成功就存储返回的数据，不成功则提示相应信息（海外仓返回的错误信息）\n- 创建包裹明细成功后，需要对美国货盘里的商品进行库存的冻结。\n\n## 单个付款\n\n- 只有订单状态为“待支付”时，操作列展示“支付”。\n- 点击后先打开“订单支付”弹窗，表格仅展示当前订单。\n- 订单未关联产品或未上传物流时，订单在弹窗内不可勾选，“立即支付”按钮禁用，并提示具体原因。\n- 应付金额由当前勾选订单的支付总计相加得到。\n- 付款逻辑沿用斑马的付款逻辑。\n- 支付成功后同时向海外仓创建包裹明细/oms/api/indent/indent_parcel/add、/oms/api/indent/indent_parcel/add_batch，成功就存储返回的数据，不成功则提示相应信息（海外仓返回的错误信息）\n- 创建包裹明细成功后，需要对美国货盘里的商品进行库存的冻结。\n\n## 订单导入\n\n### 打开导入弹窗\n\n- 点击“订单导入”打开订单导入弹窗。\n- 弹窗默认打开第一步“上传文件”，不能在进入订单管理页时自动打开订单预览。\n\n### 上传文件\n\n- 当前仅支持沃尔玛订单导入。\n- 订单文件来自沃尔玛卖家平台下载文件。\n- 支持 XLS、XLSX 文件格式。\n- 解析规则沿用蜂鸟和斑马的沃尔玛订单导入规则，兼容加拿大和沃尔玛订单导入逻辑。\n- 解析异常时提示具体异常信息。\n- 导入文件里没有订单信息时（空数据）提示“不能上传空文件”并且不能跳转到订单预览。\n- 解析成功后进入第二步订单预览。\n\n### 订单预览\n\n预览表格展示：订单编号、SKU、产品数量、平台、订单金额、收件人、收货信息、匹配状态和操作。\n- 根据平台 SKU 匹配美国货盘 SKU。\n- 一笔订单内只要存在一个未匹配商品，整笔订单标记为待关联。\n- 提供“待关联”筛选开关，只展示存在未匹配商品的订单。\n- 未匹配商品在操作列展示“关联”，点击后打开美国货盘商品列表。\n- 关联成功后回填匹配状态和关联 SKU。\n- 使用“平台＋平台订单号”判断重复，提示已存在订单。\n\n### 确认导入\n- 导入成功后将订单写入订单数据。\n- 导入订单的状态根据商品关联结果初始化为“待关联”或“待支付”。\n- 导入完成后关闭订单导入弹窗，并提示“订单导入成功”并刷新订单统计、列表和分页。\n- 预览页确认导入时保存所有订单数据，不校验订单状态；后续订单状态在订单管理页继续处理。\n\n## 订单详情\n\n- 点击操作列“查看”打开订单详情弹窗。\n- 详情展示本站订单号、下单时间、订单状态、收货信息。\n- SKU 明细展示商品图片、商品名称、规格、SKU、单价、数量和小计。\n- 费用明细展示商品金额、操作费、物流费和订单金额。\n- 包裹与物流区域展示物流方式、包裹号、物流单号和包裹状态。\n- OMS 履约进度展示订单创建、OMS 订单创建与锁定库存、仓库分配、仓库拣货、物流收揽和发货节点。\n- 待关联订单展示“等待 SKU 关联，暂未创建 OMS 订单”。\n- 商品缺货、已关闭和拦截发货成功等异常状态展示在履约进度中。\n- 点击关闭按钮、取消按钮或遮罩区域关闭弹窗。\n\n## 分页\n\n- 默认每页展示 10 条订单。\n- 展示当前筛选结果总数、当前页/总页数、上一页和下一页。\n- 当前页没有上一页或下一页时，对应按钮不可用。\n- 搜索、重置、状态更新、订单导入、面单上传和支付成功后，分页根据最新结果重新计算并回到有效页码。\n",
+  "html": "<h2>本页数据来源</h2>\n<p>主要是前端页面下单和订单导入。\n订单进入仓库作业后的状态值需要依赖于海外仓查询包裹状态接口/oms/api/indent/indent_parcel/status_list_by_parcel_code、/oms/api/indent/indent_parcel/status_list_by_indent_code</p>\n<h2>页面结构</h2>\n<ol>\n<li>统计区域：展示待关联订单、处理中订单、已发货订单和本月订单金额。</li>\n<li>筛选区域：按订单号、SKU 编码、SKU 名称、订单状态还有订单来源筛选订单，并提供搜索、重置、批量付款、批量上传面单和订单导入入口。</li>\n<li>订单列表：展示订单号、产品信息、销售金额、货款金额、订单状态、收货人、收货地址、物流和操作。</li>\n<li>分页区域：展示筛选结果总数、当前页和分页切换入口。</li>\n</ol>\n<h2>统计区域</h2>\n<p>统计数据基于当前订单数据计算，不随订单号、SKU 编码、SKU 名称和订单状态筛选条件变化。</p>\n<table>\n<thead>\n<tr>\n<th>指标</th>\n<th>计算规则</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>待关联订单</td>\n<td>订单状态为“待关联”的订单数量</td>\n</tr>\n<tr>\n<td>处理中订单</td>\n<td>订单状态为“待分配仓库”“待仓库拣货”或“待物流收揽”的订单数量</td>\n</tr>\n<tr>\n<td>已发货订单</td>\n<td>订单状态为“部分发货”或“已发货”的订单数量</td>\n</tr>\n<tr>\n<td>本月订单金额</td>\n<td>创建时间属于当前统计月份且订单状态不是“已关闭”的订单金额之和</td>\n</tr>\n</tbody></table>\n<h2>筛选功能</h2>\n<h3>订单号</h3>\n<ul>\n<li>控件类型：文本输入。</li>\n<li>匹配规则：支持按本站订单号（前端下单）、订单导入订单号模糊查询，不区分大小写。</li>\n</ul>\n<h3>SKU 编码</h3>\n<ul>\n<li>控件类型：文本输入。</li>\n<li>匹配范围：平台 SKU、原始SKU。</li>\n<li>匹配规则：支持模糊查询，不区分大小写。</li>\n</ul>\n<h3>SKU 名称</h3>\n<ul>\n<li>控件类型：文本输入。</li>\n<li>匹配规则：按订单商品名称模糊查询，不区分大小写。</li>\n</ul>\n<h3>订单状态</h3>\n<ul>\n<li>控件类型：单选下拉框。</li>\n<li>默认值：全部。</li>\n<li>可选项：待关联、待支付、待分配仓库、待仓库拣货、待物流收揽、部分发货、已发货、商品缺货、已关闭、拦截发货成功。</li>\n</ul>\n<h3>订单来源</h3>\n<ul>\n<li>控件类型：单选下拉框。</li>\n<li>默认值：全部。</li>\n<li>可选项：全部、前端下单、订单导入。</li>\n</ul>\n<h3>搜索和重置</h3>\n<ul>\n<li>搜索：按照已填写的条件刷新订单列表、结果条数和分页。</li>\n<li>重置：清空订单号、SKU 编码、SKU 名称和订单状态，恢复全部订单并回到第一页。</li>\n<li>多个筛选条件之间为“且”关系。</li>\n<li>筛选结果为空时展示“暂无匹配订单”。</li>\n</ul>\n<h2>订单列表</h2>\n<p>数据来源：订单导入数据、系统订单数据及已创建的 OMS 订单数据。</p>\n<p>表格从左到右只展示以下 10 列：</p>\n<table>\n<thead>\n<tr>\n<th>字段</th>\n<th>展示规则</th>\n<th>数据来源</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>勾选框</td>\n<td>提供当前页全选、取消全选和半选状态；行选择用于批量付款和批量上传面单</td>\n<td>-</td>\n</tr>\n<tr>\n<td>订单号</td>\n<td>优先展示本站订单号；没有本站订单号时展示订单数据中的订单 ID</td>\n<td>前端下单或者订单导入</td>\n</tr>\n<tr>\n<td>产品信息</td>\n<td>展示订单内全部商品的图片、名称、平台 SKU、SKU、规格颜色、产品 ID、单价、数量及关联操作</td>\n<td>系统内数据表</td>\n</tr>\n<tr>\n<td>销售金额</td>\n<td>分三行展示销售价、运费、总计；没有值时使用 <code>--</code>；通常来源于订单导入金额</td>\n<td>订单导入时的金额或者是前端下单的金额</td>\n</tr>\n<tr>\n<td>货款金额</td>\n<td>分三行展示货款、运费、总计；三个字段始终展示，没有值时使用 <code>--</code></td>\n<td>上架到美国货盘时针对商品填写的定价</td>\n</tr>\n<tr>\n<td>订单状态</td>\n<td>展示订单当前状态，使用状态标签样式区分状态</td>\n<td>【待关联、待支付、商品缺货、已关闭】都为本系统维护的状态；【待分配仓库、待仓库拣货、待物流收揽、部分发货、已发货、拦截发货成功】为海外仓接口维护的字段</td>\n</tr>\n<tr>\n<td>收货人</td>\n<td>展示收货人姓名，没有值时展示 <code>-</code></td>\n<td>前端订单或订单导入里的收货人字段</td>\n</tr>\n<tr>\n<td>收货地址</td>\n<td>展示收货地址，超长内容截断并支持查看完整值</td>\n<td>前端订单或订单导入里的收货地址字段</td>\n</tr>\n<tr>\n<td>物流</td>\n<td>有物流单号时展示物流单号；没有物流信息时展示上传入口</td>\n<td>订单里自带的物流信息或者是手动上传</td>\n</tr>\n<tr>\n<td>操作</td>\n<td>正常状态展示“查看”；订单状态为“待支付”时额外展示“支付”</td>\n<td>-</td>\n</tr>\n</tbody></table>\n<h3>表格列宽和对齐</h3>\n<ul>\n<li>表格超出容器宽度时允许横向滚动，不改变列顺序。</li>\n</ul>\n<h2>产品信息单元格</h2>\n<p>订单内每个商品独立展示一个商品行，商品图片和信息区域横向排列，关联操作位于商品行右侧并垂直居中。</p>\n<p>商品信息从上到下按照以下顺序展示：</p>\n<ol>\n<li>商品名称：作为主要识别信息，字体加大；超长时截断并保留完整名称提示。</li>\n<li>平台 SKU：展示原始平台商品编码，右侧提供复制按钮。</li>\n<li>SKU：展示已匹配的美国货盘 SKU；未匹配时展示 <code>-</code>，右侧复制按钮不可用。</li>\n<li>规格颜色：展示商品规格和颜色。</li>\n<li>产品 ID：展示美国货盘产品 ID；未关联时展示 <code>-</code>，右侧复制按钮不可用。</li>\n<li>单价：按美元金额展示。</li>\n<li>数量：展示当前商品数量。</li>\n</ol>\n<h3>复制功能</h3>\n<ul>\n<li>平台 SKU、SKU 和产品 ID 右侧提供复制图标按钮。</li>\n<li>有有效值时点击复制到剪贴板，并toast提示“平台 SKU 已复制”“SKU 已复制”或“产品 ID 已复制”。</li>\n<li>值为空或为 <code>-</code> 时按钮禁用。</li>\n<li>剪贴板不可用时使用兼容复制方式；复制失败提示“复制失败，请重试”。</li>\n</ul>\n<h3>商品图片</h3>\n<ul>\n<li>已关联商品展示美国货盘商品图片。</li>\n<li>未关联商品使用占位图。</li>\n<li>图片尺寸保持固定，不能因商品名称、SKU 或按钮文字变化导致表格布局跳动。</li>\n</ul>\n<h3>商品关联操作</h3>\n<ul>\n<li>SKU 未匹配时，商品行展示“关联产品”按钮。</li>\n<li>已匹配商品在允许重新关联的订单状态下展示“重新关联”按钮。</li>\n<li>订单进入海外仓处理流程时“关联产品”和“重新关联”就都不展示了，已关闭也不展示这两个按钮。</li>\n<li>点击“关联产品”或“重新关联”打开美国货盘 SKU 选择弹窗并进行美国货盘商品的选择。</li>\n<li>关联成功后提示关联成功，更新商品图片、SKU、规格、产品 ID、单价及订单状态，并刷新订单列表。</li>\n<li>订单中只要存在一个商品未匹配，整笔订单进入“待关联”状态。</li>\n</ul>\n<p>允许重新关联的状态范围：待关联、待支付。进入待仓库流程及之后的履约状态后不再展示重新关联按钮。</p>\n<h2>订单金额</h2>\n<h3>销售金额</h3>\n<p>销售金额通常来自平台订单导入数据，固定展示以下三行：</p>\n<pre><code class=\"language-text\">销售价：$xxx.xx\n运费：$xxx.xx\n总计：$xxx.xx\n</code></pre>\n<p>任一字段没有值时展示 <code>--</code>，不能用 <code>0</code> 替代缺失值。</p>\n<h3>货款金额</h3>\n<p>货款金额来自美国货盘商品及履约费用，固定展示以下三行：</p>\n<pre><code class=\"language-text\">货款：$xxx.xx\n运费：$xxx.xx\n总计：$xxx.xx\n</code></pre>\n<p>三个字段必须始终存在；无值时展示 <code>--</code>。支付弹窗中的支付总计按照货款、配件费、物流中心发货费和运费计算。</p>\n<h2>订单状态</h2>\n<p>订单状态使用标签样式展示，至少支持以下状态：</p>\n<table>\n<thead>\n<tr>\n<th>状态</th>\n<th>业务含义</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>待关联</td>\n<td>存在未匹配商品，等待关联美国货盘 SKU</td>\n</tr>\n<tr>\n<td>待支付</td>\n<td>商品已关联，等待订单货款支付</td>\n</tr>\n<tr>\n<td>待分配仓库</td>\n<td>已支付，等待分配仓库；此时的美国货盘库存已冻结</td>\n</tr>\n<tr>\n<td>待仓库拣货</td>\n<td>已分配仓库，等待拣货</td>\n</tr>\n<tr>\n<td>待物流收揽</td>\n<td>已完成拣货，等待物流收揽</td>\n</tr>\n<tr>\n<td>部分发货</td>\n<td>订单已部分发货；此时的美国货盘库存要释放并扣除</td>\n</tr>\n<tr>\n<td>已发货</td>\n<td>订单已全部发货；此时的美国货盘库存要释放并扣除</td>\n</tr>\n<tr>\n<td>商品缺货</td>\n<td>商品库存不足，无法继续履约</td>\n</tr>\n<tr>\n<td>已关闭</td>\n<td>订单已关闭，不再进入履约；此时的美国货盘库存要释放</td>\n</tr>\n<tr>\n<td>拦截发货成功</td>\n<td>订单发货已被成功拦截；此时的美国货盘库存要释放并还原</td>\n</tr>\n</tbody></table>\n<h2>物流信息</h2>\n<h3>单个订单上传面单</h3>\n<ul>\n<li>没有物流单号或面单文件时，物流列展示“上传”。</li>\n<li>点击“上传”打开文件选择框。</li>\n<li>支持面单文件格式由页面文件选择器配置；上传成功后保存文件名和上传时间，并刷新物流列。</li>\n<li>物流单号存在时优先展示物流单号。</li>\n<li>一个物流单号重复绑定多个无关订单时必须拦截。</li>\n</ul>\n<h3>批量上传面单</h3>\n<ul>\n<li>未选择订单时，按钮不可用；直接触发时提示“请先选择订单”。</li>\n<li>选择一个或多个订单后打开批量上传面单弹窗。</li>\n<li>弹窗展示所选订单号、收件人和当前物流信息。</li>\n<li>允许一次选择多个面单文件，并在弹窗内展示已选择文件数量。</li>\n<li>单个 PDF 文件小于 20M，一次最多解析 200 个文件，暂不支持多联面单。</li>\n<li>系统自动拆分并识别面单，提取物流单号并绑定订单。</li>\n<li>一个物流单号重复绑定多个无关订单时必须拦截。</li>\n<li>业务校验失败的订单返回具体原因，其他异常统一提示绑定失败。</li>\n<li>绑定成功后将面单文件和物流单号回显到订单列表，并提示“面单上传成功”。</li>\n<li>批量上传面单会直接影响后续订单发货，必须保留订单与物流单号的绑定关系。</li>\n</ul>\n<h2>批量选择和批量操作</h2>\n<h3>选择规则</h3>\n<ul>\n<li>表头全选只作用于当前页订单。</li>\n<li>跨页选择状态保留，切换分页不会清除已选订单。</li>\n<li>当前页部分选中时，表头复选框进入半选状态。</li>\n<li>筛选、重置、支付成功或完成面单上传后，按照最新结果同步选择状态。</li>\n</ul>\n<h3>批量付款</h3>\n<ul>\n<li>没有选择订单时，批量付款按钮不可用；直接触发时提示“请选择待支付订单”。</li>\n<li>选择订单后点击批量付款，先打开“批量支付”弹窗，再进行支付资格展示。</li>\n<li>弹窗只展示本次选择的订单，包含订单总数、可支付订单数和不可支付订单数。</li>\n<li>订单必须同时满足以下条件才可支付：<ul>\n<li>订单状态为待支付；</li>\n<li>订单内所有商品均已关联美国货盘 SKU；</li>\n<li>订单已上传面单或存在物流单号。</li>\n<li>库存充足。</li>\n</ul>\n</li>\n<li>不满足条件的订单在弹窗中禁止勾选，并标识不可支付原因：订单状态不是待支付、存在未关联产品或未上传物流或者库存不足。</li>\n<li>不可支付订单不计入应付金额。</li>\n<li>支付弹窗订单表格字段为：勾选框、序号、订单编号、总件数、货款、配件费、物流中心发货费、运费、支付总计、物流方式；不可支付订单还应展示原因说明。</li>\n<li>弹窗中的全选只选择可支付订单，并支持半选状态。</li>\n<li>付款逻辑沿用斑马的付款逻辑。</li>\n<li>支付成功后同时向海外仓创建包裹明细/oms/api/indent/indent_parcel/add、/oms/api/indent/indent_parcel/add_batch，成功就存储返回的数据，不成功则提示相应信息（海外仓返回的错误信息）</li>\n<li>创建包裹明细成功后，需要对美国货盘里的商品进行库存的冻结。</li>\n</ul>\n<h2>单个付款</h2>\n<ul>\n<li>只有订单状态为“待支付”时，操作列展示“支付”。</li>\n<li>点击后先打开“订单支付”弹窗，表格仅展示当前订单。</li>\n<li>订单未关联产品或未上传物流时，订单在弹窗内不可勾选，“立即支付”按钮禁用，并提示具体原因。</li>\n<li>应付金额由当前勾选订单的支付总计相加得到。</li>\n<li>付款逻辑沿用斑马的付款逻辑。</li>\n<li>支付成功后同时向海外仓创建包裹明细/oms/api/indent/indent_parcel/add、/oms/api/indent/indent_parcel/add_batch，成功就存储返回的数据，不成功则提示相应信息（海外仓返回的错误信息）</li>\n<li>创建包裹明细成功后，需要对美国货盘里的商品进行库存的冻结。</li>\n</ul>\n<h2>订单导入</h2>\n<h3>打开导入弹窗</h3>\n<ul>\n<li>点击“订单导入”打开订单导入弹窗。</li>\n<li>弹窗默认打开第一步“上传文件”，不能在进入订单管理页时自动打开订单预览。</li>\n</ul>\n<h3>上传文件</h3>\n<ul>\n<li>当前仅支持沃尔玛订单导入。</li>\n<li>订单文件来自沃尔玛卖家平台下载文件。</li>\n<li>支持 XLS、XLSX 文件格式。</li>\n<li>解析规则沿用蜂鸟和斑马的沃尔玛订单导入规则，兼容加拿大和沃尔玛订单导入逻辑。</li>\n<li>解析异常时提示具体异常信息。</li>\n<li>导入文件里没有订单信息时（空数据）提示“不能上传空文件”并且不能跳转到订单预览。</li>\n<li>解析成功后进入第二步订单预览。</li>\n</ul>\n<h3>订单预览</h3>\n<p>预览表格展示：订单编号、SKU、产品数量、平台、订单金额、收件人、收货信息、匹配状态和操作。</p>\n<ul>\n<li>根据平台 SKU 匹配美国货盘 SKU。</li>\n<li>一笔订单内只要存在一个未匹配商品，整笔订单标记为待关联。</li>\n<li>提供“待关联”筛选开关，只展示存在未匹配商品的订单。</li>\n<li>未匹配商品在操作列展示“关联”，点击后打开美国货盘商品列表。</li>\n<li>关联成功后回填匹配状态和关联 SKU。</li>\n<li>使用“平台＋平台订单号”判断重复，提示已存在订单。</li>\n</ul>\n<h3>确认导入</h3>\n<ul>\n<li>导入成功后将订单写入订单数据。</li>\n<li>导入订单的状态根据商品关联结果初始化为“待关联”或“待支付”。</li>\n<li>导入完成后关闭订单导入弹窗，并提示“订单导入成功”并刷新订单统计、列表和分页。</li>\n<li>预览页确认导入时保存所有订单数据，不校验订单状态；后续订单状态在订单管理页继续处理。</li>\n</ul>\n<h2>订单详情</h2>\n<ul>\n<li>点击操作列“查看”打开订单详情弹窗。</li>\n<li>详情展示本站订单号、下单时间、订单状态、收货信息。</li>\n<li>SKU 明细展示商品图片、商品名称、规格、SKU、单价、数量和小计。</li>\n<li>费用明细展示商品金额、操作费、物流费和订单金额。</li>\n<li>包裹与物流区域展示物流方式、包裹号、物流单号和包裹状态。</li>\n<li>OMS 履约进度展示订单创建、OMS 订单创建与锁定库存、仓库分配、仓库拣货、物流收揽和发货节点。</li>\n<li>待关联订单展示“等待 SKU 关联，暂未创建 OMS 订单”。</li>\n<li>商品缺货、已关闭和拦截发货成功等异常状态展示在履约进度中。</li>\n<li>点击关闭按钮、取消按钮或遮罩区域关闭弹窗。</li>\n</ul>\n<h2>分页</h2>\n<ul>\n<li>默认每页展示 10 条订单。</li>\n<li>展示当前筛选结果总数、当前页/总页数、上一页和下一页。</li>\n<li>当前页没有上一页或下一页时，对应按钮不可用。</li>\n<li>搜索、重置、状态更新、订单导入、面单上传和支付成功后，分页根据最新结果重新计算并回到有效页码。</li>\n</ul>\n",
+  "annotationRefs": [
+    "ann-1789018534538",
+    "ann-1789018664817",
+    "ann-1789019346932",
+    "ann-1789020518043",
+    "ann-1789020871409",
+    "ann-1789021055584",
+    "ann-1789021153255",
+    "ann-1789021261414",
+    "ann-1789021614683",
+    "ann-1789021637723",
+    "ann-1789021653668",
+    "ann-1789021665084",
+    "ann-1789021680843"
+  ],
+  "updatedAt": "2026-09-10T09:37:15.222Z"
+}

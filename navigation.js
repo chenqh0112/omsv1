@@ -3,6 +3,35 @@
   if(!nav)return;
 
   var currentPage=document.body.dataset.page||'';
+  document.querySelectorAll('.stat-trend').forEach(function(trend){trend.remove()});
+  var overviewMeanings={
+    'SKU总数':'当前库存管理范围内的 SKU 种类总数。',
+    '已上架总数':'已经完成上架的库存总数量。',
+    '运输中总数':'已经发出、目前仍处于运输过程中的库存数量。',
+    '可用总数':'已上架库存中当前可以销售或分配的数量。',
+    '货盘SKU数':'当前美国货盘中包含的 SKU 种类数量。',
+    '货盘总量':'当前放入美国货盘的商品总件数。',
+    '在售数量':'美国货盘中尚未被订单预占、当前可销售的件数。',
+    '已预占':'已经被外部订单占用、但尚未完成发货的件数。'
+  };
+  var overviewTooltip=document.createElement('div');overviewTooltip.className='overview-tooltip';overviewTooltip.setAttribute('role','tooltip');document.body.appendChild(overviewTooltip);
+  function showOverviewTooltip(help){
+    var rect=help.getBoundingClientRect();overviewTooltip.textContent=help.getAttribute('data-tooltip');overviewTooltip.classList.add('show');
+    var tooltipRect=overviewTooltip.getBoundingClientRect(),left=Math.max(8,Math.min(window.innerWidth-tooltipRect.width-8,rect.left+rect.width/2-tooltipRect.width/2));
+    overviewTooltip.style.left=left+'px';overviewTooltip.style.top=(rect.bottom+8)+'px';
+  }
+  function hideOverviewTooltip(){overviewTooltip.classList.remove('show')}
+  document.querySelectorAll('.sku-overview-grid .stat-card,.ops-stat-grid .stat-card,.tray-management-stats .stat-card,.stat-grid .stat-card,.tray-overview-grid .stat-card,.tray-summary .stat-card').forEach(function(card){
+    var label=card.querySelector('.stat-label');
+    if(!label||label.querySelector('.overview-help'))return;
+    var description=card.querySelector('.stat-heading p');
+    var help=document.createElement('button');
+    help.type='button';help.className='overview-help';help.textContent='?';
+    help.setAttribute('aria-label',label.textContent.trim()+'说明');
+    help.setAttribute('data-tooltip',overviewMeanings[label.textContent.trim()]||(description&&description.textContent.trim())||'展示当前指标的统计结果。');
+    help.addEventListener('mouseenter',function(){showOverviewTooltip(help)});help.addEventListener('mouseleave',hideOverviewTooltip);help.addEventListener('focus',function(){showOverviewTooltip(help)});help.addEventListener('blur',hideOverviewTooltip);
+    label.appendChild(help);
+  });
   var markerStyle=document.createElement('link');markerStyle.rel='stylesheet';markerStyle.href='marker-toggle.css';document.head.appendChild(markerStyle);
   var markerScript=document.createElement('script');markerScript.src='marker-toggle.js';document.body.appendChild(markerScript);
   if(currentPage==='inbound'||currentPage==='packaging-shipping'){
