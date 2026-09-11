@@ -84,7 +84,14 @@
     orders:{title:'订单管理注释'},
     'tray-management':{title:'美国货盘管理注释'},
     'packaging-shipping':{title:'包装发货注释'},
-    'global-overview':{title:'业务流程注释'},
+    'global-overview':{
+      title:'业务流程注释',
+      images:[
+        {src:'assets/海外仓入库流程解析.png',alt:'海外仓入库流程解析',caption:'海外仓入库流程解析'},
+        {src:'assets/平台订单导入流程解析.png',alt:'平台订单导入流程解析',caption:'平台订单导入流程解析'},
+        {src:'assets/库存变化规则.png',alt:'库存变化规则',caption:'库存变化规则'}
+      ]
+    },
     login:{title:'登录注释'}
   };
   var note=pageNotes[pageKey]||{title:'当前菜单注释'};
@@ -300,5 +307,5 @@
     applyNotesWidth(parseInt(getComputedStyle(document.documentElement).getPropertyValue('--notes-panel-w'),10)||420,false);
     applyNotesButtonPosition(savedButtonPosition,false);
   });
-  closeNotes();
+  if(pageKey==='global-overview')openNotes();else closeNotes();
 })();
